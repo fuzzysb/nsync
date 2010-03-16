@@ -1,0 +1,46 @@
+﻿<Page x:Class="nsync.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:const="clr-namespace:nsync.Properties"   
+    xmlns:nsyncns="clr-namespace:nsync"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="HomePage" Width="518" Height="287" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
+    <Grid>
+        <Label />
+        <Grid MouseEnter="BoxLeft_MouseEnter" MouseLeave="BoxLeft_MouseLeave">
+        <StackPanel Margin="25,0,0,55" Name="BoxLeft" AllowDrop="True" HorizontalAlignment="Left" Width="232" Style="{StaticResource BoxStyle}" DragDrop.Drop="BoxLeft_Drop" DragEnter="BoxLeft_DragEnter" DragLeave="BoxLeft_DragLeave" MouseDown="LeftIcon_MouseDown">
+            <TextBlock Name="LeftText" Foreground="White" FontFamily="Verdana" FontSize="11" Text="{x:Static const:Resources.panelText}" HorizontalAlignment="Center" Margin="4, 35, 4, 20" MaxWidth="230" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            <Image Name="LeftIcon" Source="Resources/default.png" Width="128" Height="128" Margin="0,0" ToolTip="{x:Static const:Resources.panelIconToolTip}" />
+        </StackPanel>
+            <ListBox Name="LeftListBox" Margin="25, 78" Width="228" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="Black" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource RecentListBoxItem}" Style="{StaticResource RecentListBox}" FontSize="10" Visibility="Hidden">
+            </ListBox>
+        <Border Name="BarMRULeft" Width="228" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25, 58" Background="Black" Opacity="0.2" Visibility="Hidden" MouseEnter="BarMRULeft_MouseEnter" MouseLeave="BarMRULeft_MouseLeave" MouseUp="BarMRULeft_MouseUp">
+                <Grid>
+                    <TextBlock Name="LeftBarScrollLeft" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="10" Margin="5" Visibility="Hidden"></TextBlock>
+                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10">Recent Folders...</TextBlock>
+                    <TextBlock Name="LeftBarScrollRight" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="10" Margin="5" Visibility="Hidden"></TextBlock>
+                </Grid>
+        </Border>
+        </Grid>
+        <Grid MouseEnter="BoxRight_MouseEnter" MouseLeave="BoxRight_MouseLeave">
+        <StackPanel Margin="0,0,21,55" Name="BoxRight" AllowDrop="True" HorizontalAlignment="Right" Width="232" Style="{StaticResource BoxStyle}" DragDrop.Drop="BoxRight_Drop" DragEnter="BoxRight_DragEnter" DragLeave="BoxRight_DragLeave" MouseDown="RightIcon_MouseDown">
+            <TextBlock Name="RightText" Foreground="White" FontFamily="Verdana" FontSize="11" Text="{x:Static const:Resources.panelText}" HorizontalAlignment="Center" Margin="4, 35, 4, 20" MaxWidth="230" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            <Image Name="RightIcon" Source="Resources/default.png" Width="128" Height="128" Margin="0,0" ToolTip="{x:Static const:Resources.panelIconToolTip}" />
+        </StackPanel>
+            <ListBox Name="RightListBox" Margin="25, 78" Width="228" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Black" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource RecentListBoxItem}" Style="{StaticResource RecentListBox}" FontSize="10" Visibility="Hidden">
+            </ListBox>
+            <Border Name="BarMRURight" Width="228" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="25, 58" Background="Black" Opacity="0.2" Visibility="Hidden" MouseEnter="BarMRURight_MouseEnter" MouseLeave="BarMRURight_MouseLeave" MouseUp="BarMRURight_MouseUp">
+                <Grid>
+                    <TextBlock Name="RightBarScrollLeft" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="10" Margin="5"></TextBlock>
+                    <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10">Recent Folders..</TextBlock>
+                    <TextBlock Name="RightBarScrollRight" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="10" Margin="5"></TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+        <Button Name="ButtonSync" Visibility="Hidden" Template="{StaticResource ButtonSyncTemplate}" Width="23" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,23,21" ToolTip="{x:Static const:Resources.syncButtonToolTip}" Click="ButtonSync_Click"></Button>
+        <nsyncns:GIFImageControl x:Name="SyncingImage" GIFSource="load.gif"  AllowClickToPause="False" Width="23" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,23,21" Visibility="Hidden"/>
+        <Image x:Name="ImageTeam14" Margin="5" VerticalAlignment="Bottom" Height="48.734" Source="Resources/team14.png" Width="158"/>
+        <Image x:Name="ImageTeam14Over" Margin="5" VerticalAlignment="Bottom" Height="48.734" Source="Resources/team14over.png" Width="158"/>
+        <Label Height="28" HorizontalAlignment="Left" Margin="20,0,0,16" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
+        <Label Height="29" Margin="0,0,52,16" Name="LabelProgressPercent" VerticalAlignment="Bottom" Foreground="WhiteSmoke" Visibility="Hidden" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Width="52" FlowDirection="LeftToRight"> 0 %</Label>
+    </Grid>
+</Page>
