@@ -4,122 +4,343 @@
         <name>nsync</name>
     </assembly>
     <members>
-        <member name="T:nsync.MainWindow">
+        <member name="F:nsync.TestEngine.components">
             <summary>
-            Interaction logic for MainWindow.xaml
-            </summary>
-            <summary>
-            MainWindow
+            Required designer variable.
             </summary>
         </member>
-        <member name="M:nsync.MainWindow.#ctor">
+        <member name="M:nsync.TestEngine.Dispose(System.Boolean)">
             <summary>
-            Constructor for MainWindow class
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:nsync.TestEngine.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="M:nsync.MainWindow.titleBar_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+        <member name="T:nsync.Properties.Resources">
             <summary>
-            This method is called when user clicks on the titlebar of MainWindow
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonClose_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when user clicks on the exit button on MainWindow
-            <para>nsync will exit after this</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonMinimise_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when user clicks on the minimize button on MainWindow
-            <para>nsync will minimize to taskbar after this</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonPageSettings_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when users click on the left dot on MainWindow
-            <para>Current page will be switched to SettingsPage</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonPageBackTrack_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when users click on the right dot on MainWindow
-            <para>Current page will be switched to TrackBackPage</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.WindowMain_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            This method is called when mouse pointer is moved near the sides of MainWindow
-            <para>Slider bars will be appear when mouse pointer is near it</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.viewList_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <summary>
-            This method is called when viewList.SelectedIndex is changed
-            <para>The respective page will be loaded</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.UpdateToolTips">
-            <summary>
-            Updates the tooltips of the slider bars
+              A strongly-typed resource class, for looking up localized strings, etc.
             </summary>
         </member>
-        <member name="M:nsync.MainWindow.RenderBitmap(System.Windows.FrameworkElement)">
+        <member name="P:nsync.Properties.Resources.ResourceManager">
             <summary>
-            Takes a snapshot of an object element
+              Returns the cached ResourceManager instance used by this class.
             </summary>
-            <param name="element">This parameter is an object that will be snapshot</param>
-            <returns>Returns a bitmap of the snapshot</returns>
         </member>
-        <member name="M:nsync.MainWindow.ButtonPageHome_Click(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="P:nsync.Properties.Resources.Culture">
             <summary>
-            This method is called when users click on the center dot on MainWindow
-            <para>Current page will be switched to HomePage</para>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
-        <member name="M:nsync.MainWindow.ButtonSideTabLeft_Click(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="P:nsync.Properties.Resources.bothFoldersNotExist">
             <summary>
-            This method is called when users click on the left sliderbar
-            <para>Current page will be switched to the page on the left</para>
+              Looks up a localized string similar to Both the selected folders do not exist..
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
-        <member name="M:nsync.MainWindow.ButtonSideTabRight_Click(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="P:nsync.Properties.Resources.closeToolTip">
             <summary>
-            This method is called when users click on the left sliderbar
-            <para>Current page will be switched to the page on the left</para>
+              Looks up a localized string similar to Close.
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
-        <member name="M:nsync.MainWindow.ButtonTesting_Click(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="P:nsync.Properties.Resources.folderExplorerText">
             <summary>
-            This method is called when user click on the letter 'n' of nsync logo
-            <para>The testing window will appear</para>
+              Looks up a localized string similar to Select a folder to synchronise with nsync..
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
-        <member name="M:nsync.MainWindow.InitializeComponent">
+        <member name="P:nsync.Properties.Resources.folderIconPath">
+            <summary>
+              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder.png.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.folderMissingIconPath">
+            <summary>
+              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder_missing.png.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.homeToolTip">
+            <summary>
+              Looks up a localized string similar to Home.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.insufficientDiskSpace">
+            <summary>
+              Looks up a localized string similar to Insufficient disk space.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.leftFolderNotExist">
+            <summary>
+              Looks up a localized string similar to The left folder does not exist..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.minimiseToolTip">
+            <summary>
+              Looks up a localized string similar to Minimise.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.nullString">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.panelIconToolTip">
+            <summary>
+              Looks up a localized string similar to Drag or Click to Add a Folder.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.panelText">
+            <summary>
+              Looks up a localized string similar to Drag &amp; Drop Folders Here.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.rightFolderNotExist">
+            <summary>
+              Looks up a localized string similar to The right folder does not exist..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.settingsFilePath">
+            <summary>
+              Looks up a localized string similar to /settings.xml.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.settingsToolTip">
+            <summary>
+              Looks up a localized string similar to Settings.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.similarFolders">
+            <summary>
+              Looks up a localized string similar to The left and right folders cannot be similar..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.subfolderOfFolder">
+            <summary>
+              Looks up a localized string similar to Folders that are to be synchronized cannot be a subfolder of each other..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.syncButtonToolTip">
+            <summary>
+              Looks up a localized string similar to And Sync!.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.syncComplete">
+            <summary>
+              Looks up a localized string similar to Sync done!.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.synchronizedFolders">
+            <summary>
+              Looks up a localized string similar to Folders are already synchronized..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.thumbdriveIconPath">
+            <summary>
+              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/removabledrive.png.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.trackBackToolTip">
+            <summary>
+              Looks up a localized string similar to TrackBack.
+            </summary>
+        </member>
+        <member name="T:nsync.TrackBackPage">
+            <summary>
+            Interaction logic for TrackBackPage.xaml
+            </summary>
+            <summary>
+            TrackBackPage
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackPage.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
+        </member>
+        <member name="T:nsync.SettingsPage">
+            <summary>
+            Interaction logic for SettingsPage.xaml
+            </summary>
+            <summary>
+            SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.#ctor">
+            <summary>
+            Constructor for SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckSettings">
+            <summary>
+            Update the checkbox on SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user checks the checkbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_UnChecked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user unchecks the checkbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.#ctor(System.Windows.Window)">
+            <summary>
+            Constructor for HelperManager
+            </summary>
+            <param name="ownerWindow">Setting the owner of windowHelper to ownerWindow</param>
+        </member>
+        <member name="M:nsync.HelperManager.Show(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
+            <summary>
+            Tell windowHelper to display the notification
+            </summary>
+            <param name="helpString">The string to be displayed in the notifiation window</param>
+            <param name="time">The duration for which the notification window should be active</param>
+            <param name="windowPosition">The position for which the notification window should be placed</param>
+        </member>
+        <member name="M:nsync.HelperManager.helperWindowIsOn">
+            <summary>
+            Checks if the notification window should be on/off
+            </summary>
+            <returns>The result is returned as a boolean</returns>
+        </member>
+        <member name="M:nsync.HelperManager.CloseWindow">
+            <summary>
+            Closes the notification window
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.UpdateMove">
+            <summary>
+            Moves the notification window accordingly when its position is changed
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.HideWindow">
+            <summary>
+            Hides the notification window
+            </summary>
+        </member>
+        <member name="T:nsync.HelperWindow">
+            <summary>
+            Interaction logic for HelperWindow.xaml
+            </summary>
+            <summary>
+            HelperWindow
+            </summary>
+        </member>
+        <member name="M:nsync.HelperWindow.#ctor">
+            <summary>
+            Constructor for HelperWindow class
+            </summary>
+        </member>
+        <member name="M:nsync.HelperWindow.SetSettings(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
+            <summary>
+            Set the settings for notification window
+            </summary>
+            <param name="helpText">This is the string to be displayed</param>
+            <param name="helpDuration">Duration for which the notification window should be active</param>
+            <param name="windowPosition">The position where notification window should be displayed</param>
+        </member>
+        <member name="M:nsync.HelperWindow.MoveWindow">
+            <summary>
+            Move the notification window accordingly when its position is changed
+            </summary>
+        </member>
+        <member name="M:nsync.HelperWindow.CloseWindow">
+            <summary>
+            Close the notification window
+            </summary>
+        </member>
+        <member name="M:nsync.HelperWindow.SetTime">
+            <summary>
+            Setup the settings for timer of notification window
+            </summary>
+        </member>
+        <member name="M:nsync.HelperWindow.dispatcherTimer_Tick(System.Object,System.EventArgs)">
+            <summary>
+            This method is called to start the timer and will close the notification window when time is up
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HelperWindow.windowHelper_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            This method is called when a right mouse click is done on the notification window
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HelperWindow.FormFadeOut_Completed(System.Object,System.EventArgs)">
+            <summary>
+            This method is called when the notification window has finished fading out
+            <para>Notifcation window will be hidden after this</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HelperWindow.ButtonClose_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when the close button on the notification window is clicked
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HelperWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:nsync.HelperWindow.WindowActiveState">
+            <summary>
+            Get the state of the notification window
+            </summary>
+        </member>
+        <member name="T:nsync.HelperWindow.windowStartPosition">
+            <summary>
+            A list of enumeration of the available positions for notification window
+            </summary>
+        </member>
+        <member name="M:nsync.Intelligence.IsFolderExists(System.String)">
+            <summary>
+            Checks if the folder path exists
+            </summary>
+            <param name="folderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path exists</returns>
+        </member>
+        <member name="M:nsync.Intelligence.IsFoldersSimilar(System.String,System.String)">
+            <summary>
+            Checks if two folder paths are similar
+            </summary>
+            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
+            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if both folder paths are similar</returns>
+        </member>
+        <member name="M:nsync.Intelligence.IsFolderSubFolder(System.String,System.String)">
+            <summary>
+            Checks if a folder is a subfolder of another
+            </summary>
+            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
+            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if a folder is a subfolder of another</returns>
+        </member>
+        <member name="M:nsync.Intelligence.IsRemovableDrive(System.String)">
+            <summary>
+            Checks if the folder path belongs to a removable drive
+            </summary>
+            <param name="path">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path belongs to a removable drive</returns>
         </member>
         <member name="T:nsync.HomePage">
             <summary>
@@ -436,36 +657,6 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="F:nsync.TestEngine.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:nsync.TestEngine.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:nsync.TestEngine.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:nsync.TrackBackPage">
-            <summary>
-            Interaction logic for TrackBackPage.xaml
-            </summary>
-            <summary>
-            TrackBackPage
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackPage.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
         <member name="M:nsync.Settings.#ctor">
             <summary>
             Constructor of Settings class
@@ -539,165 +730,119 @@
             Application Entry Point.
             </summary>
         </member>
-        <member name="T:nsync.Properties.Resources">
+        <member name="T:nsync.MainWindow">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
             </summary>
         </member>
-        <member name="P:nsync.Properties.Resources.ResourceManager">
+        <member name="M:nsync.MainWindow.#ctor">
             <summary>
-              Returns the cached ResourceManager instance used by this class.
+            Constructor for MainWindow class
             </summary>
         </member>
-        <member name="P:nsync.Properties.Resources.Culture">
+        <member name="M:nsync.MainWindow.titleBar_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.bothFoldersNotExist">
-            <summary>
-              Looks up a localized string similar to Both the selected folders do not exist..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.closeToolTip">
-            <summary>
-              Looks up a localized string similar to Close.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.folderExplorerText">
-            <summary>
-              Looks up a localized string similar to Select a folder to synchronise with nsync..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.folderIconPath">
-            <summary>
-              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder.png.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.folderMissingIconPath">
-            <summary>
-              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder_missing.png.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.homeToolTip">
-            <summary>
-              Looks up a localized string similar to Home.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.insufficientDiskSpace">
-            <summary>
-              Looks up a localized string similar to Insufficient disk space.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.leftFolderNotExist">
-            <summary>
-              Looks up a localized string similar to The left folder does not exist..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.minimiseToolTip">
-            <summary>
-              Looks up a localized string similar to Minimise.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.nullString">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.panelIconToolTip">
-            <summary>
-              Looks up a localized string similar to Drag or Click to Add a Folder.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.panelText">
-            <summary>
-              Looks up a localized string similar to Drag &amp; Drop Folders Here.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.rightFolderNotExist">
-            <summary>
-              Looks up a localized string similar to The right folder does not exist..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.settingsFilePath">
-            <summary>
-              Looks up a localized string similar to /settings.xml.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.settingsToolTip">
-            <summary>
-              Looks up a localized string similar to Settings.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.similarFolders">
-            <summary>
-              Looks up a localized string similar to The left and right folders cannot be similar..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.subfolderOfFolder">
-            <summary>
-              Looks up a localized string similar to Folders that are to be synchronized cannot be a subfolder of each other..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.syncButtonToolTip">
-            <summary>
-              Looks up a localized string similar to And Sync!.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.syncComplete">
-            <summary>
-              Looks up a localized string similar to Sync done!.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.synchronizedFolders">
-            <summary>
-              Looks up a localized string similar to Folders are already synchronized..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.thumbdriveIconPath">
-            <summary>
-              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/removabledrive.png.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.trackBackToolTip">
-            <summary>
-              Looks up a localized string similar to TrackBack.
-            </summary>
-        </member>
-        <member name="T:nsync.SettingsPage">
-            <summary>
-            Interaction logic for SettingsPage.xaml
-            </summary>
-            <summary>
-            SettingsPage
-            </summary>
-        </member>
-        <member name="M:nsync.SettingsPage.#ctor">
-            <summary>
-            Constructor for SettingsPage
-            </summary>
-        </member>
-        <member name="M:nsync.SettingsPage.CheckSettings">
-            <summary>
-            Update the checkbox on SettingsPage
-            </summary>
-        </member>
-        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_Checked(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when user checks the checkbox
+            This method is called when user clicks on the titlebar of MainWindow
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_UnChecked(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:nsync.MainWindow.ButtonClose_Click(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            This method is called when user unchecks the checkbox
+            This method is called when user clicks on the exit button on MainWindow
+            <para>nsync will exit after this</para>
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.SettingsPage.InitializeComponent">
+        <member name="M:nsync.MainWindow.ButtonMinimise_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user clicks on the minimize button on MainWindow
+            <para>nsync will minimize to taskbar after this</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageSettings_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the left dot on MainWindow
+            <para>Current page will be switched to SettingsPage</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageBackTrack_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the right dot on MainWindow
+            <para>Current page will be switched to TrackBackPage</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.WindowMain_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            This method is called when mouse pointer is moved near the sides of MainWindow
+            <para>Slider bars will be appear when mouse pointer is near it</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.viewList_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            This method is called when viewList.SelectedIndex is changed
+            <para>The respective page will be loaded</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.UpdateToolTips">
+            <summary>
+            Updates the tooltips of the slider bars
+            </summary>
+        </member>
+        <member name="M:nsync.MainWindow.RenderBitmap(System.Windows.FrameworkElement)">
+            <summary>
+            Takes a snapshot of an object element
+            </summary>
+            <param name="element">This parameter is an object that will be snapshot</param>
+            <returns>Returns a bitmap of the snapshot</returns>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageHome_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the center dot on MainWindow
+            <para>Current page will be switched to HomePage</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonSideTabLeft_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the left sliderbar
+            <para>Current page will be switched to the page on the left</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonSideTabRight_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the left sliderbar
+            <para>Current page will be switched to the page on the left</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonTesting_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user click on the letter 'n' of nsync logo
+            <para>The testing window will appear</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
@@ -863,151 +1008,6 @@
             <summary>
             Setter and Getter method for right folder path
             </summary>
-        </member>
-        <member name="M:nsync.HelperManager.#ctor(System.Windows.Window)">
-            <summary>
-            Constructor for HelperManager
-            </summary>
-            <param name="ownerWindow">Setting the owner of windowHelper to ownerWindow</param>
-        </member>
-        <member name="M:nsync.HelperManager.Show(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
-            <summary>
-            Tell windowHelper to display the notification
-            </summary>
-            <param name="helpString">The string to be displayed in the notifiation window</param>
-            <param name="time">The duration for which the notification window should be active</param>
-            <param name="windowPosition">The position for which the notification window should be placed</param>
-        </member>
-        <member name="M:nsync.HelperManager.helperWindowIsOn">
-            <summary>
-            Checks if the notification window should be on/off
-            </summary>
-            <returns>The result is returned as a boolean</returns>
-        </member>
-        <member name="M:nsync.HelperManager.CloseWindow">
-            <summary>
-            Closes the notification window
-            </summary>
-        </member>
-        <member name="M:nsync.HelperManager.UpdateMove">
-            <summary>
-            Moves the notification window accordingly when its position is changed
-            </summary>
-        </member>
-        <member name="M:nsync.HelperManager.HideWindow">
-            <summary>
-            Hides the notification window
-            </summary>
-        </member>
-        <member name="T:nsync.HelperWindow">
-            <summary>
-            Interaction logic for HelperWindow.xaml
-            </summary>
-            <summary>
-            HelperWindow
-            </summary>
-        </member>
-        <member name="M:nsync.HelperWindow.#ctor">
-            <summary>
-            Constructor for HelperWindow class
-            </summary>
-        </member>
-        <member name="M:nsync.HelperWindow.SetSettings(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
-            <summary>
-            Set the settings for notification window
-            </summary>
-            <param name="helpText">This is the string to be displayed</param>
-            <param name="helpDuration">Duration for which the notification window should be active</param>
-            <param name="windowPosition">The position where notification window should be displayed</param>
-        </member>
-        <member name="M:nsync.HelperWindow.MoveWindow">
-            <summary>
-            Move the notification window accordingly when its position is changed
-            </summary>
-        </member>
-        <member name="M:nsync.HelperWindow.CloseWindow">
-            <summary>
-            Close the notification window
-            </summary>
-        </member>
-        <member name="M:nsync.HelperWindow.SetTime">
-            <summary>
-            Setup the settings for timer of notification window
-            </summary>
-        </member>
-        <member name="M:nsync.HelperWindow.dispatcherTimer_Tick(System.Object,System.EventArgs)">
-            <summary>
-            This method is called to start the timer and will close the notification window when time is up
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.HelperWindow.windowHelper_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            This method is called when a right mouse click is done on the notification window
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.HelperWindow.FormFadeOut_Completed(System.Object,System.EventArgs)">
-            <summary>
-            This method is called when the notification window has finished fading out
-            <para>Notifcation window will be hidden after this</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.HelperWindow.ButtonClose_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when the close button on the notification window is clicked
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.HelperWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="P:nsync.HelperWindow.WindowActiveState">
-            <summary>
-            Get the state of the notification window
-            </summary>
-        </member>
-        <member name="T:nsync.HelperWindow.windowStartPosition">
-            <summary>
-            A list of enumeration of the available positions for notification window
-            </summary>
-        </member>
-        <member name="M:nsync.Intelligence.IsFolderExists(System.String)">
-            <summary>
-            Checks if the folder path exists
-            </summary>
-            <param name="folderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path exists</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFoldersSimilar(System.String,System.String)">
-            <summary>
-            Checks if two folder paths are similar
-            </summary>
-            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
-            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if both folder paths are similar</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFolderSubFolder(System.String,System.String)">
-            <summary>
-            Checks if a folder is a subfolder of another
-            </summary>
-            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
-            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if a folder is a subfolder of another</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsRemovableDrive(System.String)">
-            <summary>
-            Checks if the folder path belongs to a removable drive
-            </summary>
-            <param name="path">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path belongs to a removable drive</returns>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

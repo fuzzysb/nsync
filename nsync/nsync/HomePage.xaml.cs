@@ -362,9 +362,7 @@ namespace nsync
             
                 BarMRULeft.Opacity = 0.5;
                 BarMRULeft.Cursor = Cursors.Hand;
-                LeftBarScrollLeft.Visibility = Visibility.Visible;
-                LeftBarScrollRight.Visibility = Visibility.Visible;
-            
+                BarMRURight.Opacity = 0.5;
         }
 
         /// <summary>
@@ -377,8 +375,7 @@ namespace nsync
             if (!LeftListBox.IsVisible)
             {
                 BarMRULeft.Opacity = 0.2;
-                LeftBarScrollLeft.Visibility = Visibility.Hidden;
-                LeftBarScrollRight.Visibility = Visibility.Hidden;
+                BarMRURight.Opacity = 0.2;
             }
         }
 
@@ -419,8 +416,7 @@ namespace nsync
         {
                 BarMRURight.Opacity = 0.5;
                 BarMRURight.Cursor = Cursors.Hand;
-                RightBarScrollLeft.Visibility = Visibility.Visible;
-                RightBarScrollRight.Visibility = Visibility.Visible;
+                BarMRULeft.Opacity = 0.5;
         }
 
         /// <summary>
@@ -433,8 +429,7 @@ namespace nsync
             if (!RightListBox.IsVisible)
             {
                 BarMRURight.Opacity = 0.2;
-                RightBarScrollLeft.Visibility = Visibility.Hidden;
-                RightBarScrollRight.Visibility = Visibility.Hidden;
+                BarMRULeft.Opacity = 0.2;
             }
         }
 
