@@ -910,7 +910,6 @@ C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsyn
 C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.application
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\bin\Debug\nsync.XML
 C:\Users\Seah Shao Qi\Desktop\nsync\nsync\bin\Debug\nsync.XML
-C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.XML
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.exe
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.pdb
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.exe.manifest
@@ -940,3 +939,4 @@ C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.XML

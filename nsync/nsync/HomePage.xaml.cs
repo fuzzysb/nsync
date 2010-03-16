@@ -60,6 +60,9 @@ namespace nsync
             settingsManager = Settings.Instance;
             
             mainWindow.Closing += new CancelEventHandler(mainWindow_Closing);
+
+            actualLeftPath = nsync.Properties.Resources.panelText;
+            actualRightPath = nsync.Properties.Resources.panelText;
         }
 
         /// <summary>
