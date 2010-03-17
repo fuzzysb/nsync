@@ -352,7 +352,7 @@
             <summary>
             This method is called when changes are done to a file
             <para>Counts the number of changes already done by the sync framework</para>
-            <para>Reports the progress percentage to the backgroundWorker</para>
+            <para>Reports the progress percentage to the backgroundWorkerForSync</para>
             </summary>
             <param name="sender"></param>
             <param name="args"></param>
@@ -368,14 +368,14 @@
         </member>
         <member name="M:nsync.SyncEngine.backgroundWorkerForSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
             <summary>
-            This method is called when backgroundWorker is called to start working
+            This method is called when backgroundWorkerForSync is called to start working
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
         <member name="M:nsync.SyncEngine.backgroundWorkerForPreSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
             <summary>
-            This method is called when backgroundWorker2 is called to start working
+            This method is called when backgroundWorkerForPreSync is called to start working
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -394,7 +394,7 @@
         </member>
         <member name="M:nsync.SyncEngine.PreSync">
             <summary>
-            Gets backgroundWorker2 to do presync preparations
+            Gets backgroundWorkerForPreSync to do presync preparations
             </summary>
         </member>
         <member name="M:nsync.SyncEngine.InternalPreSync">

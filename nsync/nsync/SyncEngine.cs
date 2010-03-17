@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Microsoft.Synchronization;
 using Microsoft.Synchronization.Files;
+using Microsoft.Synchronization.MetadataStorage;
 
 namespace nsync
 {
@@ -200,7 +201,7 @@ namespace nsync
         /// <summary>
         /// This method is called when changes are done to a file
         /// <para>Counts the number of changes already done by the sync framework</para>
-        /// <para>Reports the progress percentage to the backgroundWorker</para>
+        /// <para>Reports the progress percentage to the backgroundWorkerForSync</para>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -208,27 +209,8 @@ namespace nsync
         {
             
             countDoneChanges++;
-            // This method will raise an event to the backgroundWorker via backgroundWorker_ProgressChanged
+            // This method will raise an event to the backgroundWorkerForSync via backgroundWorkerForSync_ProgressChanged
             backgroundWorkerForSync.ReportProgress((int)((double)countDoneChanges / countChanges * 100));
-
-            /*
-            switch (args.ChangeType)
-            {
-                case ChangeType.Create:
-                    _summary.InsertMsg("-- Applied CREATE for file " + args.NewFilePath);
-                    break;
-                case ChangeType.Delete:
-                    _summary.InsertMsg("-- Applied DELETE for file " + args.OldFilePath);
-                    break;
-                case ChangeType.Update:
-                    _summary.InsertMsg("-- Applied OVERWRITE for file " + args.OldFilePath);
-                    break;
-                case ChangeType.Rename:
-                    _summary.InsertMsg("-- Applied RENAME for file " + args.OldFilePath +
-                                      " as " + args.NewFilePath);
-                    break;
-            }
-            */ 
         }
 
         /// <summary>
@@ -248,20 +230,19 @@ namespace nsync
         }
 
         /// <summary>
-        /// This method is called when backgroundWorker is called to start working
+        /// This method is called when backgroundWorkerForSync is called to start working
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void backgroundWorkerForSync_DoWork(object sender, DoWorkEventArgs e)
         {
-            System.ComponentModel.BackgroundWorker worker = sender as BackgroundWorker;
             // e.Result will be available to RunWorkerCompletedEventArgs later
             // when the work assigned is completed.
             e.Result = InternalStartSync();
         }
 
         /// <summary>
-        /// This method is called when backgroundWorker2 is called to start working
+        /// This method is called when backgroundWorkerForPreSync is called to start working
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -285,9 +266,7 @@ namespace nsync
                     FileSyncOptions.RecyclePreviousFileOnUpdates;
 
                 // Configure sync filters
-                // This example will exclude shortcut links during sync
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
-                filter.FileNameExcludes.Add("*.lnk");
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
@@ -300,9 +279,8 @@ namespace nsync
 
                 return true;
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("Error"); // should call helper to show the message instead
                 return false;
             }
         }
@@ -339,7 +317,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// Gets backgroundWorker2 to do presync preparations
+        /// Gets backgroundWorkerForPreSync to do presync preparations
         /// </summary>
         public void PreSync()
         {
@@ -369,10 +347,9 @@ namespace nsync
                     FileSyncOptions.RecycleDeletedFiles |
                     FileSyncOptions.RecyclePreviousFileOnUpdates;
 
+                
                 // Configure sync filters
-                // Currently, this will exclude shortcut links during sync
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
-                filter.FileNameExcludes.Add("*.lnk");
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
@@ -387,9 +364,8 @@ namespace nsync
 
                 return true;
             }
-            catch
+            catch (Exception e)
             {
-                MessageBox.Show("Error!"); // should ask helper to show error message instead
                 return false;
             }
         }

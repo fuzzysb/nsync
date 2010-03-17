@@ -38,6 +38,11 @@ namespace nsync
         private string ICON_LINK_FOLDER = nsync.Properties.Resources.folderIconPath;
         private string ICON_LINK_FOLDER_MISSING = nsync.Properties.Resources.folderMissingIconPath;
 
+        private string MESSAGE_SYNC_COMPLETED = "Sync completed";
+        private string MESSAGE_ERROR_DETECTED = "Error detected";
+        private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
+        private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
+
         /// <summary>
         /// Constructor for HomePage class
         /// </summary>
@@ -81,7 +86,7 @@ namespace nsync
 
             //trackBack = new TrackBackEngine();
 
-            // Create event handlers for backgroundWorker
+            // Create event handlers for backgroundWorkerForSync
             synchronizer.backgroundWorkerForSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSync_RunWorkerCompleted);
             synchronizer.backgroundWorkerForSync.ProgressChanged += new ProgressChangedEventHandler(backgroundWorkerForSync_ProgressChanged);
 
@@ -893,7 +898,7 @@ namespace nsync
             RightListBox.Visibility = Visibility.Hidden;
 
             LabelProgress.Visibility = Visibility.Visible;
-            LabelProgress.Content = "Preparing folders...";
+            LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
 
             EnableInterface(false);
 
@@ -983,7 +988,8 @@ namespace nsync
 
             if (!(bool)e.Result)
             {
-                LabelProgress.Content = "Error detected";
+                helper.Show(nsync.Properties.Resources.insufficientDiskSpace, 5, HelperWindow.windowStartPosition.windowTop);
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgressPercent.Visibility = Visibility.Hidden;
                 return;
             }
@@ -992,7 +998,7 @@ namespace nsync
             {
                 ImageTeam14Over.OpacityMask = blankOpacityMask;
 
-                LabelProgress.Content = "Sync completed";
+                LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
                 LabelProgressPercent.Content = "100 %";
                 helper.Show(nsync.Properties.Resources.synchronizedFolders, 5, HelperWindow.windowStartPosition.windowTop);
                 return;
@@ -1008,7 +1014,7 @@ namespace nsync
             LabelProgress.Visibility = Visibility.Visible;
             LabelProgressPercent.Visibility = Visibility.Visible;
 
-            LabelProgress.Content = "Sync completed";
+            LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
             LabelProgressPercent.Content = "100 %";
         }
 
@@ -1023,7 +1029,8 @@ namespace nsync
             {
                 EnableInterface(true);
                 helper.Show(nsync.Properties.Resources.insufficientDiskSpace, 5, HelperWindow.windowStartPosition.windowTop);
-                LabelProgress.Visibility = Visibility.Hidden;
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgressPercent.Visibility = Visibility.Hidden;
                 ButtonSync.Visibility = Visibility.Hidden;
                 return;
@@ -1031,7 +1038,7 @@ namespace nsync
 
             EnableInterface(false);
 
-            LabelProgress.Content = "Syncing folders...";
+            LabelProgress.Content = MESSAGE_SYNCING_FOLDERS;
             LabelProgressPercent.Visibility = Visibility.Visible;
             LabelProgressPercent.Content = "0 %";
             //if (!synchronizer.AreFoldersSync()) trackBack.BackupFolders(LeftText.Text, RightText.Text);
