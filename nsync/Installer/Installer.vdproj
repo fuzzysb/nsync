@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_2449D62B94EA486D96E31DF2F19D6928"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2ED5502497A647E48BD8338B5ACBE631"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -100,6 +106,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E43E594E533E4FDABCFE4163BC53B962"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F7D995467B6742BC9A2B4AFB977D6F7F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -242,6 +254,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2449D62B94EA486D96E31DF2F19D6928"
+            {
+            "SourcePath" = "8:..\\nsync\\Resources\\uninstall.ico"
+            "TargetName" = "8:uninstall.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_CED7BFE457AD4344B2AC505A7EF05F18"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2ED5502497A647E48BD8338B5ACBE631"
             {
             "SourcePath" = "8:..\\nsync\\Resources\\nsync.ico"
@@ -546,6 +578,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F7D995467B6742BC9A2B4AFB977D6F7F"
+            {
+            "SourcePath" = "8:..\\nsync\\Uninstall.bat"
+            "TargetName" = "8:Uninstall.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_98BC70CCE4F44DA685EBB0BC7BE0C728"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -767,6 +819,20 @@
             "Folder" = "8:_93815B9C26734B29B07C9DDBCE1475C3"
             "WorkingFolder" = "8:_98BC70CCE4F44DA685EBB0BC7BE0C728"
             "Icon" = "8:_2ED5502497A647E48BD8338B5ACBE631"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_707C565B870F4C8DA97B56EAE5DBD73E"
+            {
+            "Name" = "8:Uninstall.bat"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_F7D995467B6742BC9A2B4AFB977D6F7F"
+            "Folder" = "8:_93815B9C26734B29B07C9DDBCE1475C3"
+            "WorkingFolder" = "8:_98BC70CCE4F44DA685EBB0BC7BE0C728"
+            "Icon" = "8:_2449D62B94EA486D96E31DF2F19D6928"
             "Feature" = "8:"
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CFFFD912D404455EB9B851982FBFBAF4"
