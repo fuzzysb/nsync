@@ -991,6 +991,9 @@ namespace nsync
                 helper.Show(nsync.Properties.Resources.insufficientDiskSpace, 5, HelperWindow.windowStartPosition.windowTop);
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgressPercent.Visibility = Visibility.Hidden;
+                ImageTeam14Over.OpacityMask = blankOpacityMask;
+                ButtonSync.Visibility = Visibility.Hidden;
+                FolderCheck();
                 return;
             }
 
@@ -1033,6 +1036,7 @@ namespace nsync
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgressPercent.Visibility = Visibility.Hidden;
                 ButtonSync.Visibility = Visibility.Hidden;
+                FolderCheck();
                 return;
             }
 
