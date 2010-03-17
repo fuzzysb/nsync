@@ -6,7 +6,7 @@
     | | | | __| |  / /   | | | || |___
     |_| |_||____| /_/    |_| |_||_____|
 
-		synchronization to the power on n
+		Synchronization Made Easy
 			by team14
 
 ----------------------

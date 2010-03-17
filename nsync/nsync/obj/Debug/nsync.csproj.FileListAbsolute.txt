@@ -939,7 +939,6 @@ C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.application
-C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.XML
 C:\Users\Eugene\Desktop\nsync\nsync\nsync\bin\Debug\nsync.XML
 C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.exe
 C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.pdb
@@ -970,3 +969,4 @@ C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.XML
