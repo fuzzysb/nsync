@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Management;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Media.Animation;
-using System.Xml;
 
 namespace nsync
 {
@@ -91,10 +82,10 @@ namespace nsync
             //trackBack = new TrackBackEngine();
 
             // Create event handlers for backgroundWorker
-            synchronizer.backgroundWorkerForSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker_RunWorkerCompleted);
-            synchronizer.backgroundWorkerForSync.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker_ProgressChanged);
+            synchronizer.backgroundWorkerForSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSync_RunWorkerCompleted);
+            synchronizer.backgroundWorkerForSync.ProgressChanged += new ProgressChangedEventHandler(backgroundWorkerForSync_ProgressChanged);
 
-            synchronizer.backgroundWorkerForPreSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker2_RunWorkerCompleted);
+            synchronizer.backgroundWorkerForPreSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreSync_RunWorkerCompleted);
 
             //Load the previous folder paths from settings.xml
             LoadFolderPaths();
@@ -917,7 +908,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void backgroundWorkerForSync_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             double percentage = (double)e.ProgressPercentage / 100;
 
@@ -986,7 +977,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void backgroundWorkerForSync_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             EnableInterface(true);
 
@@ -1026,7 +1017,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void backgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void backgroundWorkerForPreSync_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (!(bool) e.Result)
             {

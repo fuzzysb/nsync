@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
 using System.Management;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -34,11 +30,11 @@ namespace nsync
             // Set up the BackgroundWorker object by 
             // attaching event handlers.
             backgroundWorkerForSync = new System.ComponentModel.BackgroundWorker();
-            backgroundWorkerForSync.DoWork += new DoWorkEventHandler(backgroundWorker_DoWork);
+            backgroundWorkerForSync.DoWork += new DoWorkEventHandler(backgroundWorkerForSync_DoWork);
             backgroundWorkerForSync.WorkerReportsProgress = true;
 
             backgroundWorkerForPreSync = new System.ComponentModel.BackgroundWorker();
-            backgroundWorkerForPreSync.DoWork += new DoWorkEventHandler(backgroundWorker2_DoWork);
+            backgroundWorkerForPreSync.DoWork += new DoWorkEventHandler(backgroundWorkerForPreSync_DoWork);
             backgroundWorkerForPreSync.WorkerReportsProgress = true;
 
             // Create the intelligence manager
@@ -256,7 +252,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void backgroundWorkerForSync_DoWork(object sender, DoWorkEventArgs e)
         {
             System.ComponentModel.BackgroundWorker worker = sender as BackgroundWorker;
             // e.Result will be available to RunWorkerCompletedEventArgs later
@@ -269,7 +265,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        private void backgroundWorkerForPreSync_DoWork(object sender, DoWorkEventArgs e)
         {
             e.Result = InternalPreSync();
         }
