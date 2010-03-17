@@ -688,7 +688,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:nsync"
         "ProductCode" = "8:{4F2F382E-3D60-4304-8D3C-68A808D9C1DB}"
-        "PackageCode" = "8:{B52EF254-3D52-4B1D-828A-6927ABACF782}"
+        "PackageCode" = "8:{5BB6B16B-91B0-406D-B134-8BF2C9BD18C2}"
         "UpgradeCode" = "8:{C4419387-B3AE-4EA2-BE8E-5442FB88413B}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
@@ -823,7 +823,7 @@
             }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_707C565B870F4C8DA97B56EAE5DBD73E"
             {
-            "Name" = "8:Uninstall.bat"
+            "Name" = "8:Uninstall nsync"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
