@@ -137,9 +137,12 @@ namespace nsync
         /// <param name="e"></param>
         private void BoxLeft_Drop(object sender, DragEventArgs e)
         {
-            hasLeftPath = true;
-            e.Handled = true;
-            ShowSync();
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                hasLeftPath = true;
+                e.Handled = true;
+                ShowSync();
+            }
         }
 
         /// <summary>
@@ -149,9 +152,12 @@ namespace nsync
         /// <param name="e"></param>
         private void BoxRight_Drop(object sender, DragEventArgs e)
         {
-            hasRightPath = true;
-            e.Handled = true;
-            ShowSync();
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                hasRightPath = true;
+                e.Handled = true;
+                ShowSync();
+            }
         }
 
         /// <summary>
@@ -169,28 +175,29 @@ namespace nsync
                 string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
                 foreach (string i in fileNames)
                 {
-                    DirectoryInfo dirTemp = new DirectoryInfo(i);
-                    FileInfo fileTemp = new FileInfo(i);
-                    if (dirTemp.Exists)
-                    {
-                        //SQ LeftText.Text = i;
-                        actualLeftPath = i; //SQ
-                        LeftText.Text = ShortenText(actualLeftPath); //SQ
-                    }
-                    else
-                    {
-                        actualLeftPath = fileTemp.DirectoryName; //SQ
-                        //SQ LeftText.Text = fileTemp.DirectoryName;
-                        LeftText.Text = ShortenText(actualLeftPath); //SQ
-                    }
+                        DirectoryInfo dirTemp = new DirectoryInfo(i);
+                        FileInfo fileTemp = new FileInfo(i);
+                        if (dirTemp.Exists)
+                        {
+                            //SQ LeftText.Text = i;
+                            actualLeftPath = i; //SQ
+                            LeftText.Text = ShortenText(actualLeftPath); //SQ
+                        }
+                        else
+                        {
+                            actualLeftPath = fileTemp.DirectoryName; //SQ
+                            //SQ LeftText.Text = fileTemp.DirectoryName;
+                            LeftText.Text = ShortenText(actualLeftPath); //SQ
+                        }
                 }
-            }
-            //SQ synchronizer.LeftPath = LeftText.Text;
-            synchronizer.LeftPath = actualLeftPath; //SQ
 
-            LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-            //SQ ShowRemovableDrives(LeftText.Text, "left");
-            ShowRemovableDrives(actualLeftPath, "left"); //SQ
+                //SQ synchronizer.LeftPath = LeftText.Text;
+                synchronizer.LeftPath = actualLeftPath; //SQ
+
+                LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                //SQ ShowRemovableDrives(LeftText.Text, "left");
+                ShowRemovableDrives(actualLeftPath, "left"); //SQ
+            }            
         }
 
         /// <summary>
@@ -224,13 +231,14 @@ namespace nsync
                         RightText.Text = ShortenText(actualRightPath); //SQ
                     }
                 }
-            }
-            //SQ synchronizer.RightPath = RightText.Text;
-            synchronizer.RightPath = actualRightPath; //SQ
 
-            RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-            //SQ ShowRemovableDrives(RightText.Text, "right");
-            ShowRemovableDrives(actualRightPath, "right");
+                //SQ synchronizer.RightPath = RightText.Text;
+                synchronizer.RightPath = actualRightPath; //SQ
+
+                RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                //SQ ShowRemovableDrives(RightText.Text, "right");
+                ShowRemovableDrives(actualRightPath, "right");
+            }
         }
 
         /// <summary>
