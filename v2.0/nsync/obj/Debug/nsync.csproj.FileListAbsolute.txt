@@ -1,0 +1,1062 @@
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Documents\Visual Studio 2008\Projects\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync13022010refactor1\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_210210\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_220210\nsync_210210\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_220210\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Documents\New folder\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_240210_v2\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\SettingsWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_270210\nsync\nsync\obj\Debug\SettingsWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\SettingsWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\SettingsWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\TimeMachine.g.cs
+C:\Users\Eugene\Desktop\nsync_010310\nsync\nsync\obj\Debug\TimeMachine.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync_010310v2\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_030310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_030310v2\nsync_030310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_040310\nsync_040310\nsync_030310\nsync\nsync\obj\Debug\nsync.application
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync_060310\nsync_060310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_070310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_080310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\SyncWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\SyncWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_080310\nsync_080310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_080310v2\nsync_080310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_100310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_100310v2\nsync_100310\nsync\nsync\obj\Debug\nsync.application
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync_110310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_130310\nsync\nsync\obj\Debug\nsync.application
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync_130310v2\nsync_130310\nsync\nsync\obj\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_130310v3\nsync_130310v3\nsync_130310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\nsync_140310\nsync\nsync\obj\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\Team14\nsync_140310v3\nsync_140310\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync_140310_v4\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\nsync_140310_v6\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\nsync_140310_v6\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\nsync[Check]\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\bin\Debug\nsync.XML
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\App.baml
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\yeojw\Desktop\nsync project\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\nsync\bin\Debug\nsync.XML
+C:\Users\Seah Shao Qi\Desktop\nsync\nsync\bin\Debug\nsync.XML
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\obj\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\bin\Debug\nsync.XML
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync\nsync\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\Latest\nsync\bin\Debug\nsync.XML
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\bin\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\bin\Debug\nsync.exe
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\bin\Debug\nsync.pdb
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\FormResources.baml
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\App.baml
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\App.g.cs
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\HomePage.baml
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\MainWindow.baml
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.g.resources
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\V1.0\nsync\bin\Debug\nsync.XML
+C:\Users\Eugene\Desktop\nsync1.0\nsync\bin\Debug\nsync.XML
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\FormResources.baml
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\HelperWindow.baml
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\SettingsPage.baml
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\TrackBackPage.baml
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\App.baml
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\HelperWindow.g.cs
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\HomePage.g.cs
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\MainWindow.g.cs
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\SettingsPage.g.cs
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\App.g.cs
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\HomePage.baml
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\MainWindow.baml
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.g.resources
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Users\Eugene\Desktop\nsync1.0\nsync\bin\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync1.0\nsync\bin\Debug\nsync.application
+C:\Users\Eugene\Desktop\nsync1.0\nsync\bin\Debug\nsync.exe
+C:\Users\Eugene\Desktop\nsync1.0\nsync\bin\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.exe.manifest
+C:\Users\Eugene\Desktop\nsync1.0\nsync\obj\Debug\nsync.application
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\bin\Debug\nsync.XML
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\App.baml
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.application

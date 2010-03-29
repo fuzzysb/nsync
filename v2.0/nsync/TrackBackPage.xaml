@@ -1,0 +1,9 @@
+﻿<Page x:Class="nsync.TrackBackPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="TrackBackPage" Width="518" Height="287">
+    <Grid>
+        <Label />
+        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Name="label1" FontSize="72" Foreground="White">TrackBack</Label>
+    </Grid>
+</Page>

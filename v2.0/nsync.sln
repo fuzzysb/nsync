@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nsync", "nsync\nsync.csproj", "{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "Installer\Installer.vdproj", "{B7B55F7C-D9CE-4509-A6AD-BD1F717DE444}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7B55F7C-D9CE-4509-A6AD-BD1F717DE444}.Debug|Any CPU.ActiveCfg = Debug
+		{B7B55F7C-D9CE-4509-A6AD-BD1F717DE444}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
