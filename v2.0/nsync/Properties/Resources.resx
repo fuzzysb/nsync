@@ -129,6 +129,12 @@
   <data name="defaultErrorMessage" xml:space="preserve">
     <value>Please try again.</value>
   </data>
+  <data name="excludeIconToolTip" xml:space="preserve">
+    <value>Drag &amp; Drop Files or Folders to Exclude</value>
+  </data>
+  <data name="excludeText" xml:space="preserve">
+    <value>Drag &amp; Drop Files or Folders to Exclude</value>
+  </data>
   <data name="folderExplorerText" xml:space="preserve">
     <value>Select a folder to synchronise with nsync.</value>
   </data>
@@ -152,6 +158,9 @@
   </data>
   <data name="minimiseToolTip" xml:space="preserve">
     <value>Minimise</value>
+  </data>
+  <data name="nextToolTip" xml:space="preserve">
+    <value>Continue</value>
   </data>
   <data name="nullString" xml:space="preserve">
     <value />

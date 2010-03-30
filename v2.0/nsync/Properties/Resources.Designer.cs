@@ -97,6 +97,24 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag &amp; Drop Files or Folders to Exclude.
+        /// </summary>
+        public static string excludeIconToolTip {
+            get {
+                return ResourceManager.GetString("excludeIconToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drag &amp; Drop Files or Folders to Exclude.
+        /// </summary>
+        public static string excludeText {
+            get {
+                return ResourceManager.GetString("excludeText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a folder to synchronise with nsync..
         /// </summary>
         public static string folderExplorerText {
@@ -165,6 +183,15 @@ namespace nsync.Properties {
         public static string minimiseToolTip {
             get {
                 return ResourceManager.GetString("minimiseToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string nextToolTip {
+            get {
+                return ResourceManager.GetString("nextToolTip", resourceCulture);
             }
         }
         

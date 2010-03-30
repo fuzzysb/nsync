@@ -891,10 +891,20 @@ namespace nsync
         private void ButtonSync_Click(object sender, RoutedEventArgs e)
         {
             // check one more time
-            // handle the situation when after a sync job is done,
+            // handle the situation when after a sync job is setup,
             // user deletes the 2 folders n click sync again
             if (!ShowSync())
                 return;
+
+            //eugene remove, for testing
+            ExcludeWindow excludeWindow = new ExcludeWindow();
+            excludeWindow.LeftPath = actualLeftPath;
+            excludeWindow.RightPath = actualRightPath;
+            excludeWindow.Owner = mainWindow;
+            mainWindow.Opacity = 0.2;
+            excludeWindow.ShowDialog();
+            mainWindow.Opacity = 1;
+            //remove
 
             LeftListBox.Visibility = Visibility.Hidden;
             RightListBox.Visibility = Visibility.Hidden;

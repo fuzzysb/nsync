@@ -99,6 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ExcludeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +137,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExcludeWindow.xaml.cs">
+      <DependentUpon>ExcludeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="GIFImageControl.cs" />
     <Compile Include="HelperManager.cs" />
@@ -291,6 +298,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\excludeback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\excludelistback.png" />
+    <Resource Include="Resources\excludelistbackover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bluecombo.png" />
+    <Resource Include="Resources\bluecomboover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\nextbutton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\nextbuttonover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
