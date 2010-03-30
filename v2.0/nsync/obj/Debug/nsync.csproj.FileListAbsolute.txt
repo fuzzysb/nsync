@@ -1092,3 +1092,6 @@ C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.application
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\ExcludeWindow.g.cs
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\ExcludeWindow.baml
+C:\Users\AdminNUS\Desktop\nsync[check]\nsync\bin\Debug\nsync.XML
+C:\Users\AdminNUS\Desktop\nsync[check]\nsync\obj\Debug\nsync.exe
+C:\Users\AdminNUS\Desktop\nsync[check]\nsync\obj\Debug\nsync.pdb
