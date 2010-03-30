@@ -6,6 +6,20 @@ namespace nsync
     class Intelligence
     {
         /// <summary>
+        /// Checks if a path is the root path
+        /// </summary>
+        /// <param name="path">This string is the path to be checked</param>
+        /// <returns>Returns a boolean which indicates if the folder path is a root path</returns>
+        public bool IsPathRoot(string path)
+        {
+            // If cannot get parent, means path is parent
+            if (Directory.GetParent(path) == null)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
         /// Checks if the folder path exists
         /// </summary>
         /// <param name="folderPath">This parameter is the folder path to be checked</param>

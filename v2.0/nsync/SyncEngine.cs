@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Management;
 using System.ComponentModel;
 using System.Windows.Forms;
@@ -40,6 +41,72 @@ namespace nsync
 
             // Create the intelligence manager
             intelligentManager = new Intelligence();
+        }
+
+        /// <summary>
+        /// Creates a folder in the root path and updates leftpath/rightpath, if required
+        /// </summary>
+        /// <returns>Returns a boolean to indicate if a folder was created</returns>
+        public bool CreateFolderForRootPath()
+        {
+            if (IsRequiredToCreateFolder())
+            {
+                int leftOrRight; // 0 for left, 1 for right
+
+                // Find the directory path to create the new folder
+                string rootPath, sourcePath;
+                if (intelligentManager.IsPathRoot(leftPath))
+                {
+                    leftOrRight = 0;
+                    rootPath = leftPath;
+                    sourcePath = rightPath;
+                }
+                else
+                {
+                    leftOrRight = 1;
+                    rootPath = rightPath;
+                    sourcePath = leftPath;
+                }
+
+                rootPath += sourcePath.Substring(sourcePath.LastIndexOf("\\") + 1);
+
+                // Create the folder in the root path
+                try
+                {
+                    Directory.CreateDirectory(rootPath);
+                }
+                catch
+                {
+                    // If there is problem creating the folder, then forget it
+                    return false;
+                }
+
+                // update the folder path in the synchronizer
+                if (leftOrRight == 0) // left
+                    leftPath = rootPath;
+                else // right
+                    rightPath = rootPath;
+
+                return true;
+            }
+            else
+            {
+                // do nothing
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Ask Intellgence to check if it is required to create a folder on any root path
+        /// </summary>
+        /// <returns>Returns a boolean with the result of the query</returns>
+        private bool IsRequiredToCreateFolder()
+        {
+            if ((intelligentManager.IsPathRoot(leftPath) && !intelligentManager.IsPathRoot(rightPath)) ||
+                (!intelligentManager.IsPathRoot(leftPath) && intelligentManager.IsPathRoot(rightPath)))
+                return true;
+            else
+                return false;
         }
 
         /// <summary>

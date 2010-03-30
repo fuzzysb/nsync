@@ -914,6 +914,10 @@ namespace nsync
 
             EnableInterface(false);
 
+            // Ask SyncEngine to create a folder if the leftpath OR rightpath is root
+            // note: if both path are root or both are not root, then nothing will be done
+            synchronizer.CreateFolderForRootPath();
+
             // Do PreSync Calculations: count how many changes need to be done
             // If not enough disk space, return
             // If enough, continue to start the real sync
