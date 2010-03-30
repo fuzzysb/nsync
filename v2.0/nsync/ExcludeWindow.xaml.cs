@@ -28,6 +28,7 @@ namespace nsync
         private List<string> oldExcludeFolders;
         private List<string> oldExcludeFiles;
         private List<string> oldExcludeFileTypes;
+        private readonly int MAX_STRING_LENGTH = 90;
 
         public ExcludeWindow()
         {
@@ -148,10 +149,19 @@ namespace nsync
             }
         }
 
+        private string ShortenPath(string fullPath)
+        {
+            if (fullPath.Length > MAX_STRING_LENGTH)
+            {
+                return fullPath.Substring(0, 50) + "..." + fullPath.Substring(fullPath.Length - 40, 40);
+            }
+            return fullPath;
+        }
+
         private void AddListBoxItem(string excludeStatement)
         {
             ListBoxItem excludeListBoxItem = new ListBoxItem();
-            excludeListBoxItem.Content = 
+            excludeListBoxItem.Content = ShortenPath(excludeStatement);
             excludeListBoxItem.ToolTip = excludeStatement;
 
             //listBoxLeft.MouseUp += new MouseButtonEventHandler(ListBoxLeft_MouseUp);
@@ -168,8 +178,8 @@ namespace nsync
         {
             if (HintText.Visibility == Visibility.Visible)
             {
-                HintText.Visibility = Visibility.Hidden;
-                HintIcon.Visibility = Visibility.Hidden;
+                HintText.Visibility = Visibility.Collapsed;
+                HintIcon.Visibility = Visibility.Collapsed;
                 ListBoxExclude.Visibility = Visibility.Visible;
             }
             else
