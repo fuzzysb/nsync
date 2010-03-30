@@ -1127,7 +1127,6 @@ C:\Users\Eugene\Desktop\r163\nsync\bin\Debug\nsync.exe
 C:\Users\Eugene\Desktop\r163\nsync\bin\Debug\nsync.pdb
 C:\Users\Eugene\Desktop\r163\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Eugene\Desktop\r163\nsync\obj\Debug\nsync.application
-C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.XML
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.exe
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.pdb
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\ResolveAssemblyReference.cache
@@ -1159,3 +1158,4 @@ C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.exe
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.pdb
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.XML

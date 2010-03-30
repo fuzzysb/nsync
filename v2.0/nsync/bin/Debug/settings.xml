@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>F:\test</left1>
-    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1</right1>
-    <left2>F:\</left2>
-    <right2>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1</right2>
-    <left3>C:\Users\Eugene\Desktop\1</left3>
-    <right3>C:\Users\Eugene\Desktop\2</right3>
-    <left4>C:\Users\Seah Shao Qi\Desktop\A</left4>
-    <right4>C:\Users\Seah Shao Qi\Desktop\B</right4>
-    <left5>C:\Users\Seah Shao Qi\Desktop\a</left5>
-    <right5>C:\Users\Seah Shao Qi\Desktop\b</right5>
+    <left1>C:\Users\Seah Shao Qi\Desktop\TestFolders\456</left1>
+    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\456</right1>
+    <left2>C:\Users\Seah Shao Qi\Desktop\TestFolders\444</left2>
+    <right2>C:\Users\Seah Shao Qi\Desktop\TestFolders\456</right2>
+    <left3>F:\test</left3>
+    <right3>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1</right3>
+    <left4>F:\</left4>
+    <right4>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1</right4>
+    <left5>C:\Users\Eugene\Desktop\1</left5>
+    <right5>C:\Users\Eugene\Desktop\2</right5>
   </MRU>
   <SETTINGS>
     <HelperWindowIsOn>true</HelperWindowIsOn>

@@ -387,7 +387,7 @@ namespace nsync
 
                 return 0;
             }
-            catch (System.UnauthorizedAccessException e)
+            catch (System.UnauthorizedAccessException)
             {
                 return 3;
             }
@@ -425,7 +425,7 @@ namespace nsync
 
                 return true;
             }
-            catch (Exception e)
+            catch //(Exception e)
             {
                 return false;
             }
