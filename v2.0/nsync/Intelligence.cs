@@ -6,6 +6,22 @@ namespace nsync
     class Intelligence
     {
         /// <summary>
+        /// Check if there is any files inside the provided path
+        /// </summary>
+        /// <param name="path">This parameter is the folder path to be checked</param>
+        /// <returns>Returns a boolean which indicates if the folder path has any files</returns>
+        public bool IsThereFilesInRootPath(string path)
+        {
+            string[] fileNames = new string[100];
+            fileNames = Directory.GetFiles(path);
+
+            if (fileNames.Length > 0)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
         /// Checks if a path is the root path
         /// </summary>
         /// <param name="path">This string is the path to be checked</param>

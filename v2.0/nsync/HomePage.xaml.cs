@@ -914,6 +914,11 @@ namespace nsync
 
             EnableInterface(false);
 
+            // Feed the actualleftpath and actualrightpath into SyncEngine again
+            // Safety precaution
+            synchronizer.LeftPath = actualLeftPath;
+            synchronizer.RightPath = actualRightPath;
+
             // Ask SyncEngine to create a folder if the leftpath OR rightpath is root
             // note: if both path are root or both are not root, then nothing will be done
             synchronizer.CreateFolderForRootPath();

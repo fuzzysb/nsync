@@ -68,6 +68,14 @@ namespace nsync
                     sourcePath = leftPath;
                 }
 
+                // If there are already files on the rootpath,
+                // we assume that user is okay with having files flooding their rootpath
+                // so we won't be creating a folder for them
+                if (intelligentManager.IsThereFilesInRootPath(rootPath))
+                {
+                    return false;
+                }
+
                 rootPath += sourcePath.Substring(sourcePath.LastIndexOf("\\") + 1);
 
                 // Create the folder in the root path
@@ -87,6 +95,7 @@ namespace nsync
                 else // right
                     rightPath = rootPath;
 
+                //MessageBox.Show("LeftPath: " + leftPath + "\nRightPath: " + rightPath + "\nrootPath: " + rootPath);
                 return true;
             }
             else
