@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder (2)</left1>
-    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\a\AAA</right1>
-    <left2>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder (2)</left2>
-    <right2>F:\</right2>
-    <left3>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</left3>
-    <right3>F:\</right3>
-    <left4>C:\Users\Seah Shao Qi\Desktop\TestFolders\asdasda</left4>
-    <right4>F:\</right4>
-    <left5>C:\Users\Seah Shao Qi\Desktop\TestFolders\a</left5>
-    <right5>F:\</right5>
+    <left1 />
+    <right1 />
+    <left2 />
+    <right2 />
+    <left3 />
+    <right3 />
+    <left4 />
+    <right4 />
+    <left5 />
+    <right5 />
   </MRU>
   <SETTINGS>
     <HelperWindowIsOn>true</HelperWindowIsOn>
   </SETTINGS>
+  <REMOVEABLEDISK />
 </nsync>

@@ -13,6 +13,7 @@ namespace nsync
         private const int NUMBER_OF_MOST_RECENT = 5;
         private const string PATH_SETTINGS = "/nsync/SETTINGS";
         private const string PATH_MRU = "/nsync/MRU";
+        private const string PATH_REMOVEABLEDISK = "/nsync/REMOVABLEDISK";
 
         private static readonly Settings instance = new Settings();
 
@@ -192,6 +193,9 @@ namespace nsync
             if (null == doc.SelectSingleNode(PATH_SETTINGS+"/HelperWindowIsOn"))
                 return false;
 
+            if (null == doc.SelectSingleNode(PATH_SETTINGS + "/REMOVABLEDISK"))
+                return false;
+
             for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
             {
                 if (null == doc.SelectSingleNode(PATH_MRU+"/left" + i.ToString()))
@@ -240,11 +244,21 @@ namespace nsync
 
             textWriter.WriteEndElement();
 
+            //Removeable Disk information
+            textWriter.WriteStartElement("REMOVEABLEDISK");
+            textWriter.WriteEndElement();
+
             //End Root
             textWriter.WriteEndElement();
             textWriter.WriteEndDocument();
 
             textWriter.Close();
+        }
+
+
+        public string[] GetLastRemoveableDiskSync(string serialNum)
+        {
+            return null;
         }
     }
 }

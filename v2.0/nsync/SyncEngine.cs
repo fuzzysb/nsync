@@ -43,14 +43,26 @@ namespace nsync
             intelligentManager = new Intelligence();
         }
 
-        public string RememberLastRemoveableDiskSync(string path)
+        /// <summary>
+        /// Try to get the serial number of removeable disk
+        /// </summary>
+        /// <param name="path">This parameter indicates the path to be checked</param>
+        /// <returns>Returns a string which contains the serial number of the removeable disk, if it exists
+        /// <para>Otherwise, return null</para></returns>
+        public string IsRememberLastRemoveableDiskSyncValid(string path)
         {
-            // check if the path is root (e.g. D:\ or F:\) bcos if path is F:\testfolder, users probably want to sync that folder
-            // check if the path is removeable disk
-            // check it's removeable disk, check if there is records in settings.xml
-            // retrieve records from settings.xml
-            // return the newpath back
-            return null;
+            // check if the path is removeable disk first
+            if (!intelligentManager.IsRemovableDrive(path))
+                return null;
+
+            // check if the path is root (e.g. D:\ or F:\) 
+            // bcos if path is F:\testfolder, users probably want to really sync that folder
+            // don't try to outsmart the user
+            if (!intelligentManager.IsPathRoot(path))
+                return null;
+            
+            // if passed all the previous 2 checks, return the serial number of removeable disk
+            return intelligentManager.FindRemoveableDiskSerialNumber(path);
         }
 
         /// <summary>

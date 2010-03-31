@@ -46,6 +46,14 @@
             Constructor for SyncEngine
             </summary>
         </member>
+        <member name="M:nsync.SyncEngine.IsRememberLastRemoveableDiskSyncValid(System.String)">
+            <summary>
+            Try to get the serial number of removeable disk
+            </summary>
+            <param name="path">This parameter indicates the path to be checked</param>
+            <returns>Returns a string which contains the serial number of the removeable disk, if it exists
+            <para>Otherwise, return null</para></returns>
+        </member>
         <member name="M:nsync.SyncEngine.CreateFolderForRootPath">
             <summary>
             Creates a folder in the root path and updates leftpath/rightpath, if required
@@ -515,6 +523,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:nsync.HomePage.RememberLastRemoveableDiskSync(System.String)" -->
         <member name="M:nsync.HomePage.backgroundWorkerForSync_ProgressChanged(System.Object,System.ComponentModel.ProgressChangedEventArgs)">
             <summary>
             This method is called when progress percentage has changed

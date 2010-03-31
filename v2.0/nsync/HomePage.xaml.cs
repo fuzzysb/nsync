@@ -914,25 +914,7 @@ namespace nsync
             LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
 
             EnableInterface(false);
-
-            // The left and right path will be changed if it is a removeable disk
-            // The new path will be the last sync folder path for that removeable disk
-            // ( e.g. BEFORE actualLeftPath == F:\ --> AFTER actualLeftPath == F:\LastSyncFolder )
-
-            //TODO: alert user if folder path was changed.
-            //TODO: save the sync folder path if it's a removeable disk to settings.xml
-            string newPath;
-            if ((newPath = synchronizer.RememberLastRemoveableDiskSync(actualLeftPath)) != null)
-            {
-                actualLeftPath = newPath;
-                LeftText.Text = ShortenText(actualLeftPath);
-            }
-            if ((newPath = synchronizer.RememberLastRemoveableDiskSync(actualRightPath)) != null)
-            {
-                actualRightPath = newPath;
-                RightText.Text = ShortenText(actualRightPath);
-            }
-
+            
             // Feed the actualleftpath and actualrightpath into SyncEngine again
             // Safety precaution
             synchronizer.LeftPath = actualLeftPath;
@@ -947,6 +929,53 @@ namespace nsync
             // If enough, continue to start the real sync
             synchronizer.PreSync();
         }
+
+        /// <summary>
+        /// Try to get and replace actualLeftPath & actualRightPath with the last synced folder pair for a removeable disk
+        /// </summary>
+        /// <param name="leftOrRight">This parameter indicates if the removeable disk is actualLeftPath or actualRightPath</param>
+        private void RememberLastRemoveableDiskSync(string leftOrRight)
+        {
+            // The left and right path will be changed if it is a removeable disk
+            // The new path will be the last sync folder path for that removeable disk
+            // ( e.g. BEFORE actualLeftPath == F:\ --> AFTER actualLeftPath == F:\LastSyncFolder )
+
+            //TODO: save the sync folder path if it's a removeable disk to settings.xml
+
+            string[] newPath = new string[2];
+            string serialNumber;
+            if (leftOrRight == "left" || leftOrRight == "Left")
+            {
+                if ((serialNumber = synchronizer.IsRememberLastRemoveableDiskSyncValid(actualLeftPath)) != null)
+                {
+                    if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
+                    {
+                        actualLeftPath = newPath[0];
+                        LeftText.Text = ShortenText(actualLeftPath);
+                        actualRightPath = newPath[1];
+                        RightText.Text = ShortenText(actualRightPath);
+                        helper.Show("Your last synced folder pair on this removeable disk is restored", 5, HelperWindow.windowStartPosition.windowTop);
+                    }
+                }
+            }
+            else if (leftOrRight == "right" || leftOrRight == "Right")
+            {
+                if ((serialNumber = synchronizer.IsRememberLastRemoveableDiskSyncValid(actualRightPath)) != null)
+                {
+                    if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
+                    {
+                        actualLeftPath = newPath[1];
+                        LeftText.Text = ShortenText(actualLeftPath);
+                        actualRightPath = newPath[0];
+                        RightText.Text = ShortenText(actualRightPath);
+                        helper.Show("Your last synced folder pair on this removeable disk is restored", 5, HelperWindow.windowStartPosition.windowTop);
+                    }
+                }
+            }
+            else
+                return;
+        }
+        
 
         /// <summary>
         /// This method is called when progress percentage has changed
