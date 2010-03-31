@@ -28,6 +28,7 @@ namespace nsync
         private List<string> oldExcludeFolders;
         private List<string> oldExcludeFiles;
         private List<string> oldExcludeFileTypes;
+        private List<string> availableFileTypes;
         private readonly int MAX_STRING_LENGTH = 90;
 
         public ExcludeWindow()
@@ -39,6 +40,7 @@ namespace nsync
             oldExcludeFolders = new List<string>();
             oldExcludeFiles = new List<string>();
             oldExcludeFileTypes = new List<string>();
+            availableFileTypes = new List<string>();
         }
 
         /// <summary>
@@ -92,6 +94,49 @@ namespace nsync
         {
             LabelLeftPath.Content = leftPath;
             LabelRightPath.Content = rightPath;
+
+            PopulateFileTypes();
+            
+
+        }
+
+        private void PopulateFileTypes()
+        {
+            string[] filePathsLeft = Directory.GetFiles(leftPath, "*.*",
+                                         SearchOption.AllDirectories);
+            string[] filePathsRight = Directory.GetFiles(rightPath, "*.*",
+                                         SearchOption.AllDirectories);
+            foreach(string paths in filePathsLeft) {
+                AddToFileTypesList(System.IO.Path.GetExtension(paths));
+            }
+            foreach (string paths in filePathsRight)
+            {
+                AddToFileTypesList(System.IO.Path.GetExtension(paths));
+            }
+            PopulateFileTypesComboBox();
+        }
+
+        private void PopulateFileTypesComboBox()
+        {
+            foreach (string fileExtension in availableFileTypes)
+            {
+                AddComboBoxItem(fileExtension);
+            }
+        }
+
+        private void AddComboBoxItem(string fileExtension)
+        {
+            ComboBoxItem fileTypeComboBoxItem = new ComboBoxItem();
+            fileTypeComboBoxItem.Content = fileExtension;
+            ComboBoxFileType.Items.Add(fileTypeComboBoxItem);
+        }
+
+        private void AddToFileTypesList(string fileExtension)
+        {
+            if (!availableFileTypes.Contains(fileExtension))
+            {
+                availableFileTypes.Add(fileExtension);
+            }
         }
 
         private void BoxExclude_DragEnter(object sender, DragEventArgs e)
@@ -233,6 +278,24 @@ namespace nsync
         private void BoxExclude_Drop(object sender, DragEventArgs e)
         {
 
+        }
+
+        private void ComboBoxFileType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (HintText.Visibility == Visibility.Visible)
+            {
+                HintText.Visibility = Visibility.Collapsed;
+                HintIcon.Visibility = Visibility.Collapsed;
+                ListBoxExclude.Visibility = Visibility.Visible;
+            }
+
+            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
+            selectedComboBoxItem = (ComboBoxItem)ComboBoxFileType.SelectedItem;
+            string fileExtension = selectedComboBoxItem.Content.ToString();
+            if (IsNotInList(excludeFileTypes, fileExtension))
+                excludeFileTypes.Add(fileExtension);
+            ClearListBox();
+            UpdateListBox();
         }
     }
 }
