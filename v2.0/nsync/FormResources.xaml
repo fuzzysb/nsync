@@ -745,7 +745,7 @@
                         <ImageBrush ImageSource="Resources/excludelistbackover.png"/>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="Cursor" Value="Hand"/>
+                <!--<Setter Property="Cursor" Value="Hand"/>-->
             </Trigger>
         </Style.Triggers>
     </Style>

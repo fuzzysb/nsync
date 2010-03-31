@@ -17,10 +17,10 @@
         <Label Foreground="White" Height="25.96" Margin="270,113,160,0" Name="LabelAddFileTypes" VerticalAlignment="Top">Add File Types:</Label>
         
         <StackPanel Name="BoxExclude" Margin="26,149,26,46" AllowDrop="True" Style="{StaticResource BoxExcludeStyle}" DragEnter="BoxExclude_DragEnter" DragLeave="BoxExclude_DragLeave" DragDrop.Drop="BoxExclude_Drop">
-            <ListBox Name="ListBoxExclude" Margin="0, 6" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource ExcludeListBoxItem}" Style="{StaticResource ExcludeListBox}" FontSize="10" Visibility="Visible" MaxHeight="390">
+            <ListBox Name="ListBoxExclude" Margin="0, 6" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource ExcludeListBoxItem}" Style="{StaticResource ExcludeListBox}" FontSize="10" Visibility="Visible" MaxHeight="390" MouseUp="ListBoxExclude_MouseUp">
             </ListBox>
             <TextBlock Name="HintText" Foreground="White" FontFamily="Verdana" FontSize="11" Text="{x:Static const:Resources.excludeText}" HorizontalAlignment="Center" Margin="0, 100, 0, 20" MaxWidth="230" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
             <Image Name="HintIcon" Source="Resources/default.png" Width="128" Height="128" Margin="0,0" ToolTip="{x:Static const:Resources.excludeIconToolTip}" />
-        </StackPanel>
+        </StackPanel><Label Foreground="White" Height="25.96" Margin="18,0,112,17" Name="LabelStatus" VerticalAlignment="Bottom"></Label>
     </Grid>
 </Window>
