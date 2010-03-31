@@ -118,5 +118,23 @@ namespace nsync
 
             return false;
         }
+
+        /// <summary>
+        /// Finds the unique serial number of the removeable disk
+        /// </summary>
+        /// <param name="path">This parameter is the directory to be checked</param>
+        /// <returns>Returns a string which contains the serial number of the removeable disk
+        /// <para>Returns null if the directory is not a removeable disk</para></returns>
+        public string FindRemoveableDiskSerialNumber(string path)
+        {
+            ManagementObjectSearcher mosDisks = new ManagementObjectSearcher(@"SELECT * FROM Win32_LogicalDisk WHERE DriveType=2"); //Finds all removable drives
+
+            foreach (ManagementObject moDisk in mosDisks.Get())
+            {
+                if (moDisk["DeviceID"].ToString() == Directory.GetDirectoryRoot(path).Remove(2))
+                    return moDisk["VolumeSerialNumber"].ToString();
+            }
+            return null;
+        }
     }
 }

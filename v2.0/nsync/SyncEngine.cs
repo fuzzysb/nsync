@@ -43,6 +43,16 @@ namespace nsync
             intelligentManager = new Intelligence();
         }
 
+        public string RememberLastRemoveableDiskSync(string path)
+        {
+            // check if the path is root (e.g. D:\ or F:\) bcos if path is F:\testfolder, users probably want to sync that folder
+            // check if the path is removeable disk
+            // check it's removeable disk, check if there is records in settings.xml
+            // retrieve records from settings.xml
+            // return the newpath back
+            return null;
+        }
+
         /// <summary>
         /// Creates a folder in the root path and updates leftpath/rightpath, if required
         /// </summary>

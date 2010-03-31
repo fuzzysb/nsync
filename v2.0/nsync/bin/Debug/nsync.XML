@@ -1098,6 +1098,14 @@
             <param name="path">This parameter is the folder path to be checked</param>
             <returns>Returns a boolean which indicates if the folder path belongs to a removable drive</returns>
         </member>
+        <member name="M:nsync.Intelligence.FindRemoveableDiskSerialNumber(System.String)">
+            <summary>
+            Finds the unique serial number of the removeable disk
+            </summary>
+            <param name="path">This parameter is the directory to be checked</param>
+            <returns>Returns a string which contains the serial number of the removeable disk
+            <para>Returns null if the directory is not a removeable disk</para></returns>
+        </member>
         <member name="T:nsync.TrackBackPage">
             <summary>
             Interaction logic for TrackBackPage.xaml

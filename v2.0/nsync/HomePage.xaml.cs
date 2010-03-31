@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Management; // to be removed
 
 namespace nsync
 {
@@ -913,6 +914,24 @@ namespace nsync
             LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
 
             EnableInterface(false);
+
+            // The left and right path will be changed if it is a removeable disk
+            // The new path will be the last sync folder path for that removeable disk
+            // ( e.g. BEFORE actualLeftPath == F:\ --> AFTER actualLeftPath == F:\LastSyncFolder )
+
+            //TODO: alert user if folder path was changed.
+            //TODO: save the sync folder path if it's a removeable disk to settings.xml
+            string newPath;
+            if ((newPath = synchronizer.RememberLastRemoveableDiskSync(actualLeftPath)) != null)
+            {
+                actualLeftPath = newPath;
+                LeftText.Text = ShortenText(actualLeftPath);
+            }
+            if ((newPath = synchronizer.RememberLastRemoveableDiskSync(actualRightPath)) != null)
+            {
+                actualRightPath = newPath;
+                RightText.Text = ShortenText(actualRightPath);
+            }
 
             // Feed the actualleftpath and actualrightpath into SyncEngine again
             // Safety precaution

@@ -238,7 +238,7 @@ namespace nsync
             }
             for (int i = 0; i < excludeInvalid.Count; i++)
             {
-                AddListBoxItem("Not in synchronized folders: " + excludeInvalid[i], new SolidColorBrush(Colors.Red), excludeInvalid[i]);
+                AddListBoxItem("Not in synchronized folders: " + excludeInvalid[i], new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
             }
 
             if (ListBoxExclude.Items.Count > 0)
