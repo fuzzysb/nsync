@@ -6,6 +6,9 @@ using System.Text;
 
 namespace nsync
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HelperManager
     {
         private HelperWindow windowHelper;

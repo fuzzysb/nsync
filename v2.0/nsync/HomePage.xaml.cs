@@ -142,6 +142,7 @@ namespace nsync
             {
                 hasLeftPath = true;
                 e.Handled = true;
+                RememberLastRemoveableDiskSync("left");
                 ShowSync();
             }
         }
@@ -157,6 +158,7 @@ namespace nsync
             {
                 hasRightPath = true;
                 e.Handled = true;
+                RememberLastRemoveableDiskSync("right");
                 ShowSync();
             }
         }
@@ -295,9 +297,12 @@ namespace nsync
                 //SQ ShowRemovableDrives(LeftText.Text, "left");
                 ShowRemovableDrives(actualLeftPath, "left"); //SQ
                 hasLeftPath = true;
+
+                RememberLastRemoveableDiskSync("left");
             }
             //SQ synchronizer.LeftPath = LeftText.Text;
-            synchronizer.LeftPath = actualLeftPath; //SQ
+            synchronizer.LeftPath = actualLeftPath;
+            synchronizer.RightPath = actualRightPath;
             ShowSync();
         }
 
@@ -323,9 +328,12 @@ namespace nsync
                 //SQ ShowRemovableDrives(RightText.Text, "right");
                 ShowRemovableDrives(actualRightPath, "right"); //SQ
                 hasRightPath = true;
+
+                RememberLastRemoveableDiskSync("right");
             }
             //SQ synchronizer.RightPath = RightText.Text;
-            synchronizer.RightPath = actualRightPath; //SQ
+            synchronizer.LeftPath = actualLeftPath;
+            synchronizer.RightPath = actualRightPath;
             ShowSync();
         }
 
@@ -931,7 +939,31 @@ namespace nsync
         }
 
         /// <summary>
-        /// Try to get and replace actualLeftPath & actualRightPath with the last synced folder pair for a removeable disk
+        /// Save the folder paths into settings.xml if the folder path involves a removeable disk
+        /// </summary>
+        private void SaveFolderPathsForRemoveableDisk()
+        {
+            // check if actualLeftPath and actualRightPath is removeable disk first
+            bool isLeftPathRemoveableDisk, isRightPathRemoveableDisk;
+            isLeftPathRemoveableDisk = synchronizer.IsPathRemoveableDisk(Directory.GetDirectoryRoot(actualLeftPath));
+            isRightPathRemoveableDisk = synchronizer.IsPathRemoveableDisk(Directory.GetDirectoryRoot(actualRightPath));
+            if (isLeftPathRemoveableDisk || isRightPathRemoveableDisk)
+            {
+                // if they are removeable disk, get their serial number
+                // and ask settings class to save the folder pair
+                if (isLeftPathRemoveableDisk)
+                {
+                    settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemoveableDiskSerialNumber(actualLeftPath), actualLeftPath, actualRightPath);
+                }
+                if(isRightPathRemoveableDisk)
+                {
+                    settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemoveableDiskSerialNumber(actualRightPath), actualLeftPath, actualRightPath);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Try to get and replace actualLeftPath and actualRightPath with the last synced folder pair for a removeable disk
         /// </summary>
         /// <param name="leftOrRight">This parameter indicates if the removeable disk is actualLeftPath or actualRightPath</param>
         private void RememberLastRemoveableDiskSync(string leftOrRight)
@@ -939,9 +971,6 @@ namespace nsync
             // The left and right path will be changed if it is a removeable disk
             // The new path will be the last sync folder path for that removeable disk
             // ( e.g. BEFORE actualLeftPath == F:\ --> AFTER actualLeftPath == F:\LastSyncFolder )
-
-            //TODO: save the sync folder path if it's a removeable disk to settings.xml
-
             string[] newPath = new string[2];
             string serialNumber;
             if (leftOrRight == "left" || leftOrRight == "Left")
@@ -950,10 +979,14 @@ namespace nsync
                 {
                     if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
                     {
+                        hasLeftPath = hasRightPath = true;
                         actualLeftPath = newPath[0];
                         LeftText.Text = ShortenText(actualLeftPath);
                         actualRightPath = newPath[1];
                         RightText.Text = ShortenText(actualRightPath);
+                        synchronizer.LeftPath = actualLeftPath;
+                        synchronizer.RightPath = actualRightPath;
+
                         helper.Show("Your last synced folder pair on this removeable disk is restored", 5, HelperWindow.windowStartPosition.windowTop);
                     }
                 }
@@ -964,10 +997,14 @@ namespace nsync
                 {
                     if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
                     {
-                        actualLeftPath = newPath[1];
+                        hasLeftPath = hasRightPath = true;
+                        actualLeftPath = newPath[0];
                         LeftText.Text = ShortenText(actualLeftPath);
-                        actualRightPath = newPath[0];
+                        actualRightPath = newPath[1];
                         RightText.Text = ShortenText(actualRightPath);
+                        synchronizer.LeftPath = actualLeftPath;
+                        synchronizer.RightPath = actualRightPath;
+
                         helper.Show("Your last synced folder pair on this removeable disk is restored", 5, HelperWindow.windowStartPosition.windowTop);
                     }
                 }
@@ -1091,6 +1128,9 @@ namespace nsync
 
             LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
             LabelProgressPercent.Content = "100 %";
+
+            // Save folder pair if the sync involves a removeable disk
+            SaveFolderPathsForRemoveableDisk();
         }
 
         /// <summary>

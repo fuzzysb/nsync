@@ -12,6 +12,10 @@ namespace nsync
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
             SingleInstance.Make("nsync", this);

@@ -33,6 +33,9 @@ namespace nsync
         private List<string> oldExcludeInvalid;
         private readonly int MAX_STRING_LENGTH = 90;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ExcludeWindow()
         {
             InitializeComponent();

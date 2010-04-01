@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using System.Windows;
 
 namespace nsync
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class Settings
     {
         private string settingsFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + nsync.Properties.Resources.settingsFilePath;
@@ -15,6 +19,9 @@ namespace nsync
         private const string PATH_MRU = "/nsync/MRU";
         private const string PATH_REMOVEABLEDISK = "/nsync/REMOVEABLEDISK";
 
+        /// <summary>
+        /// 
+        /// </summary>
         private static readonly Settings instance = new Settings();
 
         /// <summary>
@@ -41,6 +48,7 @@ namespace nsync
         {
             if (!File.Exists(settingsFile))
             {
+                MessageBox.Show("helperwindowStatus: file not exists");
                 CreateNewSettingsXML();
             }
 
@@ -61,6 +69,7 @@ namespace nsync
         {
             if (!File.Exists(settingsFile))
             {
+                MessageBox.Show("gethelperwindowstatus: file not exists");
                 CreateNewSettingsXML();
             }
 
@@ -110,42 +119,98 @@ namespace nsync
 
             if (!File.Exists(settingsFile))
             {
+                MessageBox.Show("file not exists");
                 CreateNewSettingsXML();
             }
-                XmlDocument doc = new XmlDocument();
-                XmlNode mruNode = SelectNode(doc, PATH_MRU);
+            XmlDocument doc = new XmlDocument();
+            XmlNode mruNode = SelectNode(doc, PATH_MRU);
 
-                for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
+            for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
+            {
+                tempStorage[counter++] = mruNode["left" + i.ToString()].InnerText;
+                tempStorage[counter++] = mruNode["right" + i.ToString()].InnerText;
+            }
+
+            mruNode["left1"].InnerText = leftPath;
+            mruNode["right1"].InnerText = rightPath;
+
+            for (int i = 0; i < 10; i += 2)
+            {
+                if (tempStorage[i] == leftPath && tempStorage[i + 1] == rightPath)
                 {
-                    tempStorage[counter++] = mruNode["left" + i.ToString()].InnerText;
-                    tempStorage[counter++] = mruNode["right" + i.ToString()].InnerText;
+                    tempStorage[i] = tempStorage[i + 1] = "REPLACED";
+                    break;
                 }
+            }
 
-                mruNode["left1"].InnerText = leftPath;
-                mruNode["right1"].InnerText = rightPath;
-
-                for (int i = 0; i < 10; i += 2)
-                {
-                    if (tempStorage[i] == leftPath && tempStorage[i + 1] == rightPath)
-                    {
-                        tempStorage[i] = tempStorage[i + 1] = "REPLACED";
-                        break;
-                    }
-                }
-
-                counter = 0;
-                for (int i = 2; i <= NUMBER_OF_MOST_RECENT; i++)
-                {
-                    while (tempStorage[counter] == "REPLACED" && tempStorage[counter + 1] == "REPLACED")
-                        counter += 2;
-
-                    mruNode["left" + i.ToString()].InnerText = tempStorage[counter];
-                    mruNode["right" + i.ToString()].InnerText = tempStorage[counter + 1];
-
+            counter = 0;
+            for (int i = 2; i <= NUMBER_OF_MOST_RECENT; i++)
+            {
+                while (tempStorage[counter] == "REPLACED" && tempStorage[counter + 1] == "REPLACED")
                     counter += 2;
-                }
 
-                doc.Save(settingsFile);
+                mruNode["left" + i.ToString()].InnerText = tempStorage[counter];
+                mruNode["right" + i.ToString()].InnerText = tempStorage[counter + 1];
+
+                counter += 2;
+            }
+
+            doc.Save(settingsFile);
+        }
+
+        /// <summary>
+        /// Save folder path for removeable disk into settings.xml
+        /// </summary>
+        /// <param name="serialNumber">This parameter indicates the serial number of the removeable disk</param>
+        /// <param name="leftPath">This parameter indicates the leftPath of the sync job</param>
+        /// <param name="rightPath">This parameter indicates the rightPath of the sync job</param>
+        public void SaveFolderPathForRemoveableDisk(string serialNumber, string leftPath, string rightPath)
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(settingsFile);
+
+            XmlNode removeableDiskNode = SelectNode(doc, PATH_REMOVEABLEDISK);
+            XmlNode diskNode = removeableDiskNode.SelectSingleNode("//Disk[@ID='" + serialNumber + "']");
+            if (diskNode != null) // node exists, update paths
+            {
+                if (diskNode["left"] == null)
+                {
+                    diskNode.AppendChild(doc.CreateElement("left"));
+                }
+                if (diskNode["right"] == null)
+                {
+                    diskNode.AppendChild(doc.CreateElement("right"));
+                }
+                diskNode["left"].InnerText = leftPath;
+                diskNode["right"].InnerText = rightPath;
+            }
+            else // node doesn't exists, create everything
+            {
+                // Create serial number node
+                XmlNode newSerialNumberNode = doc.CreateNode(XmlNodeType.Element, "Disk", null);
+                XmlAttribute serialNumberAttribute = doc.CreateAttribute("ID");
+                serialNumberAttribute.Value = serialNumber;
+                newSerialNumberNode.Attributes.SetNamedItem(serialNumberAttribute);
+
+                // Create left and right node
+                XmlNode newLeftNode = doc.CreateElement("left");
+                newLeftNode.InnerText = leftPath;
+                XmlNode newRightNode = doc.CreateElement("right");
+                newRightNode.InnerText = rightPath;
+
+                // Add left and right node to parent node
+                newSerialNumberNode.AppendChild(newLeftNode);
+                newSerialNumberNode.AppendChild(newRightNode);
+
+                doc.DocumentElement["REMOVEABLEDISK"].AppendChild(newSerialNumberNode);
+            }
+            
+            doc.Save(settingsFile);
         }
 
         /// <summary>
@@ -160,9 +225,11 @@ namespace nsync
             {
                 doc.Load(settingsFile);
             }
-            catch (XmlException)
+            catch (Exception e)
             {
-                File.Delete(settingsFile);
+                MessageBox.Show(e.Message);
+                File.Delete(settingsFile); 
+                MessageBox.Show("select node: delete settings");
                 CreateNewSettingsXML();
                 doc.Load(settingsFile);
             }
@@ -171,6 +238,7 @@ namespace nsync
             
             if (!CheckSettingsXML(doc))
             {
+                MessageBox.Show("check xml failed");
                 File.Delete(settingsFile);
                 CreateNewSettingsXML();
                 doc.Load(settingsFile);
@@ -212,6 +280,7 @@ namespace nsync
         /// </summary>
         private void CreateNewSettingsXML()
         {
+            MessageBox.Show("create new");
             XmlTextWriter textWriter = new XmlTextWriter(settingsFile, null);
             textWriter.Formatting = Formatting.Indented;
             textWriter.WriteStartDocument();
@@ -255,10 +324,36 @@ namespace nsync
             textWriter.Close();
         }
 
-
-        public string[] GetLastRemoveableDiskSync(string serialNum)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serialNumber"></param>
+        /// <returns></returns>
+        public string[] GetLastRemoveableDiskSync(string serialNumber)
         {
-            return null;
+            if (File.Exists(settingsFile))
+            {
+                string[] results = new string[2];
+                XmlDocument doc = new XmlDocument();
+                doc.Load(settingsFile);
+
+                XmlNode removeableDiskNode = SelectNode(doc, PATH_REMOVEABLEDISK);
+                if (removeableDiskNode == null)
+                    return null;
+
+                XmlNode diskNode = removeableDiskNode.SelectSingleNode("//Disk[@ID='" + serialNumber + "']");
+                if (diskNode == null || diskNode["left"] == null || diskNode["right"] == null)
+                    return null;
+
+                results[0] = diskNode["left"].InnerText;
+                results[1] = diskNode["right"].InnerText;
+
+                return results;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

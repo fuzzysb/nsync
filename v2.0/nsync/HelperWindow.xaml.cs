@@ -20,7 +20,30 @@ namespace nsync
         /// </summary>
         public enum windowStartPosition
         {
-            topLeft, topRight, bottomLeft, bottomRight, center, windowTop
+            /// <summary>
+            /// Position window top left
+            /// </summary>
+            topLeft, 
+            /// <summary>
+            /// Position window top right
+            /// </summary>
+            topRight,
+            /// <summary>
+            /// Position window bottom left
+            /// </summary>
+            bottomLeft, 
+            /// <summary>
+            /// Position window bottom right
+            /// </summary>
+            bottomRight, 
+            /// <summary>
+            /// Position window centre
+            /// </summary>
+            center, 
+            /// <summary>
+            /// Position window top
+            /// </summary>
+            windowTop
         };
 
         /// <summary>

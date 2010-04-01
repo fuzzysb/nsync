@@ -20,7 +20,7 @@ namespace nsync
             else
                 return false;
         }
-
+        
         /// <summary>
         /// Checks if a path is the root path
         /// </summary>
@@ -72,7 +72,7 @@ namespace nsync
             string[] leftFolderPathArray = leftFolderPath.Split(new char[] { '\\' });
             string[] rightFolderPathArray = rightFolderPath.Split(new char[] { '\\' });
 
-            return isSamePath(leftFolderPathArray, rightFolderPathArray);
+            return IsSamePath(leftFolderPathArray, rightFolderPathArray);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace nsync
         /// <param name="sourceArray">Array of a folder path to be checked</param>
         /// <param name="destinationArray">Array of a folder path to be checked</param>
         /// <returns></returns>
-        private bool isSamePath(string[] sourceArray, string[] destinationArray)
+        private bool IsSamePath(string[] sourceArray, string[] destinationArray)
         {
             if (sourceArray.Length > destinationArray.Length)
             {

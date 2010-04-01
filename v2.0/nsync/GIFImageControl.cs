@@ -12,16 +12,28 @@ using Image = System.Windows.Controls.Image;
 
 namespace nsync
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class GIFImageControl : Image
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty AllowClickToPauseProperty =
             DependencyProperty.Register("AllowClickToPause", typeof(bool), typeof(GIFImageControl),
                                         new UIPropertyMetadata(true));
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty GIFSourceProperty =
             DependencyProperty.Register("GIFSource", typeof(string), typeof(GIFImageControl),
                                         new UIPropertyMetadata("", GIFSource_Changed));
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public static readonly DependencyProperty PlayAnimationProperty =
             DependencyProperty.Register("PlayAnimation", typeof(bool), typeof(GIFImageControl),
                                         new UIPropertyMetadata(true, PlayAnimation_Changed));
@@ -30,6 +42,9 @@ namespace nsync
 
         private bool _mouseClickStarted;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public GIFImageControl()
         {
             MouseLeftButtonDown += GIFImageControl_MouseLeftButtonDown;
@@ -38,18 +53,27 @@ namespace nsync
             Click += GIFImageControl_Click;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool AllowClickToPause
         {
             get { return (bool)GetValue(AllowClickToPauseProperty); }
             set { SetValue(AllowClickToPauseProperty, value); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public bool PlayAnimation
         {
             get { return (bool)GetValue(PlayAnimationProperty); }
             set { SetValue(PlayAnimationProperty, value); }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public string GIFSource
         {
             get { return (string)GetValue(GIFSourceProperty); }
@@ -85,6 +109,9 @@ namespace nsync
                 Click(sender, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public event RoutedEventHandler Click;
 
         private static void PlayAnimation_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -178,7 +205,11 @@ namespace nsync
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="hDc"></param>
+        /// <returns></returns>
         [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
         public static extern IntPtr DeleteObject(IntPtr hDc);
 

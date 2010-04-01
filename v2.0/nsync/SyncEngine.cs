@@ -44,7 +44,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// Try to get the serial number of removeable disk
+        /// Try to get the serial number of removeable disk if path is a removeable disk
         /// </summary>
         /// <param name="path">This parameter indicates the path to be checked</param>
         /// <returns>Returns a string which contains the serial number of the removeable disk, if it exists
@@ -60,10 +60,38 @@ namespace nsync
             // don't try to outsmart the user
             if (!intelligentManager.IsPathRoot(path))
                 return null;
-            
+
+            // check if the root has any files,
+            // if there are files, users probably want to sync that file
+            // don't try to outsmart the user
+            if (intelligentManager.IsThereFilesInRootPath(path))
+                return null;
+
             // if passed all the previous 2 checks, return the serial number of removeable disk
+            return GetRemoveableDiskSerialNumber(path);
+        }
+
+        /// <summary>
+        /// Checks if a path is a removeable disk
+        /// </summary>
+        /// <param name="path">This parameter indicates the path to be checked</param>
+        /// <returns>Returns a boolean which indicates if the path is a removeable disk</returns>
+        public bool IsPathRemoveableDisk(string path)
+        {
+            return intelligentManager.IsRemovableDrive(path);
+        }
+
+        /// <summary>
+        /// Gets the removeable disk serial number
+        /// </summary>
+        /// <param name="path">This parameter indicates the path to be checked</param>
+        /// <returns>Returns a string which contains the serial number of the removeable disk
+        /// <para>Returns a null if path is not removeable disk</para></returns>
+        public string GetRemoveableDiskSerialNumber(string path)
+        {
             return intelligentManager.FindRemoveableDiskSerialNumber(path);
         }
+
 
         /// <summary>
         /// Creates a folder in the root path and updates leftpath/rightpath, if required
