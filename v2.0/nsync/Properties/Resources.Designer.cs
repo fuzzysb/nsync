@@ -178,6 +178,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .metadata.
+        /// </summary>
+        public static string metaDataFileExtension {
+            get {
+                return ResourceManager.GetString("metaDataFileExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimise.
         /// </summary>
         public static string minimiseToolTip {

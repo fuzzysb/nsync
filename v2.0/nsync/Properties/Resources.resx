@@ -156,6 +156,9 @@
   <data name="leftFolderNotExist" xml:space="preserve">
     <value>The left folder does not exist.</value>
   </data>
+  <data name="metaDataFileExtension" xml:space="preserve">
+    <value>.metadata</value>
+  </data>
   <data name="minimiseToolTip" xml:space="preserve">
     <value>Minimise</value>
   </data>

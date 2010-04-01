@@ -4,241 +4,66 @@
         <name>nsync</name>
     </assembly>
     <members>
-        <member name="T:nsync.SettingsPage">
+        <member name="M:nsync.Intelligence.IsThereFilesInRootPath(System.String)">
             <summary>
-            Interaction logic for SettingsPage.xaml
+            Check if there is any files inside the provided path
             </summary>
-            <summary>
-            SettingsPage
-            </summary>
+            <param name="path">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path has any files</returns>
         </member>
-        <member name="M:nsync.SettingsPage.#ctor">
+        <member name="M:nsync.Intelligence.IsPathRoot(System.String)">
             <summary>
-            Constructor for SettingsPage
+            Checks if a path is the root path
             </summary>
+            <param name="path">This string is the path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path is a root path</returns>
         </member>
-        <member name="M:nsync.SettingsPage.CheckSettings">
+        <member name="M:nsync.Intelligence.IsFolderExists(System.String)">
             <summary>
-            Update the checkbox on SettingsPage
+            Checks if the folder path exists
             </summary>
+            <param name="folderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path exists</returns>
         </member>
-        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_Checked(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:nsync.Intelligence.IsFoldersSimilar(System.String,System.String)">
             <summary>
-            This method is called when user checks the checkbox
+            Checks if two folder paths are similar
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
+            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
+            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if both folder paths are similar</returns>
         </member>
-        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_UnChecked(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:nsync.Intelligence.IsFolderSubFolder(System.String,System.String)">
             <summary>
-            This method is called when user unchecks the checkbox
+            Checks if a folder is a subfolder of another
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
+            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
+            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if a folder is a subfolder of another</returns>
         </member>
-        <member name="M:nsync.SettingsPage.InitializeComponent">
+        <member name="M:nsync.Intelligence.isSamePath(System.String[],System.String[])">
             <summary>
-            InitializeComponent
+            Compares the folder paths of the input arrays and determine if they
+            have the same path from the root directory.
             </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.#ctor">
-            <summary>
-            Constructor for SyncEngine
-            </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.IsRememberLastRemoveableDiskSyncValid(System.String)">
-            <summary>
-            Try to get the serial number of removeable disk
-            </summary>
-            <param name="path">This parameter indicates the path to be checked</param>
-            <returns>Returns a string which contains the serial number of the removeable disk, if it exists
-            <para>Otherwise, return null</para></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.CreateFolderForRootPath">
-            <summary>
-            Creates a folder in the root path and updates leftpath/rightpath, if required
-            </summary>
-            <returns>Returns a boolean to indicate if a folder was created</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsRequiredToCreateFolder">
-            <summary>
-            Ask Intellgence to check if it is required to create a folder on any root path
-            </summary>
-            <returns>Returns a boolean with the result of the query</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.GetFreeDiskSpaceInBytes(System.String)">
-            <summary>
-            Computes the amount of free disk space
-            <para>Units is in bytes</para>
-            </summary>
-            <param name="drive">This parameter is the drive volume to be checked</param>
+            <param name="sourceArray">Array of a folder path to be checked</param>
+            <param name="destinationArray">Array of a folder path to be checked</param>
             <returns></returns>
         </member>
-        <member name="M:nsync.SyncEngine.ConvertBytesToMegabytes(System.UInt64)">
+        <member name="M:nsync.Intelligence.IsRemovableDrive(System.String)">
             <summary>
-            Converts bytes to megabytes
+            Checks if the folder path belongs to a removable drive
             </summary>
-            <param name="amount">This parameter is the value to be converted</param>
-            <returns>Returns a string which contains the converted value</returns>
+            <param name="path">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path belongs to a removable drive</returns>
         </member>
-        <member name="M:nsync.SyncEngine.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
+        <member name="M:nsync.Intelligence.FindRemoveableDiskSerialNumber(System.String)">
             <summary>
-            Detect the changes done to the folder
-            <para>Updates the metadata</para>
+            Finds the unique serial number of the removeable disk
             </summary>
-            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
-            <param name="filter">This parameter is the filter which will be used during synchronization</param>
-            <param name="options">This parameter holds the synchronization options</param>
-        </member>
-        <member name="M:nsync.SyncEngine.SyncFileSystemReplicasOneWay(System.String,System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions,System.Boolean)">
-            <summary>
-            Start the synchronization in one direction
-            </summary>
-            <param name="sourcePath">This parameter holds the source folder path</param>
-            <param name="destPath">This parameter holds the destination folder path</param>
-            <param name="filter">This parameter is the filter which will be used during synchronization</param>
-            <param name="options">This parameter holds the synchronization options</param>
-            <param name="isPreview">This parameter is a boolean which indicates if this method should be run in preview mode</param>
-            <returns>Returns a boolean to indicate if the the synchronization was successful</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.CheckSpace">
-            <summary>
-            Checks if there is sufficient disk space for synchronization to be done
-            </summary>
-            <returns>Returns a boolean of the result</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
-            <summary>
-            This method is called when there are conflicting items during synchronization
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.OnItemConstraint(System.Object,Microsoft.Synchronization.ItemConstraintEventArgs)">
-            <summary>
-            This method is called when there are constraint items during synchronization
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.OnAppliedChange(System.Object,Microsoft.Synchronization.Files.AppliedChangeEventArgs)">
-            <summary>
-            This method is called when changes are done to a file
-            <para>Counts the number of changes already done by the sync framework</para>
-            <para>Reports the progress percentage to the backgroundWorkerForSync</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
-            <summary>
-            This method is called when changes are going to be done to a file
-            <para>Counts the number of changes to be made later during synchronization</para>
-            <para>Counts the amount of disk space needed later during synchronization</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.backgroundWorkerForSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
-            <summary>
-            This method is called when backgroundWorkerForSync is called to start working
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.backgroundWorkerForPreSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
-            <summary>
-            This method is called when backgroundWorkerForPreSync is called to start working
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.PreSync">
-            <summary>
-            Gets backgroundWorkerForPreSync to do presync preparations
-            </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.StartSync">
-            <summary>
-            Get the real synchronization process to start
-            </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.InternalPreSync">
-            <summary>
-            Does actual presync preparations
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.InternalStartSync">
-            <summary>
-            Starts the synchronization job
-            </summary>
-            <returns>Returns a boolean to indicate if the synchronization was successful</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.GetPath">
-            <summary>
-            Gets the stored folder paths in SyncEngine
-            </summary>
-            <returns>Returns an array of string which contains 2 folder paths</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFolderSubfolder">
-            <summary>
-            Asks IntelligentManager to check if a folder is subfolder of another folder
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.AreFoldersSync">
-            <summary>
-            Checks if folder paths are already synchronized
-            </summary>
-            <returns>Return the result which indicates if folder paths are already synchronized</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFolderExists(System.String)">
-            <summary>
-            Asks IntelligentManager to check if the left or right folder path exists
-            </summary>
-            <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFoldersSimilar">
-            <summary>
-            Asks IntelligentManager to check if the two folder paths are similar
-            </summary>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.CheckRemovableDrive(System.String)">
-            <summary>
-            Ask IntelligentManager to check if a folder path is a removable drive
-            </summary>
-            <param name="path">This parameters indicates the folder path to be checked</param>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
-        <member name="P:nsync.SyncEngine.LeftPath">
-            <summary>
-            Setter and Getter method for left folder path
-            </summary>
-        </member>
-        <member name="P:nsync.SyncEngine.RightPath">
-            <summary>
-            Setter and Getter method for right folder path
-            </summary>
-        </member>
-        <member name="F:nsync.TestEngine.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:nsync.TestEngine.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:nsync.TestEngine.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
+            <param name="path">This parameter is the directory to be checked</param>
+            <returns>Returns a string which contains the serial number of the removeable disk
+            <para>Returns null if the directory is not a removeable disk</para></returns>
         </member>
         <member name="T:nsync.HomePage">
             <summary>
@@ -556,6 +381,363 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:nsync.TrackBackPage">
+            <summary>
+            Interaction logic for TrackBackPage.xaml
+            </summary>
+            <summary>
+            TrackBackPage
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:nsync.TestEngine.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:nsync.TestEngine.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:nsync.TestEngine.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.#ctor">
+            <summary>
+            Constructor for SyncEngine
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.IsRememberLastRemoveableDiskSyncValid(System.String)">
+            <summary>
+            Try to get the serial number of removeable disk
+            </summary>
+            <param name="path">This parameter indicates the path to be checked</param>
+            <returns>Returns a string which contains the serial number of the removeable disk, if it exists
+            <para>Otherwise, return null</para></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.CreateFolderForRootPath">
+            <summary>
+            Creates a folder in the root path and updates leftpath/rightpath, if required
+            </summary>
+            <returns>Returns a boolean to indicate if a folder was created</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsRequiredToCreateFolder">
+            <summary>
+            Ask Intellgence to check if it is required to create a folder on any root path
+            </summary>
+            <returns>Returns a boolean with the result of the query</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.GetFreeDiskSpaceInBytes(System.String)">
+            <summary>
+            Computes the amount of free disk space
+            <para>Units is in bytes</para>
+            </summary>
+            <param name="drive">This parameter is the drive volume to be checked</param>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.ConvertBytesToMegabytes(System.UInt64)">
+            <summary>
+            Converts bytes to megabytes
+            </summary>
+            <param name="amount">This parameter is the value to be converted</param>
+            <returns>Returns a string which contains the converted value</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
+            <summary>
+            Detect the changes done to the folder
+            <para>Updates the metadata</para>
+            </summary>
+            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
+            <param name="filter">This parameter is the filter which will be used during synchronization</param>
+            <param name="options">This parameter holds the synchronization options</param>
+        </member>
+        <member name="M:nsync.SyncEngine.SyncFileSystemReplicasOneWay(System.String,System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions,System.Boolean)">
+            <summary>
+            Start the synchronization in one direction
+            </summary>
+            <param name="sourcePath">This parameter holds the source folder path</param>
+            <param name="destPath">This parameter holds the destination folder path</param>
+            <param name="filter">This parameter is the filter which will be used during synchronization</param>
+            <param name="options">This parameter holds the synchronization options</param>
+            <param name="isPreview">This parameter is a boolean which indicates if this method should be run in preview mode</param>
+            <returns>Returns a boolean to indicate if the the synchronization was successful</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.CheckSpace">
+            <summary>
+            Checks if there is sufficient disk space for synchronization to be done
+            </summary>
+            <returns>Returns a boolean of the result</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
+            <summary>
+            This method is called when there are conflicting items during synchronization
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.OnItemConstraint(System.Object,Microsoft.Synchronization.ItemConstraintEventArgs)">
+            <summary>
+            This method is called when there are constraint items during synchronization
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.OnAppliedChange(System.Object,Microsoft.Synchronization.Files.AppliedChangeEventArgs)">
+            <summary>
+            This method is called when changes are done to a file
+            <para>Counts the number of changes already done by the sync framework</para>
+            <para>Reports the progress percentage to the backgroundWorkerForSync</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
+            <summary>
+            This method is called when changes are going to be done to a file
+            <para>Counts the number of changes to be made later during synchronization</para>
+            <para>Counts the amount of disk space needed later during synchronization</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.backgroundWorkerForSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            This method is called when backgroundWorkerForSync is called to start working
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.backgroundWorkerForPreSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            This method is called when backgroundWorkerForPreSync is called to start working
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.PreSync">
+            <summary>
+            Gets backgroundWorkerForPreSync to do presync preparations
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.StartSync">
+            <summary>
+            Get the real synchronization process to start
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.InternalPreSync">
+            <summary>
+            Does actual presync preparations
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.InternalStartSync">
+            <summary>
+            Starts the synchronization job
+            </summary>
+            <returns>Returns a boolean to indicate if the synchronization was successful</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.GetPath">
+            <summary>
+            Gets the stored folder paths in SyncEngine
+            </summary>
+            <returns>Returns an array of string which contains 2 folder paths</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFolderSubfolder">
+            <summary>
+            Asks IntelligentManager to check if a folder is subfolder of another folder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.AreFoldersSync">
+            <summary>
+            Checks if folder paths are already synchronized
+            </summary>
+            <returns>Return the result which indicates if folder paths are already synchronized</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFolderExists(System.String)">
+            <summary>
+            Asks IntelligentManager to check if the left or right folder path exists
+            </summary>
+            <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFoldersSimilar">
+            <summary>
+            Asks IntelligentManager to check if the two folder paths are similar
+            </summary>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.CheckRemovableDrive(System.String)">
+            <summary>
+            Ask IntelligentManager to check if a folder path is a removable drive
+            </summary>
+            <param name="path">This parameters indicates the folder path to be checked</param>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
+        <member name="P:nsync.SyncEngine.LeftPath">
+            <summary>
+            Setter and Getter method for left folder path
+            </summary>
+        </member>
+        <member name="P:nsync.SyncEngine.RightPath">
+            <summary>
+            Setter and Getter method for right folder path
+            </summary>
+        </member>
+        <member name="T:nsync.SettingsPage">
+            <summary>
+            Interaction logic for SettingsPage.xaml
+            </summary>
+            <summary>
+            SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.#ctor">
+            <summary>
+            Constructor for SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckSettings">
+            <summary>
+            Update the checkbox on SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user checks the checkbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_UnChecked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user unchecks the checkbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:nsync.Settings.#ctor">
+            <summary>
+            Constructor of Settings class
+            </summary>
+        </member>
+        <member name="M:nsync.Settings.SetHelperWindowStatus(System.Boolean)">
+            <summary>
+            Change the status of the HelperWindow which determines if it should appear in nsync
+            </summary>
+            <param name="status">This parameter is a boolean to indicate if HelperWindow should appear</param>
+        </member>
+        <member name="M:nsync.Settings.GetHelperWindowStatus">
+            <summary>
+            Gets the current status of the HelperWindow
+            </summary>
+            <returns>Returns a boolean which indicates if HelperWindow should appear</returns>
+        </member>
+        <member name="M:nsync.Settings.LoadFolderPaths">
+            <summary>
+            Loads the saved folder paths into a list
+            </summary>
+            <returns>Returns a list of strings which contains the saved folder paths</returns>
+        </member>
+        <member name="M:nsync.Settings.SaveFolderPaths(System.String,System.String)">
+            <summary>
+            Saves the current folder paths into settings.xml
+            </summary>
+            <param name="leftPath">This parameter will be saved into settings.xml</param>
+            <param name="rightPath">This parameter will be saved into settings.xml</param>
+        </member>
+        <member name="M:nsync.Settings.SelectNode(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Gets a XMLNode from a XML document
+            </summary>
+            <param name="doc">This parameter indicates the XMLDocument to be read</param>
+            <param name="path">This parameter indicates the tag of the XMLNode to search for</param>
+            <returns>Returns a matching XMLNode</returns>
+        </member>
+        <member name="M:nsync.Settings.CheckSettingsXML(System.Xml.XmlDocument)">
+            <summary>
+            Checks if a XML document is properly formatted
+            </summary>
+            <param name="doc">This parameter is the XML document to be checked</param>
+            <returns>Returns a boolean to indicate if the XML document is valid</returns>
+        </member>
+        <member name="M:nsync.Settings.CreateNewSettingsXML">
+            <summary>
+            Creates a new settings.xml
+            </summary>
+        </member>
+        <member name="P:nsync.Settings.Instance">
+            <summary>
+            Gets the instance of the Settings object
+            </summary>
+        </member>
+        <member name="T:nsync.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:nsync.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:nsync.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.#ctor(System.Windows.Window)">
+            <summary>
+            Constructor for HelperManager
+            </summary>
+            <param name="ownerWindow">Setting the owner of windowHelper to ownerWindow</param>
+        </member>
+        <member name="M:nsync.HelperManager.Show(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
+            <summary>
+            Tell windowHelper to display the notification
+            </summary>
+            <param name="helpString">The string to be displayed in the notifiation window</param>
+            <param name="time">The duration for which the notification window should be active</param>
+            <param name="windowPosition">The position for which the notification window should be placed</param>
+        </member>
+        <member name="M:nsync.HelperManager.helperWindowIsOn">
+            <summary>
+            Checks if the notification window should be on/off
+            </summary>
+            <returns>The result is returned as a boolean</returns>
+        </member>
+        <member name="M:nsync.HelperManager.CloseWindow">
+            <summary>
+            Closes the notification window
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.UpdateMove">
+            <summary>
+            Moves the notification window accordingly when its position is changed
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.HideWindow">
+            <summary>
+            Hides the notification window
+            </summary>
+        </member>
         <member name="T:nsync.HelperWindow">
             <summary>
             Interaction logic for HelperWindow.xaml
@@ -634,6 +816,172 @@
         <member name="T:nsync.HelperWindow.windowStartPosition">
             <summary>
             A list of enumeration of the available positions for notification window
+            </summary>
+        </member>
+        <member name="T:nsync.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.accessRightsInsufficient">
+            <summary>
+              Looks up a localized string similar to Insufficient access rights to the folders..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.bothFoldersNotExist">
+            <summary>
+              Looks up a localized string similar to Both the selected folders do not exist..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.closeToolTip">
+            <summary>
+              Looks up a localized string similar to Close.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.defaultErrorMessage">
+            <summary>
+              Looks up a localized string similar to Please try again..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.excludeIconToolTip">
+            <summary>
+              Looks up a localized string similar to Drag &amp; Drop Files or Folders to Exclude.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.excludeText">
+            <summary>
+              Looks up a localized string similar to Drag &amp; Drop Files or Folders to Exclude.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.folderExplorerText">
+            <summary>
+              Looks up a localized string similar to Select a folder to synchronise with nsync..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.folderIconPath">
+            <summary>
+              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder.png.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.folderMissingIconPath">
+            <summary>
+              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder_missing.png.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.homeToolTip">
+            <summary>
+              Looks up a localized string similar to Home.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.insufficientDiskSpace">
+            <summary>
+              Looks up a localized string similar to Insufficient disk space.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.leftFolderInsufficientDiskSpace">
+            <summary>
+              Looks up a localized string similar to Left folder has insufficient disk space..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.leftFolderNotExist">
+            <summary>
+              Looks up a localized string similar to The left folder does not exist..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.metaDataFileExtension">
+            <summary>
+              Looks up a localized string similar to .metadata.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.minimiseToolTip">
+            <summary>
+              Looks up a localized string similar to Minimise.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.nextToolTip">
+            <summary>
+              Looks up a localized string similar to Continue.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.nullString">
+            <summary>
+              Looks up a localized string similar to .
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.panelIconToolTip">
+            <summary>
+              Looks up a localized string similar to Drag or Click to Add a Folder.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.panelText">
+            <summary>
+              Looks up a localized string similar to Drag &amp; Drop Folders Here.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.rightFolderInsufficientDiskSpace">
+            <summary>
+              Looks up a localized string similar to Right folder has insufficient disk space..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.rightFolderNotExist">
+            <summary>
+              Looks up a localized string similar to The right folder does not exist..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.settingsFilePath">
+            <summary>
+              Looks up a localized string similar to /settings.xml.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.settingsToolTip">
+            <summary>
+              Looks up a localized string similar to Settings.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.similarFolders">
+            <summary>
+              Looks up a localized string similar to The left and right folders cannot be similar..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.subfolderOfFolder">
+            <summary>
+              Looks up a localized string similar to Folders that are to be synchronized cannot be a subfolder of each other..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.syncButtonToolTip">
+            <summary>
+              Looks up a localized string similar to And Sync!.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.syncComplete">
+            <summary>
+              Looks up a localized string similar to Sync done!.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.synchronizedFolders">
+            <summary>
+              Looks up a localized string similar to Folders are already synchronized..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.thumbdriveIconPath">
+            <summary>
+              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/removabledrive.png.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.trackBackToolTip">
+            <summary>
+              Looks up a localized string similar to TrackBack.
             </summary>
         </member>
         <member name="T:nsync.MainWindow">
@@ -753,273 +1101,9 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:nsync.Properties.Resources">
+        <member name="T:nsync.SingleInstance">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.accessRightsInsufficient">
-            <summary>
-              Looks up a localized string similar to Insufficient access rights to the folders..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.bothFoldersNotExist">
-            <summary>
-              Looks up a localized string similar to Both the selected folders do not exist..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.closeToolTip">
-            <summary>
-              Looks up a localized string similar to Close.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.defaultErrorMessage">
-            <summary>
-              Looks up a localized string similar to Please try again..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.excludeIconToolTip">
-            <summary>
-              Looks up a localized string similar to Drag &amp; Drop Files or Folders to Exclude.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.excludeText">
-            <summary>
-              Looks up a localized string similar to Drag &amp; Drop Files or Folders to Exclude.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.folderExplorerText">
-            <summary>
-              Looks up a localized string similar to Select a folder to synchronise with nsync..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.folderIconPath">
-            <summary>
-              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder.png.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.folderMissingIconPath">
-            <summary>
-              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/folder_missing.png.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.homeToolTip">
-            <summary>
-              Looks up a localized string similar to Home.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.insufficientDiskSpace">
-            <summary>
-              Looks up a localized string similar to Insufficient disk space.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.leftFolderInsufficientDiskSpace">
-            <summary>
-              Looks up a localized string similar to Left folder has insufficient disk space..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.leftFolderNotExist">
-            <summary>
-              Looks up a localized string similar to The left folder does not exist..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.minimiseToolTip">
-            <summary>
-              Looks up a localized string similar to Minimise.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.nextToolTip">
-            <summary>
-              Looks up a localized string similar to Continue.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.nullString">
-            <summary>
-              Looks up a localized string similar to .
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.panelIconToolTip">
-            <summary>
-              Looks up a localized string similar to Drag or Click to Add a Folder.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.panelText">
-            <summary>
-              Looks up a localized string similar to Drag &amp; Drop Folders Here.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.rightFolderInsufficientDiskSpace">
-            <summary>
-              Looks up a localized string similar to Right folder has insufficient disk space..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.rightFolderNotExist">
-            <summary>
-              Looks up a localized string similar to The right folder does not exist..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.settingsFilePath">
-            <summary>
-              Looks up a localized string similar to /settings.xml.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.settingsToolTip">
-            <summary>
-              Looks up a localized string similar to Settings.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.similarFolders">
-            <summary>
-              Looks up a localized string similar to The left and right folders cannot be similar..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.subfolderOfFolder">
-            <summary>
-              Looks up a localized string similar to Folders that are to be synchronized cannot be a subfolder of each other..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.syncButtonToolTip">
-            <summary>
-              Looks up a localized string similar to And Sync!.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.syncComplete">
-            <summary>
-              Looks up a localized string similar to Sync done!.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.synchronizedFolders">
-            <summary>
-              Looks up a localized string similar to Folders are already synchronized..
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.thumbdriveIconPath">
-            <summary>
-              Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/removabledrive.png.
-            </summary>
-        </member>
-        <member name="P:nsync.Properties.Resources.trackBackToolTip">
-            <summary>
-              Looks up a localized string similar to TrackBack.
-            </summary>
-        </member>
-        <member name="M:nsync.HelperManager.#ctor(System.Windows.Window)">
-            <summary>
-            Constructor for HelperManager
-            </summary>
-            <param name="ownerWindow">Setting the owner of windowHelper to ownerWindow</param>
-        </member>
-        <member name="M:nsync.HelperManager.Show(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
-            <summary>
-            Tell windowHelper to display the notification
-            </summary>
-            <param name="helpString">The string to be displayed in the notifiation window</param>
-            <param name="time">The duration for which the notification window should be active</param>
-            <param name="windowPosition">The position for which the notification window should be placed</param>
-        </member>
-        <member name="M:nsync.HelperManager.helperWindowIsOn">
-            <summary>
-            Checks if the notification window should be on/off
-            </summary>
-            <returns>The result is returned as a boolean</returns>
-        </member>
-        <member name="M:nsync.HelperManager.CloseWindow">
-            <summary>
-            Closes the notification window
-            </summary>
-        </member>
-        <member name="M:nsync.HelperManager.UpdateMove">
-            <summary>
-            Moves the notification window accordingly when its position is changed
-            </summary>
-        </member>
-        <member name="M:nsync.HelperManager.HideWindow">
-            <summary>
-            Hides the notification window
-            </summary>
-        </member>
-        <member name="M:nsync.Settings.#ctor">
-            <summary>
-            Constructor of Settings class
-            </summary>
-        </member>
-        <member name="M:nsync.Settings.SetHelperWindowStatus(System.Boolean)">
-            <summary>
-            Change the status of the HelperWindow which determines if it should appear in nsync
-            </summary>
-            <param name="status">This parameter is a boolean to indicate if HelperWindow should appear</param>
-        </member>
-        <member name="M:nsync.Settings.GetHelperWindowStatus">
-            <summary>
-            Gets the current status of the HelperWindow
-            </summary>
-            <returns>Returns a boolean which indicates if HelperWindow should appear</returns>
-        </member>
-        <member name="M:nsync.Settings.LoadFolderPaths">
-            <summary>
-            Loads the saved folder paths into a list
-            </summary>
-            <returns>Returns a list of strings which contains the saved folder paths</returns>
-        </member>
-        <member name="M:nsync.Settings.SaveFolderPaths(System.String,System.String)">
-            <summary>
-            Saves the current folder paths into settings.xml
-            </summary>
-            <param name="leftPath">This parameter will be saved into settings.xml</param>
-            <param name="rightPath">This parameter will be saved into settings.xml</param>
-        </member>
-        <member name="M:nsync.Settings.SelectNode(System.Xml.XmlDocument,System.String)">
-            <summary>
-            Gets a XMLNode from a XML document
-            </summary>
-            <param name="doc">This parameter indicates the XMLDocument to be read</param>
-            <param name="path">This parameter indicates the tag of the XMLNode to search for</param>
-            <returns>Returns a matching XMLNode</returns>
-        </member>
-        <member name="M:nsync.Settings.CheckSettingsXML(System.Xml.XmlDocument)">
-            <summary>
-            Checks if a XML document is properly formatted
-            </summary>
-            <param name="doc">This parameter is the XML document to be checked</param>
-            <returns>Returns a boolean to indicate if the XML document is valid</returns>
-        </member>
-        <member name="M:nsync.Settings.CreateNewSettingsXML">
-            <summary>
-            Creates a new settings.xml
-            </summary>
-        </member>
-        <member name="P:nsync.Settings.Instance">
-            <summary>
-            Gets the instance of the Settings object
-            </summary>
-        </member>
-        <member name="T:nsync.App">
-            <summary>
-            Interaction logic for App.xaml
-            </summary>
-            <summary>
-            App
-            </summary>
-        </member>
-        <member name="M:nsync.App.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="M:nsync.App.Main">
-            <summary>
-            Application Entry Point.
+            SingleInstance class adds support for a having Single Instance Applications in WPF
             </summary>
         </member>
         <member name="T:nsync.ExcludeWindow">
@@ -1052,85 +1136,6 @@
         <member name="P:nsync.ExcludeWindow.RightPath">
             <summary>
             Property for right path
-            </summary>
-        </member>
-        <member name="M:nsync.Intelligence.IsThereFilesInRootPath(System.String)">
-            <summary>
-            Check if there is any files inside the provided path
-            </summary>
-            <param name="path">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path has any files</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsPathRoot(System.String)">
-            <summary>
-            Checks if a path is the root path
-            </summary>
-            <param name="path">This string is the path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path is a root path</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFolderExists(System.String)">
-            <summary>
-            Checks if the folder path exists
-            </summary>
-            <param name="folderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path exists</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFoldersSimilar(System.String,System.String)">
-            <summary>
-            Checks if two folder paths are similar
-            </summary>
-            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
-            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if both folder paths are similar</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFolderSubFolder(System.String,System.String)">
-            <summary>
-            Checks if a folder is a subfolder of another
-            </summary>
-            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
-            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if a folder is a subfolder of another</returns>
-        </member>
-        <member name="M:nsync.Intelligence.isSamePath(System.String[],System.String[])">
-            <summary>
-            Compares the folder paths of the input arrays and determine if they
-            have the same path from the root directory.
-            </summary>
-            <param name="sourceArray">Array of a folder path to be checked</param>
-            <param name="destinationArray">Array of a folder path to be checked</param>
-            <returns></returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsRemovableDrive(System.String)">
-            <summary>
-            Checks if the folder path belongs to a removable drive
-            </summary>
-            <param name="path">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path belongs to a removable drive</returns>
-        </member>
-        <member name="M:nsync.Intelligence.FindRemoveableDiskSerialNumber(System.String)">
-            <summary>
-            Finds the unique serial number of the removeable disk
-            </summary>
-            <param name="path">This parameter is the directory to be checked</param>
-            <returns>Returns a string which contains the serial number of the removeable disk
-            <para>Returns null if the directory is not a removeable disk</para></returns>
-        </member>
-        <member name="T:nsync.TrackBackPage">
-            <summary>
-            Interaction logic for TrackBackPage.xaml
-            </summary>
-            <summary>
-            TrackBackPage
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackPage.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:nsync.SingleInstance">
-            <summary>
-            SingleInstance class adds support for a having Single Instance Applications in WPF
             </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">

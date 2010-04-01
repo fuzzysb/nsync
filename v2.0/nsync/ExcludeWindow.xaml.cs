@@ -137,9 +137,12 @@ namespace nsync
 
         private void AddToFileTypesList(string fileExtension)
         {
-            if (!availableFileTypes.Contains(fileExtension))
+            if (fileExtension != Properties.Resources.metaDataFileExtension)
             {
-                availableFileTypes.Add(fileExtension);
+                if (!availableFileTypes.Contains(fileExtension))
+                {
+                    availableFileTypes.Add(fileExtension);
+                }
             }
         }
 
