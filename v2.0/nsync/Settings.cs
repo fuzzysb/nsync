@@ -13,7 +13,7 @@ namespace nsync
         private const int NUMBER_OF_MOST_RECENT = 5;
         private const string PATH_SETTINGS = "/nsync/SETTINGS";
         private const string PATH_MRU = "/nsync/MRU";
-        private const string PATH_REMOVEABLEDISK = "/nsync/REMOVABLEDISK";
+        private const string PATH_REMOVEABLEDISK = "/nsync/REMOVEABLEDISK";
 
         private static readonly Settings instance = new Settings();
 
@@ -193,7 +193,7 @@ namespace nsync
             if (null == doc.SelectSingleNode(PATH_SETTINGS+"/HelperWindowIsOn"))
                 return false;
 
-            if (null == doc.SelectSingleNode(PATH_SETTINGS + "/REMOVABLEDISK"))
+            if (null == doc.SelectSingleNode(PATH_REMOVEABLEDISK))
                 return false;
 
             for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
