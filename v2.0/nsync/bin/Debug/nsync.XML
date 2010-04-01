@@ -815,6 +815,11 @@
             Property for right path
             </summary>
         </member>
+        <member name="P:nsync.VisualPreviewWindow.PreviewFileData">
+            <summary>
+            Property for filedata list
+            </summary>
+        </member>
         <member name="T:nsync.PreviewItemData">
             <summary>
             Simple data class of a preview item with 3 elements to fill the listview
@@ -885,6 +890,36 @@
         <member name="E:nsync.GIFImageControl.Click">
             <summary>
             
+            </summary>
+        </member>
+        <member name="M:nsync.FileData.#ctor(System.String,System.String,nsync.Changes)">
+            <summary>
+            Constructor of FileData class
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.FileName">
+            <summary>
+            Gets the FileName of FileData object
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.FileType">
+            <summary>
+            Gets the FileType of FileData object
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.ChangeType">
+            <summary>
+            Gets the ChangeType of FileData object
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.RootPath">
+            <summary>
+            Gets the RootPath of FileData object
+            </summary>
+        </member>
+        <member name="T:nsync.Changes">
+            <summary>
+            Types Of Changes In FileData Object
             </summary>
         </member>
         <member name="T:nsync.HelperManager">
@@ -1380,35 +1415,35 @@
             Property for right path
             </summary>
         </member>
-        <member name="M:nsync.FileData.#ctor(System.String,System.String,nsync.Changes)">
+        <member name="M:nsync.Preview.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
             <summary>
-            Constructor of FileData class
+            Detect the changes done to the folder
+            <para>Updates the metadata</para>
             </summary>
+            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
+            <param name="filter">This parameter is the filter which will be used during synchronization</param>
+            <param name="options">This parameter holds the synchronization options</param>
         </member>
-        <member name="P:nsync.FileData.FileName">
+        <member name="M:nsync.Preview.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
             <summary>
-            Gets the FileName of FileData object
+            This method is called when changes are going to be done to a file
             </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
         </member>
-        <member name="P:nsync.FileData.FileType">
+        <member name="M:nsync.Preview.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
             <summary>
-            Gets the FileType of FileData object
+            This method is called when there are conflicting items during synchronization
             </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
         </member>
-        <member name="P:nsync.FileData.ChangeType">
+        <member name="M:nsync.Preview.OnItemConstraint(System.Object,Microsoft.Synchronization.ItemConstraintEventArgs)">
             <summary>
-            Gets the ChangeType of FileData object
+            This method is called when there are constraint items during synchronization
             </summary>
-        </member>
-        <member name="P:nsync.FileData.RootPath">
-            <summary>
-            Gets the RootPath of FileData object
-            </summary>
-        </member>
-        <member name="T:nsync.Changes">
-            <summary>
-            Types Of Changes In FileData Object
-            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

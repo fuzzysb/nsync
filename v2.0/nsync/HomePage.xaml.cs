@@ -44,6 +44,9 @@ namespace nsync
         private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
         private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
 
+        private List<FileData> fileData;
+        private Preview previewing;
+
         /// <summary>
         /// Constructor for HomePage class
         /// </summary>
@@ -1194,11 +1197,25 @@ namespace nsync
 
         private void ButtonPreview_Click(object sender, RoutedEventArgs e)
         {
+            EnableInterface(false);
+            fileData = new List<FileData>();
+            previewing = new Preview(actualLeftPath, actualRightPath);
+            fileData = previewing.GetData();
+
             VisualPreviewWindow WindowVisualPreview = new VisualPreviewWindow();
+            WindowVisualPreview.Closing += new CancelEventHandler(WindowVisualPreview_Closing);
             WindowVisualPreview.Owner = mainWindow;
+            WindowVisualPreview.LeftPath = actualLeftPath;
+            WindowVisualPreview.RightPath = actualRightPath;
+            WindowVisualPreview.PreviewFileData = fileData;
             mainWindow.Opacity = 0.2;
             WindowVisualPreview.ShowDialog();
             mainWindow.Opacity = 1;
+        }
+
+        void WindowVisualPreview_Closing(object sender, CancelEventArgs e)
+        {
+            EnableInterface(true);
         }
     }
 }

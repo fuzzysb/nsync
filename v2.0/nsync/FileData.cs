@@ -6,7 +6,7 @@ using System.IO;
 
 namespace nsync
 {
-    class FileData
+    public class FileData
     {
         private string fileName;
         private string fileType;

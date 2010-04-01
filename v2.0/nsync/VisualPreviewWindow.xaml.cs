@@ -30,8 +30,6 @@ namespace nsync
         public VisualPreviewWindow()
         {
             InitializeComponent();
-
-            //previewFileData = information;
         }
 
 
@@ -61,8 +59,54 @@ namespace nsync
 
         private void DisplayInfo()
         {
-            //test
-            AddPreviewEntry("World Of Warcraft", "Create", "Blizzard");
+            foreach (FileData file in previewFileData)
+            {
+                if (file.ChangeType == Changes.Create)
+                {
+                    if (file.RootPath == leftPath)
+                    {
+                        AddPreviewEntry(file.FileName, "Create", "");
+                    }
+                    else
+                    {
+                        AddPreviewEntry("", "Create", file.FileName);
+                    }
+                }
+                if (file.ChangeType == Changes.Update)
+                {
+                    if (file.RootPath == leftPath)
+                    {
+                        AddPreviewEntry(file.FileName, "Update", "");
+                    }
+                    else
+                    {
+                        AddPreviewEntry("", "Update", file.FileName);
+                    }
+
+                }
+                if (file.ChangeType == Changes.Delete)
+                {
+                    if (file.RootPath == leftPath)
+                    {
+                        AddPreviewEntry(file.FileName, "Delete", "");
+                    }
+                    else
+                    {
+                        AddPreviewEntry("", "Delete", file.FileName);
+                    }
+                }
+                if (file.ChangeType == Changes.Rename)
+                {
+                    if (file.RootPath == leftPath)
+                    {
+                        AddPreviewEntry(file.FileName, "Rename", "");
+                    }
+                    else
+                    {
+                        AddPreviewEntry("", "Rename", file.FileName);
+                    }
+                }
+            }
         }
         /// <summary>
         /// Adds an entry into the preview list view
@@ -98,14 +142,14 @@ namespace nsync
             set { rightPath = value; }
         }
 
-        ///// <summary>
-        ///// Property for filedata list
-        ///// </summary>
-        //public List<FileData> PreviewFileData
-        //{
-        //    get { return previewFileData; }
-        //    set { previewFileData = value; }
-        //}
+        /// <summary>
+        /// Property for filedata list
+        /// </summary>
+        public List<FileData> PreviewFileData
+        {
+            get { return previewFileData; }
+            set { previewFileData = value; }
+        }
 
     }
 
