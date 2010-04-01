@@ -774,6 +774,67 @@
             Application Entry Point.
             </summary>
         </member>
+        <member name="T:nsync.VisualPreviewWindow">
+            <summary>
+            Interaction logic for VisualPreviewWindow.xaml
+            </summary>
+            <summary>
+            VisualPreviewWindow
+            </summary>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.#ctor">
+            <summary>
+            Constructor for VisualPreviewWindow
+            </summary>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.AddPreviewEntry(System.String,System.String,System.String)">
+            <summary>
+            Adds an entry into the preview list view
+            </summary>
+            <param name="previewLeftItem">string for left item column</param>
+            <param name="previewRightItem">string for right item column</param>
+            <param name="previewAction">string for action column</param>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.PreviewCollection">
+            <summary>
+            property of the preview collection used in binding
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.LeftPath">
+            <summary>
+            Property for left path
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.RightPath">
+            <summary>
+            Property for right path
+            </summary>
+        </member>
+        <member name="T:nsync.PreviewItemData">
+            <summary>
+            Simple data class of a preview item with 3 elements to fill the listview
+            </summary>
+        </member>
+        <member name="P:nsync.PreviewItemData.leftItem">
+            <summary>
+            property for left item column
+            </summary>
+        </member>
+        <member name="P:nsync.PreviewItemData.action">
+            <summary>
+            property for action column
+            </summary>
+        </member>
+        <member name="P:nsync.PreviewItemData.rightItem">
+            <summary>
+            property for right item column
+            </summary>
+        </member>
         <member name="T:nsync.GIFImageControl">
             <summary>
             
@@ -1319,65 +1380,34 @@
             Property for right path
             </summary>
         </member>
-        <member name="T:nsync.VisualPreviewWindow">
+        <member name="M:nsync.FileData.#ctor(System.String,System.String,nsync.Changes)">
             <summary>
-            Interaction logic for VisualPreviewWindow.xaml
-            </summary>
-            <summary>
-            VisualPreviewWindow
+            Constructor of FileData class
             </summary>
         </member>
-        <member name="M:nsync.VisualPreviewWindow.#ctor">
+        <member name="P:nsync.FileData.FileName">
             <summary>
-            Constructor for VisualPreviewWindow
+            Gets the FileName of FileData object
             </summary>
         </member>
-        <member name="M:nsync.VisualPreviewWindow.AddPreviewEntry(System.String,System.String,System.String)">
+        <member name="P:nsync.FileData.FileType">
             <summary>
-            Adds an entry into the preview list view
-            </summary>
-            <param name="previewLeftItem">string for left item column</param>
-            <param name="previewRightItem">string for right item column</param>
-            <param name="previewAction">string for action column</param>
-        </member>
-        <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
+            Gets the FileType of FileData object
             </summary>
         </member>
-        <member name="P:nsync.VisualPreviewWindow.PreviewCollection">
+        <member name="P:nsync.FileData.ChangeType">
             <summary>
-            property of the preview collection used in binding
+            Gets the ChangeType of FileData object
             </summary>
         </member>
-        <member name="P:nsync.VisualPreviewWindow.LeftPath">
+        <member name="P:nsync.FileData.RootPath">
             <summary>
-            Property for left path
+            Gets the RootPath of FileData object
             </summary>
         </member>
-        <member name="P:nsync.VisualPreviewWindow.RightPath">
+        <member name="T:nsync.Changes">
             <summary>
-            Property for right path
-            </summary>
-        </member>
-        <member name="T:nsync.PreviewItemData">
-            <summary>
-            Simple data class of a preview item with 3 elements to fill the listview
-            </summary>
-        </member>
-        <member name="P:nsync.PreviewItemData.leftItem">
-            <summary>
-            property for left item column
-            </summary>
-        </member>
-        <member name="P:nsync.PreviewItemData.action">
-            <summary>
-            property for action column
-            </summary>
-        </member>
-        <member name="P:nsync.PreviewItemData.rightItem">
-            <summary>
-            property for right item column
+            Types Of Changes In FileData Object
             </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">

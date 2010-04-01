@@ -145,6 +145,7 @@
       <DependentUpon>ExcludeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FileData.cs" />
     <Compile Include="GIFImageControl.cs" />
     <Compile Include="HelperManager.cs" />
     <Compile Include="HelperWindow.xaml.cs">

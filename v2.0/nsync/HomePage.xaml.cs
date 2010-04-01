@@ -1200,6 +1200,5 @@ namespace nsync
             WindowVisualPreview.ShowDialog();
             mainWindow.Opacity = 1;
         }
-
     }
 }
