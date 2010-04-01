@@ -127,6 +127,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VisualPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -179,6 +183,9 @@
     <Compile Include="TrackBackEngine.cs" />
     <Compile Include="TrackBackPage.xaml.cs">
       <DependentUpon>TrackBackPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VisualPreviewWindow.xaml.cs">
+      <DependentUpon>VisualPreviewWindow.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -315,6 +322,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\nextbuttonover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\visualpreviewback.png" />
+    <Resource Include="Resources\visualpreviewlistback.png" />
+    <Resource Include="Resources\visualpreviewlistbackover.png" />
+    <Resource Include="Resources\visualpreviewpathback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\previewicon.png" />
+    <Resource Include="Resources\previewiconover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

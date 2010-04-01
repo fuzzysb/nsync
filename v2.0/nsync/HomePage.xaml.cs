@@ -607,6 +607,7 @@ namespace nsync
                 ShowRemovableDrives(actualLeftPath, "left"); //SQ
                 ShowRemovableDrives(actualRightPath, "right"); //SQ
                 ButtonSync.Visibility = Visibility.Hidden;
+                ButtonPreview.Visibility = Visibility.Hidden;
                 return false;
             }
 
@@ -615,6 +616,7 @@ namespace nsync
             ShowRemovableDrives(actualLeftPath, "left"); //SQ
             ShowRemovableDrives(actualRightPath, "right"); //SQ
             ButtonSync.Visibility = Visibility.Visible;
+            ButtonPreview.Visibility = Visibility.Visible;
             return true;
         }
 
@@ -1048,6 +1050,7 @@ namespace nsync
                 opacityValue = 1;
                 enableButtons = true;
                 ButtonSync.Visibility = Visibility.Visible;
+                ButtonPreview.Visibility = Visibility.Visible;
                 SyncingImage.Visibility = Visibility.Hidden;
             }
             else
@@ -1055,6 +1058,7 @@ namespace nsync
                 enableButtons = false;
                 opacityValue = 0.5;
                 ButtonSync.Visibility = Visibility.Hidden;
+                ButtonPreview.Visibility = Visibility.Hidden;
                 SyncingImage.Visibility = Visibility.Visible;
             }
 
@@ -1099,6 +1103,7 @@ namespace nsync
                 LabelProgressPercent.Visibility = Visibility.Hidden;
                 ImageTeam14Over.OpacityMask = blankOpacityMask;
                 ButtonSync.Visibility = Visibility.Hidden;
+                ButtonPreview.Visibility = Visibility.Hidden;
                 IsFolderExist();
                 return;
             }
@@ -1171,6 +1176,7 @@ namespace nsync
                 // Users should be able click the sync button again,
                 // in case they've freed some disk space
                 ButtonSync.Visibility = Visibility.Visible;
+                ButtonPreview.Visibility = Visibility.Visible;
                 //FolderCheck();
                 return;
             }
@@ -1185,6 +1191,15 @@ namespace nsync
         }
 
         #endregion
+
+        private void ButtonPreview_Click(object sender, RoutedEventArgs e)
+        {
+            VisualPreviewWindow WindowVisualPreview = new VisualPreviewWindow();
+            WindowVisualPreview.Owner = mainWindow;
+            mainWindow.Opacity = 0.2;
+            WindowVisualPreview.ShowDialog();
+            mainWindow.Opacity = 1;
+        }
 
     }
 }

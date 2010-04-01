@@ -232,6 +232,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visual Preview.
+        /// </summary>
+        public static string previewButtonToolTip {
+            get {
+                return ResourceManager.GetString("previewButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right folder has insufficient disk space..
         /// </summary>
         public static string rightFolderInsufficientDiskSpace {

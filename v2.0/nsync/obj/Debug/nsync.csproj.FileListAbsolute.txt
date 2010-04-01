@@ -1060,7 +1060,6 @@ C:\Documents and Settings\Owner\Desktop\v1.0\nsync\bin\Debug\nsync.exe
 C:\Documents and Settings\Owner\Desktop\v1.0\nsync\bin\Debug\nsync.pdb
 C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.exe.manifest
 C:\Documents and Settings\Owner\Desktop\v1.0\nsync\obj\Debug\nsync.application
-C:\Users\Eugene\Desktop\nsync2.0\nsync\bin\Debug\nsync.XML
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.exe
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.pdb
 C:\Users\Eugene\Desktop\nsync2.0\nsync\bin\Debug\nsync.exe.manifest
@@ -1159,3 +1158,6 @@ C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.pdb
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.application
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.XML
+C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\VisualPreviewWindow.g.cs
+C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\VisualPreviewWindow.baml
+C:\Users\Eugene\Desktop\nsync2.0\nsync\bin\Debug\nsync.XML
