@@ -735,43 +735,6 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Style for overall  ScrollViewer -->
-    <Style x:Key="ExcludeScrollViewerStyle" TargetType="{x:Type ScrollViewer}">
-        <Setter Property="OverridesDefaultStyle" Value="True"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <ScrollContentPresenter Grid.Column="1"/>
-
-                        <ScrollBar Name="PART_VerticalScrollBar"
-            Value="{TemplateBinding VerticalOffset}"
-            Maximum="{TemplateBinding ScrollableHeight}"
-            ViewportSize="{TemplateBinding ViewportHeight}"
-            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
-                        <ScrollBar Name="PART_HorizontalScrollBar"
-            Orientation="Horizontal"
-            Grid.Row="1"
-            Grid.Column="1"
-            Value="{TemplateBinding HorizontalOffset}"
-            Maximum="{TemplateBinding ScrollableWidth}"
-            ViewportSize="{TemplateBinding ViewportWidth}"
-            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
-
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <!-- End Scrollbar -->
 
@@ -791,7 +754,6 @@
           BorderThickness="0">
                         <ScrollViewer 
             Margin="0"
-            Style="{StaticResource ExcludeScrollViewerStyle}"
             Focusable="false">
                             <StackPanel Margin="2" IsItemsHost="True" />
                         </ScrollViewer>

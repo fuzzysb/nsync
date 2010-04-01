@@ -409,6 +409,36 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="M:nsync.Preview.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
+            <summary>
+            Detect the changes done to the folder
+            <para>Updates the metadata</para>
+            </summary>
+            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
+            <param name="filter">This parameter is the filter which will be used during synchronization</param>
+            <param name="options">This parameter holds the synchronization options</param>
+        </member>
+        <member name="M:nsync.Preview.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
+            <summary>
+            This method is called when changes are going to be done to a file
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.Preview.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
+            <summary>
+            This method is called when there are conflicting items during synchronization
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.Preview.OnItemConstraint(System.Object,Microsoft.Synchronization.ItemConstraintEventArgs)">
+            <summary>
+            This method is called when there are constraint items during synchronization
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
         <member name="T:nsync.TestEngine">
             <summary>
             
@@ -842,7 +872,7 @@
         </member>
         <member name="T:nsync.GIFImageControl">
             <summary>
-            
+            GIF display image control
             </summary>
         </member>
         <member name="F:nsync.GIFImageControl.AllowClickToPauseProperty">
@@ -1414,36 +1444,6 @@
             <summary>
             Property for right path
             </summary>
-        </member>
-        <member name="M:nsync.Preview.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
-            <summary>
-            Detect the changes done to the folder
-            <para>Updates the metadata</para>
-            </summary>
-            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
-            <param name="filter">This parameter is the filter which will be used during synchronization</param>
-            <param name="options">This parameter holds the synchronization options</param>
-        </member>
-        <member name="M:nsync.Preview.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
-            <summary>
-            This method is called when changes are going to be done to a file
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.Preview.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
-            <summary>
-            This method is called when there are conflicting items during synchronization
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.Preview.OnItemConstraint(System.Object,Microsoft.Synchronization.ItemConstraintEventArgs)">
-            <summary>
-            This method is called when there are constraint items during synchronization
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

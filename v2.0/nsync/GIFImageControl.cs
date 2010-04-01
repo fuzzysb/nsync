@@ -12,8 +12,10 @@ using Image = System.Windows.Controls.Image;
 
 namespace nsync
 {
+    // Class Credited to 
+    // http://www.solidrockstable.com/blogs/PragmaticTSQL/Lists/Posts/Post.aspx?ID=37
     /// <summary>
-    /// 
+    /// GIF display image control
     /// </summary>
     public class GIFImageControl : Image
     {
