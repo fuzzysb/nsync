@@ -123,6 +123,9 @@
   <data name="bothFoldersNotExist" xml:space="preserve">
     <value>Both the selected folders do not exist.</value>
   </data>
+  <data name="clearToolTip" xml:space="preserve">
+    <value>Clear Exclude List</value>
+  </data>
   <data name="closeToolTip" xml:space="preserve">
     <value>Close</value>
   </data>

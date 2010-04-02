@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -335,6 +335,11 @@
   <ItemGroup>
     <Resource Include="Resources\previewicon.png" />
     <Resource Include="Resources\previewiconover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\excludeclear.png" />
+    <Resource Include="Resources\excludeclearempty.png" />
+    <Resource Include="Resources\excludeclearover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

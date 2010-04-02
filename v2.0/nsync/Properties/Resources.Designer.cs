@@ -79,6 +79,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear Exclude List.
+        /// </summary>
+        public static string clearToolTip {
+            get {
+                return ResourceManager.GetString("clearToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string closeToolTip {

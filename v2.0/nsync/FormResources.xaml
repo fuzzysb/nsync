@@ -921,6 +921,32 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     
+    <ControlTemplate x:Key="ButtonClearTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resources/excludeclear.png" />
+            </Grid.Background>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="grid">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="Resources/excludeclearover.png" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.3" />
+                <Setter Property="Background" TargetName="grid">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="Resources/excludeclearempty.png" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
     <ControlTemplate x:Key="ButtonPreviewTemplate" TargetType="{x:Type Button}">
         <Grid x:Name="grid">
             <Grid.Background>

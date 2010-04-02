@@ -34,7 +34,7 @@ namespace nsync
         private readonly int MAX_STRING_LENGTH = 90;
 
         /// <summary>
-        /// 
+        /// Constructor for ExcludeWindow
         /// </summary>
         public ExcludeWindow()
         {
@@ -247,12 +247,19 @@ namespace nsync
                 AddListBoxItem("Not in synchronized folders: " + excludeInvalid[i], new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
             }
 
+            RefreshInterface();
+        }
+
+        private void RefreshInterface()
+        {
             if (ListBoxExclude.Items.Count > 0)
             {
                 LabelStatus.Content = "Click on entries to remove them from the exclude list.";
+                ButtonClear.IsEnabled = true;
             }
             else
             {
+                ButtonClear.IsEnabled = false;
                 LabelStatus.Content = "Drag & drop files and folders to exclude.";
             }
         }
@@ -337,6 +344,9 @@ namespace nsync
             UpdateListBox();
         }
 
+        /// <summary>
+        /// Clear the listbox in the gui
+        /// </summary>
         private void ClearListBox()
         {
             ListBoxExclude.Items.Clear();
@@ -391,6 +401,29 @@ namespace nsync
                 //ListBoxExclude.SelectedIndex = -1;
 
             }
+        }
+
+        /// <summary>
+        /// Event handler for clear button click, clears backend lists and listbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonClear_Click(object sender, RoutedEventArgs e)
+        {
+            ClearLists();
+            ClearListBox();
+            RefreshInterface();
+        }
+
+        /// <summary>
+        /// Functions to clear the backend lists
+        /// </summary>
+        private void ClearLists()
+        {
+            excludeFiles.Clear();
+            excludeFileTypes.Clear();
+            excludeFolders.Clear();
+            excludeInvalid.Clear();
         }
     }
 }
