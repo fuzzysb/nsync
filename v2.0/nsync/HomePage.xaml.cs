@@ -45,7 +45,8 @@ namespace nsync
         private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
 
         private List<FileData> fileData;
-        private Preview previewing;
+        private Preview previewSync;
+        private SummaryReport summaryReport;
 
         /// <summary>
         /// Constructor for HomePage class
@@ -1111,6 +1112,10 @@ namespace nsync
                 return;
             }
 
+            previewSync = new Preview(actualLeftPath, actualRightPath);
+            fileData = new List<FileData>();
+            fileData = previewSync.GetData();
+
             if (synchronizer.AreFoldersSync())
             {
                 ImageTeam14Over.OpacityMask = blankOpacityMask;
@@ -1136,6 +1141,17 @@ namespace nsync
 
             LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
             LabelProgressPercent.Content = "100 %";
+
+            if (fileData.Count == 0)
+            {
+                summaryReport = new SummaryReport(true);
+                summaryReport.CreateLog();
+            }
+            else
+            {
+                summaryReport = new SummaryReport(fileData);
+                summaryReport.CreateLog();
+            }
 
             // Save folder pair if the sync involves a removeable disk
             SaveFolderPathsForRemoveableDisk();
@@ -1199,8 +1215,8 @@ namespace nsync
         {
             EnableInterface(false);
             fileData = new List<FileData>();
-            previewing = new Preview(actualLeftPath, actualRightPath);
-            fileData = previewing.GetData();
+            previewSync = new Preview(actualLeftPath, actualRightPath);
+            fileData = previewSync.GetData();
 
             VisualPreviewWindow WindowVisualPreview = new VisualPreviewWindow();
             WindowVisualPreview.Closing += new CancelEventHandler(WindowVisualPreview_Closing);

@@ -5,27 +5,41 @@ using System.Linq;
 using System.Text;
 using Microsoft.Synchronization;
 using Microsoft.Synchronization.Files;
-using System.Windows; // SHAOQI: for debugging
 
 namespace nsync
 {
+    //CLASS FOR PREVIEW
     class Preview
     {
         private List<FileData> fileData;
         private string leftPath;
         private string rightPath;
 
+        /// <summary>
+        /// Constructor for Preview
+        /// </summary>
+        /// <param name="actualLeftPath">This parameter indicates the left folder path to be used</param>
+        /// <param name="actualRightPath">This parameter indicates the right folder path to be used</param>
         public Preview(string actualLeftPath, string actualRightPath)
         {
             this.leftPath = actualLeftPath;
             this.rightPath = actualRightPath;
         }
+
+        /// <summary>
+        /// Does sync operation and returns list of file data
+        /// </summary>
+        /// <returns>Returns a list of file data objects</returns>
         public List<FileData> GetData()
         {
             previewSync();
             return fileData;
 
         }
+
+        /// <summary>
+        /// Does Sync operation to store change events into a list of FileData objects
+        /// </summary>
         private void previewSync()
         {
             try
@@ -136,11 +150,7 @@ namespace nsync
                 switch (args.ChangeType)
                 {
                     case ChangeType.Delete:
-                        MessageBox.Show("From Preview.cs delete switch: delete!" + rootPath + " " + args.CurrentFileData.Name + " " + Changes.Delete);
-                        ////////////////////!!!!!! IMPORTANT CHANGE !!!!/////////////////
-                        //fileData.Add(new FileData(rootPath, args.NewFileData.Name, Changes.Delete));
                         fileData.Add(new FileData(rootPath, args.CurrentFileData.Name, Changes.Delete));
-                        MessageBox.Show("hi");
                         break;
 
                     case ChangeType.Create:
