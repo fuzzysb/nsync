@@ -32,6 +32,7 @@ namespace nsync
         private List<string> excludeInvalid;
         private List<string> oldExcludeInvalid;
         private readonly int MAX_STRING_LENGTH = 90;
+        bool reallyLeft = true;
 
         /// <summary>
         /// Constructor for ExcludeWindow
@@ -105,8 +106,6 @@ namespace nsync
             LabelRightPath.ToolTip = rightPath;
 
             PopulateFileTypes();
-            
-
         }
 
         /// <summary>
@@ -170,37 +169,42 @@ namespace nsync
 
         private void BoxExclude_DragEnter(object sender, DragEventArgs e)
         {
-            SaveLastState();
-
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            
+            if (reallyLeft)
             {
-                
-                string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
-                foreach (string i in fileNames)
+                SaveLastState();
+
+                if (e.Data.GetDataPresent(DataFormats.FileDrop))
                 {
-                    if (IsAChildPath(i, leftPath) || IsAChildPath(i, rightPath))
+
+                    string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
+                    foreach (string i in fileNames)
                     {
-                        DirectoryInfo dirTemp = new DirectoryInfo(i);
-                        //FileInfo fileTemp = new FileInfo(i);
-                        if (dirTemp.Exists)
+                        if (IsAChildPath(i, leftPath) || IsAChildPath(i, rightPath))
                         {
-                            if (IsNotInList(excludeFolders, i))
-                                excludeFolders.Add(i);
+                            DirectoryInfo dirTemp = new DirectoryInfo(i);
+                            //FileInfo fileTemp = new FileInfo(i);
+                            if (dirTemp.Exists)
+                            {
+                                if (IsNotInList(excludeFolders, i))
+                                    excludeFolders.Add(i);
+                            }
+                            else
+                            {
+                                if (IsNotInList(excludeFiles, i))
+                                    excludeFiles.Add(i);
+                            }
                         }
                         else
                         {
-                            if (IsNotInList(excludeFiles, i))
-                                excludeFiles.Add(i);
+                            if (IsNotInList(excludeInvalid, i))
+                                excludeInvalid.Add(i);
                         }
                     }
-                    else
-                    {
-                        if (IsNotInList(excludeInvalid, i))
-                            excludeInvalid.Add(i);
-                    }
+                    ClearListBox();
+                    UpdateListBox();
                 }
-                ClearListBox();
-                UpdateListBox();
+                reallyLeft = false;
             }
         }
 
@@ -301,8 +305,6 @@ namespace nsync
             excludeListBoxItem.Tag = tag;
 
             //listBoxLeft.MouseUp += new MouseButtonEventHandler(ListBoxLeft_MouseUp);
-            //listBoxLeft.MouseEnter += new MouseEventHandler(listBoxLeft_MouseEnter);
-            //listBoxLeft.MouseLeave += new MouseEventHandler(listBoxLeft_MouseLeave);
             //listBoxLeft.Tag = i;
 
             ListBoxExclude.Items.Add(excludeListBoxItem);
@@ -338,7 +340,13 @@ namespace nsync
 
         private void BoxExclude_DragLeave(object sender, DragEventArgs e)
         {
-            RestoreLastState();
+            double x = MouseUtilities.CorrectGetPosition(WindowExclude).X;
+            double y = MouseUtilities.CorrectGetPosition(WindowExclude).Y;
+            if (x < 30 || y < 155 || y > 550 || x > 510)
+            {
+                RestoreLastState();
+                reallyLeft = true;
+            }
         }
 
         private void RestoreLastState()
@@ -373,7 +381,7 @@ namespace nsync
 
         private void BoxExclude_Drop(object sender, DragEventArgs e)
         {
-
+            reallyLeft = true;
         }
 
         private void ComboBoxFileType_SelectionChanged(object sender, SelectionChangedEventArgs e)

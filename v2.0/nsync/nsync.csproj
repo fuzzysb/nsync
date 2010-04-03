@@ -155,6 +155,7 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Intelligence.cs" />
+    <Compile Include="MouseUtilities.cs" />
     <Compile Include="Preview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
