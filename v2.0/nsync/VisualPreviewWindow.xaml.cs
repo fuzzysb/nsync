@@ -51,8 +51,10 @@ namespace nsync
 
         private void WindowVisualPreview_Loaded(object sender, RoutedEventArgs e)
         {
-            LabelLeftPath.Content = leftPath;
-            LabelRightPath.Content = rightPath;
+            LabelLeftPath.Content = ShortenPath(leftPath,130);
+            LabelLeftPath.ToolTip = leftPath;
+            LabelRightPath.Content = ShortenPath(rightPath,130);
+            LabelRightPath.ToolTip = rightPath;
 
             DisplayInfo();          
         }
@@ -61,26 +63,28 @@ namespace nsync
         {
             foreach (FileData file in previewFileData)
             {
+                string shortenedFileName = ShortenFileName(file.FileName,42);
+
                 if (file.ChangeType == Changes.Create)
                 {
                     if (file.RootPath == leftPath)
                     {
-                        AddPreviewEntry(file.FileName, "Create", "");
+                        AddPreviewEntry(shortenedFileName, "Create", "");
                     }
                     else
                     {
-                        AddPreviewEntry("", "Create", file.FileName);
+                        AddPreviewEntry("", "Create", shortenedFileName);
                     }
                 }
                 if (file.ChangeType == Changes.Update)
                 {
                     if (file.RootPath == leftPath)
                     {
-                        AddPreviewEntry(file.FileName, "Update", "");
+                        AddPreviewEntry(shortenedFileName, "Update", "");
                     }
                     else
                     {
-                        AddPreviewEntry("", "Update", file.FileName);
+                        AddPreviewEntry("", "Update", shortenedFileName);
                     }
 
                 }
@@ -88,22 +92,22 @@ namespace nsync
                 {
                     if (file.RootPath == leftPath)
                     {
-                        AddPreviewEntry(file.FileName, "Delete", "");
+                        AddPreviewEntry(shortenedFileName, "Delete", "");
                     }
                     else
                     {
-                        AddPreviewEntry("", "Delete", file.FileName);
+                        AddPreviewEntry("", "Delete", shortenedFileName);
                     }
                 }
                 if (file.ChangeType == Changes.Rename)
                 {
                     if (file.RootPath == leftPath)
                     {
-                        AddPreviewEntry(file.FileName, "Rename", "");
+                        AddPreviewEntry(shortenedFileName, "Rename", "");
                     }
                     else
                     {
-                        AddPreviewEntry("", "Rename", file.FileName);
+                        AddPreviewEntry("", "Rename", shortenedFileName);
                     }
                 }
             }
@@ -149,6 +153,38 @@ namespace nsync
         {
             get { return previewFileData; }
             set { previewFileData = value; }
+        }
+
+        /// <summary>
+        /// Better shorten path algorithm
+        /// </summary>
+        /// <param name="fullPath">original long path name</param>
+        /// <param name="maxLength">max length before shortening</param>
+        /// <returns>shortened path name</returns>
+        private string ShortenPath(string fullPath, int maxLength)
+        {
+            string[] fullPathArray = fullPath.Split(new char[] { '\\' });
+
+            if (fullPath.Length > maxLength)
+            {
+                return fullPathArray[0] + '\\' + "..." + '\\' + fullPathArray[fullPathArray.Length - 1];
+            }
+            return fullPath;
+        }
+
+        /// <summary>
+        /// Shortens file name if its too long
+        /// </summary>
+        /// <param name="fullPath">original long filename</param>
+        /// <param name="maxLength">max length before shortening</param>
+        /// <returns>shortened file name</returns>
+        private string ShortenFileName(string fullPath, int maxLength)
+        {
+            if (fullPath.Length > maxLength)
+            {
+                return fullPath.Substring(0, (maxLength / 2)-3) + "..." + fullPath.Substring(fullPath.Length - (maxLength / 2), maxLength / 2);
+            }
+            return fullPath;
         }
 
     }

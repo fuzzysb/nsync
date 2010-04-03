@@ -843,6 +843,14 @@
             <param name="previewRightItem">string for right item column</param>
             <param name="previewAction">string for action column</param>
         </member>
+        <member name="M:nsync.VisualPreviewWindow.ShortenPath(System.String,System.Int32)">
+            <summary>
+            Better shorten path algorithm
+            </summary>
+            <param name="fullPath">original long path name</param>
+            <param name="maxLength">max length before shortening</param>
+            <returns>shortened path name</returns>
+        </member>
         <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
             <summary>
             InitializeComponent
