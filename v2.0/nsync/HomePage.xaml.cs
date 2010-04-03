@@ -1054,7 +1054,7 @@ namespace nsync
                 opacityValue = 1;
                 enableButtons = true;
                 ButtonSync.Visibility = Visibility.Visible;
-                ButtonPreview.Visibility = Visibility.Visible;
+                ButtonPreview.IsEnabled = true;
                 SyncingImage.Visibility = Visibility.Hidden;
             }
             else
@@ -1062,7 +1062,7 @@ namespace nsync
                 enableButtons = false;
                 opacityValue = 0.5;
                 ButtonSync.Visibility = Visibility.Hidden;
-                ButtonPreview.Visibility = Visibility.Hidden;
+                ButtonPreview.IsEnabled = false;
                 SyncingImage.Visibility = Visibility.Visible;
             }
 

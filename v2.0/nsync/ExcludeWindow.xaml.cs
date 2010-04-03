@@ -99,12 +99,31 @@ namespace nsync
 
         private void WindowExclude_Loaded(object sender, RoutedEventArgs e)
         {
-            LabelLeftPath.Content = leftPath;
-            LabelRightPath.Content = rightPath;
+            LabelLeftPath.Content = ShortenPath(leftPath, 130);
+            LabelLeftPath.ToolTip = leftPath;
+            LabelRightPath.Content = ShortenPath(rightPath, 130);
+            LabelRightPath.ToolTip = rightPath;
 
             PopulateFileTypes();
             
 
+        }
+
+        /// <summary>
+        /// Better shorten path algorithm
+        /// </summary>
+        /// <param name="fullPath">original long path name</param>
+        /// <param name="maxLength">max length before shortening</param>
+        /// <returns>shortened path name</returns>
+        private string ShortenPath(string fullPath, int maxLength)
+        {
+            string[] fullPathArray = fullPath.Split(new char[] { '\\' });
+
+            if (fullPath.Length > maxLength)
+            {
+                return fullPathArray[0] + '\\' + "..." + '\\' + fullPathArray[fullPathArray.Length - 1];
+            }
+            return fullPath;
         }
 
         private void PopulateFileTypes()

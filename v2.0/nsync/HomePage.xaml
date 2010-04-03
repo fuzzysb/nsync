@@ -38,6 +38,6 @@
         <Image x:Name="ImageTeam14" Margin="5" VerticalAlignment="Bottom" Height="48.734" Source="Resources/team14.png" Width="158"/>
         <Image x:Name="ImageTeam14Over" Margin="5" VerticalAlignment="Bottom" Height="48.734" Source="Resources/team14over.png" Width="158"/>
         <Label Height="28" HorizontalAlignment="Left" Margin="20,0,0,16" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
-        <Label Height="29" Margin="0,0,52,16" Name="LabelProgressPercent" VerticalAlignment="Bottom" Foreground="WhiteSmoke" Visibility="Hidden" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Width="52" FlowDirection="LeftToRight"> 0 %</Label>
+        <Label Height="29" Margin="0,0,78,16" Name="LabelProgressPercent" VerticalAlignment="Bottom" Foreground="WhiteSmoke" Visibility="Hidden" HorizontalAlignment="Right" HorizontalContentAlignment="Right" Width="52" FlowDirection="LeftToRight"> 0 %</Label>
     </Grid>
 </Page>

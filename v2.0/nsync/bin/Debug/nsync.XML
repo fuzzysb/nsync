@@ -851,6 +851,14 @@
             <param name="maxLength">max length before shortening</param>
             <returns>shortened path name</returns>
         </member>
+        <member name="M:nsync.VisualPreviewWindow.ShortenFileName(System.String,System.Int32)">
+            <summary>
+            Shortens file name if its too long
+            </summary>
+            <param name="fullPath">original long filename</param>
+            <param name="maxLength">max length before shortening</param>
+            <returns>shortened file name</returns>
+        </member>
         <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
             <summary>
             InitializeComponent
@@ -1478,6 +1486,14 @@
             <summary>
             Constructor for ExcludeWindow
             </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.ShortenPath(System.String,System.Int32)">
+            <summary>
+            Better shorten path algorithm
+            </summary>
+            <param name="fullPath">original long path name</param>
+            <param name="maxLength">max length before shortening</param>
+            <returns>shortened path name</returns>
         </member>
         <member name="M:nsync.ExcludeWindow.IsSubPath(System.String[],System.String[])">
             <summary>
