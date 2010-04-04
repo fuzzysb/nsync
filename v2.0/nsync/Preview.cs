@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Management;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 using Microsoft.Synchronization;
 using Microsoft.Synchronization.Files;
+using Microsoft.Synchronization.MetadataStorage;
 
 namespace nsync
 {
     //CLASS FOR PREVIEW
     class Preview
     {
+
+        public System.ComponentModel.BackgroundWorker backgroundWorkerForPreview;
+        public System.ComponentModel.BackgroundWorker backgroundWorkerForSummary;
         private List<FileData> fileData;
         private string leftPath;
         private string rightPath;
@@ -24,6 +30,52 @@ namespace nsync
         {
             this.leftPath = actualLeftPath;
             this.rightPath = actualRightPath;
+
+            backgroundWorkerForPreview = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerForPreview.DoWork += new DoWorkEventHandler(backgroundWorkerForPreview_DoWork);
+            backgroundWorkerForPreview.WorkerReportsProgress = true;
+
+            backgroundWorkerForSummary = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerForSummary.DoWork += new DoWorkEventHandler(backgroundWorkerForSummary_DoWork);
+            backgroundWorkerForSummary.WorkerReportsProgress = true;
+        }
+
+        /// <summary>
+        /// This method is called when backgroundWorkerForPreview is called to start working
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerForPreview_DoWork(object sender, DoWorkEventArgs e)
+        {
+            InternalPreviewSync();
+        }
+
+        /// <summary>
+        /// This method is called when backgroundWorkerForSummary is called to start working
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerForSummary_DoWork(object sender, DoWorkEventArgs e)
+        {
+            InternalPreviewSync();
+        }
+
+        /// <summary>
+        /// Gets backgroundWorkerForPreview to do synchronization preparations
+        /// </summary>
+        public void PreviewSync()
+        {
+            // Start the asynchronous operation.
+            backgroundWorkerForPreview.RunWorkerAsync();
+        }
+
+        /// <summary>
+        /// Gets backgroundWorkerForSummary to do synchronization preparations
+        /// </summary>
+        public void SummarySync()
+        {
+            // Start the asynchronous operation.
+            backgroundWorkerForSummary.RunWorkerAsync();
         }
 
         /// <summary>
@@ -32,15 +84,13 @@ namespace nsync
         /// <returns>Returns a list of file data objects</returns>
         public List<FileData> GetData()
         {
-            previewSync();
             return fileData;
-
         }
 
         /// <summary>
         /// Does Sync operation to store change events into a list of FileData objects
         /// </summary>
-        private void previewSync()
+        private void InternalPreviewSync()
         {
             try
             {

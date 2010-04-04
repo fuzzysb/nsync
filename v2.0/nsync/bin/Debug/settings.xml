@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Folder1</left1>
-    <right1>C:\Folder2</right1>
+    <left1>C:\Users\AdminNUS\Desktop\FolderA</left1>
+    <right1>C:\Users\AdminNUS\Desktop\FolderB</right1>
     <left2>C:\Folder1</left2>
-    <right2>C:\Folder1</right2>
-    <left3>
-    </left3>
-    <right3>
-    </right3>
+    <right2>C:\Folder2</right2>
+    <left3>C:\Folder1</left3>
+    <right3>C:\Folder1</right3>
     <left4>
     </left4>
     <right4>

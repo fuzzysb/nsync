@@ -44,8 +44,8 @@ namespace nsync
         private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
         private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
 
-        private int HELPER_WINDOW_HIGH_PIORITY = 0; 
-        private int HELPER_WINDOW_LOW_PIORITY = 1;
+        private int HELPER_WINDOW_HIGH_PRIORITY = 0; 
+        private int HELPER_WINDOW_LOW_PRIORITY = 1;
 
         private List<FileData> fileData;
         private Preview previewSync;
@@ -525,20 +525,20 @@ namespace nsync
 
             if (!rightFolderExists && !leftFolderExists)
             {
-                helper.Show(nsync.Properties.Resources.bothFoldersNotExist, HELPER_WINDOW_LOW_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.bothFoldersNotExist, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 LeftIcon.Source = RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
                 return false;
             }
             else if (!rightFolderExists)
             {
-                helper.Show(nsync.Properties.Resources.rightFolderNotExist, HELPER_WINDOW_LOW_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.rightFolderNotExist, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
                 LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
                 return false;
             }
             else if (!leftFolderExists)
             {
-                helper.Show(nsync.Properties.Resources.leftFolderNotExist, HELPER_WINDOW_LOW_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.leftFolderNotExist, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
                 LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
                 return false;
@@ -558,7 +558,7 @@ namespace nsync
         {
             if (synchronizer.IsFoldersSimilar())
             {
-                helper.Show(nsync.Properties.Resources.similarFolders, HELPER_WINDOW_LOW_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.similarFolders, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 return true;
             }
             return false;
@@ -572,7 +572,7 @@ namespace nsync
         {
             if (synchronizer.IsFolderSubfolder())
             {
-                helper.Show(nsync.Properties.Resources.subfolderOfFolder, HELPER_WINDOW_LOW_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.subfolderOfFolder, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 return true;
             }
             return false;
@@ -1014,7 +1014,7 @@ namespace nsync
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 
-                        helper.Show("Your last synced folder pair on this removeable disk is restored", HELPER_WINDOW_LOW_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show("Your last synced folder pair on this removeable disk is restored", HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     }
                 }
             }
@@ -1105,7 +1105,7 @@ namespace nsync
 
             if (!(bool)e.Result)
             {
-                helper.Show(nsync.Properties.Resources.insufficientDiskSpace, HELPER_WINDOW_HIGH_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.insufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgressPercent.Visibility = Visibility.Hidden;
                 ImageTeam14Over.OpacityMask = blankOpacityMask;
@@ -1114,10 +1114,6 @@ namespace nsync
                 IsFolderExist();
                 return;
             }
-
-            previewSync = new Preview(actualLeftPath, actualRightPath);
-            fileData = new List<FileData>();
-            fileData = previewSync.GetData();
 
             if (synchronizer.IsFoldersSync())
             {
@@ -1128,9 +1124,25 @@ namespace nsync
 
                 LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
                 LabelProgressPercent.Content = "100 %";
-                helper.Show(nsync.Properties.Resources.synchronizedFolders, HELPER_WINDOW_HIGH_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.synchronizedFolders, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 return;
             }
+
+            previewSync = new Preview(actualLeftPath, actualRightPath);
+            previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
+            previewSync.SummarySync();
+
+        }
+
+        /// <summary>
+        /// This method is called when when summary sychronization is completed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void backgroundWorkerForSummary_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            fileData = new List<FileData>();
+            fileData = previewSync.GetData();
 
             ImageTeam14Over.OpacityMask = blankOpacityMask;
 
@@ -1138,7 +1150,7 @@ namespace nsync
             SaveFolderPaths();
             ReloadFolderPaths();
 
-            helper.Show(nsync.Properties.Resources.syncComplete, HELPER_WINDOW_HIGH_PIORITY, HelperWindow.windowStartPosition.windowTop);
+            helper.Show(nsync.Properties.Resources.syncComplete, 5, HelperWindow.windowStartPosition.windowTop);
             LabelProgress.Visibility = Visibility.Visible;
             LabelProgressPercent.Visibility = Visibility.Visible;
 
@@ -1173,16 +1185,16 @@ namespace nsync
                 switch ((int)e.Result)
                 {
                     case 1:
-                        helper.Show(nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 2:
-                        helper.Show(nsync.Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(nsync.Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 3:
-                        helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     default:
-                        helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                 }
 
@@ -1216,9 +1228,27 @@ namespace nsync
 
         private void ButtonPreview_Click(object sender, RoutedEventArgs e)
         {
+
+            if (!ShowSync())
+                return;
+
             EnableInterface(false);
-            fileData = new List<FileData>();
             previewSync = new Preview(actualLeftPath, actualRightPath);
+            previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
+            previewSync.PreviewSync();
+            LabelProgress.Visibility = Visibility.Visible;
+            LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
+        }
+
+        /// <summary>
+        /// This method is called when when preview sychronization is completed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void backgroundWorkerForPreview_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            LabelProgress.Visibility = Visibility.Hidden;
+            fileData = new List<FileData>();
             fileData = previewSync.GetData();
 
             VisualPreviewWindow WindowVisualPreview = new VisualPreviewWindow();
