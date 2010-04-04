@@ -48,7 +48,6 @@ namespace nsync
         {
             if (!File.Exists(settingsFile))
             {
-                MessageBox.Show("helperwindowStatus: file not exists");
                 CreateNewSettingsXML();
             }
 
@@ -69,7 +68,6 @@ namespace nsync
         {
             if (!File.Exists(settingsFile))
             {
-                MessageBox.Show("gethelperwindowstatus: file not exists");
                 CreateNewSettingsXML();
             }
 
@@ -119,7 +117,6 @@ namespace nsync
 
             if (!File.Exists(settingsFile))
             {
-                MessageBox.Show("file not exists");
                 CreateNewSettingsXML();
             }
             XmlDocument doc = new XmlDocument();
@@ -227,9 +224,7 @@ namespace nsync
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
                 File.Delete(settingsFile); 
-                MessageBox.Show("select node: delete settings");
                 CreateNewSettingsXML();
                 doc.Load(settingsFile);
             }
@@ -238,7 +233,6 @@ namespace nsync
             
             if (!CheckSettingsXML(doc))
             {
-                MessageBox.Show("check xml failed");
                 File.Delete(settingsFile);
                 CreateNewSettingsXML();
                 doc.Load(settingsFile);
@@ -280,7 +274,6 @@ namespace nsync
         /// </summary>
         private void CreateNewSettingsXML()
         {
-            MessageBox.Show("create new");
             XmlTextWriter textWriter = new XmlTextWriter(settingsFile, null);
             textWriter.Formatting = Formatting.Indented;
             textWriter.WriteStartDocument();

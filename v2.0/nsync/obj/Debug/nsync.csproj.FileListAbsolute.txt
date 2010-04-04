@@ -1229,3 +1229,5 @@ C:\Users\Eugene\Desktop\nsync2.0failedfix1\nsync\obj\Debug\nsync.TestEngine.reso
 C:\Users\Eugene\Desktop\nsync2.0failedfix1\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Eugene\Desktop\nsync2.0failedfix1\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Eugene\Desktop\nsync2.0failedfix1\nsync\obj\Debug\nsync.application
+C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\VisualPreviewWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\VisualPreviewWindow.baml

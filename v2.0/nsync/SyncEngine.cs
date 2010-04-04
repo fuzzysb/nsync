@@ -145,7 +145,6 @@ namespace nsync
                 else // right
                     rightPath = rootPath;
 
-                //MessageBox.Show("LeftPath: " + leftPath + "\nRightPath: " + rightPath + "\nrootPath: " + rootPath);
                 return true;
             }
             else
@@ -262,7 +261,7 @@ namespace nsync
                 destProvider.Configuration.ConflictResolutionPolicy = ConflictResolutionPolicy.ApplicationDefined;
                 SyncCallbacks destinationCallBacks = destProvider.DestinationCallbacks;
                 destinationCallBacks.ItemConflicting += new EventHandler<ItemConflictingEventArgs>(OnItemConflicting);
-                destinationCallBacks.ItemConstraint += new EventHandler<ItemConstraintEventArgs>(OnItemConstraint);
+                //destinationCallBacks.ItemConstraint += new EventHandler<ItemConstraintEventArgs>(OnItemConstraint);
 
                 if(isPreview)
                     destProvider.ApplyingChange += new EventHandler<ApplyingChangeEventArgs>(OnApplyingChange);
@@ -310,20 +309,19 @@ namespace nsync
         /// <param name="args"></param>
         private static void OnItemConflicting(object sender, ItemConflictingEventArgs args)
         {
-            // Currently, latest change wins
+            // Latest change wins policy
             args.SetResolutionAction(ConflictResolutionAction.Merge);
         }
 
-        /// <summary>
-        /// This method is called when there are constraint items during synchronization
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        private static void OnItemConstraint(object sender, ItemConstraintEventArgs args)
-        {
-            args.SetResolutionAction(ConstraintConflictResolutionAction.Merge);
-            //MessageBox.Show("hi");
-        }
+        ///// <summary>
+        ///// This method is called when there are constraint items during synchronization
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="args"></param>
+        //private static void OnItemConstraint(object sender, ItemConstraintEventArgs args)
+        //{
+        //    args.SetResolutionAction(ConstraintConflictResolutionAction.Merge);
+        //}
 
         /// <summary>
         /// This method is called when changes are done to a file
