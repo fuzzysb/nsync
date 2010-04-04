@@ -1131,12 +1131,12 @@
         </member>
         <member name="T:nsync.Settings">
             <summary>
-            
+            Settings Class
             </summary>
         </member>
         <member name="F:nsync.Settings.instance">
             <summary>
-            
+            Create an instance of Settings class
             </summary>
         </member>
         <member name="M:nsync.Settings.#ctor">
@@ -1177,6 +1177,18 @@
             <param name="leftPath">This parameter indicates the leftPath of the sync job</param>
             <param name="rightPath">This parameter indicates the rightPath of the sync job</param>
         </member>
+        <member name="M:nsync.Settings.GetLastRemoveableDiskSync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="serialNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.Settings.IsSettingsFileExists">
+            <summary>
+            Check if settings.xml exists, if not, create a new copy
+            </summary>
+        </member>
         <member name="M:nsync.Settings.SelectNode(System.Xml.XmlDocument,System.String)">
             <summary>
             Gets a XMLNode from a XML document
@@ -1196,13 +1208,6 @@
             <summary>
             Creates a new settings.xml
             </summary>
-        </member>
-        <member name="M:nsync.Settings.GetLastRemoveableDiskSync(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="serialNumber"></param>
-            <returns></returns>
         </member>
         <member name="P:nsync.Settings.Instance">
             <summary>
@@ -1462,15 +1467,6 @@
             <param name="rightFolderPath">This parameter is the folder path to be checked</param>
             <returns>Returns a boolean which indicates if a folder is a subfolder of another</returns>
         </member>
-        <member name="M:nsync.Intelligence.IsSamePath(System.String[],System.String[])">
-            <summary>
-            Compares the folder paths of the input arrays and determine if they
-            have the same path from the root directory.
-            </summary>
-            <param name="sourceArray">Array of a folder path to be checked</param>
-            <param name="destinationArray">Array of a folder path to be checked</param>
-            <returns></returns>
-        </member>
         <member name="M:nsync.Intelligence.IsRemovableDrive(System.String)">
             <summary>
             Checks if the folder path belongs to a removable drive
@@ -1485,6 +1481,15 @@
             <param name="path">This parameter is the directory to be checked</param>
             <returns>Returns a string which contains the serial number of the removeable disk
             <para>Returns null if the directory is not a removeable disk</para></returns>
+        </member>
+        <member name="M:nsync.Intelligence.IsSamePath(System.String[],System.String[])">
+            <summary>
+            Compares the folder paths of the input arrays and determine if they
+            have the same path from the root directory.
+            </summary>
+            <param name="sourceArray">Array of a folder path to be checked</param>
+            <param name="destinationArray">Array of a folder path to be checked</param>
+            <returns></returns>
         </member>
         <member name="T:nsync.TrackBackPage">
             <summary>

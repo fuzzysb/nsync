@@ -1,24 +1,28 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Seah Shao Qi\Desktop\TestFolders\test2</left1>
-    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\test1</right1>
-    <left2>C:\Users\Eugene\Desktop\1</left2>
-    <right2>C:\Users\Eugene\Desktop\2</right2>
-    <left3>C:\Users\Eugene\Desktop\GSoC\freedroid_graphics_sources-2009-02-03\freedroid_graphics_sources\blender_sources\blendcache_bullet_blast</left3>
-    <right3>C:\Users\Eugene\Desktop\3</right3>
-    <left4>C:\Users\Eugene\Desktop\GSoC\freedroid_graphics_sources-2009-02-03\freedroid_graphics_sources\blender_sources\blendcache_bullet_blast</left4>
-    <right4>C:\Users\Eugene\Desktop\4</right4>
-    <left5>C:\Users\AdminNUS\Desktop\FolderA</left5>
-    <right5>C:\Users\AdminNUS\Desktop\FolderB</right5>
+    <left1>G:\</left1>
+    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\2</right1>
+    <left2>G:\</left2>
+    <right2>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\3</right2>
+    <left3>G:\</left3>
+    <right3>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\1\New folder</right3>
+    <left4>G:\</left4>
+    <right4>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2</right4>
+    <left5>G:\</left5>
+    <right5>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1</right5>
   </MRU>
   <SETTINGS>
     <HelperWindowIsOn>True</HelperWindowIsOn>
   </SETTINGS>
   <REMOVEABLEDISK>
     <Disk ID="2EAFFD68">
-      <left>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder (3)</left>
-      <right>G:\test1</right>
+      <left>G:\</left>
+      <right>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2</right>
+    </Disk>
+    <Disk ID="74BE4B53">
+      <left>G:\</left>
+      <right>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\2</right>
     </Disk>
   </REMOVEABLEDISK>
 </nsync>

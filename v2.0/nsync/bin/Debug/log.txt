@@ -10,3 +10,430 @@ File Sync Successful. No Error Detected
 Sync Done at : 4/4/2010 4:37:37 PM
 File Sync Successful. No Error Detected
 
+Sync Done at : 4/4/2010 8:36:41 PM
+Number of errors found : 4
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+1
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+
+Sync Done at : 4/4/2010 8:37:09 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:37:42 PM
+Number of errors found : 14
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+A
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+C
+File Failed To Be Copied Over
+-----------------------------
+1
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+A
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+C
+
+Sync Done at : 4/4/2010 8:38:17 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:39:20 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:40:06 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:40:25 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:41:02 PM
+Number of errors found : 26
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+1
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+asdasdasdadadasdadasd.txt
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+New Bitmap Image.bmp
+File Failed To Be Copied Over
+-----------------------------
+New WinRAR ZIP archive.zip
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+New folder
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+test2
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+1
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+asdasdasdadadasdadasd.txt
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+New Bitmap Image.bmp
+File Failed To Be Copied Over
+-----------------------------
+New WinRAR ZIP archive.zip
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+New folder
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+
+Sync Done at : 4/4/2010 8:41:45 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:43:46 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:45:18 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:46:30 PM
+Number of errors found : 30
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+~$asdsd.docx
+File Failed To Be Copied Over
+-----------------------------
+SyncToy_12f822c0-ca7d-489d-bf09-d9b00df08123.dat
+File Failed To Be Copied Over
+-----------------------------
+1
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+asdasdasdadadasdadasd.txt
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+New Bitmap Image.bmp
+File Failed To Be Copied Over
+-----------------------------
+New WinRAR ZIP archive.zip
+File Failed To Be Copied Over
+-----------------------------
+test2
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+New folder
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+~$asdsd.docx
+File Failed To Be Copied Over
+-----------------------------
+1
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+SyncToy_12f822c0-ca7d-489d-bf09-d9b00df08123.dat
+File Failed To Be Copied Over
+-----------------------------
+asdasdasdadadasdadasd.txt
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+New Bitmap Image.bmp
+File Failed To Be Copied Over
+-----------------------------
+New WinRAR ZIP archive.zip
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+New folder
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+
+Sync Done at : 4/4/2010 8:47:07 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:50:01 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:51:11 PM
+Number of errors found : 6
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+New Text Document.txt
+File Failed To Be Copied Over
+-----------------------------
+A
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+New Text Document.txt
+
+Sync Done at : 4/4/2010 8:51:29 PM
+File Sync Successful. No Error Detected
+
+Sync Done at : 4/4/2010 8:54:09 PM
+Number of errors found : 6
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+B
+
+Sync Done at : 4/4/2010 8:57:14 PM
+Number of errors found : 8
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+
+Sync Done at : 4/4/2010 8:59:28 PM
+Number of errors found : 8
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+
+Sync Done at : 4/4/2010 8:59:54 PM
+Number of errors found : 8
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+
+Sync Done at : 4/4/2010 9:03:32 PM
+Number of errors found : 8
+-----------------------------
+File Failed To Be Copied Over
+-----------------------------
+aa.txt
+File Failed To Be Copied Over
+-----------------------------
+B
+File Failed To Be Copied Over
+-----------------------------
+3
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+File Failed To Be Copied Over
+-----------------------------
+2
+File Failed To Be Copied Over
+-----------------------------
+filesync.metadata
+File Failed To Be Copied Over
+-----------------------------
+asas.txt
+

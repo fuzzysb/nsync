@@ -1,10 +1,12 @@
 ﻿using System.IO;
 using System.Management;
+using System.Windows;
 
 namespace nsync
 {
     class Intelligence
     {
+        #region Public Methods
         /// <summary>
         /// Check if there is any files inside the provided path
         /// </summary>
@@ -14,11 +16,17 @@ namespace nsync
         {
             string[] fileNames = new string[100];
             fileNames = Directory.GetFiles(path);
-
             if (fileNames.Length > 0)
-                return true;
+            {
+                if(fileNames.Length == 1 && fileNames[0].Contains("filesync.metadata"))
+                    return false;
+                else
+                    return true;
+            }
             else
+            {
                 return false;
+            }
         }
         
         /// <summary>
@@ -76,30 +84,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// Compares the folder paths of the input arrays and determine if they
-        /// have the same path from the root directory.
-        /// </summary>
-        /// <param name="sourceArray">Array of a folder path to be checked</param>
-        /// <param name="destinationArray">Array of a folder path to be checked</param>
-        /// <returns></returns>
-        private bool IsSamePath(string[] sourceArray, string[] destinationArray)
-        {
-            if (sourceArray.Length > destinationArray.Length)
-            {
-                string[] tmp = sourceArray;
-                sourceArray = destinationArray;
-                destinationArray = tmp;
-            }
-
-            for (int i = 0; i < sourceArray.Length; i++)
-            {
-                if (sourceArray[i] != destinationArray[i])
-                    return false;
-            }
-            return true;
-        }
-
-        /// <summary>
         /// Checks if the folder path belongs to a removable drive
         /// </summary>
         /// <param name="path">This parameter is the folder path to be checked</param>
@@ -136,5 +120,32 @@ namespace nsync
             }
             return null;
         }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Compares the folder paths of the input arrays and determine if they
+        /// have the same path from the root directory.
+        /// </summary>
+        /// <param name="sourceArray">Array of a folder path to be checked</param>
+        /// <param name="destinationArray">Array of a folder path to be checked</param>
+        /// <returns></returns>
+        private bool IsSamePath(string[] sourceArray, string[] destinationArray)
+        {
+            if (sourceArray.Length > destinationArray.Length)
+            {
+                string[] tmp = sourceArray;
+                sourceArray = destinationArray;
+                destinationArray = tmp;
+            }
+
+            for (int i = 0; i < sourceArray.Length; i++)
+            {
+                if (sourceArray[i] != destinationArray[i])
+                    return false;
+            }
+            return true;
+        }
+        #endregion
     }
 }
