@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\nsync.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="nsync" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="nsync" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="nsync.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -73,14 +73,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nsync.exe" size="1512448">
-      <assemblyIdentity name="nsync" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nsync.exe" size="1511936">
+      <assemblyIdentity name="nsync" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>f17PtFfw26fs1la8RruQQpKS1EY=</dsig:DigestValue>
+        <dsig:DigestValue>lZSmn5mlj7SN/BznQ8IU+bKY6AY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

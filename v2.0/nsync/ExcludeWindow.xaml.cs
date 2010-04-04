@@ -22,7 +22,6 @@ namespace nsync
         #region Class Variables
         private string leftPath;
         private string rightPath;
-        //private int lastStateItemsCount = 0;
         private List<string> excludeFolders;
         private List<string> excludeFiles;
         private List<string> excludeFileTypes;
@@ -74,16 +73,30 @@ namespace nsync
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// enable the window to be dragged and moved on mousedown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void titleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
 
+        /// <summary>
+        /// event handler when close window button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             CloseWindow();
         }
 
+        /// <summary>
+        /// method to handle closing the window properly
+        /// </summary>
         private void CloseWindow()
         {
             //todo: handle close window
@@ -91,11 +104,19 @@ namespace nsync
             this.Close();
         }
 
+        /// <summary>
+        /// event handler when continue/next button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
             ContinueSync();
         }
 
+        /// <summary>
+        /// method to handle clicking continue and next and close the window
+        /// </summary>
         private void ContinueSync()
         {
             //todo: handle continue sync
@@ -103,6 +124,11 @@ namespace nsync
             CloseWindow();
         }
 
+        /// <summary>
+        /// event handler when the window is loaded. loads the paths of the left and right folders into the labels. populates file types.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WindowExclude_Loaded(object sender, RoutedEventArgs e)
         {
             LabelLeftPath.Content = ShortenPath(leftPath, 130);
@@ -130,6 +156,9 @@ namespace nsync
             return fullPath;
         }
 
+        /// <summary>
+        /// populates the combobox with the file types present in the left and right folders
+        /// </summary>
         private void PopulateFileTypes()
         {
             string[] filePathsLeft = Directory.GetFiles(leftPath, "*.*",
@@ -146,6 +175,9 @@ namespace nsync
             PopulateFileTypesComboBox();
         }
 
+        /// <summary>
+        /// adds entries from the list to the combobox.
+        /// </summary>
         private void PopulateFileTypesComboBox()
         {
             foreach (string fileExtension in availableFileTypes)
@@ -154,6 +186,10 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// adds an item to the combobox
+        /// </summary>
+        /// <param name="fileExtension">string of the item to add</param>
         private void AddComboBoxItem(string fileExtension)
         {
             ComboBoxItem fileTypeComboBoxItem = new ComboBoxItem();
@@ -161,6 +197,10 @@ namespace nsync
             ComboBoxFileType.Items.Add(fileTypeComboBoxItem);
         }
 
+        /// <summary>
+        /// adds the file type to a list object
+        /// </summary>
+        /// <param name="fileExtension">string of the file type to be added to the list</param>
         private void AddToFileTypesList(string fileExtension)
         {
             if (fileExtension != Properties.Resources.metaDataFileExtension)
@@ -172,6 +212,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// event handler on dragging and object into the exclude box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BoxExclude_DragEnter(object sender, DragEventArgs e)
         {
             
@@ -213,6 +258,12 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// method to check if one path is the root of another
+        /// </summary>
+        /// <param name="childPath">the longer child path</param>
+        /// <param name="parentPath">the shorter parent path</param>
+        /// <returns>bool whether it is a child path</returns>
         private bool IsAChildPath(string childPath, string parentPath)
         {
             string[] childPathArray = childPath.Split(new char[] { '\\' });
@@ -245,6 +296,12 @@ namespace nsync
             return true;
         }
 
+        /// <summary>
+        /// check if a string is in a string list or not
+        /// </summary>
+        /// <param name="ExcludeList">list of strings to check against</param>
+        /// <param name="path">string to check</param>
+        /// <returns>bool, true if string is not in list</returns>
         private bool IsNotInList(List<string> ExcludeList, string path)
         {
             for (int i = 0; i < ExcludeList.Count; i++)
@@ -255,6 +312,9 @@ namespace nsync
             return true;
         }
 
+        /// <summary>
+        /// updates the listbox with items from the backend list
+        /// </summary>
         private void UpdateListBox()
         {
             // Setup listbox items
@@ -278,6 +338,9 @@ namespace nsync
             RefreshInterface();
         }
 
+        /// <summary>
+        /// refresh the message displayed in the status label
+        /// </summary>
         private void RefreshInterface()
         {
             if (ListBoxExclude.Items.Count > 0)
@@ -292,6 +355,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// shortens the paths of items in the exclude box
+        /// </summary>
+        /// <param name="fullPath"></param>
+        /// <returns></returns>
         private string ShortenPath(string fullPath)
         {
             if (fullPath.Length > MAX_STRING_LENGTH)
@@ -301,6 +369,12 @@ namespace nsync
             return fullPath;
         }
 
+        /// <summary>
+        /// add an item to the listbox
+        /// </summary>
+        /// <param name="excludeStatement">string of the statement to add</param>
+        /// <param name="itemColor">color of the string</param>
+        /// <param name="tag">the actual path to be added to the tag property of the listbox item</param>
         private void AddListBoxItem(string excludeStatement, Brush itemColor, string tag)
         {
             ListBoxItem excludeListBoxItem = new ListBoxItem();
@@ -315,6 +389,9 @@ namespace nsync
             ListBoxExclude.Items.Add(excludeListBoxItem);
         }
 
+        /// <summary>
+        /// saves the previous state of all the backend lists
+        /// </summary>
         private void SaveLastState()
         {
             if (HintText.Visibility == Visibility.Visible)
@@ -333,6 +410,11 @@ namespace nsync
             }            
         }
 
+        /// <summary>
+        /// copy one list to another
+        /// </summary>
+        /// <param name="source">the list to copy from</param>
+        /// <param name="destination">the list to copy to</param>
         private void CopyList(List<string> source, List<string> destination)
         {
             destination.Clear();
@@ -341,6 +423,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// event handler when items are dragged out without being dropped
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BoxExclude_DragLeave(object sender, DragEventArgs e)
         {
             double x = MouseUtilities.CorrectGetPosition(WindowExclude).X;
@@ -352,23 +439,16 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// restores the backend lists to their previous state
+        /// </summary>
         private void RestoreLastState()
         {
-            //if (lastStateItemsCount == 0)
-            //{
-            //    HintText.Visibility = Visibility.Visible;
-            //    HintIcon.Visibility = Visibility.Visible;
-            //    ListBoxExclude.Visibility = Visibility.Hidden;
-            //    lastStateItemsCount = ListBoxExclude.Items.Count;
-            //}
-            //else
-            //{
-                //restore old lists
-                CopyList(oldExcludeFolders, excludeFolders);
-                CopyList(oldExcludeFiles, excludeFiles);
-                CopyList(oldExcludeFileTypes, excludeFileTypes);
-                CopyList(oldExcludeInvalid, excludeInvalid);
-            //}
+            //restore old lists
+            CopyList(oldExcludeFolders, excludeFolders);
+            CopyList(oldExcludeFiles, excludeFiles);
+            CopyList(oldExcludeFileTypes, excludeFileTypes);
+            CopyList(oldExcludeInvalid, excludeInvalid);
 
             ClearListBox();
             UpdateListBox();
@@ -382,11 +462,21 @@ namespace nsync
             ListBoxExclude.Items.Clear();
         }
 
+        /// <summary>
+        /// event handler when items are dropped in the exclude box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BoxExclude_Drop(object sender, DragEventArgs e)
         {
             reallyLeft = true;
         }
 
+        /// <summary>
+        /// event handler when the selection is changed in the combobox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBoxFileType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ComboBoxFileType.SelectedIndex >= 0)
@@ -410,6 +500,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// event handler when the mouse is clicked on an item in the exclude list box. delete the item.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListBoxExclude_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (ListBoxExclude.SelectedIndex >= 0)
@@ -426,10 +521,6 @@ namespace nsync
 
                 ClearListBox();
                 UpdateListBox();
-
-                //ListBoxExclude.Items.Remove(ListBoxExclude.SelectedItem);
-                //ListBoxExclude.SelectedIndex = -1;
-
             }
         }
 

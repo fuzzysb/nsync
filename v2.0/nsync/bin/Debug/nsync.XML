@@ -4,239 +4,66 @@
         <name>nsync</name>
     </assembly>
     <members>
-        <member name="T:nsync.SettingsPage">
+        <member name="M:nsync.Intelligence.IsThereFilesInRootPath(System.String)">
             <summary>
-            Interaction logic for SettingsPage.xaml
+            Check if there is any files inside the provided path
             </summary>
-            <summary>
-            SettingsPage
-            </summary>
+            <param name="path">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path has any files</returns>
         </member>
-        <member name="M:nsync.SettingsPage.#ctor">
+        <member name="M:nsync.Intelligence.IsPathRoot(System.String)">
             <summary>
-            Constructor for SettingsPage
+            Checks if a path is the root path
             </summary>
+            <param name="path">This string is the path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path is a root path</returns>
         </member>
-        <member name="M:nsync.SettingsPage.CheckSettings">
+        <member name="M:nsync.Intelligence.IsFolderExists(System.String)">
             <summary>
-            Update the checkbox on SettingsPage
+            Checks if the folder path exists
             </summary>
+            <param name="folderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path exists</returns>
         </member>
-        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_Checked(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:nsync.Intelligence.IsFoldersSimilar(System.String,System.String)">
             <summary>
-            This method is called when user checks the checkbox
+            Checks if two folder paths are similar
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
+            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
+            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if both folder paths are similar</returns>
         </member>
-        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_UnChecked(System.Object,System.Windows.RoutedEventArgs)">
+        <member name="M:nsync.Intelligence.IsFolderSubFolder(System.String,System.String)">
             <summary>
-            This method is called when user unchecks the checkbox
+            Checks if a folder is a subfolder of another
             </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
+            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
+            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if a folder is a subfolder of another</returns>
         </member>
-        <member name="M:nsync.SettingsPage.InitializeComponent">
+        <member name="M:nsync.Intelligence.IsRemovableDrive(System.String)">
             <summary>
-            InitializeComponent
+            Checks if the folder path belongs to a removable drive
             </summary>
+            <param name="path">This parameter is the folder path to be checked</param>
+            <returns>Returns a boolean which indicates if the folder path belongs to a removable drive</returns>
         </member>
-        <member name="M:nsync.SyncEngine.#ctor">
+        <member name="M:nsync.Intelligence.FindRemoveableDiskSerialNumber(System.String)">
             <summary>
-            Constructor for SyncEngine
+            Finds the unique serial number of the removeable disk
             </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.GetRemovableDiskSerialNumberWithChecks(System.String)">
-            <summary>
-            Try to get the serial number of removable disk if path is a removeable disk
-            </summary>
-            <param name="path">This parameter indicates the path to be checked</param>
-            <returns>Returns a string which contains the serial number of the removeable disk, if it exists
-            <para>Otherwise, return null</para></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.GetRemovableDiskSerialNumber(System.String)">
-            <summary>
-            Gets the removeable disk serial number
-            </summary>
-            <param name="path">This parameter indicates the path to be checked</param>
+            <param name="path">This parameter is the directory to be checked</param>
             <returns>Returns a string which contains the serial number of the removeable disk
-            <para>Returns a null if path is not removeable disk</para></returns>
+            <para>Returns null if the directory is not a removeable disk</para></returns>
         </member>
-        <member name="M:nsync.SyncEngine.IsPathRemovableDisk(System.String)">
+        <member name="M:nsync.Intelligence.IsSamePath(System.String[],System.String[])">
             <summary>
-            Checks if a path is a removeable disk
+            Compares the folder paths of the input arrays and determine if they
+            have the same path from the root directory.
             </summary>
-            <param name="path">This parameter indicates the path to be checked</param>
-            <returns>Returns a boolean which indicates if the path is a removeable disk</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.CreateFolderForRootPath">
-            <summary>
-            Creates a folder in the root path and updates leftpath/rightpath, if required
-            </summary>
-            <returns>Returns a boolean to indicate if a folder was created</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.PreSync">
-            <summary>
-            Gets backgroundWorkerForPreSync to do presync preparations
-            </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.StartSync">
-            <summary>
-            Get the real synchronization process to start
-            </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFoldersSync">
-            <summary>
-            Checks if folder paths are already synchronized
-            </summary>
-            <returns>Return the result which indicates if folder paths are already synchronized</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFolderSubfolder">
-            <summary>
-            Asks IntelligentManager to check if a folder is subfolder of another folder
-            </summary>
+            <param name="sourceArray">Array of a folder path to be checked</param>
+            <param name="destinationArray">Array of a folder path to be checked</param>
             <returns></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFolderExists(System.String)">
-            <summary>
-            Asks IntelligentManager to check if the left or right folder path exists
-            </summary>
-            <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFoldersSimilar">
-            <summary>
-            Asks IntelligentManager to check if the two folder paths are similar
-            </summary>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsRequiredToCreateFolder">
-            <summary>
-            Checks if it is required to create a folder on any root path
-            </summary>
-            <returns>Returns a boolean with the result of the query</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.GetFreeDiskSpaceInBytes(System.String)">
-            <summary>
-            Computes the amount of free disk space of a disk drive
-            <para>Units is in bytes</para>
-            </summary>
-            <param name="drive">This parameter is the drive volume to be checked</param>
-            <returns></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.CheckSpace">
-            <summary>
-            Checks if there is sufficient disk space for synchronization to be done
-            </summary>
-            <returns>Returns a boolean of the result</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
-            <summary>
-            Detect the changes done to the folder
-            <para>Updates the metadata</para>
-            </summary>
-            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
-            <param name="filter">This parameter is the filter which will be used during synchronization</param>
-            <param name="options">This parameter holds the synchronization options</param>
-        </member>
-        <member name="M:nsync.SyncEngine.SyncFileSystemReplicasOneWay(System.String,System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions,System.Boolean)">
-            <summary>
-            Start the synchronization in one direction
-            </summary>
-            <param name="sourcePath">This parameter holds the source folder path</param>
-            <param name="destPath">This parameter holds the destination folder path</param>
-            <param name="filter">This parameter is the filter which will be used during synchronization</param>
-            <param name="options">This parameter holds the synchronization options</param>
-            <param name="isPreview">This parameter is a boolean which indicates if this method should be run in preview mode</param>
-            <returns>Returns a boolean to indicate if the the synchronization was successful</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
-            <summary>
-            This method is called when there are conflicting items during synchronization
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.OnAppliedChange(System.Object,Microsoft.Synchronization.Files.AppliedChangeEventArgs)">
-            <summary>
-            This method is called when changes are done to a file
-            <para>Counts the number of changes already done by the sync framework</para>
-            <para>Reports the progress percentage to the backgroundWorkerForSync</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
-            <summary>
-            This method is called when changes are going to be done to a file
-            <para>Counts the number of changes to be made later during synchronization</para>
-            <para>Counts the amount of disk space needed later during synchronization</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.backgroundWorkerForSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
-            <summary>
-            This method is called when backgroundWorkerForSync is called to start working
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.backgroundWorkerForPreSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
-            <summary>
-            This method is called when backgroundWorkerForPreSync is called to start working
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.SyncEngine.InternalPreSync">
-            <summary>
-            Does actual presync preparations
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.InternalStartSync">
-            <summary>
-            Starts the synchronization job
-            </summary>
-            <returns>Returns a boolean to indicate if the synchronization was successful</returns>
-        </member>
-        <member name="P:nsync.SyncEngine.LeftPath">
-            <summary>
-            Setter and Getter method for left folder path
-            </summary>
-        </member>
-        <member name="P:nsync.SyncEngine.RightPath">
-            <summary>
-            Setter and Getter method for right folder path
-            </summary>
-        </member>
-        <member name="T:nsync.TestEngine">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:nsync.TestEngine.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:nsync.TestEngine.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:nsync.TestEngine.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:nsync.TestEngine.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
         </member>
         <member name="T:nsync.HomePage">
             <summary>
@@ -564,6 +391,671 @@
             InitializeComponent
             </summary>
         </member>
+        <member name="T:nsync.TrackBackPage">
+            <summary>
+            Interaction logic for TrackBackPage.xaml
+            </summary>
+            <summary>
+            TrackBackPage
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackPage.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:nsync.Preview.#ctor(System.String,System.String)">
+            <summary>
+            Constructor for Preview
+            </summary>
+            <param name="actualLeftPath">This parameter indicates the left folder path to be used</param>
+            <param name="actualRightPath">This parameter indicates the right folder path to be used</param>
+        </member>
+        <member name="M:nsync.Preview.GetData">
+            <summary>
+            Does sync operation and returns list of file data
+            </summary>
+            <returns>Returns a list of file data objects</returns>
+        </member>
+        <member name="M:nsync.Preview.previewSync">
+            <summary>
+            Does Sync operation to store change events into a list of FileData objects
+            </summary>
+        </member>
+        <member name="M:nsync.Preview.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
+            <summary>
+            Detect the changes done to the folder
+            <para>Updates the metadata</para>
+            </summary>
+            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
+            <param name="filter">This parameter is the filter which will be used during synchronization</param>
+            <param name="options">This parameter holds the synchronization options</param>
+        </member>
+        <member name="M:nsync.Preview.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
+            <summary>
+            This method is called when changes are going to be done to a file
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.Preview.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
+            <summary>
+            This method is called when there are conflicting items during synchronization
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.Preview.OnItemConstraint(System.Object,Microsoft.Synchronization.ItemConstraintEventArgs)">
+            <summary>
+            This method is called when there are constraint items during synchronization
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:nsync.TestEngine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:nsync.TestEngine.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:nsync.TestEngine.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:nsync.TestEngine.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:nsync.TestEngine.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.#ctor">
+            <summary>
+            Constructor for SyncEngine
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.GetRemovableDiskSerialNumberWithChecks(System.String)">
+            <summary>
+            Try to get the serial number of removable disk if path is a removeable disk
+            </summary>
+            <param name="path">This parameter indicates the path to be checked</param>
+            <returns>Returns a string which contains the serial number of the removeable disk, if it exists
+            <para>Otherwise, return null</para></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.GetRemovableDiskSerialNumber(System.String)">
+            <summary>
+            Gets the removeable disk serial number
+            </summary>
+            <param name="path">This parameter indicates the path to be checked</param>
+            <returns>Returns a string which contains the serial number of the removeable disk
+            <para>Returns a null if path is not removeable disk</para></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsPathRemovableDisk(System.String)">
+            <summary>
+            Checks if a path is a removeable disk
+            </summary>
+            <param name="path">This parameter indicates the path to be checked</param>
+            <returns>Returns a boolean which indicates if the path is a removeable disk</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.CreateFolderForRootPath">
+            <summary>
+            Creates a folder in the root path and updates leftpath/rightpath, if required
+            </summary>
+            <returns>Returns a boolean to indicate if a folder was created</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.PreSync">
+            <summary>
+            Gets backgroundWorkerForPreSync to do presync preparations
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.StartSync">
+            <summary>
+            Get the real synchronization process to start
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFoldersSync">
+            <summary>
+            Checks if folder paths are already synchronized
+            </summary>
+            <returns>Return the result which indicates if folder paths are already synchronized</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFolderSubfolder">
+            <summary>
+            Asks IntelligentManager to check if a folder is subfolder of another folder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFolderExists(System.String)">
+            <summary>
+            Asks IntelligentManager to check if the left or right folder path exists
+            </summary>
+            <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFoldersSimilar">
+            <summary>
+            Asks IntelligentManager to check if the two folder paths are similar
+            </summary>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsRequiredToCreateFolder">
+            <summary>
+            Checks if it is required to create a folder on any root path
+            </summary>
+            <returns>Returns a boolean with the result of the query</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.GetFreeDiskSpaceInBytes(System.String)">
+            <summary>
+            Computes the amount of free disk space of a disk drive
+            <para>Units is in bytes</para>
+            </summary>
+            <param name="drive">This parameter is the drive volume to be checked</param>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.CheckSpace">
+            <summary>
+            Checks if there is sufficient disk space for synchronization to be done
+            </summary>
+            <returns>Returns a boolean of the result</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
+            <summary>
+            Detect the changes done to the folder
+            <para>Updates the metadata</para>
+            </summary>
+            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
+            <param name="filter">This parameter is the filter which will be used during synchronization</param>
+            <param name="options">This parameter holds the synchronization options</param>
+        </member>
+        <member name="M:nsync.SyncEngine.SyncFileSystemReplicasOneWay(System.String,System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions,System.Boolean)">
+            <summary>
+            Start the synchronization in one direction
+            </summary>
+            <param name="sourcePath">This parameter holds the source folder path</param>
+            <param name="destPath">This parameter holds the destination folder path</param>
+            <param name="filter">This parameter is the filter which will be used during synchronization</param>
+            <param name="options">This parameter holds the synchronization options</param>
+            <param name="isPreview">This parameter is a boolean which indicates if this method should be run in preview mode</param>
+            <returns>Returns a boolean to indicate if the the synchronization was successful</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
+            <summary>
+            This method is called when there are conflicting items during synchronization
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.OnAppliedChange(System.Object,Microsoft.Synchronization.Files.AppliedChangeEventArgs)">
+            <summary>
+            This method is called when changes are done to a file
+            <para>Counts the number of changes already done by the sync framework</para>
+            <para>Reports the progress percentage to the backgroundWorkerForSync</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
+            <summary>
+            This method is called when changes are going to be done to a file
+            <para>Counts the number of changes to be made later during synchronization</para>
+            <para>Counts the amount of disk space needed later during synchronization</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.backgroundWorkerForSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            This method is called when backgroundWorkerForSync is called to start working
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.backgroundWorkerForPreSync_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            This method is called when backgroundWorkerForPreSync is called to start working
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SyncEngine.InternalPreSync">
+            <summary>
+            Does actual presync preparations
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.InternalStartSync">
+            <summary>
+            Starts the synchronization job
+            </summary>
+            <returns>Returns a boolean to indicate if the synchronization was successful</returns>
+        </member>
+        <member name="P:nsync.SyncEngine.LeftPath">
+            <summary>
+            Setter and Getter method for left folder path
+            </summary>
+        </member>
+        <member name="P:nsync.SyncEngine.RightPath">
+            <summary>
+            Setter and Getter method for right folder path
+            </summary>
+        </member>
+        <member name="T:nsync.SettingsPage">
+            <summary>
+            Interaction logic for SettingsPage.xaml
+            </summary>
+            <summary>
+            SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.#ctor">
+            <summary>
+            Constructor for SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckSettings">
+            <summary>
+            Update the checkbox on SettingsPage
+            </summary>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user checks the checkbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SettingsPage.CheckboxToggleHelperWindow_UnChecked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user unchecks the checkbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:nsync.Settings">
+            <summary>
+            Settings Class
+            </summary>
+        </member>
+        <member name="F:nsync.Settings.instance">
+            <summary>
+            Create an instance of Settings class
+            </summary>
+        </member>
+        <member name="M:nsync.Settings.#ctor">
+            <summary>
+            Constructor of Settings class
+            </summary>
+        </member>
+        <member name="M:nsync.Settings.SetHelperWindowStatus(System.Boolean)">
+            <summary>
+            Change the status of the HelperWindow which determines if it should appear in nsync
+            </summary>
+            <param name="status">This parameter is a boolean to indicate if HelperWindow should appear</param>
+        </member>
+        <member name="M:nsync.Settings.GetHelperWindowStatus">
+            <summary>
+            Gets the current status of the HelperWindow
+            </summary>
+            <returns>Returns a boolean which indicates if HelperWindow should appear</returns>
+        </member>
+        <member name="M:nsync.Settings.LoadFolderPaths">
+            <summary>
+            Loads the saved folder paths into a list
+            </summary>
+            <returns>Returns a list of strings which contains the saved folder paths</returns>
+        </member>
+        <member name="M:nsync.Settings.SaveFolderPaths(System.String,System.String)">
+            <summary>
+            Saves the current folder paths into settings.xml
+            </summary>
+            <param name="leftPath">This parameter will be saved into settings.xml</param>
+            <param name="rightPath">This parameter will be saved into settings.xml</param>
+        </member>
+        <member name="M:nsync.Settings.SaveFolderPathForRemoveableDisk(System.String,System.String,System.String)">
+            <summary>
+            Save folder path for removeable disk into settings.xml
+            </summary>
+            <param name="serialNumber">This parameter indicates the serial number of the removeable disk</param>
+            <param name="leftPath">This parameter indicates the leftPath of the sync job</param>
+            <param name="rightPath">This parameter indicates the rightPath of the sync job</param>
+        </member>
+        <member name="M:nsync.Settings.GetLastRemoveableDiskSync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="serialNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.Settings.IsSettingsFileExists">
+            <summary>
+            Check if settings.xml exists, if not, create a new copy
+            </summary>
+        </member>
+        <member name="M:nsync.Settings.SelectNode(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Gets a XMLNode from a XML document
+            </summary>
+            <param name="doc">This parameter indicates the XMLDocument to be read</param>
+            <param name="path">This parameter indicates the tag of the XMLNode to search for</param>
+            <returns>Returns a matching XMLNode</returns>
+        </member>
+        <member name="M:nsync.Settings.CheckSettingsXML(System.Xml.XmlDocument)">
+            <summary>
+            Checks if a XML document is properly formatted
+            </summary>
+            <param name="doc">This parameter is the XML document to be checked</param>
+            <returns>Returns a boolean to indicate if the XML document is valid</returns>
+        </member>
+        <member name="M:nsync.Settings.CreateNewSettingsXML">
+            <summary>
+            Creates a new settings.xml
+            </summary>
+        </member>
+        <member name="P:nsync.Settings.Instance">
+            <summary>
+            Gets the instance of the Settings object
+            </summary>
+        </member>
+        <member name="T:nsync.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:nsync.App.OnStartup(System.Windows.StartupEventArgs)">
+            <summary>
+            Entry point when program startup
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:nsync.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:nsync.VisualPreviewWindow">
+            <summary>
+            Interaction logic for VisualPreviewWindow.xaml
+            </summary>
+            <summary>
+            VisualPreviewWindow
+            </summary>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.#ctor">
+            <summary>
+            Constructor for VisualPreviewWindow
+            </summary>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.titleBar_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            enable the window to be dragged and moved on mousedown
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.WindowVisualPreview_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            when the visual preview is loaded, fill the labels with the left and right folder paths
+            display the preview information in the listview
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.DisplayInfo">
+            <summary>
+            Method to display the preview information in the listview
+            </summary>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.AddPreviewEntry(System.String,System.String,System.String)">
+            <summary>
+            Adds an entry into the preview list view
+            </summary>
+            <param name="previewLeftItem">string for left item column</param>
+            <param name="previewRightItem">string for right item column</param>
+            <param name="previewAction">string for action column</param>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.ShortenPath(System.String,System.Int32)">
+            <summary>
+            Better shorten path algorithm
+            </summary>
+            <param name="fullPath">original long path name</param>
+            <param name="maxLength">max length before shortening</param>
+            <returns>shortened path name</returns>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.ShortenFileName(System.String,System.Int32)">
+            <summary>
+            Shortens file name if its too long
+            </summary>
+            <param name="fullPath">original long filename</param>
+            <param name="maxLength">max length before shortening</param>
+            <returns>shortened file name</returns>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.PreviewCollection">
+            <summary>
+            property of the preview collection used in binding
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.LeftPath">
+            <summary>
+            Property for left path
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.RightPath">
+            <summary>
+            Property for right path
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.PreviewFileData">
+            <summary>
+            Property for filedata list
+            </summary>
+        </member>
+        <member name="T:nsync.PreviewItemData">
+            <summary>
+            Simple data class of a preview item with 3 elements to fill the listview
+            </summary>
+        </member>
+        <member name="P:nsync.PreviewItemData.leftItem">
+            <summary>
+            property for left item column
+            </summary>
+        </member>
+        <member name="P:nsync.PreviewItemData.action">
+            <summary>
+            property for action column
+            </summary>
+        </member>
+        <member name="P:nsync.PreviewItemData.rightItem">
+            <summary>
+            property for right item column
+            </summary>
+        </member>
+        <member name="M:nsync.SummaryReport.#ctor(System.Boolean)">
+            <summary>
+            Constructor for SummaryReport when there are no changes
+            </summary>
+        </member>
+        <member name="M:nsync.SummaryReport.#ctor(System.Collections.Generic.List{nsync.FileData})">
+            <summary>
+            Constructor for SummaryReport when there are some changes
+            </summary>
+        </member>
+        <member name="M:nsync.SummaryReport.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{nsync.FileData})">
+            <summary>
+            Constructor for SummaryReport when there are some changes
+            Unused for now, future development might want to display all the types of changes
+            For now, only erroneous is displayed
+            </summary>
+        </member>
+        <member name="M:nsync.SummaryReport.CheckFileExist">
+            <summary>
+            Checks if log file exists. Will create if log file does not exist.
+            </summary>
+        </member>
+        <member name="M:nsync.SummaryReport.CreateLog">
+            <summary>
+            Generates log data and writes to log file.
+            </summary>
+        </member>
+        <member name="T:nsync.GIFImageControl">
+            <summary>
+            GIF display image control
+            </summary>
+        </member>
+        <member name="F:nsync.GIFImageControl.AllowClickToPauseProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:nsync.GIFImageControl.GIFSourceProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:nsync.GIFImageControl.PlayAnimationProperty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:nsync.GIFImageControl.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:nsync.GIFImageControl.DeleteObject(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="hDc"></param>
+            <returns></returns>
+        </member>
+        <member name="P:nsync.GIFImageControl.AllowClickToPause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:nsync.GIFImageControl.PlayAnimation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:nsync.GIFImageControl.GIFSource">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:nsync.GIFImageControl.Click">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:nsync.FileData">
+            <summary>
+            FileData Class
+            </summary>
+        </member>
+        <member name="M:nsync.FileData.#ctor(System.String,System.String,nsync.Changes)">
+            <summary>
+            Constructor of FileData class
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.FileName">
+            <summary>
+            Gets the FileName of FileData object
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.FileType">
+            <summary>
+            Gets the FileType of FileData object
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.ChangeType">
+            <summary>
+            Gets the ChangeType of FileData object
+            </summary>
+        </member>
+        <member name="P:nsync.FileData.RootPath">
+            <summary>
+            Gets the RootPath of FileData object
+            </summary>
+        </member>
+        <member name="T:nsync.Changes">
+            <summary>
+            Types Of Changes In FileData Object
+            </summary>
+        </member>
+        <member name="T:nsync.HelperManager">
+            <summary>
+            Helper Window Manager Class
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.#ctor(System.Windows.Window)">
+            <summary>
+            Constructor for HelperManager
+            </summary>
+            <param name="ownerWindow">Setting the owner of windowHelper to ownerWindow</param>
+        </member>
+        <member name="M:nsync.HelperManager.Show(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
+            <summary>
+            Tell windowHelper to display the notification
+            </summary>
+            <param name="helpString">The string to be displayed in the notifiation window</param>
+            <param name="time">The duration for which the notification window should be active</param>
+            <param name="windowPosition">The position for which the notification window should be placed</param>
+        </member>
+        <member name="M:nsync.HelperManager.CloseWindow">
+            <summary>
+            Closes the notification window
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.UpdateMove">
+            <summary>
+            Moves the notification window accordingly when its position is changed
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.HideWindow">
+            <summary>
+            Hides the notification window
+            </summary>
+        </member>
+        <member name="M:nsync.HelperManager.helperWindowIsOn">
+            <summary>
+            Checks if the notification window should be on/off
+            </summary>
+            <returns>The result is returned as a boolean</returns>
+        </member>
         <member name="T:nsync.HelperWindow">
             <summary>
             Interaction logic for HelperWindow.xaml
@@ -672,232 +1164,6 @@
         <member name="F:nsync.HelperWindow.windowStartPosition.windowTop">
             <summary>
             Position window top
-            </summary>
-        </member>
-        <member name="T:nsync.MainWindow">
-            <summary>
-            Interaction logic for MainWindow.xaml
-            </summary>
-            <summary>
-            MainWindow
-            </summary>
-        </member>
-        <member name="M:nsync.MainWindow.#ctor">
-            <summary>
-            Constructor for MainWindow class
-            </summary>
-        </member>
-        <member name="M:nsync.MainWindow.titleBar_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-            <summary>
-            This method is called when user clicks on the titlebar of MainWindow
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonClose_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when user clicks on the exit button on MainWindow
-            <para>nsync will exit after this</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonMinimise_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when user clicks on the minimize button on MainWindow
-            <para>nsync will minimize to taskbar after this</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonPageSettings_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when users click on the left dot on MainWindow
-            <para>Current page will be switched to SettingsPage</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonPageBackTrack_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when users click on the right dot on MainWindow
-            <para>Current page will be switched to TrackBackPage</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.WindowMain_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            This method is called when mouse pointer is moved near the sides of MainWindow
-            <para>Slider bars will be appear when mouse pointer is near it</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.viewList_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
-            <summary>
-            This method is called when viewList.SelectedIndex is changed
-            <para>The respective page will be loaded</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.UpdateToolTips">
-            <summary>
-            Updates the tooltips of the slider bars
-            </summary>
-        </member>
-        <member name="M:nsync.MainWindow.RenderBitmap(System.Windows.FrameworkElement)">
-            <summary>
-            Takes a snapshot of an object element
-            </summary>
-            <param name="element">This parameter is an object that will be snapshot</param>
-            <returns>Returns a bitmap of the snapshot</returns>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonPageHome_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when users click on the center dot on MainWindow
-            <para>Current page will be switched to HomePage</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonSideTabLeft_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when users click on the left sliderbar
-            <para>Current page will be switched to the page on the left</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonSideTabRight_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when users click on the left sliderbar
-            <para>Current page will be switched to the page on the left</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.ButtonTesting_Click(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when user click on the letter 'n' of nsync logo
-            <para>The testing window will appear</para>
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.MainWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:nsync.VisualPreviewWindow">
-            <summary>
-            Interaction logic for VisualPreviewWindow.xaml
-            </summary>
-            <summary>
-            VisualPreviewWindow
-            </summary>
-        </member>
-        <member name="M:nsync.VisualPreviewWindow.#ctor">
-            <summary>
-            Constructor for VisualPreviewWindow
-            </summary>
-        </member>
-        <member name="M:nsync.VisualPreviewWindow.AddPreviewEntry(System.String,System.String,System.String)">
-            <summary>
-            Adds an entry into the preview list view
-            </summary>
-            <param name="previewLeftItem">string for left item column</param>
-            <param name="previewRightItem">string for right item column</param>
-            <param name="previewAction">string for action column</param>
-        </member>
-        <member name="M:nsync.VisualPreviewWindow.ShortenPath(System.String,System.Int32)">
-            <summary>
-            Better shorten path algorithm
-            </summary>
-            <param name="fullPath">original long path name</param>
-            <param name="maxLength">max length before shortening</param>
-            <returns>shortened path name</returns>
-        </member>
-        <member name="M:nsync.VisualPreviewWindow.ShortenFileName(System.String,System.Int32)">
-            <summary>
-            Shortens file name if its too long
-            </summary>
-            <param name="fullPath">original long filename</param>
-            <param name="maxLength">max length before shortening</param>
-            <returns>shortened file name</returns>
-        </member>
-        <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="P:nsync.VisualPreviewWindow.PreviewCollection">
-            <summary>
-            property of the preview collection used in binding
-            </summary>
-        </member>
-        <member name="P:nsync.VisualPreviewWindow.LeftPath">
-            <summary>
-            Property for left path
-            </summary>
-        </member>
-        <member name="P:nsync.VisualPreviewWindow.RightPath">
-            <summary>
-            Property for right path
-            </summary>
-        </member>
-        <member name="P:nsync.VisualPreviewWindow.PreviewFileData">
-            <summary>
-            Property for filedata list
-            </summary>
-        </member>
-        <member name="T:nsync.PreviewItemData">
-            <summary>
-            Simple data class of a preview item with 3 elements to fill the listview
-            </summary>
-        </member>
-        <member name="P:nsync.PreviewItemData.leftItem">
-            <summary>
-            property for left item column
-            </summary>
-        </member>
-        <member name="P:nsync.PreviewItemData.action">
-            <summary>
-            property for action column
-            </summary>
-        </member>
-        <member name="P:nsync.PreviewItemData.rightItem">
-            <summary>
-            property for right item column
-            </summary>
-        </member>
-        <member name="M:nsync.SummaryReport.#ctor(System.Boolean)">
-            <summary>
-            Constructor for SummaryReport when there are no changes
-            </summary>
-        </member>
-        <member name="M:nsync.SummaryReport.#ctor(System.Collections.Generic.List{nsync.FileData})">
-            <summary>
-            Constructor for SummaryReport when there are some changes
-            </summary>
-        </member>
-        <member name="M:nsync.SummaryReport.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{nsync.FileData})">
-            <summary>
-            Constructor for SummaryReport when there are some changes
-            Unused for now, future development might want to display all the types of changes
-            For now, only erroneous is displayed
-            </summary>
-        </member>
-        <member name="M:nsync.SummaryReport.CheckFileExist">
-            <summary>
-            Checks if log file exists. Will create if log file does not exist.
-            </summary>
-        </member>
-        <member name="M:nsync.SummaryReport.CreateLog">
-            <summary>
-            Generates log data and writes to log file.
             </summary>
         </member>
         <member name="T:nsync.Properties.Resources">
@@ -1076,45 +1342,127 @@
               Looks up a localized string similar to TrackBack.
             </summary>
         </member>
-        <member name="T:nsync.HelperManager">
+        <member name="T:nsync.MainWindow">
             <summary>
-            Helper Window Manager Class
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
             </summary>
         </member>
-        <member name="M:nsync.HelperManager.#ctor(System.Windows.Window)">
+        <member name="M:nsync.MainWindow.#ctor">
             <summary>
-            Constructor for HelperManager
-            </summary>
-            <param name="ownerWindow">Setting the owner of windowHelper to ownerWindow</param>
-        </member>
-        <member name="M:nsync.HelperManager.Show(System.String,System.Int32,nsync.HelperWindow.windowStartPosition)">
-            <summary>
-            Tell windowHelper to display the notification
-            </summary>
-            <param name="helpString">The string to be displayed in the notifiation window</param>
-            <param name="time">The duration for which the notification window should be active</param>
-            <param name="windowPosition">The position for which the notification window should be placed</param>
-        </member>
-        <member name="M:nsync.HelperManager.CloseWindow">
-            <summary>
-            Closes the notification window
+            Constructor for MainWindow class
             </summary>
         </member>
-        <member name="M:nsync.HelperManager.UpdateMove">
+        <member name="M:nsync.MainWindow.titleBar_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <summary>
-            Moves the notification window accordingly when its position is changed
+            This method is called when user clicks on the titlebar of MainWindow
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonClose_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user clicks on the exit button on MainWindow
+            <para>nsync will exit after this</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonMinimise_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user clicks on the minimize button on MainWindow
+            <para>nsync will minimize to taskbar after this</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageSettings_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the left dot on MainWindow
+            <para>Current page will be switched to SettingsPage</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageBackTrack_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the right dot on MainWindow
+            <para>Current page will be switched to TrackBackPage</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.WindowMain_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            This method is called when mouse pointer is moved near the sides of MainWindow
+            <para>Slider bars will be appear when mouse pointer is near it</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.viewList_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            This method is called when viewList.SelectedIndex is changed
+            <para>The respective page will be loaded</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.UpdateToolTips">
+            <summary>
+            Updates the tooltips of the slider bars
             </summary>
         </member>
-        <member name="M:nsync.HelperManager.HideWindow">
+        <member name="M:nsync.MainWindow.RenderBitmap(System.Windows.FrameworkElement)">
             <summary>
-            Hides the notification window
+            Takes a snapshot of an object element
+            </summary>
+            <param name="element">This parameter is an object that will be snapshot</param>
+            <returns>Returns a bitmap of the snapshot</returns>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageHome_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the center dot on MainWindow
+            <para>Current page will be switched to HomePage</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonSideTabLeft_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the left sliderbar
+            <para>Current page will be switched to the page on the left</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonSideTabRight_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when users click on the left sliderbar
+            <para>Current page will be switched to the page on the left</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonTesting_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user click on the letter 'n' of nsync logo
+            <para>The testing window will appear</para>
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
             </summary>
         </member>
-        <member name="M:nsync.HelperManager.helperWindowIsOn">
+        <member name="T:nsync.SingleInstance">
             <summary>
-            Checks if the notification window should be on/off
+            SingleInstance class adds support for a having Single Instance Applications in WPF
             </summary>
-            <returns>The result is returned as a boolean</returns>
         </member>
         <member name="T:nsync.ExtensionMethods">
             <summary>
@@ -1129,198 +1477,6 @@
             <param name="item"></param>
             <returns></returns>
         </member>
-        <member name="T:nsync.Settings">
-            <summary>
-            Settings Class
-            </summary>
-        </member>
-        <member name="F:nsync.Settings.instance">
-            <summary>
-            Create an instance of Settings class
-            </summary>
-        </member>
-        <member name="M:nsync.Settings.#ctor">
-            <summary>
-            Constructor of Settings class
-            </summary>
-        </member>
-        <member name="M:nsync.Settings.SetHelperWindowStatus(System.Boolean)">
-            <summary>
-            Change the status of the HelperWindow which determines if it should appear in nsync
-            </summary>
-            <param name="status">This parameter is a boolean to indicate if HelperWindow should appear</param>
-        </member>
-        <member name="M:nsync.Settings.GetHelperWindowStatus">
-            <summary>
-            Gets the current status of the HelperWindow
-            </summary>
-            <returns>Returns a boolean which indicates if HelperWindow should appear</returns>
-        </member>
-        <member name="M:nsync.Settings.LoadFolderPaths">
-            <summary>
-            Loads the saved folder paths into a list
-            </summary>
-            <returns>Returns a list of strings which contains the saved folder paths</returns>
-        </member>
-        <member name="M:nsync.Settings.SaveFolderPaths(System.String,System.String)">
-            <summary>
-            Saves the current folder paths into settings.xml
-            </summary>
-            <param name="leftPath">This parameter will be saved into settings.xml</param>
-            <param name="rightPath">This parameter will be saved into settings.xml</param>
-        </member>
-        <member name="M:nsync.Settings.SaveFolderPathForRemoveableDisk(System.String,System.String,System.String)">
-            <summary>
-            Save folder path for removeable disk into settings.xml
-            </summary>
-            <param name="serialNumber">This parameter indicates the serial number of the removeable disk</param>
-            <param name="leftPath">This parameter indicates the leftPath of the sync job</param>
-            <param name="rightPath">This parameter indicates the rightPath of the sync job</param>
-        </member>
-        <member name="M:nsync.Settings.GetLastRemoveableDiskSync(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="serialNumber"></param>
-            <returns></returns>
-        </member>
-        <member name="M:nsync.Settings.IsSettingsFileExists">
-            <summary>
-            Check if settings.xml exists, if not, create a new copy
-            </summary>
-        </member>
-        <member name="M:nsync.Settings.SelectNode(System.Xml.XmlDocument,System.String)">
-            <summary>
-            Gets a XMLNode from a XML document
-            </summary>
-            <param name="doc">This parameter indicates the XMLDocument to be read</param>
-            <param name="path">This parameter indicates the tag of the XMLNode to search for</param>
-            <returns>Returns a matching XMLNode</returns>
-        </member>
-        <member name="M:nsync.Settings.CheckSettingsXML(System.Xml.XmlDocument)">
-            <summary>
-            Checks if a XML document is properly formatted
-            </summary>
-            <param name="doc">This parameter is the XML document to be checked</param>
-            <returns>Returns a boolean to indicate if the XML document is valid</returns>
-        </member>
-        <member name="M:nsync.Settings.CreateNewSettingsXML">
-            <summary>
-            Creates a new settings.xml
-            </summary>
-        </member>
-        <member name="P:nsync.Settings.Instance">
-            <summary>
-            Gets the instance of the Settings object
-            </summary>
-        </member>
-        <member name="T:nsync.App">
-            <summary>
-            Interaction logic for App.xaml
-            </summary>
-            <summary>
-            App
-            </summary>
-        </member>
-        <member name="M:nsync.App.OnStartup(System.Windows.StartupEventArgs)">
-            <summary>
-            Entry point when program startup
-            </summary>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.App.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="M:nsync.App.Main">
-            <summary>
-            Application Entry Point.
-            </summary>
-        </member>
-        <member name="M:nsync.Preview.#ctor(System.String,System.String)">
-            <summary>
-            Constructor for Preview
-            </summary>
-            <param name="actualLeftPath">This parameter indicates the left folder path to be used</param>
-            <param name="actualRightPath">This parameter indicates the right folder path to be used</param>
-        </member>
-        <member name="M:nsync.Preview.GetData">
-            <summary>
-            Does sync operation and returns list of file data
-            </summary>
-            <returns>Returns a list of file data objects</returns>
-        </member>
-        <member name="M:nsync.Preview.previewSync">
-            <summary>
-            Does Sync operation to store change events into a list of FileData objects
-            </summary>
-        </member>
-        <member name="M:nsync.Preview.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
-            <summary>
-            Detect the changes done to the folder
-            <para>Updates the metadata</para>
-            </summary>
-            <param name="replicaRootPath">This parameter is the folder path to be checked</param>
-            <param name="filter">This parameter is the filter which will be used during synchronization</param>
-            <param name="options">This parameter holds the synchronization options</param>
-        </member>
-        <member name="M:nsync.Preview.OnApplyingChange(System.Object,Microsoft.Synchronization.Files.ApplyingChangeEventArgs)">
-            <summary>
-            This method is called when changes are going to be done to a file
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.Preview.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
-            <summary>
-            This method is called when there are conflicting items during synchronization
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="M:nsync.Preview.OnItemConstraint(System.Object,Microsoft.Synchronization.ItemConstraintEventArgs)">
-            <summary>
-            This method is called when there are constraint items during synchronization
-            </summary>
-            <param name="sender"></param>
-            <param name="args"></param>
-        </member>
-        <member name="T:nsync.FileData">
-            <summary>
-            FileData Class
-            </summary>
-        </member>
-        <member name="M:nsync.FileData.#ctor(System.String,System.String,nsync.Changes)">
-            <summary>
-            Constructor of FileData class
-            </summary>
-        </member>
-        <member name="P:nsync.FileData.FileName">
-            <summary>
-            Gets the FileName of FileData object
-            </summary>
-        </member>
-        <member name="P:nsync.FileData.FileType">
-            <summary>
-            Gets the FileType of FileData object
-            </summary>
-        </member>
-        <member name="P:nsync.FileData.ChangeType">
-            <summary>
-            Gets the ChangeType of FileData object
-            </summary>
-        </member>
-        <member name="P:nsync.FileData.RootPath">
-            <summary>
-            Gets the RootPath of FileData object
-            </summary>
-        </member>
-        <member name="T:nsync.Changes">
-            <summary>
-            Types Of Changes In FileData Object
-            </summary>
-        </member>
         <member name="T:nsync.ExcludeWindow">
             <summary>
             Interaction logic for ExcludeWindow.xaml
@@ -1334,6 +1490,44 @@
             Constructor for ExcludeWindow
             </summary>
         </member>
+        <member name="M:nsync.ExcludeWindow.titleBar_MouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            enable the window to be dragged and moved on mousedown
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.ButtonClose_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            event handler when close window button is clicked
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.CloseWindow">
+            <summary>
+            method to handle closing the window properly
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.ButtonNext_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            event handler when continue/next button is clicked
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.ContinueSync">
+            <summary>
+            method to handle clicking continue and next and close the window
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.WindowExclude_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            event handler when the window is loaded. loads the paths of the left and right folders into the labels. populates file types.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:nsync.ExcludeWindow.ShortenPath(System.String,System.Int32)">
             <summary>
             Better shorten path algorithm
@@ -1341,6 +1535,43 @@
             <param name="fullPath">original long path name</param>
             <param name="maxLength">max length before shortening</param>
             <returns>shortened path name</returns>
+        </member>
+        <member name="M:nsync.ExcludeWindow.PopulateFileTypes">
+            <summary>
+            populates the combobox with the file types present in the left and right folders
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.PopulateFileTypesComboBox">
+            <summary>
+            adds entries from the list to the combobox.
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.AddComboBoxItem(System.String)">
+            <summary>
+            adds an item to the combobox
+            </summary>
+            <param name="fileExtension">string of the item to add</param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.AddToFileTypesList(System.String)">
+            <summary>
+            adds the file type to a list object
+            </summary>
+            <param name="fileExtension">string of the file type to be added to the list</param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.BoxExclude_DragEnter(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            event handler on dragging and object into the exclude box
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.IsAChildPath(System.String,System.String)">
+            <summary>
+            method to check if one path is the root of another
+            </summary>
+            <param name="childPath">the longer child path</param>
+            <param name="parentPath">the shorter parent path</param>
+            <returns>bool whether it is a child path</returns>
         </member>
         <member name="M:nsync.ExcludeWindow.IsSubPath(System.String[],System.String[])">
             <summary>
@@ -1351,10 +1582,88 @@
             <param name="destinationArray">Array of a folder path to be checked</param>
             <returns></returns>
         </member>
+        <member name="M:nsync.ExcludeWindow.IsNotInList(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            check if a string is in a string list or not
+            </summary>
+            <param name="ExcludeList">list of strings to check against</param>
+            <param name="path">string to check</param>
+            <returns>bool, true if string is not in list</returns>
+        </member>
+        <member name="M:nsync.ExcludeWindow.UpdateListBox">
+            <summary>
+            updates the listbox with items from the backend list
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.RefreshInterface">
+            <summary>
+            refresh the message displayed in the status label
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.ShortenPath(System.String)">
+            <summary>
+            shortens the paths of items in the exclude box
+            </summary>
+            <param name="fullPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.ExcludeWindow.AddListBoxItem(System.String,System.Windows.Media.Brush,System.String)">
+            <summary>
+            add an item to the listbox
+            </summary>
+            <param name="excludeStatement">string of the statement to add</param>
+            <param name="itemColor">color of the string</param>
+            <param name="tag">the actual path to be added to the tag property of the listbox item</param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.SaveLastState">
+            <summary>
+            saves the previous state of all the backend lists
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.CopyList(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            copy one list to another
+            </summary>
+            <param name="source">the list to copy from</param>
+            <param name="destination">the list to copy to</param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.BoxExclude_DragLeave(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            event handler when items are dragged out without being dropped
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.RestoreLastState">
+            <summary>
+            restores the backend lists to their previous state
+            </summary>
+        </member>
         <member name="M:nsync.ExcludeWindow.ClearListBox">
             <summary>
             Clear the listbox in the gui
             </summary>
+        </member>
+        <member name="M:nsync.ExcludeWindow.BoxExclude_Drop(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            event handler when items are dropped in the exclude box
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.ComboBoxFileType_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            event handler when the selection is changed in the combobox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.ListBoxExclude_MouseUp(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            event handler when the mouse is clicked on an item in the exclude list box. delete the item.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="M:nsync.ExcludeWindow.ButtonClear_Click(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -1381,142 +1690,6 @@
         <member name="P:nsync.ExcludeWindow.RightPath">
             <summary>
             Property for right path
-            </summary>
-        </member>
-        <member name="T:nsync.GIFImageControl">
-            <summary>
-            GIF display image control
-            </summary>
-        </member>
-        <member name="F:nsync.GIFImageControl.AllowClickToPauseProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:nsync.GIFImageControl.GIFSourceProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="F:nsync.GIFImageControl.PlayAnimationProperty">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:nsync.GIFImageControl.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:nsync.GIFImageControl.DeleteObject(System.IntPtr)">
-            <summary>
-            
-            </summary>
-            <param name="hDc"></param>
-            <returns></returns>
-        </member>
-        <member name="P:nsync.GIFImageControl.AllowClickToPause">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:nsync.GIFImageControl.PlayAnimation">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:nsync.GIFImageControl.GIFSource">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="E:nsync.GIFImageControl.Click">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:nsync.Intelligence.IsThereFilesInRootPath(System.String)">
-            <summary>
-            Check if there is any files inside the provided path
-            </summary>
-            <param name="path">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path has any files</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsPathRoot(System.String)">
-            <summary>
-            Checks if a path is the root path
-            </summary>
-            <param name="path">This string is the path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path is a root path</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFolderExists(System.String)">
-            <summary>
-            Checks if the folder path exists
-            </summary>
-            <param name="folderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path exists</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFoldersSimilar(System.String,System.String)">
-            <summary>
-            Checks if two folder paths are similar
-            </summary>
-            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
-            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if both folder paths are similar</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsFolderSubFolder(System.String,System.String)">
-            <summary>
-            Checks if a folder is a subfolder of another
-            </summary>
-            <param name="leftFolderPath">This parameter is the folder path to be checked</param>
-            <param name="rightFolderPath">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if a folder is a subfolder of another</returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsRemovableDrive(System.String)">
-            <summary>
-            Checks if the folder path belongs to a removable drive
-            </summary>
-            <param name="path">This parameter is the folder path to be checked</param>
-            <returns>Returns a boolean which indicates if the folder path belongs to a removable drive</returns>
-        </member>
-        <member name="M:nsync.Intelligence.FindRemoveableDiskSerialNumber(System.String)">
-            <summary>
-            Finds the unique serial number of the removeable disk
-            </summary>
-            <param name="path">This parameter is the directory to be checked</param>
-            <returns>Returns a string which contains the serial number of the removeable disk
-            <para>Returns null if the directory is not a removeable disk</para></returns>
-        </member>
-        <member name="M:nsync.Intelligence.IsSamePath(System.String[],System.String[])">
-            <summary>
-            Compares the folder paths of the input arrays and determine if they
-            have the same path from the root directory.
-            </summary>
-            <param name="sourceArray">Array of a folder path to be checked</param>
-            <param name="destinationArray">Array of a folder path to be checked</param>
-            <returns></returns>
-        </member>
-        <member name="T:nsync.TrackBackPage">
-            <summary>
-            Interaction logic for TrackBackPage.xaml
-            </summary>
-            <summary>
-            TrackBackPage
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackPage.#ctor">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackPage.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:nsync.SingleInstance">
-            <summary>
-            SingleInstance class adds support for a having Single Instance Applications in WPF
             </summary>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">

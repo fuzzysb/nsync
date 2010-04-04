@@ -32,7 +32,11 @@ namespace nsync
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// enable the window to be dragged and moved on mousedown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void titleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -49,6 +53,12 @@ namespace nsync
             this.Close();
         }
 
+        /// <summary>
+        /// when the visual preview is loaded, fill the labels with the left and right folder paths
+        /// display the preview information in the listview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WindowVisualPreview_Loaded(object sender, RoutedEventArgs e)
         {
             LabelLeftPath.Content = ShortenPath(leftPath,130);
@@ -59,6 +69,9 @@ namespace nsync
             DisplayInfo();          
         }
 
+        /// <summary>
+        /// Method to display the preview information in the listview
+        /// </summary>
         private void DisplayInfo()
         {
             foreach (FileData file in previewFileData)
@@ -112,6 +125,7 @@ namespace nsync
                 }
             }
         }
+
         /// <summary>
         /// Adds an entry into the preview list view
         /// </summary>
