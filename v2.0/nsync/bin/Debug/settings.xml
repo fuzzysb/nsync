@@ -1,28 +1,25 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Eugene\Desktop\1</left1>
-    <right1>C:\Users\Eugene\Desktop\2</right1>
-    <left2>G:\</left2>
-    <right2>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\2</right2>
-    <left3>G:\</left3>
-    <right3>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\3</right3>
-    <left4>G:\</left4>
-    <right4>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\1\New folder</right4>
-    <left5>G:\</left5>
-    <right5>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2</right5>
+    <left1>C:\Folder1</left1>
+    <right1>C:\Folder2</right1>
+    <left2>C:\Folder1</left2>
+    <right2>C:\Folder1</right2>
+    <left3>
+    </left3>
+    <right3>
+    </right3>
+    <left4>
+    </left4>
+    <right4>
+    </right4>
+    <left5>
+    </left5>
+    <right5>
+    </right5>
   </MRU>
   <SETTINGS>
-    <HelperWindowIsOn>True</HelperWindowIsOn>
+    <HelperWindowTimer>5</HelperWindowTimer>
   </SETTINGS>
-  <REMOVEABLEDISK>
-    <Disk ID="2EAFFD68">
-      <left>G:\</left>
-      <right>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2</right>
-    </Disk>
-    <Disk ID="74BE4B53">
-      <left>G:\</left>
-      <right>C:\Users\Seah Shao Qi\Desktop\TestFolders\a1\test2\2</right>
-    </Disk>
-  </REMOVEABLEDISK>
+  <REMOVEABLEDISK />
 </nsync>

@@ -9,6 +9,7 @@ namespace nsync
     public partial class SettingsPage : Page
     {
         private Settings settingsManager;
+        private bool pageIsLoaded = false;
 
         /// <summary>
         /// Constructor for SettingsPage
@@ -25,32 +26,44 @@ namespace nsync
         private void CheckSettings()
         {
             settingsManager = Settings.Instance;
-            if (!settingsManager.GetHelperWindowStatus())
+            int loadedTimer = settingsManager.GetHelperWindowStatus();
+            if (loadedTimer == -1)
+                loadedTimer = 11;
+            HelperWindowSlider.Value = loadedTimer;
+            HelperWindowSliderValue.SelectedIndex = loadedTimer;
+            pageIsLoaded = true;
+        }
+
+        /// <summary>
+        /// Event when comboBox value is changed
+        /// </summary>
+        private void HelperWindowSliderValue_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (pageIsLoaded)
             {
-                CheckboxToggleHelperWindow.IsChecked = true;
+                if (HelperWindowSlider.Value != HelperWindowSliderValue.SelectedIndex)
+                {
+                    HelperWindowSlider.Value = HelperWindowSliderValue.SelectedIndex;
+                    settingsManager.SetHelperWindowStatus((int)HelperWindowSlider.Value);
+                }
             }
         }
 
         /// <summary>
-        /// This method is called when user checks the checkbox
+        /// Event when slider value is changed
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CheckboxToggleHelperWindow_Checked(object sender, RoutedEventArgs e)
+        private void HelperWindowSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            settingsManager = Settings.Instance;
-            settingsManager.SetHelperWindowStatus(false);
+            if (pageIsLoaded)
+            {
+                if (HelperWindowSliderValue.SelectedIndex != HelperWindowSlider.Value)
+                {
+                    HelperWindowSliderValue.SelectedIndex = (int)HelperWindowSlider.Value;
+                    settingsManager.SetHelperWindowStatus((int)HelperWindowSlider.Value);
+                }
+            }
         }
 
-        /// <summary>
-        /// This method is called when user unchecks the checkbox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CheckboxToggleHelperWindow_UnChecked(object sender, RoutedEventArgs e)
-        {
-            settingsManager = Settings.Instance;
-            settingsManager.SetHelperWindowStatus(true);
-        }
+
     }
 }

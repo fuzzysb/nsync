@@ -42,17 +42,23 @@ namespace nsync
 
         #region Public Methods
         /// <summary>
-        /// Change the status of the HelperWindow which determines if it should appear in nsync
+        /// Change the status of the HelperWindow which determines the duration it appears in nsync
         /// </summary>
-        /// <param name="status">This parameter is a boolean to indicate if HelperWindow should appear</param>
-        public void SetHelperWindowStatus(bool status)
+        /// <param name="timer">This parameter is an int to indicate how long the HelperWindow should appear</param>
+        public void SetHelperWindowStatus(int timer)
         {
-            IsSettingsFileExists();
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
 
             XmlDocument doc = new XmlDocument();
-            XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS+"/HelperWindowIsOn");
+            XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
 
-            helperWindowStatusNode.InnerText = "" + status;
+            if (timer == 11)
+                timer = -1;
+
+            helperWindowStatusNode.InnerText = "" + timer;
 
             doc.Save(settingsFile);
 
@@ -61,15 +67,18 @@ namespace nsync
         /// <summary>
         /// Gets the current status of the HelperWindow
         /// </summary>
-        /// <returns>Returns a boolean which indicates if HelperWindow should appear</returns>
-        public bool GetHelperWindowStatus()
+        /// <returns>Returns an int which indicates how long the HelperWindow should appear</returns>
+        public int GetHelperWindowStatus()
         {
-            IsSettingsFileExists();
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
 
             XmlDocument doc = new XmlDocument();
-            XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS+"/HelperWindowIsOn");
+            XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
 
-            return Boolean.Parse(helperWindowStatusNode.InnerText);
+            return int.Parse(helperWindowStatusNode.InnerText);
         }
 
         /// <summary>
@@ -289,7 +298,7 @@ namespace nsync
         /// <returns>Returns a boolean to indicate if the XML document is valid</returns>
         private bool CheckSettingsXML(XmlDocument doc)
         {
-            if (null == doc.SelectSingleNode(PATH_SETTINGS+"/HelperWindowIsOn"))
+            if (null == doc.SelectSingleNode(PATH_SETTINGS + "/HelperWindowTimer"))
                 return false;
 
             if (null == doc.SelectSingleNode(PATH_REMOVEABLEDISK))
@@ -337,8 +346,8 @@ namespace nsync
 
             textWriter.WriteStartElement("SETTINGS");
 
-            textWriter.WriteStartElement("HelperWindowIsOn");
-            textWriter.WriteString("true");
+            textWriter.WriteStartElement("HelperWindowTimer");
+            textWriter.WriteString("5");
             textWriter.WriteEndElement();
 
             textWriter.WriteEndElement();

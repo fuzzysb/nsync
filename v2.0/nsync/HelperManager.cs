@@ -14,6 +14,7 @@ namespace nsync
         #region Class Variables
         private HelperWindow windowHelper;
         private Settings settingsManager;
+        private int timer;
         #endregion
 
         #region Public Methods
@@ -34,13 +35,13 @@ namespace nsync
         /// Tell windowHelper to display the notification
         /// </summary>
         /// <param name="helpString">The string to be displayed in the notifiation window</param>
-        /// <param name="time">The duration for which the notification window should be active</param>
+        /// <param name="piority">The piority of the window to be displayed</param>
         /// <param name="windowPosition">The position for which the notification window should be placed</param>
-        public void Show(string helpString, int time, HelperWindow.windowStartPosition windowPosition)
+        public void Show(string helpString, int piority, HelperWindow.windowStartPosition windowPosition)
         {
-            if (true == helperWindowIsOn())
+            if ((helperWindowIsOn()) || ((!helperWindowIsOn()) && (piority == 0)))
             {
-                windowHelper.SetSettings(helpString, time, windowPosition);
+                windowHelper.SetSettings(helpString, determineTimer(piority), windowPosition);
                 if (windowHelper.Visibility != Visibility.Visible)
                 {
                     windowHelper.Visibility = Visibility.Visible;
@@ -75,13 +76,33 @@ namespace nsync
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Determines the duration for displaying the helper message
+        /// </summary>
+        /// <returns>The result is returned as an int</returns>
+        private int determineTimer(int piority)
+        {
+            if (piority == 0)
+            {
+                if (timer < 5)
+                    return 5;
+                return timer;
+            }
+            else
+                return timer;
+        }
+
         /// <summary>
         /// Checks if the notification window should be on/off
         /// </summary>
         /// <returns>The result is returned as a boolean</returns>
         private bool helperWindowIsOn()
         {
-            return settingsManager.GetHelperWindowStatus();
+            timer = settingsManager.GetHelperWindowStatus();
+            if (timer == 0)
+                return false;
+            return true;
         }
         #endregion
     }
