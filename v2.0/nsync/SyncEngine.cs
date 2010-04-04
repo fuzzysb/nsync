@@ -26,6 +26,26 @@ namespace nsync
         private Intelligence intelligentManager;
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// Setter and Getter method for left folder path
+        /// </summary>
+        public string LeftPath
+        {
+            get { return leftPath; }
+            set { leftPath = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for right folder path
+        /// </summary>
+        public string RightPath
+        {
+            get { return rightPath; }
+            set { rightPath = value; }
+        }
+        #endregion
+
         #region Public Methods
         /// <summary>
         /// Constructor for SyncEngine
@@ -46,14 +66,14 @@ namespace nsync
         }
 
         /// <summary>
-        /// Try to get the serial number of removeable disk if path is a removeable disk
+        /// Try to get the serial number of removable disk if path is a removeable disk
         /// </summary>
         /// <param name="path">This parameter indicates the path to be checked</param>
         /// <returns>Returns a string which contains the serial number of the removeable disk, if it exists
         /// <para>Otherwise, return null</para></returns>
-        public string GetSerialNumberOfRemoveableDisk(string path)
+        public string GetRemovableDiskSerialNumberWithChecks(string path)
         {
-            // check if the path is removeable disk first
+            // check if the path is removable disk first
             if (!intelligentManager.IsRemovableDrive(path))
                 return null;
 
@@ -70,17 +90,7 @@ namespace nsync
                 return null;
 
             // if passed all the previous 2 checks, return the serial number of removeable disk
-            return GetRemoveableDiskSerialNumber(path);
-        }
-
-        /// <summary>
-        /// Checks if a path is a removeable disk
-        /// </summary>
-        /// <param name="path">This parameter indicates the path to be checked</param>
-        /// <returns>Returns a boolean which indicates if the path is a removeable disk</returns>
-        public bool IsPathRemoveableDisk(string path)
-        {
-            return intelligentManager.IsRemovableDrive(path);
+            return GetRemovableDiskSerialNumber(path);
         }
 
         /// <summary>
@@ -89,9 +99,19 @@ namespace nsync
         /// <param name="path">This parameter indicates the path to be checked</param>
         /// <returns>Returns a string which contains the serial number of the removeable disk
         /// <para>Returns a null if path is not removeable disk</para></returns>
-        public string GetRemoveableDiskSerialNumber(string path)
+        public string GetRemovableDiskSerialNumber(string path)
         {
             return intelligentManager.FindRemoveableDiskSerialNumber(path);
+        }
+
+        /// <summary>
+        /// Checks if a path is a removeable disk
+        /// </summary>
+        /// <param name="path">This parameter indicates the path to be checked</param>
+        /// <returns>Returns a boolean which indicates if the path is a removeable disk</returns>
+        public bool IsPathRemovableDisk(string path)
+        {
+            return intelligentManager.IsRemovableDrive(path);
         }
 
         /// <summary>
@@ -168,38 +188,19 @@ namespace nsync
         /// </summary>
         public void StartSync()
         {
-            // Start the asynchronous operation.
             backgroundWorkerForSync.RunWorkerAsync();
         }
 
         /// <summary>
-        /// Gets the stored folder paths in SyncEngine
+        /// Checks if folder paths are already synchronized
         /// </summary>
-        /// <returns>Returns an array of string which contains 2 folder paths</returns>
-        public string[] GetPath()
+        /// <returns>Return the result which indicates if folder paths are already synchronized</returns>
+        public bool IsFoldersSync()
         {
-            string[] listOfPaths = new string[2];
-            listOfPaths[0] = leftPath;
-            listOfPaths[1] = rightPath;
-            return listOfPaths;
-        }
-
-        /// <summary>
-        /// Setter and Getter method for left folder path
-        /// </summary>
-        public string LeftPath
-        {
-            get { return leftPath; }
-            set { leftPath = value; }
-        }
-
-        /// <summary>
-        /// Setter and Getter method for right folder path
-        /// </summary>
-        public string RightPath
-        {
-            get { return rightPath; }
-            set { rightPath = value; }
+            if (countChanges == 0)
+                return true;
+            else
+                return false;
         }
 
         /// <summary>
@@ -209,18 +210,6 @@ namespace nsync
         public bool IsFolderSubfolder()
         {
             return intelligentManager.IsFolderSubFolder(leftPath, rightPath);
-        }
-
-        /// <summary>
-        /// Checks if folder paths are already synchronized
-        /// </summary>
-        /// <returns>Return the result which indicates if folder paths are already synchronized</returns>
-        public bool AreFoldersSync()
-        {
-            if (countChanges == 0)
-                return true;
-            else
-                return false;
         }
 
         /// <summary>
@@ -249,21 +238,11 @@ namespace nsync
         {
             return intelligentManager.IsFoldersSimilar(leftPath, rightPath);
         }
-
-        /// <summary>
-        /// Ask IntelligentManager to check if a folder path is a removable drive
-        /// </summary>
-        /// <param name="path">This parameters indicates the folder path to be checked</param>
-        /// <returns>Returns the result of the check in a boolean</returns>
-        public bool CheckRemovableDrive(string path)
-        {
-            return intelligentManager.IsRemovableDrive(path);
-        }
         #endregion
 
         #region Private Methods
         /// <summary>
-        /// Ask Intellgence to check if it is required to create a folder on any root path
+        /// Checks if it is required to create a folder on any root path
         /// </summary>
         /// <returns>Returns a boolean with the result of the query</returns>
         private bool IsRequiredToCreateFolder()
@@ -276,7 +255,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// Computes the amount of free disk space
+        /// Computes the amount of free disk space of a disk drive
         /// <para>Units is in bytes</para>
         /// </summary>
         /// <param name="drive">This parameter is the drive volume to be checked</param>
@@ -290,13 +269,18 @@ namespace nsync
         }
 
         /// <summary>
-        /// Converts bytes to megabytes
+        /// Checks if there is sufficient disk space for synchronization to be done
         /// </summary>
-        /// <param name="amount">This parameter is the value to be converted</param>
-        /// <returns>Returns a string which contains the converted value</returns>
-        private string ConvertBytesToMegabytes(ulong amount)
+        /// <returns>Returns a boolean of the result</returns>
+        private bool CheckSpace()
         {
-            return (Convert.ToUInt64(amount.ToString()) / 1000000).ToString() + " MB";
+            if (!isCheckForLeftDone)
+            {
+                isCheckForLeftDone = !isCheckForLeftDone;
+                return diskSpaceNeededForLeft < freeDiskSpaceForRight;
+            }
+            return diskSpaceNeededForLeft < freeDiskSpaceForRight &&
+                   diskSpaceNeededForRight < freeDiskSpaceForLeft;
         }
 
         /// <summary>
@@ -369,7 +353,6 @@ namespace nsync
                 destProvider.Configuration.ConflictResolutionPolicy = ConflictResolutionPolicy.ApplicationDefined;
                 SyncCallbacks destinationCallBacks = destProvider.DestinationCallbacks;
                 destinationCallBacks.ItemConflicting += new EventHandler<ItemConflictingEventArgs>(OnItemConflicting);
-                //destinationCallBacks.ItemConstraint += new EventHandler<ItemConstraintEventArgs>(OnItemConstraint);
 
                 if(isPreview)
                     destProvider.ApplyingChange += new EventHandler<ApplyingChangeEventArgs>(OnApplyingChange);
@@ -396,21 +379,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// Checks if there is sufficient disk space for synchronization to be done
-        /// </summary>
-        /// <returns>Returns a boolean of the result</returns>
-        private bool CheckSpace()
-        {
-            if (!isCheckForLeftDone)
-            {
-                isCheckForLeftDone = !isCheckForLeftDone;
-                return diskSpaceNeededForLeft < freeDiskSpaceForRight;
-            }
-            return diskSpaceNeededForLeft < freeDiskSpaceForRight &&
-                   diskSpaceNeededForRight < freeDiskSpaceForLeft;
-        }
-
-        /// <summary>
         /// This method is called when there are conflicting items during synchronization
         /// </summary>
         /// <param name="sender"></param>
@@ -420,16 +388,6 @@ namespace nsync
             // Latest change wins policy
             args.SetResolutionAction(ConflictResolutionAction.Merge);
         }
-
-        ///// <summary>
-        ///// This method is called when there are constraint items during synchronization
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="args"></param>
-        //private static void OnItemConstraint(object sender, ItemConstraintEventArgs args)
-        //{
-        //    args.SetResolutionAction(ConstraintConflictResolutionAction.Merge);
-        //}
 
         /// <summary>
         /// This method is called when changes are done to a file
@@ -470,7 +428,7 @@ namespace nsync
         private void backgroundWorkerForSync_DoWork(object sender, DoWorkEventArgs e)
         {
             // e.Result will be available to RunWorkerCompletedEventArgs later
-            // when the work assigned is completed.
+            // when the job is completed.
             e.Result = InternalStartSync();
         }
 
@@ -481,17 +439,7 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForPreSync_DoWork(object sender, DoWorkEventArgs e)
         {
-            //try
-            //{
                 e.Result = InternalPreSync();
-            //}
-
-            // WILL GET EXCEPTION FROM InternalPreSync()
-            // BUT WHERE THIS EXCEPTION GETS THROWN TO IF I THROW IT?
-            //catch(System.UnauthorizedAccessException ex)
-            //{
-            //    //throw;
-            //}
         }
 
         /// <summary>
@@ -573,7 +521,7 @@ namespace nsync
 
                 return true;
             }
-            catch //(Exception e)
+            catch
             {
                 return false;
             }

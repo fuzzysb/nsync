@@ -498,7 +498,7 @@ namespace nsync
         /// <param name="leftOrRight"></param>
         private void ShowRemovableDrives(string path, string leftOrRight)
         {
-            if (synchronizer.CheckRemovableDrive(path))
+            if (synchronizer.IsPathRemovableDisk(path))
             {
                 if (leftOrRight == "left" || leftOrRight == "Left")
                 {
@@ -951,19 +951,19 @@ namespace nsync
         {
             // check if actualLeftPath and actualRightPath is removeable disk first
             bool isLeftPathRemoveableDisk, isRightPathRemoveableDisk;
-            isLeftPathRemoveableDisk = synchronizer.IsPathRemoveableDisk(Directory.GetDirectoryRoot(actualLeftPath));
-            isRightPathRemoveableDisk = synchronizer.IsPathRemoveableDisk(Directory.GetDirectoryRoot(actualRightPath));
+            isLeftPathRemoveableDisk = synchronizer.IsPathRemovableDisk(Directory.GetDirectoryRoot(actualLeftPath));
+            isRightPathRemoveableDisk = synchronizer.IsPathRemovableDisk(Directory.GetDirectoryRoot(actualRightPath));
             if (isLeftPathRemoveableDisk || isRightPathRemoveableDisk)
             {
                 // if they are removeable disk, get their serial number
                 // and ask settings class to save the folder pair
                 if (isLeftPathRemoveableDisk)
                 {
-                    settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemoveableDiskSerialNumber(actualLeftPath), actualLeftPath, actualRightPath);
+                    settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemovableDiskSerialNumber(actualLeftPath), actualLeftPath, actualRightPath);
                 }
                 if(isRightPathRemoveableDisk)
                 {
-                    settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemoveableDiskSerialNumber(actualRightPath), actualLeftPath, actualRightPath);
+                    settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemovableDiskSerialNumber(actualRightPath), actualLeftPath, actualRightPath);
                 }
             }
         }
@@ -981,7 +981,7 @@ namespace nsync
             string serialNumber;
             if (leftOrRight == "left" || leftOrRight == "Left")
             {
-                if ((serialNumber = synchronizer.GetSerialNumberOfRemoveableDisk(actualLeftPath)) != null)
+                if ((serialNumber = synchronizer.GetRemovableDiskSerialNumberWithChecks(actualLeftPath)) != null)
                 {
                     if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
                     {
@@ -999,7 +999,7 @@ namespace nsync
             }
             else if (leftOrRight == "right" || leftOrRight == "Right")
             {
-                if ((serialNumber = synchronizer.GetSerialNumberOfRemoveableDisk(actualRightPath)) != null)
+                if ((serialNumber = synchronizer.GetRemovableDiskSerialNumberWithChecks(actualRightPath)) != null)
                 {
                     if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
                     {
@@ -1116,7 +1116,7 @@ namespace nsync
             fileData = new List<FileData>();
             fileData = previewSync.GetData();
 
-            if (synchronizer.AreFoldersSync())
+            if (synchronizer.IsFoldersSync())
             {
                 ImageTeam14Over.OpacityMask = blankOpacityMask;
 
@@ -1205,7 +1205,7 @@ namespace nsync
             LabelProgress.Content = MESSAGE_SYNCING_FOLDERS;
             LabelProgressPercent.Visibility = Visibility.Visible;
             LabelProgressPercent.Content = "0 %";
-            //if (!synchronizer.AreFoldersSync()) trackBack.BackupFolders(LeftText.Text, RightText.Text);
+            //if (!synchronizer.IsFoldersSync()) trackBack.BackupFolders(LeftText.Text, RightText.Text);
             synchronizer.StartSync();
         }
 

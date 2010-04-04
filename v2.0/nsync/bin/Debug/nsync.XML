@@ -46,28 +46,28 @@
             Constructor for SyncEngine
             </summary>
         </member>
-        <member name="M:nsync.SyncEngine.IsRememberLastRemoveableDiskSyncValid(System.String)">
+        <member name="M:nsync.SyncEngine.GetRemovableDiskSerialNumberWithChecks(System.String)">
             <summary>
-            Try to get the serial number of removeable disk if path is a removeable disk
+            Try to get the serial number of removable disk if path is a removeable disk
             </summary>
             <param name="path">This parameter indicates the path to be checked</param>
             <returns>Returns a string which contains the serial number of the removeable disk, if it exists
             <para>Otherwise, return null</para></returns>
         </member>
-        <member name="M:nsync.SyncEngine.IsPathRemoveableDisk(System.String)">
-            <summary>
-            Checks if a path is a removeable disk
-            </summary>
-            <param name="path">This parameter indicates the path to be checked</param>
-            <returns>Returns a boolean which indicates if the path is a removeable disk</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.GetRemoveableDiskSerialNumber(System.String)">
+        <member name="M:nsync.SyncEngine.GetRemovableDiskSerialNumber(System.String)">
             <summary>
             Gets the removeable disk serial number
             </summary>
             <param name="path">This parameter indicates the path to be checked</param>
             <returns>Returns a string which contains the serial number of the removeable disk
             <para>Returns a null if path is not removeable disk</para></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsPathRemovableDisk(System.String)">
+            <summary>
+            Checks if a path is a removeable disk
+            </summary>
+            <param name="path">This parameter indicates the path to be checked</param>
+            <returns>Returns a boolean which indicates if the path is a removeable disk</returns>
         </member>
         <member name="M:nsync.SyncEngine.CreateFolderForRootPath">
             <summary>
@@ -85,23 +85,17 @@
             Get the real synchronization process to start
             </summary>
         </member>
-        <member name="M:nsync.SyncEngine.GetPath">
+        <member name="M:nsync.SyncEngine.IsFoldersSync">
             <summary>
-            Gets the stored folder paths in SyncEngine
+            Checks if folder paths are already synchronized
             </summary>
-            <returns>Returns an array of string which contains 2 folder paths</returns>
+            <returns>Return the result which indicates if folder paths are already synchronized</returns>
         </member>
         <member name="M:nsync.SyncEngine.IsFolderSubfolder">
             <summary>
             Asks IntelligentManager to check if a folder is subfolder of another folder
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.AreFoldersSync">
-            <summary>
-            Checks if folder paths are already synchronized
-            </summary>
-            <returns>Return the result which indicates if folder paths are already synchronized</returns>
         </member>
         <member name="M:nsync.SyncEngine.IsFolderExists(System.String)">
             <summary>
@@ -116,33 +110,25 @@
             </summary>
             <returns>Returns the result of the check in a boolean</returns>
         </member>
-        <member name="M:nsync.SyncEngine.CheckRemovableDrive(System.String)">
-            <summary>
-            Ask IntelligentManager to check if a folder path is a removable drive
-            </summary>
-            <param name="path">This parameters indicates the folder path to be checked</param>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
         <member name="M:nsync.SyncEngine.IsRequiredToCreateFolder">
             <summary>
-            Ask Intellgence to check if it is required to create a folder on any root path
+            Checks if it is required to create a folder on any root path
             </summary>
             <returns>Returns a boolean with the result of the query</returns>
         </member>
         <member name="M:nsync.SyncEngine.GetFreeDiskSpaceInBytes(System.String)">
             <summary>
-            Computes the amount of free disk space
+            Computes the amount of free disk space of a disk drive
             <para>Units is in bytes</para>
             </summary>
             <param name="drive">This parameter is the drive volume to be checked</param>
             <returns></returns>
         </member>
-        <member name="M:nsync.SyncEngine.ConvertBytesToMegabytes(System.UInt64)">
+        <member name="M:nsync.SyncEngine.CheckSpace">
             <summary>
-            Converts bytes to megabytes
+            Checks if there is sufficient disk space for synchronization to be done
             </summary>
-            <param name="amount">This parameter is the value to be converted</param>
-            <returns>Returns a string which contains the converted value</returns>
+            <returns>Returns a boolean of the result</returns>
         </member>
         <member name="M:nsync.SyncEngine.DetectChangesonFileSystemReplica(System.String,Microsoft.Synchronization.Files.FileSyncScopeFilter,Microsoft.Synchronization.Files.FileSyncOptions)">
             <summary>
@@ -163,12 +149,6 @@
             <param name="options">This parameter holds the synchronization options</param>
             <param name="isPreview">This parameter is a boolean which indicates if this method should be run in preview mode</param>
             <returns>Returns a boolean to indicate if the the synchronization was successful</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.CheckSpace">
-            <summary>
-            Checks if there is sufficient disk space for synchronization to be done
-            </summary>
-            <returns>Returns a boolean of the result</returns>
         </member>
         <member name="M:nsync.SyncEngine.OnItemConflicting(System.Object,Microsoft.Synchronization.ItemConflictingEventArgs)">
             <summary>
