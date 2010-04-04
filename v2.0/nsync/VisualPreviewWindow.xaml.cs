@@ -61,9 +61,9 @@ namespace nsync
         /// <param name="e"></param>
         private void WindowVisualPreview_Loaded(object sender, RoutedEventArgs e)
         {
-            LabelLeftPath.Content = ShortenPath(leftPath,130);
+            LabelLeftPath.Content = ShortenPath(leftPath,64);
             LabelLeftPath.ToolTip = leftPath;
-            LabelRightPath.Content = ShortenPath(rightPath,130);
+            LabelRightPath.Content = ShortenPath(rightPath,64);
             LabelRightPath.ToolTip = rightPath;
 
             DisplayInfo();          
@@ -178,10 +178,38 @@ namespace nsync
         private string ShortenPath(string fullPath, int maxLength)
         {
             string[] fullPathArray = fullPath.Split(new char[] { '\\' });
-
-            if (fullPath.Length > maxLength)
+            if (fullPathArray.Length >= 2) //Check if path is valid
             {
-                return fullPathArray[0] + '\\' + "..." + '\\' + fullPathArray[fullPathArray.Length - 1];
+
+                if (fullPath.Length > maxLength)
+                {
+                    string finalPath = null, tempPath;
+                    for (int i = 1; i <= fullPathArray.Length - 1; i++)
+                    {
+                        tempPath = fullPathArray[0] + '\\';
+                        for (int j = 1; j < i && j < fullPathArray.Length - 2; j++)
+                        {
+                            tempPath += fullPathArray[j] + '\\';
+                        }
+                        if (fullPathArray.Length > 2)
+                            tempPath += "...\\";
+                        tempPath += fullPathArray[fullPathArray.Length - 1];
+
+                        if (tempPath.Length < maxLength)
+                            finalPath = tempPath;
+                        else
+                        {
+                            string stringToCut = fullPathArray[fullPathArray.Length - 1];
+                            finalPath = fullPathArray[0];
+                            if (fullPathArray.Length > 2)
+                                finalPath += "\\...";
+                            finalPath += "\\" + stringToCut.Substring(0, maxLength / 2 - 10) + "..." + stringToCut.Substring(stringToCut.Length - maxLength / 2, maxLength / 2);
+                            break;
+                        }
+                    }
+                    return finalPath;
+                }
+                return fullPath;
             }
             return fullPath;
         }

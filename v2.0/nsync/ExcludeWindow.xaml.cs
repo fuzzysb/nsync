@@ -131,9 +131,9 @@ namespace nsync
         /// <param name="e"></param>
         private void WindowExclude_Loaded(object sender, RoutedEventArgs e)
         {
-            LabelLeftPath.Content = ShortenPath(leftPath, 130);
+            LabelLeftPath.Content = ShortenPath(leftPath, 75);
             LabelLeftPath.ToolTip = leftPath;
-            LabelRightPath.Content = ShortenPath(rightPath, 130);
+            LabelRightPath.Content = ShortenPath(rightPath, 75);
             LabelRightPath.ToolTip = rightPath;
 
             PopulateFileTypes();
@@ -148,10 +148,38 @@ namespace nsync
         private string ShortenPath(string fullPath, int maxLength)
         {
             string[] fullPathArray = fullPath.Split(new char[] { '\\' });
-
-            if (fullPath.Length > maxLength)
+            if (fullPathArray.Length >= 2) //Check if path is valid
             {
-                return fullPathArray[0] + '\\' + "..." + '\\' + fullPathArray[fullPathArray.Length - 1];
+
+                if (fullPath.Length > maxLength)
+                {
+                    string finalPath = null, tempPath;
+                    for (int i = 1; i <= fullPathArray.Length - 1; i++)
+                    {
+                        tempPath = fullPathArray[0] + '\\';
+                        for (int j = 1; j < i && j < fullPathArray.Length - 2; j++)
+                        {
+                            tempPath += fullPathArray[j] + '\\';
+                        }
+                        if (fullPathArray.Length > 2)
+                            tempPath += "...\\";
+                        tempPath += fullPathArray[fullPathArray.Length - 1];
+
+                        if (tempPath.Length < maxLength)
+                            finalPath = tempPath;
+                        else
+                        {
+                            string stringToCut = fullPathArray[fullPathArray.Length - 1];
+                            finalPath = fullPathArray[0];
+                            if (fullPathArray.Length > 2)
+                                finalPath += "\\...";
+                            finalPath += "\\" + stringToCut.Substring(0, maxLength / 2 - 10) + "..." + stringToCut.Substring(stringToCut.Length - maxLength / 2, maxLength / 2);
+                            break;
+                        }
+                    }
+                    return finalPath;
+                }
+                return fullPath;
             }
             return fullPath;
         }
@@ -320,19 +348,19 @@ namespace nsync
             // Setup listbox items
             for (int i = 0; i < excludeFolders.Count; i++)
             {
-                AddListBoxItem("Exclude Folder: " + excludeFolders[i], new SolidColorBrush(Colors.SkyBlue), excludeFolders[i]);
+                AddListBoxItem("Exclude Folder: ", new SolidColorBrush(Colors.SkyBlue), excludeFolders[i]);
             }
             for (int i = 0; i < excludeFiles.Count; i++)
             {
-                AddListBoxItem("Exclude File: " + excludeFiles[i], new SolidColorBrush(Colors.White), excludeFiles[i]);
+                AddListBoxItem("Exclude File: ", new SolidColorBrush(Colors.White), excludeFiles[i]);
             }
             for (int i = 0; i < excludeFileTypes.Count; i++)
             {
-                AddListBoxItem("Exclude File Type: " + excludeFileTypes[i], new SolidColorBrush(Colors.Orange), excludeFileTypes[i]);
+                AddListBoxItem("Exclude File Type: ", new SolidColorBrush(Colors.Orange), excludeFileTypes[i]);
             }
             for (int i = 0; i < excludeInvalid.Count; i++)
             {
-                AddListBoxItem("Not in synchronized folders: " + excludeInvalid[i], new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
+                AddListBoxItem("Not in synchronized folders: ", new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
             }
 
             RefreshInterface();
@@ -360,11 +388,11 @@ namespace nsync
         /// </summary>
         /// <param name="fullPath"></param>
         /// <returns></returns>
-        private string ShortenPath(string fullPath)
+        private string ShortenStatement(string fullPath, int maxLength)
         {
             if (fullPath.Length > MAX_STRING_LENGTH)
             {
-                return fullPath.Substring(0, 50) + "..." + fullPath.Substring(fullPath.Length - 40, 40);
+                return fullPath.Substring(0, maxLength / 2 - 4) + "..." + fullPath.Substring(fullPath.Length - maxLength/2, maxLength / 2);
             }
             return fullPath;
         }
@@ -378,8 +406,8 @@ namespace nsync
         private void AddListBoxItem(string excludeStatement, Brush itemColor, string tag)
         {
             ListBoxItem excludeListBoxItem = new ListBoxItem();
-            excludeListBoxItem.Content = ShortenPath(excludeStatement);
-            excludeListBoxItem.ToolTip = excludeStatement;
+            excludeListBoxItem.Content = excludeStatement + ShortenStatement(tag, 90 - excludeStatement.Length);
+            excludeListBoxItem.ToolTip = excludeStatement + tag;
             excludeListBoxItem.Foreground = itemColor;
             excludeListBoxItem.Tag = tag;
 
