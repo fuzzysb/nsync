@@ -981,7 +981,7 @@ namespace nsync
             string serialNumber;
             if (leftOrRight == "left" || leftOrRight == "Left")
             {
-                if ((serialNumber = synchronizer.IsRememberLastRemoveableDiskSyncValid(actualLeftPath)) != null)
+                if ((serialNumber = synchronizer.GetSerialNumberOfRemoveableDisk(actualLeftPath)) != null)
                 {
                     if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
                     {
@@ -999,7 +999,7 @@ namespace nsync
             }
             else if (leftOrRight == "right" || leftOrRight == "Right")
             {
-                if ((serialNumber = synchronizer.IsRememberLastRemoveableDiskSyncValid(actualRightPath)) != null)
+                if ((serialNumber = synchronizer.GetSerialNumberOfRemoveableDisk(actualRightPath)) != null)
                 {
                     if ((newPath = settingsManager.GetLastRemoveableDiskSync(serialNumber)) != null)
                     {

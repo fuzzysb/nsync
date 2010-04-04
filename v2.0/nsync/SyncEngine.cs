@@ -11,26 +11,28 @@ namespace nsync
 {
     class SyncEngine
     {
+        #region Class Variables
         public System.ComponentModel.BackgroundWorker backgroundWorkerForSync;
         public System.ComponentModel.BackgroundWorker backgroundWorkerForPreSync;
+        private bool isCheckForLeftDone = false;
         private ulong freeDiskSpaceForLeft = 0;
         private ulong freeDiskSpaceForRight = 0;
         private ulong diskSpaceNeededForLeft = 0;
         private ulong diskSpaceNeededForRight = 0;
-        private bool isCheckForLeftDone = false;
         private string leftPath;
         private string rightPath;
         private static int countDoneChanges = 0;
         private static int countChanges = 0;
         private Intelligence intelligentManager;
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Constructor for SyncEngine
         /// </summary>
         public SyncEngine()
         {
-            // Set up the BackgroundWorker object by 
-            // attaching event handlers.
+            // Set up the BackgroundWorker object by attaching event handlers.
             backgroundWorkerForSync = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForSync.DoWork += new DoWorkEventHandler(backgroundWorkerForSync_DoWork);
             backgroundWorkerForSync.WorkerReportsProgress = true;
@@ -39,7 +41,7 @@ namespace nsync
             backgroundWorkerForPreSync.DoWork += new DoWorkEventHandler(backgroundWorkerForPreSync_DoWork);
             backgroundWorkerForPreSync.WorkerReportsProgress = true;
 
-            // Create the intelligence manager
+            // Create the Intelligence object
             intelligentManager = new Intelligence();
         }
 
@@ -49,7 +51,7 @@ namespace nsync
         /// <param name="path">This parameter indicates the path to be checked</param>
         /// <returns>Returns a string which contains the serial number of the removeable disk, if it exists
         /// <para>Otherwise, return null</para></returns>
-        public string IsRememberLastRemoveableDiskSyncValid(string path)
+        public string GetSerialNumberOfRemoveableDisk(string path)
         {
             // check if the path is removeable disk first
             if (!intelligentManager.IsRemovableDrive(path))
@@ -91,7 +93,6 @@ namespace nsync
         {
             return intelligentManager.FindRemoveableDiskSerialNumber(path);
         }
-
 
         /// <summary>
         /// Creates a folder in the root path and updates leftpath/rightpath, if required
@@ -154,6 +155,113 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// Gets backgroundWorkerForPreSync to do presync preparations
+        /// </summary>
+        public void PreSync()
+        {
+            backgroundWorkerForPreSync.RunWorkerAsync();
+        }
+
+        /// <summary>
+        /// Get the real synchronization process to start
+        /// </summary>
+        public void StartSync()
+        {
+            // Start the asynchronous operation.
+            backgroundWorkerForSync.RunWorkerAsync();
+        }
+
+        /// <summary>
+        /// Gets the stored folder paths in SyncEngine
+        /// </summary>
+        /// <returns>Returns an array of string which contains 2 folder paths</returns>
+        public string[] GetPath()
+        {
+            string[] listOfPaths = new string[2];
+            listOfPaths[0] = leftPath;
+            listOfPaths[1] = rightPath;
+            return listOfPaths;
+        }
+
+        /// <summary>
+        /// Setter and Getter method for left folder path
+        /// </summary>
+        public string LeftPath
+        {
+            get { return leftPath; }
+            set { leftPath = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for right folder path
+        /// </summary>
+        public string RightPath
+        {
+            get { return rightPath; }
+            set { rightPath = value; }
+        }
+
+        /// <summary>
+        /// Asks IntelligentManager to check if a folder is subfolder of another folder
+        /// </summary>
+        /// <returns></returns>
+        public bool IsFolderSubfolder()
+        {
+            return intelligentManager.IsFolderSubFolder(leftPath, rightPath);
+        }
+
+        /// <summary>
+        /// Checks if folder paths are already synchronized
+        /// </summary>
+        /// <returns>Return the result which indicates if folder paths are already synchronized</returns>
+        public bool AreFoldersSync()
+        {
+            if (countChanges == 0)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Asks IntelligentManager to check if the left or right folder path exists
+        /// </summary>
+        /// <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
+        /// <returns>Returns the result of the check in a boolean</returns>
+        public bool IsFolderExists(string leftOrRight)
+        {
+            if (leftOrRight == "left" || leftOrRight == "Left")
+            {
+                return intelligentManager.IsFolderExists(leftPath);
+            }
+            else if (leftOrRight == "right" || leftOrRight == "Right")
+            {
+                return intelligentManager.IsFolderExists(rightPath);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Asks IntelligentManager to check if the two folder paths are similar
+        /// </summary>
+        /// <returns>Returns the result of the check in a boolean</returns>
+        public bool IsFoldersSimilar()
+        {
+            return intelligentManager.IsFoldersSimilar(leftPath, rightPath);
+        }
+
+        /// <summary>
+        /// Ask IntelligentManager to check if a folder path is a removable drive
+        /// </summary>
+        /// <param name="path">This parameters indicates the folder path to be checked</param>
+        /// <returns>Returns the result of the check in a boolean</returns>
+        public bool CheckRemovableDrive(string path)
+        {
+            return intelligentManager.IsRemovableDrive(path);
+        }
+        #endregion
+
+        #region Private Methods
         /// <summary>
         /// Ask Intellgence to check if it is required to create a folder on any root path
         /// </summary>
@@ -387,23 +495,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// Gets backgroundWorkerForPreSync to do presync preparations
-        /// </summary>
-        public void PreSync()
-        {
-            backgroundWorkerForPreSync.RunWorkerAsync();
-        }
-
-        /// <summary>
-        /// Get the real synchronization process to start
-        /// </summary>
-        public void StartSync()
-        {
-            // Start the asynchronous operation.
-            backgroundWorkerForSync.RunWorkerAsync();
-        }
-
-        /// <summary>
         /// Does actual presync preparations
         /// </summary>
         /// <returns></returns>
@@ -487,94 +578,6 @@ namespace nsync
                 return false;
             }
         }
-
-
-        /// <summary>
-        /// Gets the stored folder paths in SyncEngine
-        /// </summary>
-        /// <returns>Returns an array of string which contains 2 folder paths</returns>
-        public string[] GetPath()
-        {
-            string[] listOfPaths = new string[2];
-            listOfPaths[0] = leftPath;
-            listOfPaths[1] = rightPath;
-            return listOfPaths;
-        }
-
-        /// <summary>
-        /// Setter and Getter method for left folder path
-        /// </summary>
-        public string LeftPath
-        {
-            get { return leftPath; }
-            set { leftPath = value; }
-        }
-
-        /// <summary>
-        /// Setter and Getter method for right folder path
-        /// </summary>
-        public string RightPath
-        {
-            get { return rightPath; }
-            set { rightPath = value; }
-        }
-
-        /// <summary>
-        /// Asks IntelligentManager to check if a folder is subfolder of another folder
-        /// </summary>
-        /// <returns></returns>
-        public bool IsFolderSubfolder()
-        {
-            return intelligentManager.IsFolderSubFolder(leftPath, rightPath);
-        }
-
-        /// <summary>
-        /// Checks if folder paths are already synchronized
-        /// </summary>
-        /// <returns>Return the result which indicates if folder paths are already synchronized</returns>
-        public bool AreFoldersSync()
-        {
-            if (countChanges == 0)
-                return true;
-            else
-                return false;
-        }
-
-        /// <summary>
-        /// Asks IntelligentManager to check if the left or right folder path exists
-        /// </summary>
-        /// <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
-        /// <returns>Returns the result of the check in a boolean</returns>
-        public bool IsFolderExists(string leftOrRight)
-        {
-            if (leftOrRight == "left" || leftOrRight == "Left")
-            {
-                return intelligentManager.IsFolderExists(leftPath);
-            }
-            else if(leftOrRight == "right" || leftOrRight == "Right")
-            {
-                return intelligentManager.IsFolderExists(rightPath);
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Asks IntelligentManager to check if the two folder paths are similar
-        /// </summary>
-        /// <returns>Returns the result of the check in a boolean</returns>
-        public bool IsFoldersSimilar()
-        {
-            return intelligentManager.IsFoldersSimilar(leftPath, rightPath);
-        }
-
-        /// <summary>
-        /// Ask IntelligentManager to check if a folder path is a removable drive
-        /// </summary>
-        /// <param name="path">This parameters indicates the folder path to be checked</param>
-        /// <returns>Returns the result of the check in a boolean</returns>
-        public bool CheckRemovableDrive(string path)
-        {
-            return intelligentManager.IsRemovableDrive(path);
-        }
+        #endregion
     }
 }

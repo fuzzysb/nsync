@@ -75,6 +75,54 @@
             </summary>
             <returns>Returns a boolean to indicate if a folder was created</returns>
         </member>
+        <member name="M:nsync.SyncEngine.PreSync">
+            <summary>
+            Gets backgroundWorkerForPreSync to do presync preparations
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.StartSync">
+            <summary>
+            Get the real synchronization process to start
+            </summary>
+        </member>
+        <member name="M:nsync.SyncEngine.GetPath">
+            <summary>
+            Gets the stored folder paths in SyncEngine
+            </summary>
+            <returns>Returns an array of string which contains 2 folder paths</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFolderSubfolder">
+            <summary>
+            Asks IntelligentManager to check if a folder is subfolder of another folder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.SyncEngine.AreFoldersSync">
+            <summary>
+            Checks if folder paths are already synchronized
+            </summary>
+            <returns>Return the result which indicates if folder paths are already synchronized</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFolderExists(System.String)">
+            <summary>
+            Asks IntelligentManager to check if the left or right folder path exists
+            </summary>
+            <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.IsFoldersSimilar">
+            <summary>
+            Asks IntelligentManager to check if the two folder paths are similar
+            </summary>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
+        <member name="M:nsync.SyncEngine.CheckRemovableDrive(System.String)">
+            <summary>
+            Ask IntelligentManager to check if a folder path is a removable drive
+            </summary>
+            <param name="path">This parameters indicates the folder path to be checked</param>
+            <returns>Returns the result of the check in a boolean</returns>
+        </member>
         <member name="M:nsync.SyncEngine.IsRequiredToCreateFolder">
             <summary>
             Ask Intellgence to check if it is required to create a folder on any root path
@@ -161,16 +209,6 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.SyncEngine.PreSync">
-            <summary>
-            Gets backgroundWorkerForPreSync to do presync preparations
-            </summary>
-        </member>
-        <member name="M:nsync.SyncEngine.StartSync">
-            <summary>
-            Get the real synchronization process to start
-            </summary>
-        </member>
         <member name="M:nsync.SyncEngine.InternalPreSync">
             <summary>
             Does actual presync preparations
@@ -182,44 +220,6 @@
             Starts the synchronization job
             </summary>
             <returns>Returns a boolean to indicate if the synchronization was successful</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.GetPath">
-            <summary>
-            Gets the stored folder paths in SyncEngine
-            </summary>
-            <returns>Returns an array of string which contains 2 folder paths</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFolderSubfolder">
-            <summary>
-            Asks IntelligentManager to check if a folder is subfolder of another folder
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:nsync.SyncEngine.AreFoldersSync">
-            <summary>
-            Checks if folder paths are already synchronized
-            </summary>
-            <returns>Return the result which indicates if folder paths are already synchronized</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFolderExists(System.String)">
-            <summary>
-            Asks IntelligentManager to check if the left or right folder path exists
-            </summary>
-            <param name="leftOrRight">This parameter indicates the left or right folder to be checked</param>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.IsFoldersSimilar">
-            <summary>
-            Asks IntelligentManager to check if the two folder paths are similar
-            </summary>
-            <returns>Returns the result of the check in a boolean</returns>
-        </member>
-        <member name="M:nsync.SyncEngine.CheckRemovableDrive(System.String)">
-            <summary>
-            Ask IntelligentManager to check if a folder path is a removable drive
-            </summary>
-            <param name="path">This parameters indicates the folder path to be checked</param>
-            <returns>Returns the result of the check in a boolean</returns>
         </member>
         <member name="P:nsync.SyncEngine.LeftPath">
             <summary>
