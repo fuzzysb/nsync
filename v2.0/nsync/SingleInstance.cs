@@ -61,7 +61,6 @@ namespace nsync
             }), null);
         }
 
-
         private delegate void activate();
     }
 }

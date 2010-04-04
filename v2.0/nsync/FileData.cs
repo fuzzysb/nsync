@@ -6,14 +6,19 @@ using System.IO;
 
 namespace nsync
 {
-    //CLASS FOR FILEDATA OBJECT
+    /// <summary>
+    /// FileData Class
+    /// </summary>
     public class FileData
     {
+        #region Class Variables
         private string fileName;
         private string fileType;
         private string rootPath;
         private Changes changeType;
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Constructor of FileData class
         /// </summary>
@@ -68,6 +73,7 @@ namespace nsync
                 return rootPath;
             }
         }
+        #endregion
     }
 
     /// <summary>

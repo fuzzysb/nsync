@@ -19,6 +19,7 @@ namespace nsync
     /// </summary>
     public partial class ExcludeWindow : Window
     {
+        #region Class Variables
         private string leftPath;
         private string rightPath;
         //private int lastStateItemsCount = 0;
@@ -33,7 +34,9 @@ namespace nsync
         private List<string> oldExcludeInvalid;
         private readonly int MAX_STRING_LENGTH = 90;
         bool reallyLeft = true;
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Constructor for ExcludeWindow
         /// </summary>
@@ -68,7 +71,9 @@ namespace nsync
             get { return rightPath; }
             set { rightPath = value; }
         }
+        #endregion
 
+        #region Private Methods
         private void titleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -310,8 +315,6 @@ namespace nsync
             ListBoxExclude.Items.Add(excludeListBoxItem);
         }
 
-
-
         private void SaveLastState()
         {
             if (HintText.Visibility == Visibility.Visible)
@@ -452,5 +455,6 @@ namespace nsync
             excludeFolders.Clear();
             excludeInvalid.Clear();
         }
+        #endregion
     }
 }

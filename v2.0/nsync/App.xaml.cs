@@ -13,7 +13,7 @@ namespace nsync
     public partial class App : Application
     {
         /// <summary>
-        /// 
+        /// Entry point when program startup
         /// </summary>
         /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)

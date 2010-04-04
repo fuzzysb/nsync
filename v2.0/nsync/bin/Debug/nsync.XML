@@ -1078,7 +1078,7 @@
         </member>
         <member name="T:nsync.HelperManager">
             <summary>
-            
+            Helper Window Manager Class
             </summary>
         </member>
         <member name="M:nsync.HelperManager.#ctor(System.Windows.Window)">
@@ -1095,12 +1095,6 @@
             <param name="time">The duration for which the notification window should be active</param>
             <param name="windowPosition">The position for which the notification window should be placed</param>
         </member>
-        <member name="M:nsync.HelperManager.helperWindowIsOn">
-            <summary>
-            Checks if the notification window should be on/off
-            </summary>
-            <returns>The result is returned as a boolean</returns>
-        </member>
         <member name="M:nsync.HelperManager.CloseWindow">
             <summary>
             Closes the notification window
@@ -1115,6 +1109,12 @@
             <summary>
             Hides the notification window
             </summary>
+        </member>
+        <member name="M:nsync.HelperManager.helperWindowIsOn">
+            <summary>
+            Checks if the notification window should be on/off
+            </summary>
+            <returns>The result is returned as a boolean</returns>
         </member>
         <member name="T:nsync.ExtensionMethods">
             <summary>
@@ -1224,7 +1224,7 @@
         </member>
         <member name="M:nsync.App.OnStartup(System.Windows.StartupEventArgs)">
             <summary>
-            
+            Entry point when program startup
             </summary>
             <param name="e"></param>
         </member>
@@ -1285,6 +1285,11 @@
             </summary>
             <param name="sender"></param>
             <param name="args"></param>
+        </member>
+        <member name="T:nsync.FileData">
+            <summary>
+            FileData Class
+            </summary>
         </member>
         <member name="M:nsync.FileData.#ctor(System.String,System.String,nsync.Changes)">
             <summary>

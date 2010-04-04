@@ -7,13 +7,16 @@ using System.Text;
 namespace nsync
 {
     /// <summary>
-    /// 
+    /// Helper Window Manager Class
     /// </summary>
     public class HelperManager
     {
+        #region Class Variables
         private HelperWindow windowHelper;
         private Settings settingsManager;
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Constructor for HelperManager
         /// </summary>
@@ -47,15 +50,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// Checks if the notification window should be on/off
-        /// </summary>
-        /// <returns>The result is returned as a boolean</returns>
-        private bool helperWindowIsOn()
-        {
-            return settingsManager.GetHelperWindowStatus();
-        }
-
-        /// <summary>
         /// Closes the notification window
         /// </summary>
         public void CloseWindow()
@@ -78,5 +72,17 @@ namespace nsync
         {
             windowHelper.Visibility = Visibility.Hidden;
         }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Checks if the notification window should be on/off
+        /// </summary>
+        /// <returns>The result is returned as a boolean</returns>
+        private bool helperWindowIsOn()
+        {
+            return settingsManager.GetHelperWindowStatus();
+        }
+        #endregion
     }
 }

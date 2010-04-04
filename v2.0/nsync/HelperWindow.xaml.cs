@@ -10,11 +10,14 @@ namespace nsync
     /// </summary>
     public partial class HelperWindow : Window
     {
+        #region Class Variables
         private int delayTime=10;
         private DispatcherTimer dispatcherTimer;
         private windowStartPosition windowPostionType;
         private bool windowActive;
+        #endregion
 
+        #region Enumeration
         /// <summary>
         /// A list of enumeration of the available positions for notification window
         /// </summary>
@@ -45,7 +48,9 @@ namespace nsync
             /// </summary>
             windowTop
         };
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Constructor for HelperWindow class
         /// </summary>
@@ -54,8 +59,6 @@ namespace nsync
             InitializeComponent();
             SetTime();
         }   
-
-        #region User Defined Functions
 
         /// <summary>
         /// Set the settings for notification window
@@ -134,7 +137,9 @@ namespace nsync
                     this.Top = bottomPos;
             }
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Close the notification window
         /// </summary>
@@ -156,8 +161,6 @@ namespace nsync
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
         }
-
-        #endregion
 
         /// <summary>
         /// This method is called to start the timer and will close the notification window when time is up
@@ -211,5 +214,6 @@ namespace nsync
         {
             CloseWindow();
         }
+        #endregion
     }
 }
