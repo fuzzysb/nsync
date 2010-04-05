@@ -33,7 +33,7 @@
         
         <Button Name="ButtonPageSettings" ToolTip="{x:Static const:Resources.settingsToolTip}" Template="{StaticResource ButtonPageTemplate}" Width="5" Height="5" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="245,40,0,0" Click="ButtonPageSettings_Click"></Button>
         <Button Name="ButtonPageHome" ToolTip="{x:Static const:Resources.homeToolTip}" Template="{StaticResource ButtonPageTemplate}" Width="5" Height="5" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="255,40,0,0" IsEnabled="False" Click="ButtonPageHome_Click"></Button>
-        <Button Name="ButtonPageBackTrack" ToolTip="{x:Static const:Resources.trackBackToolTip}" Visibility="Hidden" Template="{StaticResource ButtonPageTemplate}" Width="5" Height="5" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="265,40,0,0" Click="ButtonPageBackTrack_Click"></Button>
+        <Button Name="ButtonPageTrackBack" ToolTip="{x:Static const:Resources.trackBackToolTip}" Template="{StaticResource ButtonPageTemplate}" Width="5" Height="5" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="265,40,0,0" Click="ButtonPageTrackBack_Click"></Button>
         <Button Name="ButtonMinimise" ToolTip="{x:Static const:Resources.minimiseToolTip}" Template="{StaticResource ButtonMinimiseTemplate}" Width="22" Height="10" Click="ButtonMinimise_Click"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,26,25,0"></Button>
         
 

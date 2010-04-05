@@ -73,7 +73,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonPageBackTrack_Click(object sender, RoutedEventArgs e)
+        private void ButtonPageTrackBack_Click(object sender, RoutedEventArgs e)
         {
             viewList.SelectedIndex = 2;
         }
@@ -87,19 +87,18 @@ namespace nsync
         private void WindowMain_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePos = e.GetPosition(this);
-            if (mousePos.X < 40)
+            if (mousePos.X < 40 && mousePos.Y > 30 && mousePos.Y < this.Height - 30)
             {
                 if (viewList.SelectedIndex != 0)
                 {
                     ButtonSideTabLeft.Visibility = Visibility.Visible;
                 }
             }
-            else if (mousePos.X > this.Width - 40)
+            else if (mousePos.X > this.Width - 40 && mousePos.Y > 30 && mousePos.Y < this.Height - 30)
             {
                 if (viewList.SelectedIndex != viewList.Items.Count - 1)
                 {
-                    if(viewList.SelectedIndex != 1)
-                        ButtonSideTabRight.Visibility = Visibility.Visible;
+                    ButtonSideTabRight.Visibility = Visibility.Visible;
                 }
             }
             else
@@ -139,7 +138,7 @@ namespace nsync
 
             oldSelectedIndex = viewList.SelectedIndex;
 
-            ButtonPageBackTrack.IsEnabled = true;
+            ButtonPageTrackBack.IsEnabled = true;
             ButtonPageHome.IsEnabled = true;
             ButtonPageSettings.IsEnabled = true;
 
@@ -153,7 +152,7 @@ namespace nsync
             }
             else
             {
-                ButtonPageBackTrack.IsEnabled = false;
+                ButtonPageTrackBack.IsEnabled = false;
             }
 
             //Change slider tooltips

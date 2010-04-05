@@ -820,13 +820,15 @@
             </Grid.Background>
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
+            </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" TargetName="grid">
                     <Setter.Value>
                         <ImageBrush ImageSource="Resources/sidetableftdown.png"/>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
@@ -838,13 +840,15 @@
             </Grid.Background>
         </Grid>
         <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
+            </Trigger>
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" TargetName="grid">
                     <Setter.Value>
                         <ImageBrush ImageSource="Resources/sidetabrightdown.png"/>
                     </Setter.Value>
                 </Setter>
-                <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

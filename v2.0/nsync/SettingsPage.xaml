@@ -9,8 +9,8 @@
         <StackPanel Margin="20,55,20,20" Name="PanelSettings" Style="{StaticResource PanelSettingsStyle}">
             <Grid Margin="20, 20">
                 <Label HorizontalAlignment="Left" Margin="0,-2,0,0" Name="HelperWindowSettingsDescription" Width="195" Foreground="White">Duration of the Helper Window (sec)</Label>
-                <Slider Name="HelperWindowSlider" IsSnapToTickEnabled="True" TickFrequency="1" Ticks="0,1,2,3,4,5,6,7,8,9,10,11" TickPlacement="BottomRight" Margin="203,0,95,0" ValueChanged="HelperWindowSlider_ValueChanged" Maximum="11"/>
-                <ComboBox Margin="0,0,40,3" Name="HelperWindowSliderValue"  SelectionChanged="HelperWindowSliderValue_SelectionChanged" HorizontalAlignment="Right" Width="40">
+                <Slider Name="HelperWindowSlider" IsSnapToTickEnabled="True" TickFrequency="1" Ticks="0,1,2,3,4,5,6,7,8,9,10,11" TickPlacement="BottomRight" Margin="203,0,95,0" ValueChanged="HelperWindowSlider_ValueChanged" Maximum="11" Cursor="Hand"/>
+                <ComboBox Margin="0,0,40,3" Name="HelperWindowSliderValue"  SelectionChanged="HelperWindowSliderValue_SelectionChanged" HorizontalAlignment="Right" Width="40" Cursor="Hand">
                     <ComboBoxItem Name="SliderValue0">0</ComboBoxItem>
                     <ComboBoxItem Name="SliderValue1">1</ComboBoxItem>
                     <ComboBoxItem Name="SliderValue2">2</ComboBoxItem>

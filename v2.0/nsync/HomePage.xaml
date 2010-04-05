@@ -11,9 +11,9 @@
             <TextBlock Name="LeftText" Foreground="White" FontFamily="Verdana" FontSize="11" Text="{x:Static const:Resources.panelText}" HorizontalAlignment="Center" Margin="4, 35, 4, 20" MaxWidth="230" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
             <Image Name="LeftIcon" Source="Resources/default.png" Width="128" Height="128" Margin="0,0" ToolTip="{x:Static const:Resources.panelIconToolTip}" />
         </StackPanel>
-            <ListBox Name="LeftListBox" Margin="27, 77" Width="228" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="Black" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource RecentListBoxItem}" Style="{StaticResource RecentListBox}" FontSize="10" Visibility="Hidden">
+            <ListBox Name="LeftListBox" Margin="27, 77" Width="228" HorizontalAlignment="Left" VerticalAlignment="Bottom" Background="Black" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource RecentListBoxItem}" Style="{StaticResource RecentListBox}" FontSize="10" Visibility="Hidden" Cursor="Hand">
             </ListBox>
-        <Border Name="BarMRULeft" Width="228" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="27, 57" Background="Black" Opacity="0.2" Visibility="Hidden" MouseEnter="BarMRULeft_MouseEnter" MouseLeave="BarMRULeft_MouseLeave" MouseUp="BarMRULeft_MouseUp">
+        <Border Name="BarMRULeft" Width="228" Height="20" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="27, 57" Background="Black" Opacity="0.2" Visibility="Hidden" MouseEnter="BarMRULeft_MouseEnter" MouseLeave="BarMRULeft_MouseLeave" MouseUp="BarMRULeft_MouseUp" Cursor="Hand">
                 <Grid>
                     <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10">Recent Folders...</TextBlock>
                 </Grid>
@@ -24,9 +24,9 @@
             <TextBlock Name="RightText" Foreground="White" FontFamily="Verdana" FontSize="11" Text="{x:Static const:Resources.panelText}" HorizontalAlignment="Center" Margin="4, 35, 4, 20" MaxWidth="230" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
             <Image Name="RightIcon" Source="Resources/default.png" Width="128" Height="128" Margin="0,0" ToolTip="{x:Static const:Resources.panelIconToolTip}" />
         </StackPanel>
-            <ListBox Name="RightListBox" Margin="23, 77" Width="228" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Black" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource RecentListBoxItem}" Style="{StaticResource RecentListBox}" FontSize="10" Visibility="Hidden">
+            <ListBox Name="RightListBox" Margin="23, 77" Width="228" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="Black" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource RecentListBoxItem}" Style="{StaticResource RecentListBox}" FontSize="10" Visibility="Hidden" Cursor="Hand">
             </ListBox>
-            <Border Name="BarMRURight" Width="228" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="23, 57" Background="Black" Opacity="0.2" Visibility="Hidden" MouseEnter="BarMRURight_MouseEnter" MouseLeave="BarMRURight_MouseLeave" MouseUp="BarMRURight_MouseUp">
+            <Border Name="BarMRURight" Width="228" Height="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="23, 57" Background="Black" Opacity="0.2" Visibility="Hidden" MouseEnter="BarMRURight_MouseEnter" MouseLeave="BarMRURight_MouseLeave" MouseUp="BarMRURight_MouseUp" Cursor="Hand">
                 <Grid>
                     <TextBlock Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10">Recent Folders..</TextBlock>
                 </Grid>

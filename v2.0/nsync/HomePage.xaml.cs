@@ -1208,13 +1208,13 @@ namespace nsync
             Button ButtonPageSettings = (Button)mainWindow.FindName("ButtonPageSettings");
             ButtonPageSettings.IsEnabled = enableButtons;
             Button ButtonPageHome = (Button)mainWindow.FindName("ButtonPageHome");
-            Button ButtonPageBackTrack = (Button)mainWindow.FindName("ButtonPageBackTrack");
-            ButtonPageBackTrack.IsEnabled = enableButtons;
+            Button ButtonPageTrackBack = (Button)mainWindow.FindName("ButtonPageTrackBack");
+            ButtonPageTrackBack.IsEnabled = enableButtons;
 
             //Set Opacity
             BoxLeft.Opacity = BoxRight.Opacity = opacityValue;
             ButtonSideTabLeft.Opacity = ButtonSideTabRight.Opacity = opacityValue;
-            ButtonPageSettings.Opacity = ButtonPageHome.Opacity = ButtonPageBackTrack.Opacity = opacityValue;
+            ButtonPageSettings.Opacity = ButtonPageHome.Opacity = ButtonPageTrackBack.Opacity = opacityValue;
         }
 
         /// <summary>

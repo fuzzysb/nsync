@@ -368,9 +368,11 @@ namespace nsync
             {
                 LabelStatus.Content = "Click on entries to remove them from the exclude list.";
                 ButtonClear.IsEnabled = true;
+                ListBoxExclude.Visibility = Visibility.Visible;
             }
             else
             {
+                ListBoxExclude.Visibility = Visibility.Hidden;
                 ButtonClear.IsEnabled = false;
                 LabelStatus.Content = "Drag & drop files and folders to exclude.";
             }
@@ -516,8 +518,6 @@ namespace nsync
                     excludeFileTypes.Add(fileExtension);
                 ClearListBox();
                 UpdateListBox();
-                //This is a fix for the problem of trying to select an already selected item
-                //ComboBoxFileType.SelectedIndex = -1;
             }
         }
 
@@ -568,5 +568,11 @@ namespace nsync
             excludeInvalid.Clear();
         }
         #endregion
+
+        private void ComboBoxFileType_DropDownOpened(object sender, EventArgs e)
+        {
+            ComboBoxFileType.SelectedIndex = -1;
+        }
+
     }
 }
