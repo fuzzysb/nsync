@@ -142,6 +142,31 @@ namespace nsync
         }
 
         /// <summary>
+        /// This method resolves the shortcut
+        /// </summary>
+        /// <param name="path">This parameter is a string which is the shortcut path to be resolved</param>
+        /// <returns>Returns a string which contains the path of the resolved shortcut</returns>
+        private string ResolveShortcut(string path)
+        {
+            IWshRuntimeLibrary.IWshShell shell = new IWshRuntimeLibrary.WshShell();
+            IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(path);
+            return shortcut.TargetPath;
+        }
+
+        /// <summary>
+        /// This method checks if the path is a shortcut link
+        /// </summary>
+        /// <param name="path">This parameter is the path to be checked</param>
+        /// <returns>Returns a boolean which indicates whether the path is a shortcut link</returns>
+        private bool IsPathShortcut(string path)
+        {
+            if (path.Substring(path.Length - 4) == ".lnk")
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
         /// This method is called when user drag and drop something into the left box
         /// </summary>
         /// <param name="sender"></param>
@@ -153,7 +178,6 @@ namespace nsync
                 hasLeftPath = true;
                 e.Handled = true;
 
-                SaveCurrentFolderPair();
                 SyncToTheSameFolderHierarchy("left");
                 RememberLastRemoveableDiskSync("left");
                 ShowSync();
@@ -172,7 +196,6 @@ namespace nsync
                 hasRightPath = true;
                 e.Handled = true;
 
-                SaveCurrentFolderPair();
                 SyncToTheSameFolderHierarchy("right");
                 RememberLastRemoveableDiskSync("right");
                 ShowSync();
@@ -186,6 +209,8 @@ namespace nsync
         /// <param name="e"></param>
         private void BoxLeft_DragEnter(object sender, DragEventArgs e)
         {
+            if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
+
             previousImageLeft = LeftIcon.Source;
             //SQ previousTextLeft = LeftText.Text;
             previousTextLeft = actualLeftPath; //SQ
@@ -194,12 +219,16 @@ namespace nsync
                 string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
                 foreach (string i in fileNames)
                 {
-                    DirectoryInfo dirTemp = new DirectoryInfo(i);
-                    FileInfo fileTemp = new FileInfo(i);
+                    string actualPath = i;
+                    if (IsPathShortcut(i))
+                        actualPath = ResolveShortcut(i);
+
+                    DirectoryInfo dirTemp = new DirectoryInfo(actualPath);
+                    FileInfo fileTemp = new FileInfo(actualPath);
                     if (dirTemp.Exists)
                     {
                         //SQ LeftText.Text = i;
-                        actualLeftPath = i; //SQ
+                        actualLeftPath = actualPath; //SQ
                         LeftText.Text = ShortenText(actualLeftPath); //SQ
                     }
                     else
@@ -226,6 +255,8 @@ namespace nsync
         /// <param name="e"></param>
         private void BoxRight_DragEnter(object sender, DragEventArgs e)
         {
+            if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
+
             previousImageRight = RightIcon.Source;
             //SQ previousTextRight = RightText.Text;
             previousTextRight = actualRightPath; //SQ
@@ -235,12 +266,16 @@ namespace nsync
                 string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
                 foreach (string i in fileNames)
                 {
-                    DirectoryInfo dirTemp = new DirectoryInfo(i);
-                    FileInfo fileTemp = new FileInfo(i);
+                    string actualPath = i;
+                    if (IsPathShortcut(i))
+                        actualPath = ResolveShortcut(i);
+
+                    DirectoryInfo dirTemp = new DirectoryInfo(actualPath);
+                    FileInfo fileTemp = new FileInfo(actualPath);
                     if (dirTemp.Exists)
                     {
                         //SQ RightText.Text = i;
-                        actualRightPath = i; //SQ
+                        actualRightPath = actualPath; //SQ
                         RightText.Text = ShortenText(actualRightPath); //SQ
                     }
                     else
@@ -274,6 +309,8 @@ namespace nsync
             //SQ synchronizer.RightPath = RightText.Text;
             synchronizer.RightPath = actualRightPath; //SQ
             RightIcon.Source = previousImageRight;
+
+            if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
         }
 
         /// <summary>
@@ -289,6 +326,8 @@ namespace nsync
             //SQ synchronizer.LeftPath = LeftText.Text;
             synchronizer.LeftPath = actualLeftPath; //SQ
             LeftIcon.Source = previousImageLeft;
+
+            if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
         }
 
         /// <summary>
@@ -303,6 +342,7 @@ namespace nsync
             {
                 //SQ currentPath = LeftText.Text;
                 currentPath = actualLeftPath; //SQ
+                SaveCurrentFolderPair();
             }
             string directoryPath = FolderSelect(currentPath);
             if (directoryPath != NULL_STRING)
@@ -314,7 +354,6 @@ namespace nsync
                 ShowRemovableDrives(actualLeftPath, "left"); //SQ
                 hasLeftPath = true;
 
-                SaveCurrentFolderPair();
                 SyncToTheSameFolderHierarchy("left");
                 RememberLastRemoveableDiskSync("left");
             }
@@ -336,6 +375,7 @@ namespace nsync
             {
                 //SQ currentPath = RightText.Text;
                 currentPath = actualRightPath; //SQ
+                SaveCurrentFolderPair();
             }
             string directoryPath = FolderSelect(currentPath);
             if (directoryPath != NULL_STRING)
@@ -347,7 +387,6 @@ namespace nsync
                 ShowRemovableDrives(actualRightPath, "right"); //SQ
                 hasRightPath = true;
 
-                SaveCurrentFolderPair();
                 SyncToTheSameFolderHierarchy("right");
                 RememberLastRemoveableDiskSync("right");
             }
@@ -1002,9 +1041,17 @@ namespace nsync
                 return;
 
             string[] newFolderPaths = new string[2];
+            string[] oldPath = new string[2];
 
-            newFolderPaths = synchronizer.SyncToTheSameFolderHierarchy(newTargetPath, settingsManager.LoadFolderPaths(), leftOrRight);
+            if (oldLeftPath == null || oldRightPath == null) 
+                return;
+            oldPath[0] = oldLeftPath;
+            oldPath[1] = oldRightPath;
 
+            newFolderPaths = synchronizer.SyncToTheSameFolderHierarchy(newTargetPath, oldPath, leftOrRight);
+            
+            SaveCurrentFolderPair();
+            
             if (newFolderPaths == null || newFolderPaths.Length != 2)
                 return;
             else

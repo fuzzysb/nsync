@@ -73,9 +73,9 @@ namespace nsync
         /// <param name="lastSyncFolderPaths">This parameter holds a list of strings which contains the last sync folder paths</param>
         /// <param name="leftOrRight">This parameter indicates if the target path is leftPath or rightPath</param>
         /// <returns></returns>
-        public string[] SyncToTheSameFolderHierarchy(string targetPath, List<string> lastSyncFolderPaths, string leftOrRight)
+        public string[] SyncToTheSameFolderHierarchy(string targetPath, string[] lastSyncFolderPaths, string leftOrRight)
         {
-            if (lastSyncFolderPaths.Count == 0) // no folder pair in MRU
+            if (lastSyncFolderPaths.Length == 0) // no folder pair in MRU
                 return null;
 
             string oldTargetPath, oldNonTargetPath;
