@@ -1,0 +1,28 @@
+﻿<Window x:Class="nsync.ExcludeWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:const="clr-namespace:nsync.Properties"    
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="nsync" Height="596" Width="541" ResizeMode="NoResize" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterOwner" Name="WindowExclude" Loaded="WindowExclude_Loaded" ShowInTaskbar="False">
+
+    <Window.Background>
+        <ImageBrush ImageSource="Resources/excludeback.png"/>
+    </Window.Background>
+    <Grid>
+        <TextBlock MouseLeftButtonDown="titleBar_MouseLeftButtonDown" x:Name="TitleBar" Height="38" VerticalAlignment="Top"/>        
+        <Button Name="ButtonClose" ToolTip="{x:Static const:Resources.closeToolTip}" Template="{StaticResource ButtonCloseTemplate}" Width="25" Height="23" Click="ButtonClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="12,10"></Button>
+        <Button Name="ButtonNext" ToolTip="{x:Static const:Resources.nextToolTip}" Template="{StaticResource ButtonNextTemplate}" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,12,13" Click="ButtonNext_Click"></Button>
+        <Button Name="ButtonClear" ToolTip="{x:Static const:Resources.clearToolTip}" Template="{StaticResource ButtonClearTemplate}" Width="23" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,17" IsEnabled="False" Click="ButtonClear_Click"></Button>
+        <Label Name="LabelLeftPath" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 65, 0, 0" Foreground="White">LeftPath</Label>
+        <Label Name="LabelRightPath" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 85, 0, 0" Foreground="White">RightPath</Label>
+        <ComboBox x:Name="ComboBoxFileType" VerticalAlignment="Top" Width="148" Height="32" Style="{DynamicResource ComboBoxFileTypeTemplate}" Foreground="White" HorizontalAlignment="Right" Margin="0,112,26,0" SelectionChanged="ComboBoxFileType_SelectionChanged"></ComboBox>
+        <Label Foreground="White" Height="25.96" Margin="270,113,160,0" Name="LabelAddFileTypes" VerticalAlignment="Top">Add File Types:</Label>
+        
+        
+        <StackPanel Name="BoxExclude" Margin="26,149,26,46" AllowDrop="True" Style="{StaticResource BoxExcludeStyle}" DragEnter="BoxExclude_DragEnter" DragLeave="BoxExclude_DragLeave" DragDrop.Drop="BoxExclude_Drop">
+            <ListBox Name="ListBoxExclude" Margin="0, 6" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" BorderThickness="0" ItemContainerStyle="{StaticResource ExcludeListBoxItem}" Style="{StaticResource ExcludeListBox}" FontSize="10" Visibility="Visible" MaxHeight="390" MouseUp="ListBoxExclude_MouseUp" AllowDrop="True">
+            </ListBox>
+            <TextBlock Name="HintText" Foreground="White" FontFamily="Verdana" FontSize="11" Text="{x:Static const:Resources.excludeText}" HorizontalAlignment="Center" Margin="0, 100, 0, 20" MaxWidth="230" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            <Image Name="HintIcon" Source="Resources/default.png" Width="128" Height="128" Margin="0,0" ToolTip="{x:Static const:Resources.excludeIconToolTip}" />
+        </StackPanel><Label Foreground="White" Height="25.96" Margin="18,0,112,17" Name="LabelStatus" VerticalAlignment="Bottom"></Label>
+    </Grid>
+</Window>

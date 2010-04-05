@@ -1,0 +1,30 @@
+﻿<Page x:Class="nsync.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="SettingsPage" Width="518" Height="287">
+    <Grid>
+        <Label />
+        <Image x:Name="ImageSettings" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/settings.png" Width="151"/>
+        <!--<Label VerticalAlignment="Top" Name="LabelSettings" FontSize="30" Foreground="White" Height="55" Margin="201,1,201,0">Settings</Label>-->
+        <StackPanel Margin="20,55,20,20" Name="PanelSettings" Style="{StaticResource PanelSettingsStyle}">
+            <Grid Margin="20, 20">
+                <Label HorizontalAlignment="Left" Margin="0,-2,0,0" Name="HelperWindowSettingsDescription" Width="195" Foreground="White">Duration of the Helper Window (sec)</Label>
+                <Slider Name="HelperWindowSlider" IsSnapToTickEnabled="True" TickFrequency="1" Ticks="0,1,2,3,4,5,6,7,8,9,10,11" TickPlacement="BottomRight" Margin="203,0,95,0" ValueChanged="HelperWindowSlider_ValueChanged" Maximum="11"/>
+                <ComboBox Margin="0,0,40,3" Name="HelperWindowSliderValue"  SelectionChanged="HelperWindowSliderValue_SelectionChanged" HorizontalAlignment="Right" Width="40">
+                    <ComboBoxItem Name="SliderValue0">0</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue1">1</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue2">2</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue3">3</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue4">4</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue5">5</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue6">6</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue7">7</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue8">8</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue9">9</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValue10">10</ComboBoxItem>
+                    <ComboBoxItem Name="SliderValueMax">∞</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
