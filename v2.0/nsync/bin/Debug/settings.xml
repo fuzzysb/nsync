@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Eugene\Desktop\1</left1>
-    <right1>C:\Users\Eugene\Desktop\2</right1>
-    <left2>C:\newwwwwwwwwwwwwwwwwww\abcdefghi</left2>
-    <right2>C:\Users\Eugene\Desktop\3</right2>
-    <left3>C:\abcdefghijklmnopqrstuvwxy12345678901234567890abcdefghijklmnopqrstuewxyz</left3>
+    <left1>C:\Users\AdminNUS\Desktop\FolderA</left1>
+    <right1>C:\Users\AdminNUS\Desktop\FolderB</right1>
+    <left2>C:\Users\Eugene\Desktop\1</left2>
+    <right2>C:\Users\Eugene\Desktop\2</right2>
+    <left3>C:\newwwwwwwwwwwwwwwwwww\abcdefghi</left3>
     <right3>C:\Users\Eugene\Desktop\3</right3>
-    <left4>C:\0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</left4>
+    <left4>C:\abcdefghijklmnopqrstuvwxy12345678901234567890abcdefghijklmnopqrstuewxyz</left4>
     <right4>C:\Users\Eugene\Desktop\3</right4>
     <left5>C:\0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</left5>
-    <right5>C:\Users\Eugene\Desktop\2</right5>
+    <right5>C:\Users\Eugene\Desktop\3</right5>
   </MRU>
   <SETTINGS>
-    <HelperWindowTimer>5</HelperWindowTimer>
+    <HelperWindowTimer>-1</HelperWindowTimer>
   </SETTINGS>
   <REMOVEABLEDISK />
 </nsync>

@@ -18,7 +18,10 @@ namespace nsync
 
         //Actual Variables being used
         private bool noChanges = false;
-        private string logFilePath = "log.txt";
+        private string directoryPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
+            "\\log";
+        private string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
+            "\\log\\" + System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'") + ".txt";
         private List<FileData> fileData;
 
         /// <summary>
@@ -56,14 +59,13 @@ namespace nsync
         }
 
         /// <summary>
-        /// Checks if log file exists. Will create if log file does not exist.
+        /// Check whether log folder exists. If not create new.
         /// </summary>
-        private void CheckFileExist()
+        private void CheckFolderExist()
         {
-            if(!File.Exists(logFilePath))
+            if (!(Directory.Exists(directoryPath)))
             {
-                FileStream fileStream = new FileStream(logFilePath, FileMode.CreateNew);
-                fileStream.Close();
+                Directory.CreateDirectory(directoryPath);
             }
         }
 
@@ -72,16 +74,8 @@ namespace nsync
         /// </summary>
         public void CreateLog()
         {
-            CheckFileExist();
-
-            FileStream fileStream = new FileStream(logFilePath, FileMode.Open, FileAccess.Write, FileShare.ReadWrite);
-            StreamWriter log = new StreamWriter(fileStream);
-            log.BaseStream.Seek(0,SeekOrigin.Begin);
-
-            log.Close();
-            fileStream.Close();
-
-            log = new StreamWriter(logFilePath, true);
+            CheckFolderExist();
+            StreamWriter log = new StreamWriter(logPath, true);
 
             log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString());
 
