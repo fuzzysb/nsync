@@ -964,22 +964,12 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.ExcludeWindow.CloseWindow">
-            <summary>
-            method to handle closing the window properly
-            </summary>
-        </member>
         <member name="M:nsync.ExcludeWindow.ButtonNext_Click(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             event handler when continue/next button is clicked
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
-        </member>
-        <member name="M:nsync.ExcludeWindow.ContinueSync">
-            <summary>
-            method to handle clicking continue and next and close the window
-            </summary>
         </member>
         <member name="M:nsync.ExcludeWindow.WindowExclude_Loaded(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
@@ -1150,6 +1140,11 @@
         <member name="P:nsync.ExcludeWindow.RightPath">
             <summary>
             Property for right path
+            </summary>
+        </member>
+        <member name="P:nsync.ExcludeWindow.Cancel">
+            <summary>
+            Property for cancel to check;
             </summary>
         </member>
         <member name="T:nsync.HomePage">

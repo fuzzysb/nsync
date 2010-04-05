@@ -50,6 +50,7 @@ namespace nsync
         private List<FileData> fileData;
         private Preview previewSync;
         private SummaryReport summaryReport;
+        private ExcludeWindow excludeWindow;
 
         /// <summary>
         /// Constructor for HomePage class
@@ -914,37 +915,46 @@ namespace nsync
             if (!ShowSync())
                 return;
 
-            //eugene remove, for testing
-            ExcludeWindow excludeWindow = new ExcludeWindow();
+            excludeWindow = new ExcludeWindow();
+            excludeWindow.Closing += new CancelEventHandler(excludeWindow_Closing);
             excludeWindow.LeftPath = actualLeftPath;
             excludeWindow.RightPath = actualRightPath;
             excludeWindow.Owner = mainWindow;
             mainWindow.Opacity = 0.2;
             excludeWindow.ShowDialog();
-            mainWindow.Opacity = 1;
-            //remove
+        }
 
-            LeftListBox.Visibility = Visibility.Hidden;
-            RightListBox.Visibility = Visibility.Hidden;
+        void excludeWindow_Closing(object sender, CancelEventArgs e)
+        {
+            if (excludeWindow.Cancel == true)
+            {
+                mainWindow.Opacity = 1;
+            }
+            else
+            {
+                mainWindow.Opacity = 1;
+                LeftListBox.Visibility = Visibility.Hidden;
+                RightListBox.Visibility = Visibility.Hidden;
 
-            LabelProgress.Visibility = Visibility.Visible;
-            LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
 
-            EnableInterface(false);
-            
-            // Feed the actualleftpath and actualrightpath into SyncEngine again
-            // Safety precaution
-            synchronizer.LeftPath = actualLeftPath;
-            synchronizer.RightPath = actualRightPath;
+                EnableInterface(false);
 
-            // Ask SyncEngine to create a folder if the leftpath OR rightpath is root
-            // note: if both path are root or both are not root, then nothing will be done
-            synchronizer.CreateFolderForRootPath();
+                // Feed the actualleftpath and actualrightpath into SyncEngine again
+                // Safety precaution
+                synchronizer.LeftPath = actualLeftPath;
+                synchronizer.RightPath = actualRightPath;
 
-            // Do PreSync Calculations: count how many changes need to be done
-            // If not enough disk space, return
-            // If enough, continue to start the real sync
-            synchronizer.PreSync();
+                // Ask SyncEngine to create a folder if the leftpath OR rightpath is root
+                // note: if both path are root or both are not root, then nothing will be done
+                synchronizer.CreateFolderForRootPath();
+
+                // Do PreSync Calculations: count how many changes need to be done
+                // If not enough disk space, return
+                // If enough, continue to start the real sync
+                synchronizer.PreSync();
+            }
         }
 
         /// <summary>

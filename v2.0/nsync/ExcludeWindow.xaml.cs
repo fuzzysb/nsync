@@ -33,6 +33,7 @@ namespace nsync
         private List<string> oldExcludeInvalid;
         private readonly int MAX_STRING_LENGTH = 90;
         bool reallyLeft = true;
+        private bool cancel = false;
         #endregion
 
         #region Public Methods
@@ -70,6 +71,18 @@ namespace nsync
             get { return rightPath; }
             set { rightPath = value; }
         }
+
+        /// <summary>
+        /// Property for cancel to check;
+        /// </summary>
+        public bool Cancel
+        {
+            get
+            {
+                return cancel;
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -91,18 +104,10 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
-            CloseWindow();
-        }
-
-        /// <summary>
-        /// method to handle closing the window properly
-        /// </summary>
-        private void CloseWindow()
-        {
-            //todo: handle close window
-
+            cancel = true;
             this.Close();
         }
+
 
         /// <summary>
         /// event handler when continue/next button is clicked
@@ -111,17 +116,8 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
-            ContinueSync();
-        }
-
-        /// <summary>
-        /// method to handle clicking continue and next and close the window
-        /// </summary>
-        private void ContinueSync()
-        {
-            //todo: handle continue sync
-
-            CloseWindow();
+            cancel = false;
+            this.Close();
         }
 
         /// <summary>
