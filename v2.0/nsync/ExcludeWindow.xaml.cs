@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Runtime.InteropServices;
+
 
 namespace nsync
 {
@@ -124,58 +126,38 @@ namespace nsync
         /// <param name="e"></param>
         private void WindowExclude_Loaded(object sender, RoutedEventArgs e)
         {
-            LabelLeftPath.Content = ShortenPath(leftPath, 75);
+            LabelLeftPath.Content = PathShortener(leftPath, 46);
             LabelLeftPath.ToolTip = leftPath;
-            LabelRightPath.Content = ShortenPath(rightPath, 75);
+            LabelRightPath.Content = PathShortener(rightPath, 46);
             LabelRightPath.ToolTip = rightPath;
 
             PopulateFileTypes();
         }
 
         /// <summary>
-        /// Better shorten path algorithm
+        /// Use Win32 Api for shortening paths
         /// </summary>
-        /// <param name="fullPath">original long path name</param>
-        /// <param name="maxLength">max length before shortening</param>
-        /// <returns>shortened path name</returns>
-        private string ShortenPath(string fullPath, int maxLength)
+        /// <param name="pszOut"></param>
+        /// <param name="szPath"></param>
+        /// <param name="cchMax"></param>
+        /// <param name="dwFlags"></param>
+        /// <returns></returns>
+        [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
+        static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
+
+        /// <summary>
+        /// Method to shorten paths to a certain length
+        /// </summary>
+        /// <param name="path">the full path</param>
+        /// <param name="length">the length to shorten to</param>
+        /// <returns>shortened string</returns>
+        static string PathShortener(string path, int length)
         {
-            string[] fullPathArray = fullPath.Split(new char[] { '\\' });
-            if (fullPathArray.Length >= 2) //Check if path is valid
-            {
-
-                if (fullPath.Length > maxLength)
-                {
-                    string finalPath = null, tempPath;
-                    for (int i = 1; i <= fullPathArray.Length - 1; i++)
-                    {
-                        tempPath = fullPathArray[0] + '\\';
-                        for (int j = 1; j < i && j < fullPathArray.Length - 2; j++)
-                        {
-                            tempPath += fullPathArray[j] + '\\';
-                        }
-                        if (fullPathArray.Length > 2)
-                            tempPath += "...\\";
-                        tempPath += fullPathArray[fullPathArray.Length - 1];
-
-                        if (tempPath.Length < maxLength)
-                            finalPath = tempPath;
-                        else
-                        {
-                            string stringToCut = fullPathArray[fullPathArray.Length - 1];
-                            finalPath = fullPathArray[0];
-                            if (fullPathArray.Length > 2)
-                                finalPath += "\\...";
-                            finalPath += "\\" + stringToCut.Substring(0, maxLength / 2 - 10) + "..." + stringToCut.Substring(stringToCut.Length - maxLength / 2, maxLength / 2);
-                            break;
-                        }
-                    }
-                    return finalPath;
-                }
-                return fullPath;
-            }
-            return fullPath;
+            StringBuilder sb = new StringBuilder();
+            PathCompactPathEx(sb, path, length, 0);
+            return sb.ToString();
         }
+
 
         /// <summary>
         /// populates the combobox with the file types present in the left and right folders
@@ -379,20 +361,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// shortens the paths of items in the exclude box
-        /// </summary>
-        /// <param name="fullPath"></param>
-        /// <returns></returns>
-        private string ShortenStatement(string fullPath, int maxLength)
-        {
-            if (fullPath.Length > MAX_STRING_LENGTH)
-            {
-                return fullPath.Substring(0, maxLength / 2 - 4) + "..." + fullPath.Substring(fullPath.Length - maxLength/2, maxLength / 2);
-            }
-            return fullPath;
-        }
-
-        /// <summary>
         /// add an item to the listbox
         /// </summary>
         /// <param name="excludeStatement">string of the statement to add</param>
@@ -401,13 +369,10 @@ namespace nsync
         private void AddListBoxItem(string excludeStatement, Brush itemColor, string tag)
         {
             ListBoxItem excludeListBoxItem = new ListBoxItem();
-            excludeListBoxItem.Content = excludeStatement + ShortenStatement(tag, 90 - excludeStatement.Length);
+            excludeListBoxItem.Content = excludeStatement + PathShortener(tag, 90 - excludeStatement.Length);
             excludeListBoxItem.ToolTip = excludeStatement + tag;
             excludeListBoxItem.Foreground = itemColor;
             excludeListBoxItem.Tag = tag;
-
-            //listBoxLeft.MouseUp += new MouseButtonEventHandler(ListBoxLeft_MouseUp);
-            //listBoxLeft.Tag = i;
 
             ListBoxExclude.Items.Add(excludeListBoxItem);
         }

@@ -12,8 +12,12 @@
         <Button Name="ButtonClose" ToolTip="{x:Static const:Resources.closeToolTip}" Template="{StaticResource ButtonCloseTemplate}" Width="25" Height="23" Click="ButtonClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="12,10"></Button>
         <Button Name="ButtonNext" ToolTip="{x:Static const:Resources.nextToolTip}" Template="{StaticResource ButtonNextTemplate}" Width="30" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,12,13" Click="ButtonNext_Click"></Button>
         <Button Name="ButtonClear" ToolTip="{x:Static const:Resources.clearToolTip}" Template="{StaticResource ButtonClearTemplate}" Width="23" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,40,17" IsEnabled="False" Click="ButtonClear_Click"></Button>
-        <Label Name="LabelLeftPath" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 65, 0, 0" Foreground="White">LeftPath</Label>
-        <Label Name="LabelRightPath" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 85, 0, 0" Foreground="White">RightPath</Label>
+        <StackPanel Name="BoxLeftPath" Width="248" Height="41" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,60,0,0" AllowDrop="False" Style="{StaticResource BoxVisualPreviewPathStyle}">
+            <Label Foreground="White"  HorizontalAlignment="Left" Margin="10,10" FontSize="10" Name="LabelLeftPath" VerticalAlignment="Top">LeftPath</Label>
+        </StackPanel>
+        <StackPanel Name="BoxRightPath" Width="248" Height="41" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,60,25,0" AllowDrop="False" Style="{StaticResource BoxVisualPreviewPathStyle}">
+            <Label Foreground="White"  HorizontalAlignment="Left" Margin="10,10" FontSize="10" Name="LabelRightPath" VerticalAlignment="Top">RightPath</Label>
+        </StackPanel>
         <ComboBox x:Name="ComboBoxFileType" VerticalAlignment="Top" Width="148" Height="32" Style="{DynamicResource ComboBoxFileTypeTemplate}" Foreground="White" HorizontalAlignment="Right" Margin="0,112,26,0" SelectionChanged="ComboBoxFileType_SelectionChanged" Cursor="Hand" DropDownOpened="ComboBoxFileType_DropDownOpened" />
         <Label Foreground="White" Height="25.96" Margin="270,113,160,0" Name="LabelAddFileTypes" VerticalAlignment="Top">Add File Types:</Label>
         

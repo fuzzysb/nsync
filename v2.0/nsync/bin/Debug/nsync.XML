@@ -904,13 +904,23 @@
             <param name="previewRightItem">string for right item column</param>
             <param name="previewAction">string for action column</param>
         </member>
-        <member name="M:nsync.VisualPreviewWindow.ShortenPath(System.String,System.Int32)">
+        <member name="M:nsync.VisualPreviewWindow.PathCompactPathEx(System.Text.StringBuilder,System.String,System.Int32,System.Int32)">
             <summary>
-            Better shorten path algorithm
+            Use Win32 Api for shortening paths
             </summary>
-            <param name="fullPath">original long path name</param>
-            <param name="maxLength">max length before shortening</param>
-            <returns>shortened path name</returns>
+            <param name="pszOut"></param>
+            <param name="szPath"></param>
+            <param name="cchMax"></param>
+            <param name="dwFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.PathShortener(System.String,System.Int32)">
+            <summary>
+            Method to shorten paths to a certain length
+            </summary>
+            <param name="path">the full path</param>
+            <param name="length">the length to shorten to</param>
+            <returns>shortened string</returns>
         </member>
         <member name="M:nsync.VisualPreviewWindow.ShortenFileName(System.String,System.Int32)">
             <summary>
@@ -1597,13 +1607,23 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.ExcludeWindow.ShortenPath(System.String,System.Int32)">
+        <member name="M:nsync.ExcludeWindow.PathCompactPathEx(System.Text.StringBuilder,System.String,System.Int32,System.Int32)">
             <summary>
-            Better shorten path algorithm
+            Use Win32 Api for shortening paths
             </summary>
-            <param name="fullPath">original long path name</param>
-            <param name="maxLength">max length before shortening</param>
-            <returns>shortened path name</returns>
+            <param name="pszOut"></param>
+            <param name="szPath"></param>
+            <param name="cchMax"></param>
+            <param name="dwFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:nsync.ExcludeWindow.PathShortener(System.String,System.Int32)">
+            <summary>
+            Method to shorten paths to a certain length
+            </summary>
+            <param name="path">the full path</param>
+            <param name="length">the length to shorten to</param>
+            <returns>shortened string</returns>
         </member>
         <member name="M:nsync.ExcludeWindow.PopulateFileTypes">
             <summary>
