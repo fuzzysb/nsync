@@ -343,6 +343,10 @@
     <Resource Include="Resources\dropdown.png" />
     <Resource Include="Resources\dropdownover.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bluecombosmall.png" />
+    <Resource Include="Resources\bluecombosmallover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

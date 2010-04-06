@@ -7,9 +7,9 @@
         <Image x:Name="ImageSettings" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/settings.png" Width="151"/>
         <StackPanel Margin="20,55,20,20" Name="PanelSettings" Style="{StaticResource PanelSettingsStyle}">
             <Grid Margin="20, 20">
-                <Label HorizontalAlignment="Left" Margin="0,-2,0,0" Name="HelperWindowSettingsDescription" Width="195" Foreground="White">Duration of the Helper Window (sec)</Label>
-                <Slider Name="HelperWindowSlider" IsSnapToTickEnabled="True" TickFrequency="1" Ticks="0,1,2,3,4,5,6,7,8,9,10,11" TickPlacement="BottomRight" Margin="203,0,95,0" ValueChanged="HelperWindowSlider_ValueChanged" Maximum="11" Cursor="Hand"/>
-                <ComboBox Margin="0,0,40,3" Name="HelperWindowSliderValue"  SelectionChanged="HelperWindowSliderValue_SelectionChanged" HorizontalAlignment="Right" Width="40" Cursor="Hand">
+                <Label Margin="0,-2,0,0" Name="HelperWindowSettingsDescription" Foreground="White" HorizontalAlignment="Left" Width="205" VerticalAlignment="Center">Duration of the Helper Window (sec)</Label>
+                <Slider Name="HelperWindowSlider" IsSnapToTickEnabled="True" TickFrequency="1" Ticks="0,1,2,3,4,5,6,7,8,9,10,11" TickPlacement="BottomRight" Margin="210,0,88,0" ValueChanged="HelperWindowSlider_ValueChanged" Maximum="11" Cursor="Hand" VerticalAlignment="Center"/>
+                <ComboBox Margin="0,0,10,0" Name="HelperWindowSliderValue" VerticalAlignment="Center" SelectionChanged="HelperWindowSliderValue_SelectionChanged" Style="{StaticResource ComboBoxSliderTemplate}" HorizontalAlignment="Right" Width="71" Height="32" Cursor="Hand" Foreground="White">
                     <ComboBoxItem Name="SliderValue0">0</ComboBoxItem>
                     <ComboBoxItem Name="SliderValue1">1</ComboBoxItem>
                     <ComboBoxItem Name="SliderValue2">2</ComboBoxItem>
