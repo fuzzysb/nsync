@@ -1,20 +1,25 @@
 ﻿<Page x:Class="nsync.TrackBackPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
     Title="TrackBackPage" Width="518" Height="287" Loaded="Page_Loaded">
     <Grid>
         <Label />
         <Image x:Name="ImageTrackBack" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/trackback.png" Width="210"/>
-        <ListView Margin="20, 100, 20, 30" Foreground="White" MaxHeight="410" MaxWidth="500" ItemsSource="{Binding trackBackCollection}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding nameItem}"  />
-                    <GridViewColumn Width="100" Header="Date"  
+        <ComboBox x:Name="ComboBoxSourceFolder" HorizontalAlignment="Left" Margin="20,55,0,0" VerticalAlignment="Top" Width="478" Height="36" Style="{DynamicResource ComboBoxSourceFolderStyle}" Foreground="White" Cursor="Hand"/>
+        <StackPanel Name="BoxTrackBack" Width="488" Height="167" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,100,15,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
+            <ListView Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollection}" Cursor="Hand">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="120" Header="Name"  
+           DisplayMemberBinding="{Binding nameItem}" />
+                        <GridViewColumn Width="120" Header="Date" 
            DisplayMemberBinding="{Binding dateItem}" />
-                    <GridViewColumn Width="100" Header="To Folder" 
+                        <GridViewColumn Header="Folder" 
            DisplayMemberBinding="{Binding folderItem}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>

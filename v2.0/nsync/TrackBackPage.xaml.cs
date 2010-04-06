@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows;
 using System.Collections.ObjectModel;
 
 namespace nsync
@@ -40,9 +41,42 @@ namespace nsync
         public ObservableCollection<TrackBackItemData> TrackBackCollection
         { get { return trackBackCollection; } }
 
+        /// <summary>
+        /// Page is loaded, initialise listview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            AddTrackBackEntry("name", "date", "folder");
+            LoadSourceFolders();
+            LoadTrackBackEntries();
+        }
+
+        private void LoadSourceFolders()
+        {
+            AddComboBoxItem("C:\\");
+            AddComboBoxItem("C:\\2");
+            ComboBoxSourceFolder.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// adds an item to the combobox
+        /// </summary>
+        /// <param name="itemName"></param>
+        private void AddComboBoxItem(string itemName)
+        {
+            ComboBoxItem SourceFolderComboBoxItem = new ComboBoxItem();
+            SourceFolderComboBoxItem.Content = itemName;
+            SourceFolderComboBoxItem.Style = (Style)FindResource("ComboBoxDarkItem");
+            ComboBoxSourceFolder.Items.Add(SourceFolderComboBoxItem);
+        }
+
+        /// <summary>
+        /// Loads the trackback entries for the folder into the listview
+        /// </summary>
+        private void LoadTrackBackEntries()
+        {
+            AddTrackBackEntry("nametest", "datetest", "foldertest");
         }
     }
 

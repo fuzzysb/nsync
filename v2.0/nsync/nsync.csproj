@@ -229,22 +229,6 @@
     <Resource Include="Resources\synciconover.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\progressbar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\dropdown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\dropdownover.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\dropback.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\stop.png" />
-    <Resource Include="Resources\stopover.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\nsync.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +338,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\trackback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\dropdown.png" />
+    <Resource Include="Resources\dropdownover.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
