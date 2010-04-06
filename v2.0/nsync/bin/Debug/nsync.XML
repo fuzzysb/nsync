@@ -435,12 +435,45 @@
         </member>
         <member name="M:nsync.TrackBackPage.#ctor">
             <summary>
-            
+            TrackBackPage Contructor
             </summary>
+        </member>
+        <member name="M:nsync.TrackBackPage.AddTrackBackEntry(System.String,System.String,System.String)">
+            <summary>
+            Adds an entry into the trackback list view
+            </summary>
+            <param name="trackBackName"></param>
+            <param name="trackBackDate"></param>
+            <param name="trackBackFolder"></param>
         </member>
         <member name="M:nsync.TrackBackPage.InitializeComponent">
             <summary>
             InitializeComponent
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackPage.TrackBackCollection">
+            <summary>
+            property of the trackback collection used in binding
+            </summary>
+        </member>
+        <member name="T:nsync.TrackBackItemData">
+            <summary>
+            Class of trackback item data, for binding
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackItemData.nameItem">
+            <summary>
+            property for left item column
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackItemData.dateItem">
+            <summary>
+            property for action column
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackItemData.folderItem">
+            <summary>
+            property for right item column
             </summary>
         </member>
         <member name="M:nsync.Preview.#ctor(System.String,System.String)">
@@ -1688,13 +1721,6 @@
             <summary>
             refresh the message displayed in the status label
             </summary>
-        </member>
-        <member name="M:nsync.ExcludeWindow.ShortenStatement(System.String,System.Int32)">
-            <summary>
-            shortens the paths of items in the exclude box
-            </summary>
-            <param name="fullPath"></param>
-            <returns></returns>
         </member>
         <member name="M:nsync.ExcludeWindow.AddListBoxItem(System.String,System.Windows.Media.Brush,System.String)">
             <summary>

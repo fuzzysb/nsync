@@ -5,7 +5,6 @@
     <Grid>
         <Label />
         <Image x:Name="ImageSettings" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/settings.png" Width="151"/>
-        <!--<Label VerticalAlignment="Top" Name="LabelSettings" FontSize="30" Foreground="White" Height="55" Margin="201,1,201,0">Settings</Label>-->
         <StackPanel Margin="20,55,20,20" Name="PanelSettings" Style="{StaticResource PanelSettingsStyle}">
             <Grid Margin="20, 20">
                 <Label HorizontalAlignment="Left" Margin="0,-2,0,0" Name="HelperWindowSettingsDescription" Width="195" Foreground="White">Duration of the Helper Window (sec)</Label>
