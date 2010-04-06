@@ -18,6 +18,7 @@ namespace nsync
     /// </summary>
     public partial class HomePage : Page
     {
+        #region Class Variables
         private string previousTextLeft;
         private ImageSource previousImageLeft;
         private string previousTextRight;
@@ -55,7 +56,9 @@ namespace nsync
         private Preview previewSync;
         private SummaryReport summaryReport;
         private ExcludeWindow excludeWindow;
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Constructor for HomePage class
         /// </summary>
@@ -73,7 +76,9 @@ namespace nsync
             actualLeftPath = nsync.Properties.Resources.panelText;
             actualRightPath = nsync.Properties.Resources.panelText;
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// This method will be called when HomePage is loaded
         /// </summary>
@@ -545,8 +550,6 @@ namespace nsync
                 LeftListBox.Visibility = Visibility.Visible;
             }
         }
-
-        #region User Defined Functions
 
         /// <summary>
         /// Change the leftbox/rightbox icon if folder path is a removeable drive
@@ -1136,7 +1139,6 @@ namespace nsync
                 return;
         }
         
-
         /// <summary>
         /// This method is called when progress percentage has changed
         /// </summary>
@@ -1338,8 +1340,6 @@ namespace nsync
             synchronizer.StartSync();
         }
 
-        #endregion
-
         private void ButtonPreview_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1380,5 +1380,6 @@ namespace nsync
         {
             EnableInterface(true);
         }
+        #endregion
     }
 }

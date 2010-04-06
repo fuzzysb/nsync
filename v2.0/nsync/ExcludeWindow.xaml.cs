@@ -81,11 +81,9 @@ namespace nsync
         {
             get { return cancel; }
         }
-
         #endregion
 
         #region Private Methods
-
         /// <summary>
         /// enable the window to be dragged and moved on mousedown
         /// </summary>
@@ -157,7 +155,6 @@ namespace nsync
             PathCompactPathEx(sb, path, length, 0);
             return sb.ToString();
         }
-
 
         /// <summary>
         /// populates the combobox with the file types present in the left and right folders

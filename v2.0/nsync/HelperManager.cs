@@ -76,7 +76,6 @@ namespace nsync
         #endregion
 
         #region Private Methods
-
         /// <summary>
         /// Determines the duration for displaying the helper message
         /// </summary>

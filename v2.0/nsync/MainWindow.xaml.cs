@@ -11,11 +11,13 @@ namespace nsync
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-
     public partial class MainWindow : Window
     {
+        #region Class Variables
         private static int oldSelectedIndex = 0;
-        
+        #endregion
+
+        #region Public Methods
         /// <summary>
         /// Constructor for MainWindow class
         /// </summary>
@@ -24,6 +26,36 @@ namespace nsync
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Takes a snapshot of an object element
+        /// </summary>
+        /// <param name="element">This parameter is an object that will be snapshot</param>
+        /// <returns>Returns a bitmap of the snapshot</returns>
+        public RenderTargetBitmap RenderBitmap(FrameworkElement element)
+        {
+            double topLeft = 0;
+            double topRight = 0;
+            int width = (int)element.ActualWidth;
+            int height = (int)element.ActualHeight;
+            double dpiX = 96; // this is the magic number
+            double dpiY = 96; // this is the magic number
+
+            PixelFormat pixelFormat = PixelFormats.Default;
+            VisualBrush elementBrush = new VisualBrush(element);
+            DrawingVisual visual = new DrawingVisual();
+            DrawingContext dc = visual.RenderOpen();
+
+            dc.DrawRectangle(elementBrush, null, new Rect(topLeft, topRight, width, height));
+            dc.Close();
+
+            RenderTargetBitmap bitmap = new RenderTargetBitmap(width, height, dpiX, dpiY, pixelFormat);
+
+            bitmap.Render(visual);
+            return bitmap;
+        }
+        #endregion
+
+        #region Private Methods
         /// <summary>
         /// This method is called when user clicks on the titlebar of MainWindow
         /// </summary>
@@ -188,34 +220,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// Takes a snapshot of an object element
-        /// </summary>
-        /// <param name="element">This parameter is an object that will be snapshot</param>
-        /// <returns>Returns a bitmap of the snapshot</returns>
-        public RenderTargetBitmap RenderBitmap(FrameworkElement element)
-        {
-            double topLeft = 0;
-            double topRight = 0;
-            int width = (int)element.ActualWidth;
-            int height = (int)element.ActualHeight;
-            double dpiX = 96; // this is the magic number
-            double dpiY = 96; // this is the magic number
-
-            PixelFormat pixelFormat = PixelFormats.Default;
-            VisualBrush elementBrush = new VisualBrush(element);
-            DrawingVisual visual = new DrawingVisual();
-            DrawingContext dc = visual.RenderOpen();
-
-            dc.DrawRectangle(elementBrush, null, new Rect(topLeft, topRight, width, height));
-            dc.Close();
-
-            RenderTargetBitmap bitmap = new RenderTargetBitmap(width, height, dpiX, dpiY, pixelFormat);
-
-            bitmap.Render(visual);
-            return bitmap;
-        }
-
-        /// <summary>
         /// This method is called when users click on the center dot on MainWindow
         /// <para>Current page will be switched to HomePage</para>
         /// </summary>
@@ -276,6 +280,6 @@ namespace nsync
             //TestEngine testEngine = new TestEngine();
             //testEngine.ShowDialog();
         }
-
+        #endregion
     }
 }
