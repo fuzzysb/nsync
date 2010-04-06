@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Management;
+using System.Runtime.InteropServices;
 
 namespace nsync
 {
@@ -229,13 +231,13 @@ namespace nsync
                     {
                         //SQ LeftText.Text = i;
                         actualLeftPath = actualPath; //SQ
-                        LeftText.Text = ShortenText(actualLeftPath); //SQ
+                        LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
                     }
                     else
                     {
                         actualLeftPath = fileTemp.DirectoryName; //SQ
                         //SQ LeftText.Text = fileTemp.DirectoryName;
-                        LeftText.Text = ShortenText(actualLeftPath); //SQ
+                        LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
                     }
                 }
 
@@ -276,13 +278,13 @@ namespace nsync
                     {
                         //SQ RightText.Text = i;
                         actualRightPath = actualPath; //SQ
-                        RightText.Text = ShortenText(actualRightPath); //SQ
+                        RightText.Text = ShortenPath(actualRightPath, 90); //SQ
                     }
                     else
                     {
                         //SQ RightText.Text = fileTemp.DirectoryName;
                         actualRightPath = fileTemp.DirectoryName; //SQ
-                        RightText.Text = ShortenText(actualRightPath); //SQ
+                        RightText.Text = ShortenPath(actualRightPath, 90); //SQ
                     }
                 }
 
@@ -304,7 +306,7 @@ namespace nsync
         {
             //SQ RightText.Text = previousTextRight;
             actualRightPath = previousTextRight; //SQ
-            RightText.Text = ShortenText(actualRightPath); //SQ
+            RightText.Text = ShortenPath(actualRightPath, 90); //SQ
 
             //SQ synchronizer.RightPath = RightText.Text;
             synchronizer.RightPath = actualRightPath; //SQ
@@ -322,7 +324,7 @@ namespace nsync
         {
             //SQ LeftText.Text = previousTextLeft;
             actualLeftPath = previousTextLeft; //SQ
-            LeftText.Text = ShortenText(actualLeftPath); //SQ
+            LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
             //SQ synchronizer.LeftPath = LeftText.Text;
             synchronizer.LeftPath = actualLeftPath; //SQ
             LeftIcon.Source = previousImageLeft;
@@ -349,7 +351,7 @@ namespace nsync
             {
                 //SQ LeftText.Text = directoryPath;
                 actualLeftPath = directoryPath; //SQ
-                LeftText.Text = ShortenText(actualLeftPath); //SQ
+                LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
                 //SQ ShowRemovableDrives(LeftText.Text, "left");
                 ShowRemovableDrives(actualLeftPath, "left"); //SQ
                 hasLeftPath = true;
@@ -382,7 +384,7 @@ namespace nsync
             {
                 //SQ RightText.Text = directoryPath;
                 actualRightPath = directoryPath; //SQ
-                RightText.Text = ShortenText(actualRightPath); //SQ
+                RightText.Text = ShortenPath(actualRightPath, 90); //SQ
                 //SQ ShowRemovableDrives(RightText.Text, "right");
                 ShowRemovableDrives(actualRightPath, "right"); //SQ
                 hasRightPath = true;
@@ -717,10 +719,10 @@ namespace nsync
 
             // Setup folder paths in SyncEngine and in LeftText+RightText
             actualLeftPath = folderPaths[0];
-            LeftText.Text = ShortenText(actualLeftPath);
+            LeftText.Text = ShortenPath(actualLeftPath, 90);
             synchronizer.LeftPath = actualLeftPath;
             actualRightPath = folderPaths[1];
-            RightText.Text = ShortenText(actualRightPath);
+            RightText.Text = ShortenPath(actualRightPath, 90);
             synchronizer.RightPath = actualRightPath;
 
             if (actualLeftPath == NULL_STRING)
@@ -753,7 +755,7 @@ namespace nsync
                 if (folderPaths[i + (i-2)] == NULL_STRING)
                     continue;
 
-                listBoxLeft.Content = ShortenPath(folderPaths[i + (i-2)]);
+                listBoxLeft.Content = ShortenPath(folderPaths[i + (i-2)], 40);
                 listBoxLeft.ToolTip = folderPaths[i + (i-2)];
 
                 originalFolderPaths[counter] = folderPaths[i + (i-2)];
@@ -774,7 +776,7 @@ namespace nsync
                 if (folderPaths[i + (i-1)] == NULL_STRING)
                     continue;
 
-                listBoxRight.Content = ShortenPath(folderPaths[i + (i-1)]);
+                listBoxRight.Content = ShortenPath(folderPaths[i + (i-1)], 40);
                 listBoxRight.ToolTip = folderPaths[i + (i-1)];
 
                 originalFolderPaths[counter] = folderPaths[i + (i-1)];
@@ -791,37 +793,26 @@ namespace nsync
         }
 
         /// <summary>
+        /// Use Win32 Api for shortening paths
+        /// </summary>
+        /// <param name="pszOut"></param>
+        /// <param name="szPath"></param>
+        /// <param name="cchMax"></param>
+        /// <param name="dwFlags"></param>
+        /// <returns></returns>
+        [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
+        static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
+
+        /// <summary>
         /// Shortens folder path for MRU list
         /// </summary>
         /// <param name="oldPath">The path that is to be shortened is passed in</param>
         /// <returns>A string containing the new folder path is returned</returns>
-        private string ShortenPath(string oldPath)
+        private string ShortenPath(string oldPath, int maxLength)
         {
-            if (oldPath.Length > 40)
-            {
-                return oldPath.Substring(0, 28) + "..." + oldPath.Substring(oldPath.Length - 10, 10);
-            }
-            else
-            {
-                return oldPath;
-            }
-        }
-
-        /// <summary>
-        /// Shortens folder path for left/right box text
-        /// </summary>
-        /// <param name="oldText">The path that is to be shortened is passed in</param>
-        /// <returns>A string containing the new folder path is returned</returns>
-        private string ShortenText(string oldText)
-        {
-            if (oldText.Length > 90)
-            {
-                return oldText.Substring(0, 60) + "..." + oldText.Substring(oldText.Length - 30, 30);
-            }
-            else
-            {
-                return oldText;
-            }
+            StringBuilder sb = new StringBuilder();
+            PathCompactPathEx(sb, oldPath, maxLength, 0);
+            return sb.ToString();
         }
 
         /// <summary>
@@ -881,14 +872,14 @@ namespace nsync
             lb = (ListBoxItem)e.Source;
             //SQ LeftText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
             actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)]; //SQ
-            LeftText.Text = ShortenText(actualLeftPath); //SQ
+            LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
 
             int index = Convert.ToInt32(lb.Tag);
             RightListBox.SelectedIndex = index - 1;
             lb = (ListBoxItem)RightListBox.SelectedItem;
             //SQ RightText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
             actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)]; //SQ
-            RightText.Text = ShortenText(actualRightPath); //SQ
+            RightText.Text = ShortenPath(actualRightPath, 90); //SQ
 
             //SQ synchronizer.LeftPath = LeftText.Text;
             //SQ synchronizer.RightPath = RightText.Text;
@@ -914,14 +905,14 @@ namespace nsync
             // Change path label to this one and update synchronizer
             //SQ RightText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
             actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)]; //SQ
-            RightText.Text = ShortenText(actualRightPath); //SQ
+            RightText.Text = ShortenPath(actualRightPath, 90); //SQ
 
             int index = Convert.ToInt32(lb.Tag);
             LeftListBox.SelectedIndex = index - 1;
             lb = (ListBoxItem)LeftListBox.SelectedItem;
             //SQ LeftText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
             actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)]; //SQ
-            LeftText.Text = ShortenText(actualLeftPath); //SQ
+            LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
 
             //SQ synchronizer.LeftPath = LeftText.Text;
             //SQ synchronizer.RightPath = RightText.Text;
@@ -1014,8 +1005,8 @@ namespace nsync
             // EUGENE, MAYBE YOU WANT TO DISPLAY A MESSAGE TO USER THAT PATH WAS REVERETED BACK
             actualLeftPath = oldLeftPath;
             actualRightPath = oldRightPath;
-            LeftText.Text = ShortenText(actualLeftPath);
-            RightText.Text = ShortenText(actualRightPath);
+            LeftText.Text = ShortenPath(actualLeftPath, 90);
+            RightText.Text = ShortenPath(actualRightPath, 90);
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
         }
@@ -1063,8 +1054,8 @@ namespace nsync
                 
                 actualLeftPath = newFolderPaths[0];
                 actualRightPath = newFolderPaths[1];
-                LeftText.Text = ShortenText(actualLeftPath);
-                RightText.Text = ShortenText(actualRightPath);
+                LeftText.Text = ShortenPath(actualLeftPath, 90);
+                RightText.Text = ShortenPath(actualRightPath, 90);
                 synchronizer.LeftPath = actualLeftPath;
                 synchronizer.RightPath = actualRightPath;
             }
@@ -1113,9 +1104,9 @@ namespace nsync
                     {
                         hasLeftPath = hasRightPath = true;
                         actualLeftPath = newPath[0];
-                        LeftText.Text = ShortenText(actualLeftPath);
+                        LeftText.Text = ShortenPath(actualLeftPath, 90);
                         actualRightPath = newPath[1];
-                        RightText.Text = ShortenText(actualRightPath);
+                        RightText.Text = ShortenPath(actualRightPath, 90);
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 
@@ -1131,9 +1122,9 @@ namespace nsync
                     {
                         hasLeftPath = hasRightPath = true;
                         actualLeftPath = newPath[0];
-                        LeftText.Text = ShortenText(actualLeftPath);
+                        LeftText.Text = ShortenPath(actualLeftPath, 90);
                         actualRightPath = newPath[1];
-                        RightText.Text = ShortenText(actualRightPath);
+                        RightText.Text = ShortenPath(actualRightPath, 90);
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 

@@ -532,12 +532,11 @@ namespace nsync
             excludeFolders.Clear();
             excludeInvalid.Clear();
         }
-        #endregion
 
         private void ComboBoxFileType_DropDownOpened(object sender, EventArgs e)
         {
             ComboBoxFileType.SelectedIndex = -1;
         }
-
+        #endregion
     }
 }
