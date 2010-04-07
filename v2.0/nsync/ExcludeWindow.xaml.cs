@@ -84,7 +84,7 @@ namespace nsync
         #endregion
 
         /// <summary>
-        /// Property for cancel to check;
+        /// Function to return list of File Types in Exclude Box
         /// </summary>
         /// <returns>List of File Types to be excluded in sync</returns>
         public List<string> GetFileTypeList()
