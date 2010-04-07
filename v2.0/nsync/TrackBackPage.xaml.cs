@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Xml;
+using System.ComponentModel;
 
 namespace nsync
 {
@@ -15,10 +16,17 @@ namespace nsync
         private ObservableCollection<TrackBackItemData> trackBackCollectionForRightFolder = new ObservableCollection<TrackBackItemData>();
         private string leftFolderPath, rightFolderPath;
         private TrackBackEngine trackback;
+        private HelperManager helper;
+        private Window mainWindow = Application.Current.MainWindow;
 
         private readonly string SETTINGS_FILE_NAME = "settings.xml";
         private readonly string PATH_MRU_LEFT_FOLDER = "/nsync/MRU/left1";
         private readonly string PATH_MRU_RIGHT_FOLDER = "/nsync/MRU/right1";
+        private readonly string MESSAGE_RESTORING_FOLDERS = "Restoring folders...";
+        private readonly string MESSAGE_RESTORE_COMPLETED = "Restore completed";
+        private readonly string MESSAGE_ERROR_DETECTED = "Error detected";
+        private readonly int HELPER_WINDOW_HIGH_PRIORITY = 0;
+        private readonly int HELPER_WINDOW_LOW_PRIORITY = 1;
         #endregion
 
         /// <summary>
@@ -30,7 +38,13 @@ namespace nsync
 
             LoadTrackBackXML();
 
+            helper = new HelperManager(mainWindow);
+
             trackback = new TrackBackEngine();
+            trackback.LeftFolderPath = leftFolderPath;
+            trackback.RightFolderPath = rightFolderPath;
+
+            trackback.backgroundWorkerForTrackBackRestore.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackRestore_RunWorkerCompleted);
         }
 
         #region Properties
@@ -99,11 +113,7 @@ namespace nsync
         {
             LoadSourceFolders();
 
-            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
-            selectedComboBoxItem = (ComboBoxItem)ComboBoxSourceFolder.SelectedItem;
-            string folderSelected = selectedComboBoxItem.Content.ToString();
-
-            if (folderSelected == leftFolderPath)
+            if (GetSelectedComboBoxItem() == leftFolderPath)
                 LoadTrackBackEntriesForLeftFolder();
             else
                 LoadTrackBackEntriesForRightFolder();
@@ -137,9 +147,6 @@ namespace nsync
             ListViewForLeftFolder.Visibility = Visibility.Visible;
             ListViewForRightFolder.Visibility = Visibility.Collapsed;
 
-            trackback.LeftFolderPath = leftFolderPath;
-            trackback.RightFolderPath = rightFolderPath;
-
             if (trackback.hasTrackBackData(leftFolderPath))
             {
                 string[] folderList = trackback.GetFolderVersions(leftFolderPath);
@@ -158,9 +165,6 @@ namespace nsync
             ListViewForLeftFolder.Visibility = Visibility.Collapsed;
             ListViewForRightFolder.Visibility = Visibility.Visible;
 
-            trackback.LeftFolderPath = leftFolderPath;
-            trackback.RightFolderPath = rightFolderPath;
-
             if (trackback.hasTrackBackData(rightFolderPath))
             {
                 string[] folderList = trackback.GetFolderVersions(rightFolderPath);
@@ -174,14 +178,94 @@ namespace nsync
 
         private void ComboBoxSourceFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
-            selectedComboBoxItem = (ComboBoxItem)ComboBoxSourceFolder.SelectedItem;
-            string folderSelected = selectedComboBoxItem.Content.ToString();
-
-            if (folderSelected == leftFolderPath)
+            if (GetSelectedComboBoxItem() == leftFolderPath)
                 LoadTrackBackEntriesForLeftFolder();
             else
                 LoadTrackBackEntriesForRightFolder();
+        }
+
+        private void ButtonRestore_Click(object sender, RoutedEventArgs e)
+        {
+            EnableInterface(false);
+            LabelProgress.Visibility = Visibility.Visible;
+            LabelProgress.Content = MESSAGE_RESTORING_FOLDERS;
+
+            if (GetSelectedComboBoxItem() == leftFolderPath)
+                trackback.StartRestore(leftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
+            else
+                trackback.StartRestore(rightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
+        }
+
+        private string GetSelectedComboBoxItem()
+        {
+            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
+            selectedComboBoxItem = (ComboBoxItem)ComboBoxSourceFolder.SelectedItem;
+            return selectedComboBoxItem.Content.ToString();
+        }
+
+        private string GetSelectedListViewItem(ListView listView)
+        {
+            TrackBackItemData selectedListViewItem = (TrackBackItemData)listView.SelectedItem;
+            return selectedListViewItem.dateItem;
+        }
+
+        private void EnableInterface(bool status)
+        {
+            double opacityValue;
+            bool enableButtons;
+
+            if (status)
+            {
+                opacityValue = 1;
+                enableButtons = true;
+                ButtonRestore.IsEnabled = true;
+            }
+            else
+            {
+                enableButtons = false;
+                opacityValue = 0.5;
+                ButtonRestore.IsEnabled = false;
+            }
+
+            //Enable/Disable the interface
+            Button ButtonClose = (Button)mainWindow.FindName("ButtonClose");
+            ButtonClose.IsEnabled = enableButtons;
+            ComboBoxSourceFolder.IsEnabled = enableButtons;
+            BoxTrackBack.IsEnabled = enableButtons;
+
+
+            //Enable/Disable the scroller
+            Button ButtonSideTabLeft = (Button)mainWindow.FindName("ButtonSideTabLeft");
+            ButtonSideTabLeft.IsEnabled = enableButtons;
+
+            //Enable/Disable the dotmenu
+            Button ButtonPageSettings = (Button)mainWindow.FindName("ButtonPageSettings");
+            ButtonPageSettings.IsEnabled = enableButtons;
+            Button ButtonPageHome = (Button)mainWindow.FindName("ButtonPageHome");
+            Button ButtonPageTrackBack = (Button)mainWindow.FindName("ButtonPageTrackBack");
+            ButtonPageHome.IsEnabled = enableButtons;
+
+            //Set Opacity
+            ButtonSideTabLeft.Opacity = opacityValue;
+            ButtonPageSettings.Opacity = ButtonPageHome.Opacity = ButtonPageTrackBack.Opacity = opacityValue;
+        }
+
+        void backgroundWorkerForTrackBackRestore_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if ((bool) e.Result)
+            {
+                EnableInterface(true);
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_RESTORE_COMPLETED;
+                helper.Show(nsync.Properties.Resources.restoreComplete, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+            }
+            else
+            {
+                EnableInterface(true);
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+            }
         }
     }
 

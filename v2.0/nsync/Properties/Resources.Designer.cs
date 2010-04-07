@@ -268,6 +268,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore done!.
+        /// </summary>
+        public static string restoreComplete {
+            get {
+                return ResourceManager.GetString("restoreComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right folder has insufficient disk space..
         /// </summary>
         public static string rightFolderInsufficientDiskSpace {

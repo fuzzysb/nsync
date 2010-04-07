@@ -186,6 +186,9 @@
   <data name="previewButtonToolTip" xml:space="preserve">
     <value>Visual Preview</value>
   </data>
+  <data name="restoreComplete" xml:space="preserve">
+    <value>Restore done!</value>
+  </data>
   <data name="rightFolderInsufficientDiskSpace" xml:space="preserve">
     <value>Right folder has insufficient disk space.</value>
   </data>

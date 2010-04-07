@@ -15,6 +15,7 @@ namespace nsync
         ////////////////////
 
         public System.ComponentModel.BackgroundWorker backgroundWorkerForTrackBackBackup;
+        public System.ComponentModel.BackgroundWorker backgroundWorkerForTrackBackRestore;
         private TrackBackFolder leftFolder, rightFolder;
         private string leftFolderPath, rightFolderPath;
         private string timeStamp;
@@ -76,6 +77,10 @@ namespace nsync
             backgroundWorkerForTrackBackBackup = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForTrackBackBackup.DoWork += new DoWorkEventHandler(backgroundWorkerForTrackBackBackup_DoWork);
             backgroundWorkerForTrackBackBackup.WorkerReportsProgress = true;
+
+            backgroundWorkerForTrackBackRestore = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerForTrackBackRestore.DoWork += new DoWorkEventHandler(backgroundWorkerForTrackBackRestore_DoWork);
+            backgroundWorkerForTrackBackRestore.WorkerReportsProgress = true;
         }
         #endregion
 
@@ -91,20 +96,21 @@ namespace nsync
         {
             backgroundWorkerForTrackBackBackup.RunWorkerAsync();
         }
-        
-        /// <summary>
-        /// Restores the folder back to its selected version
-        /// </summary>
-        public void RestoreFolder(string folderPath, string dateTime)
-        {
-            if (folderPath == leftFolderPath && leftFolder.isTrackBackXMLValid())
-                leftFolder.RestoreFolder(dateTime);
-            else if (folderPath == rightFolderPath && rightFolder.isTrackBackXMLValid())
-                rightFolder.RestoreFolder(dateTime);
-            else
-                return;
-        }
 
+        /// <summary>
+        /// Starts the restoration of folders
+        /// </summary>
+        /// <param name="folderPath">The path of the original folder</param>
+        /// <param name="dateTime">The version selected, indicated by the date and time</param>
+        public void StartRestore(string folderPath, string dateTime)
+        {
+            TrackBackData data = new TrackBackData();
+            data.DateTime = dateTime;
+            data.FolderPath = folderPath;
+
+            backgroundWorkerForTrackBackRestore.RunWorkerAsync(data);
+        }
+        
         /// <summary>
         /// Retrieves the folder names of the different folder versions stored in TrackBack.
         /// </summary>
@@ -188,6 +194,12 @@ namespace nsync
             e.Result = BackupFolders();
         }
 
+        private void backgroundWorkerForTrackBackRestore_DoWork(object sender, DoWorkEventArgs e)
+        {
+            TrackBackData data = e.Argument as TrackBackData;
+            e.Result = RestoreFolder(data.FolderPath, data.DateTime);
+        }
+
         /// <summary>
         /// Stores a copy of the sync folder pair in a subfolder located inside the "_nsync_trackback" folder
         /// </summary>
@@ -204,6 +216,45 @@ namespace nsync
             }
             return true;
         }
+
+        /// <summary>
+        /// Restores the folder back to its selected version
+        /// </summary>
+        private bool RestoreFolder(string folderPath, string dateTime)
+		{
+		    try 
+	        {	        
+		        if (folderPath == leftFolderPath && leftFolder.isTrackBackXMLValid())
+				    leftFolder.RestoreFolder(dateTime);
+			    else if (folderPath == rightFolderPath && rightFolder.isTrackBackXMLValid())
+			        rightFolder.RestoreFolder(dateTime);
+			    else
+			        return false;
+	        }
+	        catch (Exception e)
+		    {
+                return false;
+            }
+            return true;
+		}
         #endregion
+    }
+
+    class TrackBackData
+    {
+        private string folderPath;
+        private string dateTime;
+
+        public string FolderPath
+        {
+            get { return folderPath; }
+            set { folderPath = value; }
+        }
+
+        public string DateTime
+        {
+            get { return dateTime; }
+            set { dateTime = value; }
+        }
     }
 }
