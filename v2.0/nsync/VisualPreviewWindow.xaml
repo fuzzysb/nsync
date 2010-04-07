@@ -19,25 +19,25 @@
                 <Label Foreground="White" HorizontalAlignment="Left" Margin="10,10" FontSize="10" Name="LabelRightPath" VerticalAlignment="Top">RightPath</Label>
             </StackPanel>
         </Grid>
-        <ComboBox x:Name="ComboBoxFilter" VerticalAlignment="Top" Width="148" Height="32" Style="{DynamicResource ComboBoxFileTypeTemplate}" Foreground="White" HorizontalAlignment="Right" Margin="0,123,30,0" Cursor="Hand" SelectedIndex="0">
-            <ComboBoxItem Name="Both">Both</ComboBoxItem>
-            <ComboBoxItem Name="Left">Left</ComboBoxItem>
-            <ComboBoxItem Name="Right">Right</ComboBoxItem>
+        <ComboBox x:Name="ComboBoxFilter" VerticalAlignment="Top" Width="148" Height="32" Style="{DynamicResource ComboBoxFileTypeTemplate}" Foreground="White" HorizontalAlignment="Right" Margin="0,123,30,0" Cursor="Hand" SelectedIndex="0" SelectionChanged="ComboBoxFilter_SelectionChanged">
+            <ComboBoxItem Name="FilterBoth">Both</ComboBoxItem>
+            <ComboBoxItem Name="FilterLeft">Left</ComboBoxItem>
+            <ComboBoxItem Name="FilterRight">Right</ComboBoxItem>
         </ComboBox>
         <Label Foreground="White" Height="25.96" Margin="0,123,185,0" Name="LabelChangeFilter" VerticalAlignment="Top" HorizontalAlignment="Right">Filter:</Label>
         <StackPanel Name="BoxVisualPreview" Width="672" Height="418" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
-  <ListView Margin="8, 5" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding PreviewCollection}">
+  <ListView Margin="8, 5" Name="ListViewBoth" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding BothPreviewCollection}" HorizontalContentAlignment="Center">
     <ListView.View>
       <GridView>
-        <GridViewColumn Width="280" Header="Left" DisplayMemberBinding="{Binding leftItem}"  />
-        <GridViewColumn Width="86" Header=""  
-           DisplayMemberBinding="{Binding action}" />
-        <GridViewColumn Width="280" Header="Right" 
-           DisplayMemberBinding="{Binding rightItem}" />
+        <GridViewColumn Width="86" Header="Left" DisplayMemberBinding="{Binding bothLeft}" />
+        <GridViewColumn Width="474" Header="Filename"  
+           DisplayMemberBinding="{Binding bothFileName}" />
+        <GridViewColumn Width="86" Header="Right" 
+           DisplayMemberBinding="{Binding bothRight}" />
       </GridView>
     </ListView.View>
   </ListView>
-
         </StackPanel>
+        <Label Foreground="White"  HorizontalAlignment="Center" Margin="0,185,0,0" Name="LabelNoChanges" VerticalAlignment="Top" Height="25.96" Width="74.847" Visibility="Hidden">No Changes</Label>
     </Grid>
 </Window>

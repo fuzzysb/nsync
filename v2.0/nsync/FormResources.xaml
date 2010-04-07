@@ -745,6 +745,7 @@
     <Style x:Key="{x:Type ListViewItem}" TargetType="ListViewItem">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListBoxItem">
@@ -754,7 +755,7 @@
           SnapsToDevicePixels="true"
           Background="Transparent">
                         <GridViewRowPresenter
-            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
@@ -1495,6 +1496,11 @@
                 <ImageBrush ImageSource="Resources/visualpreviewpathback.png"/>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.4" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="BoxVisualPreviewStyle" TargetType="StackPanel">
