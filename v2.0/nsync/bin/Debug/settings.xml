@@ -1,19 +1,42 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Eugene\Desktop\1</left1>
-    <right1>C:\Users\Eugene\Desktop\2</right1>
-    <left2>C:\Program Files\Adobe\Reader 9.0\Setup Files\{AC76BA86-7AD7-1033-7B44-A93000000001}</left2>
-    <right2>C:\Users\Seah Shao Qi\Desktop\TestFolders\LongFolderName\aaaaaaaaasdasdasdas\cxvxcvxvxcvcxvxvcvxvxcv\ipoipopoipiopiopipiopiopiopiopopi</right2>
-    <left3>C:\Users\Eugene\Desktop\cacacacacacacacacacacaccacacacacacacacacacacacacacacacacacac</left3>
-    <right3>C:\Users\Seah Shao Qi\Desktop\TestFolders\LongFolderName\aaaaaaaaasdasdasdas\cxvxcvxvxcvcxvxvcvxvxcv\ipoipopoipiopiopipiopiopiopiopopi</right3>
-    <left4>C:\Users\Seah Shao Qi\Desktop\TestFolders\LongFolderName\aaaaaaaaasdasdasdas\cxvxcvxvxcvcxvxvcvxvxcv\ipoipopoipiopiopipiopiopiopiopopi\asdasdasdadasdaddadadda</left4>
-    <right4>C:\Users\Seah Shao Qi\Desktop\TestFolders\FolderB</right4>
-    <left5>C:\Users\Seah Shao Qi\Desktop\TestFolders\FolderA</left5>
-    <right5>C:\Users\Seah Shao Qi\Desktop\TestFolders\FolderB</right5>
+    <left1>C:\Folder1</left1>
+    <right1>C:\Folder2</right1>
+    <filter1>
+      <size>0</size>
+    </filter1>
+    <left2>
+    </left2>
+    <right2>
+    </right2>
+    <filter2>
+      <size>0</size>
+    </filter2>
+    <left3>
+    </left3>
+    <right3>
+    </right3>
+    <filter3>
+      <size>0</size>
+    </filter3>
+    <left4>
+    </left4>
+    <right4>
+    </right4>
+    <filter4>
+      <size>0</size>
+    </filter4>
+    <left5>
+    </left5>
+    <right5>
+    </right5>
+    <filter5>
+      <size>0</size>
+    </filter5>
   </MRU>
   <SETTINGS>
-    <HelperWindowTimer>7</HelperWindowTimer>
+    <HelperWindowTimer>5</HelperWindowTimer>
   </SETTINGS>
   <REMOVEABLEDISK />
 </nsync>

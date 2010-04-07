@@ -61,7 +61,7 @@ namespace nsync
             helperWindowStatusNode.InnerText = "" + timer;
 
             doc.Save(settingsFile);
-
+            protectFile(settingsFile);
         }
 
         /// <summary>
@@ -77,7 +77,8 @@ namespace nsync
 
             XmlDocument doc = new XmlDocument();
             XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
-
+            
+            protectFile(settingsFile);
             return int.Parse(helperWindowStatusNode.InnerText);
         }
 
@@ -99,6 +100,8 @@ namespace nsync
                     results.Add(mruNode["left" + i.ToString()].InnerText);
                     results.Add(mruNode["right" + i.ToString()].InnerText);
                 }
+
+                protectFile(settingsFile);
             }
             return results;
         }
@@ -155,6 +158,7 @@ namespace nsync
             }
 
             doc.Save(settingsFile);
+            protectFile(settingsFile);
         }
 
         /// <summary>
@@ -207,6 +211,7 @@ namespace nsync
             }
             
             doc.Save(settingsFile);
+            protectFile(settingsFile);
         }
 
         /// <summary>
@@ -238,6 +243,32 @@ namespace nsync
             else
             {
                 return null;
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="excludeList"></param>
+        /// <returns></returns>
+        public void StoreFilters(List<string> filterList)
+        {
+            int filterSize = filterList.Count;
+
+            IsSettingsFileExists();
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode mruNode = SelectNode(doc, PATH_MRU);
+            XmlElement tempFilterElement;
+
+            XmlNode filterNode = mruNode.SelectSingleNode("filter1");
+            filterNode["size"].InnerText = filterSize.ToString();
+
+            for (int i = 0; i < filterSize; i++)
+            {
+                tempFilterElement = doc.CreateElement("exclude" + i.ToString());
+                tempFilterElement.InnerText = filterList[i];
+                filterNode.AppendChild(tempFilterElement);
             }
         }
         #endregion
@@ -285,7 +316,7 @@ namespace nsync
                 root = doc.DocumentElement;
             }
 
-            File.SetAttributes(settingsFile, FileAttributes.Normal);
+            unprotectFile(settingsFile);
 
             XmlNode node = root.SelectSingleNode(path);
             return node;
@@ -339,6 +370,13 @@ namespace nsync
                 textWriter.WriteStartElement("right" + i.ToString());
                 textWriter.WriteString(NULL_STRING);
                 textWriter.WriteEndElement();
+
+                //Write Filter information
+                textWriter.WriteStartElement("filter" + i.ToString());
+                textWriter.WriteStartElement("size");
+                textWriter.WriteString("0");
+                textWriter.WriteEndElement();
+                textWriter.WriteEndElement();
             }
 
             //End last opened information
@@ -361,6 +399,23 @@ namespace nsync
             textWriter.WriteEndDocument();
 
             textWriter.Close();
+            protectFile(settingsFile);
+        }
+
+        /// <summary>
+        /// Makes the file normal for editing
+        /// </summary>
+        private void unprotectFile(string file)
+        {
+            File.SetAttributes(file, FileAttributes.Normal);
+        }
+
+        /// <summary>
+        /// Makes the file hidden and readOnly
+        /// </summary>
+        private void protectFile(string file)
+        {
+            File.SetAttributes(file, FileAttributes.Hidden | FileAttributes.ReadOnly);
         }
         #endregion
     }

@@ -1305,3 +1305,6 @@ C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.csproj.ResolveComRefere
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
 C:\Users\Eugene\Desktop\nsync2.0\nsync\bin\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\bin\Debug\Interop.IWshRuntimeLibrary.dll
