@@ -82,13 +82,31 @@ namespace nsync
         /// </summary>
         private void DisplayInfo()
         {
-            if (previewFileData.Count == 0)
-                LabelNoChanges.Visibility = Visibility.Visible;
-            else
-                LabelNoChanges.Visibility = Visibility.Hidden;
-
             //todo: load a favourite filter
             ComboBoxFilter.SelectedIndex = 0;
+
+            CheckEmptyList();
+        }
+
+        /// <summary>
+        /// Checks if list is empty, displays no changes message
+        /// </summary>
+        private void CheckEmptyList()
+        {
+            if (ListViewBoth.Visibility == Visibility.Visible)
+            {
+                if (ListViewBoth.Items.Count == 0)
+                    LabelNoChanges.Visibility = Visibility.Visible;
+                else
+                    LabelNoChanges.Visibility = Visibility.Hidden;
+            }
+            else if (ListViewLeftRight.Visibility == Visibility.Visible)
+            {
+                if (ListViewLeftRight.Items.Count == 0)
+                    LabelNoChanges.Visibility = Visibility.Visible;
+                else
+                    LabelNoChanges.Visibility = Visibility.Hidden;
+            }
         }
 
         /// <summary>
@@ -195,6 +213,8 @@ namespace nsync
                     MessageBox.Show("Error!");
                     break;
             }
+
+            CheckEmptyList();
         }
 
         /// <summary>
