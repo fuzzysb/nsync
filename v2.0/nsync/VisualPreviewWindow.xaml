@@ -19,7 +19,13 @@
                 <Label Foreground="White" HorizontalAlignment="Left" Margin="10,10" FontSize="10" Name="LabelRightPath" VerticalAlignment="Top">RightPath</Label>
             </StackPanel>
         </Grid>
-        <StackPanel Name="BoxVisualPreview" Width="672" Height="418" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,130,0,0" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
+        <ComboBox x:Name="ComboBoxFilter" VerticalAlignment="Top" Width="148" Height="32" Style="{DynamicResource ComboBoxFileTypeTemplate}" Foreground="White" HorizontalAlignment="Right" Margin="0,123,30,0" Cursor="Hand" SelectedIndex="0">
+            <ComboBoxItem Name="Both">Both</ComboBoxItem>
+            <ComboBoxItem Name="Left">Left</ComboBoxItem>
+            <ComboBoxItem Name="Right">Right</ComboBoxItem>
+        </ComboBox>
+        <Label Foreground="White" Height="25.96" Margin="0,123,185,0" Name="LabelChangeFilter" VerticalAlignment="Top" HorizontalAlignment="Right">Filter:</Label>
+        <StackPanel Name="BoxVisualPreview" Width="672" Height="418" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
   <ListView Margin="8, 5" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding PreviewCollection}">
     <ListView.View>
       <GridView>

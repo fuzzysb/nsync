@@ -128,13 +128,7 @@
         </GradientBrush.GradientStops>
     </LinearGradientBrush>
 
-    <!-- Pageviewer Brush -->
-
-    <VisualBrush x:Key="VisualBrushViewer" Visual="{Binding ElementName=viewer}"/>
-
-    <!--End Brushes-->
-    
-    <!--Slider-->
+    <!-- Slider Brushes -->
 
     <LinearGradientBrush x:Key="SliderDarkBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientBrush.GradientStops>
@@ -172,6 +166,13 @@
         </GradientBrush.GradientStops>
     </LinearGradientBrush>
 
+    <!-- Pageviewer Brush -->
+
+    <VisualBrush x:Key="VisualBrushViewer" Visual="{Binding ElementName=viewer}"/>
+
+    <!--End Brushes-->
+    
+    <!--Slider-->
 
     <Style x:Key="SliderButtonStyle" TargetType="{x:Type RepeatButton}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -294,8 +295,8 @@
       CornerRadius="2" 
       Width="4"
       Grid.Column="1"
-      Background="{StaticResource HorizontalLightBrush}" 
-      BorderBrush="{StaticResource HorizontalNormalBorderBrush}"
+      Background="{StaticResource SliderLightBrush}" 
+      BorderBrush="{StaticResource SliderNormalBorderBrush}"
       BorderThickness="1" />
             <Track Grid.Column="1" Name="PART_Track">
                 <Track.DecreaseRepeatButton>
