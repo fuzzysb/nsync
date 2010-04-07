@@ -37,12 +37,12 @@ namespace nsync
         /// <param name="helpString">The string to be displayed in the notifiation window</param>
         /// <param name="piority">The piority of the window to be displayed</param>
         /// <param name="windowPosition">The position for which the notification window should be placed</param>
-        public void Show(string helpString, int piority, HelperWindow.windowStartPosition windowPosition)
+        public void Show(string helpString, int priority, HelperWindow.windowStartPosition windowPosition)
         {
-            if ((helperWindowIsOn()) || ((!helperWindowIsOn()) && (piority == 0)))
+            if ((helperWindowIsOn()) || ((!helperWindowIsOn()) && (priority == 0)))
             {
-                windowHelper.SetSettings(helpString, determineTimer(piority), windowPosition);
-                if (windowHelper.Visibility != Visibility.Visible)
+                windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition);
+                if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)
                 {
                     windowHelper.Visibility = Visibility.Visible;
                     windowHelper.FormFade.Begin();

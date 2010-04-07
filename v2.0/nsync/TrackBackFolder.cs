@@ -210,7 +210,8 @@ namespace nsync
 
             for (int i = 0; i < folderList.Length; i++)
             {
-                if (nodeList.Item(i).Attributes.Item(0).Value + " " + nodeList.Item(i).Attributes.Item(1).Value != folderList[i].Name)
+                string folderName = nodeList.Item(i).Attributes.Item(0).Value + " " + nodeList.Item(i).Attributes.Item(1).Value;
+                if (!ContainsFolder(folderList, folderName))
                     return false;
             }
             return true;            
@@ -496,6 +497,15 @@ namespace nsync
 
             return earliestSession;
         }
+
+        private bool ContainsFolder(DirectoryInfo[] list, string key)
+        {
+            foreach (DirectoryInfo folder in list)
+                if (folder.Name == key)
+                    return true;
+            return false;
+        }
+
         #endregion
     }
 }

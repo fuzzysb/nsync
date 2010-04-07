@@ -11,7 +11,8 @@ namespace nsync
     public partial class TrackBackPage : Page
     {
         #region Class Variables
-        private ObservableCollection<TrackBackItemData> trackBackCollection = new ObservableCollection<TrackBackItemData>();
+        private ObservableCollection<TrackBackItemData> trackBackCollectionForLeftFolder = new ObservableCollection<TrackBackItemData>();
+        private ObservableCollection<TrackBackItemData> trackBackCollectionForRightFolder = new ObservableCollection<TrackBackItemData>();
         private string leftFolderPath, rightFolderPath;
         private TrackBackEngine trackback;
 
@@ -34,11 +35,19 @@ namespace nsync
 
         #region Properties
         /// <summary>
-        /// property of the trackback collection used in binding
+        /// Property of the trackback collection (for left folder) used in binding
         /// </summary>
-        public ObservableCollection<TrackBackItemData> TrackBackCollection
+        public ObservableCollection<TrackBackItemData> TrackBackCollectionForLeftFolder
         { 
-            get { return trackBackCollection; } 
+            get { return trackBackCollectionForLeftFolder; } 
+        }
+
+        /// <summary>
+        /// Property of the trackback collection (for right folder) used in binding
+        /// </summary>
+        public ObservableCollection<TrackBackItemData> TrackBackCollectionForRightFolder
+        {
+            get { return trackBackCollectionForRightFolder; }
         }
         #endregion
 
@@ -57,14 +66,28 @@ namespace nsync
         /// <param name="trackBackName"></param>
         /// <param name="trackBackDate"></param>
         /// <param name="trackBackFolder"></param>
-        private void AddTrackBackEntry(string trackBackName, string trackBackDate, string trackBackFolder)
+        private void AddTrackBackEntryForLeftFolder(string trackBackName, string trackBackDate, string trackBackFolder)
         {
-            trackBackCollection.Add(new TrackBackItemData
+            TrackBackItemData data = new TrackBackItemData
+                {
+                    nameItem = trackBackName,
+                    dateItem = trackBackDate,
+                    folderItem = trackBackFolder
+                };
+            if (trackBackName != null && trackBackFolder != null && trackBackDate != null)
+                trackBackCollectionForLeftFolder.Add(data); 
+        }
+
+        private void AddTrackBackEntryForRightFolder(string trackBackName, string trackBackDate, string trackBackFolder)
+        {
+            TrackBackItemData data = new TrackBackItemData
             {
                 nameItem = trackBackName,
                 dateItem = trackBackDate,
                 folderItem = trackBackFolder
-            });
+            };
+            if (trackBackName != null && trackBackFolder != null && trackBackDate != null)
+                trackBackCollectionForRightFolder.Add(data);
         }
 
         /// <summary>
@@ -75,7 +98,15 @@ namespace nsync
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             LoadSourceFolders();
-            LoadTrackBackEntries();
+
+            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
+            selectedComboBoxItem = (ComboBoxItem)ComboBoxSourceFolder.SelectedItem;
+            string folderSelected = selectedComboBoxItem.Content.ToString();
+
+            if (folderSelected == leftFolderPath)
+                LoadTrackBackEntriesForLeftFolder();
+            else
+                LoadTrackBackEntriesForRightFolder();
         }
 
         private void LoadSourceFolders()
@@ -100,39 +131,57 @@ namespace nsync
         /// <summary>
         /// Loads the trackback entries for the folder into the listview
         /// </summary>
-        private void LoadTrackBackEntries()
+        private void LoadTrackBackEntriesForLeftFolder()
         {
-            string[] folderList, destinationList, timeStampList;
+            trackBackCollectionForLeftFolder.Clear();
+            ListViewForLeftFolder.Visibility = Visibility.Visible;
+            ListViewForRightFolder.Visibility = Visibility.Collapsed;
+
             trackback.LeftFolderPath = leftFolderPath;
             trackback.RightFolderPath = rightFolderPath;
 
-            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
-            selectedComboBoxItem = (ComboBoxItem)ComboBoxSourceFolder.SelectedItem;
-            string folderSelected = selectedComboBoxItem.Content.ToString();
-
-            if (folderSelected == leftFolderPath && trackback.hasTrackBackData(leftFolderPath))
+            if (trackback.hasTrackBackData(leftFolderPath))
             {
-                folderList = trackback.GetFolderVersions(leftFolderPath);
-                destinationList = trackback.GetFolderDestinations(leftFolderPath);
-                timeStampList = trackback.GetFolderTimeStamps(leftFolderPath);
+                string[] folderList = trackback.GetFolderVersions(leftFolderPath);
+                string[] destinationList = trackback.GetFolderDestinations(leftFolderPath);
+                string[] timeStampList = trackback.GetFolderTimeStamps(leftFolderPath);
 
                 for (int i = 0; i < folderList.Length; i++)
-                    AddTrackBackEntry(folderList[i], timeStampList[i], destinationList[i]);
+                    AddTrackBackEntryForLeftFolder(folderList[i], timeStampList[i], destinationList[i]);
             }
-            else if (folderSelected == rightFolderPath && trackback.hasTrackBackData(rightFolderPath))
+        }
+
+        private void LoadTrackBackEntriesForRightFolder()
+        {
+            trackBackCollectionForRightFolder.Clear();
+
+            ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+            ListViewForRightFolder.Visibility = Visibility.Visible;
+
+            trackback.LeftFolderPath = leftFolderPath;
+            trackback.RightFolderPath = rightFolderPath;
+
+            if (trackback.hasTrackBackData(rightFolderPath))
             {
-                folderList = trackback.GetFolderVersions(rightFolderPath);
-                destinationList = trackback.GetFolderDestinations(rightFolderPath);
-                timeStampList = trackback.GetFolderTimeStamps(rightFolderPath);
+                string[] folderList = trackback.GetFolderVersions(rightFolderPath);
+                string[] destinationList = trackback.GetFolderDestinations(rightFolderPath);
+                string[] timeStampList = trackback.GetFolderTimeStamps(rightFolderPath);
 
                 for (int j = 0; j < folderList.Length; j++)
-                    AddTrackBackEntry(folderList[j], timeStampList[j], destinationList[j]);
+                    AddTrackBackEntryForRightFolder(folderList[j], timeStampList[j], destinationList[j]);
             }
         }
 
         private void ComboBoxSourceFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LoadTrackBackEntries();
+            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
+            selectedComboBoxItem = (ComboBoxItem)ComboBoxSourceFolder.SelectedItem;
+            string folderSelected = selectedComboBoxItem.Content.ToString();
+
+            if (folderSelected == leftFolderPath)
+                LoadTrackBackEntriesForLeftFolder();
+            else
+                LoadTrackBackEntriesForRightFolder();
         }
     }
 

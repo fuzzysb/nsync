@@ -17,7 +17,7 @@
             TrackBackPage Contructor
             </summary>
         </member>
-        <member name="M:nsync.TrackBackPage.AddTrackBackEntry(System.String,System.String,System.String)">
+        <member name="M:nsync.TrackBackPage.AddTrackBackEntryForLeftFolder(System.String,System.String,System.String)">
             <summary>
             Adds an entry into the trackback list view
             </summary>
@@ -38,7 +38,7 @@
             </summary>
             <param name="itemName"></param>
         </member>
-        <member name="M:nsync.TrackBackPage.LoadTrackBackEntries">
+        <member name="M:nsync.TrackBackPage.LoadTrackBackEntriesForLeftFolder">
             <summary>
             Loads the trackback entries for the folder into the listview
             </summary>
@@ -48,9 +48,14 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="P:nsync.TrackBackPage.TrackBackCollection">
+        <member name="P:nsync.TrackBackPage.TrackBackCollectionForLeftFolder">
             <summary>
-            property of the trackback collection used in binding
+            Property of the trackback collection (for left folder) used in binding
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackPage.TrackBackCollectionForRightFolder">
+            <summary>
+            Property of the trackback collection (for right folder) used in binding
             </summary>
         </member>
         <member name="T:nsync.TrackBackItemData">
@@ -704,6 +709,82 @@
               Looks up a localized string similar to TrackBack.
             </summary>
         </member>
+        <member name="M:nsync.TrackBackEngine.#ctor">
+            <summary>
+            Creates TrackBackEngine object
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackEngine.StartBackup">
+            <summary>
+            Starts the backing up of folders
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackEngine.RestoreFolder(System.String,System.String)">
+            <summary>
+            Restores the folder back to its selected version
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackEngine.GetFolderVersions(System.String)">
+            <summary>
+            Retrieves the folder names of the different folder versions stored in TrackBack.
+            </summary>
+            <param name="folderPath">The folder path string</param>
+            <returns>A string array of the folder names</returns>
+        </member>
+        <member name="M:nsync.TrackBackEngine.GetFolderDestinations(System.String)">
+            <summary>
+            Retrieves the different folder destinations which the folder was synced to.
+            </summary>
+            <param name="folderPath">The folder path string</param>
+            <returns>A string array of the folder destination paths</returns>
+        </member>
+        <member name="M:nsync.TrackBackEngine.GetFolderTimeStamps(System.String)">
+            <summary>
+            Retrieves the dates and times of when the sync took place.
+            </summary>
+            <param name="folderPath">The folder path string</param>
+            <returns>A string array of the dates and times of the sync sessions</returns>
+        </member>
+        <member name="M:nsync.TrackBackEngine.hasEnoughDiskSpace">
+            <summary>
+            Checks that there is enough disk space for TrackBack to run smoothly
+            </summary>
+            <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
+        </member>
+        <member name="M:nsync.TrackBackEngine.hasTrackBackData(System.String)">
+            <summary>
+            Checks that the folder has any previous stored versions in TrackBack.
+            </summary>
+            <param name="folderPath">The folder path string</param>
+            <returns>If the folder has stored previous folder versions, return true, false otherwise.</returns>
+        </member>
+        <member name="M:nsync.TrackBackEngine.backgroundWorkerForTrackBackBackup_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            Gets the background worker to start working and start backing up of folders
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.TrackBackEngine.BackupFolders">
+            <summary>
+            Stores a copy of the sync folder pair in a subfolder located inside the "_nsync_trackback" folder
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackEngine.LeftFolderPath">
+            <summary>
+            Getter method for left folder path
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackEngine.RightFolderPath">
+            <summary>
+            Getter method for right folder path
+            </summary>
+        </member>
+        <member name="P:nsync.TrackBackEngine.TimeStamp">
+            <summary>
+            Getter method for time stamp
+            </summary>
+        </member>
         <member name="T:nsync.HomePage">
             <summary>
             Interaction logic for HomePage.xaml
@@ -1223,6 +1304,144 @@
             <summary>
             InitializeComponent
             </summary>
+        </member>
+        <member name="M:nsync.TrackBackFolder.#ctor(System.String)">
+            <summary>
+            Creates TrackBackFolder object to allow querying of data
+            </summary>
+            <param name="sourcePath">The directory path of the folder to be queried</param>
+        </member>
+        <member name="M:nsync.TrackBackFolder.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Creates TrackBackFolder object to prepare for back up
+            </summary>
+            <param name="sourcePath">The source directory path of the folder to be synchronized</param>
+            <param name="destinationPath">The destination directory path of the folder to be synchronized</param>
+            <param name="timeStamp">The time and date of the synchronization process</param>
+        </member>
+        <member name="M:nsync.TrackBackFolder.GetFolderVersions">
+            <summary>
+            Retrieves a list of folder names of the different versions stored in TrackBack.
+            </summary>
+            <returns>An array of folder names</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.GetFolderDestinations">
+            <summary>
+            Retrieves a list of folder paths of the destination the folder was synced to.
+            </summary>
+            <returns>A string array containing the folder paths</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.GetFolderTimeStamp">
+            <summary>
+            Retrieves a list of the dates and times of when the sync took place.
+            </summary>
+            <returns>A string array of dates and times</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.BackupFolder">
+            <summary>
+            Backups the folder and create the necessary TrackBack files and folders
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackFolder.RestoreFolder(System.String)">
+            <summary>
+            Restores the folder back to the selected version
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackFolder.hasEnoughDiskSpace">
+            <summary>
+            Checks if there is sufficient disk space for TrackBack to run
+            </summary>
+            <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.hasTrackBackData">
+            <summary>
+            Checks if the folder has any previous stored versions in TrackBack. An additional
+            <para>check is done to ensure that the data is intact and not corrupted.</para>
+            </summary>
+            <returns>If the folder has stored previous folder versions and the data is valid,
+            <para>return true, false otherwise.</para></returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.isTrackBackXMLValid">
+            <summary>
+            Checks to ensure that the XML document is valid.
+            </summary>
+            <returns>If valid, return true. Return false otherwise.</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.CopyFolder(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
+            <summary>
+            Copies a folder to the destination directory
+            </summary>
+            <param name="sourceDirectory">The folder to be copied</param>
+            <param name="destinationDirectory">The directory to be copied into</param>
+        </member>
+        <member name="M:nsync.TrackBackFolder.CreateFolder(System.String,System.Boolean)">
+            <summary>
+            Creates a folder and sets its attributes as hidden
+            </summary>
+            <param name="path">The path of the folder to be created</param>
+            <param name="isHidden">If true, set the folder as hidden. Else, do nothing.</param>
+            <returns>The resultant folder</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.DeleteSubfolders(System.IO.DirectoryInfo)">
+            <summary>
+            Deletes all subfolders in a given folder
+            </summary>
+            <param name="folder">The folder that contains the subfolders to be deleted</param>
+        </member>
+        <member name="M:nsync.TrackBackFolder.DeleteFiles(System.IO.DirectoryInfo)">
+            <summary>
+            Deletes all files in a given folder
+            </summary>
+            <param name="folder">The folder that contains the files to be deleted</param>
+        </member>
+        <member name="M:nsync.TrackBackFolder.DeleteDirectory(System.String)">
+            <summary>
+            Deletes the directory recursively. This method differs from Directory Delete method in that it
+            is able to remove read-only files as well.
+            </summary>
+            <param name="directory">The directory path that is to be deleted</param>
+        </member>
+        <member name="M:nsync.TrackBackFolder.GetFreeDiskSpaceInBytes(System.String)">
+            <summary>
+            Computes the amount of free disk space
+            <para>Units is in bytes</para>
+            </summary>
+            <param name="drive">This parameter is the drive volume to be checked</param>
+            <returns>Amount of disk space in bytes, represented by 64-bit unsigned integer</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.GetDirectorySpaceInBytes(System.IO.DirectoryInfo)">
+            <summary>
+            Calculates the directory spaced needed in bytes.
+            </summary>
+            <param name="directory">The directory to be checked</param>
+            <returns>Amount of disk space in bytes, represented by 64-bit unsigned integer</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.CreateTrackBackXml">
+            <summary>
+            Creates the metadata file for TrackBack
+            </summary>
+        </member>
+        <member name="M:nsync.TrackBackFolder.SaveTrackBackSession(System.String,System.String,System.String)">
+            <summary>
+            Saves the latest sync session to the metadata file
+            </summary>
+            <param name="sourcePath">The file path of the source directory</param>
+            <param name="destinationPath">The file path of the destination directory</param>
+            <param name="timeStamp">The time and date when the sync is carried out</param>
+        </member>
+        <member name="M:nsync.TrackBackFolder.GetDateTimeList(System.Xml.XmlDocument)">
+            <summary>
+            Extracts and compiles the DateTime objects found in the XML document into an array
+            </summary>
+            <param name="document">The XML document that contains the DateTime objects</param>
+            <returns>An array of DateTime objects</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.GetEarliestSession(System.DateTime[])">
+            <summary>
+            Retrieves the outdated session in the TrackBack system
+            </summary>
+            <param name="list">An array of DateTime objects to be compared</param>
+            <returns>The outdated DateTime object</returns>
         </member>
         <member name="M:nsync.Intelligence.IsThereFilesInRootPath(System.String)">
             <summary>
@@ -1934,220 +2153,6 @@
             <summary>
             Types Of Changes In FileData Object
             </summary>
-        </member>
-        <member name="M:nsync.TrackBackEngine.#ctor">
-            <summary>
-            Creates TrackBackEngine object
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackEngine.StartBackup">
-            <summary>
-            Starts the backing up of folders
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackEngine.RestoreFolder(System.String,System.String)">
-            <summary>
-            Restores the folder back to its selected version
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackEngine.GetFolderVersions(System.String)">
-            <summary>
-            Retrieves the folder names of the different folder versions stored in TrackBack.
-            </summary>
-            <param name="folderPath">The folder path string</param>
-            <returns>A string array of the folder names</returns>
-        </member>
-        <member name="M:nsync.TrackBackEngine.GetFolderDestinations(System.String)">
-            <summary>
-            Retrieves the different folder destinations which the folder was synced to.
-            </summary>
-            <param name="folderPath">The folder path string</param>
-            <returns>A string array of the folder destination paths</returns>
-        </member>
-        <member name="M:nsync.TrackBackEngine.GetFolderTimeStamps(System.String)">
-            <summary>
-            Retrieves the dates and times of when the sync took place.
-            </summary>
-            <param name="folderPath">The folder path string</param>
-            <returns>A string array of the dates and times of the sync sessions</returns>
-        </member>
-        <member name="M:nsync.TrackBackEngine.hasEnoughDiskSpace">
-            <summary>
-            Checks that there is enough disk space for TrackBack to run smoothly
-            </summary>
-            <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
-        </member>
-        <member name="M:nsync.TrackBackEngine.hasTrackBackData(System.String)">
-            <summary>
-            Checks that the folder has any previous stored versions in TrackBack.
-            </summary>
-            <param name="folderPath">The folder path string</param>
-            <returns>If the folder has stored previous folder versions, return true, false otherwise.</returns>
-        </member>
-        <member name="M:nsync.TrackBackEngine.backgroundWorkerForTrackBackBackup_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
-            <summary>
-            Gets the background worker to start working and start backing up of folders
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.TrackBackEngine.BackupFolders">
-            <summary>
-            Stores a copy of the sync folder pair in a subfolder located inside the "_nsync_trackback" folder
-            </summary>
-        </member>
-        <member name="P:nsync.TrackBackEngine.LeftFolderPath">
-            <summary>
-            Getter method for left folder path
-            </summary>
-        </member>
-        <member name="P:nsync.TrackBackEngine.RightFolderPath">
-            <summary>
-            Getter method for right folder path
-            </summary>
-        </member>
-        <member name="P:nsync.TrackBackEngine.TimeStamp">
-            <summary>
-            Getter method for time stamp
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackFolder.#ctor(System.String)">
-            <summary>
-            Creates TrackBackFolder object to allow querying of data
-            </summary>
-            <param name="sourcePath">The directory path of the folder to be queried</param>
-        </member>
-        <member name="M:nsync.TrackBackFolder.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Creates TrackBackFolder object to prepare for back up
-            </summary>
-            <param name="sourcePath">The source directory path of the folder to be synchronized</param>
-            <param name="destinationPath">The destination directory path of the folder to be synchronized</param>
-            <param name="timeStamp">The time and date of the synchronization process</param>
-        </member>
-        <member name="M:nsync.TrackBackFolder.GetFolderVersions">
-            <summary>
-            Retrieves a list of folder names of the different versions stored in TrackBack.
-            </summary>
-            <returns>An array of folder names</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.GetFolderDestinations">
-            <summary>
-            Retrieves a list of folder paths of the destination the folder was synced to.
-            </summary>
-            <returns>A string array containing the folder paths</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.GetFolderTimeStamp">
-            <summary>
-            Retrieves a list of the dates and times of when the sync took place.
-            </summary>
-            <returns>A string array of dates and times</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.BackupFolder">
-            <summary>
-            Backups the folder and create the necessary TrackBack files and folders
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackFolder.RestoreFolder(System.String)">
-            <summary>
-            Restores the folder back to the selected version
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackFolder.hasEnoughDiskSpace">
-            <summary>
-            Checks if there is sufficient disk space for TrackBack to run
-            </summary>
-            <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.hasTrackBackData">
-            <summary>
-            Checks if the folder has any previous stored versions in TrackBack. An additional
-            <para>check is done to ensure that the data is intact and not corrupted.</para>
-            </summary>
-            <returns>If the folder has stored previous folder versions and the data is valid,
-            <para>return true, false otherwise.</para></returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.isTrackBackXMLValid">
-            <summary>
-            Checks to ensure that the XML document is valid.
-            </summary>
-            <returns>If valid, return true. Return false otherwise.</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.CopyFolder(System.IO.DirectoryInfo,System.IO.DirectoryInfo)">
-            <summary>
-            Copies a folder to the destination directory
-            </summary>
-            <param name="sourceDirectory">The folder to be copied</param>
-            <param name="destinationDirectory">The directory to be copied into</param>
-        </member>
-        <member name="M:nsync.TrackBackFolder.CreateFolder(System.String,System.Boolean)">
-            <summary>
-            Creates a folder and sets its attributes as hidden
-            </summary>
-            <param name="path">The path of the folder to be created</param>
-            <param name="isHidden">If true, set the folder as hidden. Else, do nothing.</param>
-            <returns>The resultant folder</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.DeleteSubfolders(System.IO.DirectoryInfo)">
-            <summary>
-            Deletes all subfolders in a given folder
-            </summary>
-            <param name="folder">The folder that contains the subfolders to be deleted</param>
-        </member>
-        <member name="M:nsync.TrackBackFolder.DeleteFiles(System.IO.DirectoryInfo)">
-            <summary>
-            Deletes all files in a given folder
-            </summary>
-            <param name="folder">The folder that contains the files to be deleted</param>
-        </member>
-        <member name="M:nsync.TrackBackFolder.DeleteDirectory(System.String)">
-            <summary>
-            Deletes the directory recursively. This method differs from Directory Delete method in that it
-            is able to remove read-only files as well.
-            </summary>
-            <param name="directory">The directory path that is to be deleted</param>
-        </member>
-        <member name="M:nsync.TrackBackFolder.GetFreeDiskSpaceInBytes(System.String)">
-            <summary>
-            Computes the amount of free disk space
-            <para>Units is in bytes</para>
-            </summary>
-            <param name="drive">This parameter is the drive volume to be checked</param>
-            <returns>Amount of disk space in bytes, represented by 64-bit unsigned integer</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.GetDirectorySpaceInBytes(System.IO.DirectoryInfo)">
-            <summary>
-            Calculates the directory spaced needed in bytes.
-            </summary>
-            <param name="directory">The directory to be checked</param>
-            <returns>Amount of disk space in bytes, represented by 64-bit unsigned integer</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.CreateTrackBackXml">
-            <summary>
-            Creates the metadata file for TrackBack
-            </summary>
-        </member>
-        <member name="M:nsync.TrackBackFolder.SaveTrackBackSession(System.String,System.String,System.String)">
-            <summary>
-            Saves the latest sync session to the metadata file
-            </summary>
-            <param name="sourcePath">The file path of the source directory</param>
-            <param name="destinationPath">The file path of the destination directory</param>
-            <param name="timeStamp">The time and date when the sync is carried out</param>
-        </member>
-        <member name="M:nsync.TrackBackFolder.GetDateTimeList(System.Xml.XmlDocument)">
-            <summary>
-            Extracts and compiles the DateTime objects found in the XML document into an array
-            </summary>
-            <param name="document">The XML document that contains the DateTime objects</param>
-            <returns>An array of DateTime objects</returns>
-        </member>
-        <member name="M:nsync.TrackBackFolder.GetEarliestSession(System.DateTime[])">
-            <summary>
-            Retrieves the outdated session in the TrackBack system
-            </summary>
-            <param name="list">An array of DateTime objects to be compared</param>
-            <returns>The outdated DateTime object</returns>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

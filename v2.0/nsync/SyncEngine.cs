@@ -534,12 +534,10 @@ namespace nsync
 
                 filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
                 
-                /*
                 for (int i = 0; i < excludeTypeList.Count; i++)
                 {
                     filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
                 }
-                */
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
@@ -583,12 +581,11 @@ namespace nsync
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
 
                 filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
-                /*
+
                 for (int i = 0; i < excludeTypeList.Count; i++)
                 {
                     filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
                 }
-                */
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
