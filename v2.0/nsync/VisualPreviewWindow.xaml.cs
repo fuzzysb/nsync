@@ -21,6 +21,7 @@ namespace nsync
     public partial class VisualPreviewWindow : Window
     {
         private ObservableCollection<BothPreviewItemData> bothPreviewCollection = new ObservableCollection<BothPreviewItemData>();
+        private ObservableCollection<LeftRightPreviewItemData> leftRightPreviewCollection = new ObservableCollection<LeftRightPreviewItemData>();
         private string leftPath;
         private string rightPath;
         private List<FileData> previewFileData = new List<FileData>();
@@ -49,6 +50,12 @@ namespace nsync
         public ObservableCollection<BothPreviewItemData> BothPreviewCollection
         { get { return bothPreviewCollection; } }
 
+        /// <summary>
+        /// property of the preview collection used in binding
+        /// </summary>
+        public ObservableCollection<LeftRightPreviewItemData> LeftRightPreviewCollection
+        { get { return leftRightPreviewCollection; } }
+
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -71,7 +78,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// Method to display the preview information in the listview
+        /// Method to display no changes if there aren't any, change the combobox entry so preview listview loads
         /// </summary>
         private void DisplayInfo()
         {
@@ -80,60 +87,12 @@ namespace nsync
             else
                 LabelNoChanges.Visibility = Visibility.Hidden;
 
-            foreach (FileData file in previewFileData)
-            {
-                string shortenedFileName = ShortenFileName(file.FileName,42);
-
-                if (file.ChangeType == Changes.Create)
-                {
-                    if (file.RootPath == leftPath)
-                    {
-                        AddBothPreviewEntry("Create", shortenedFileName, "");
-                    }
-                    else
-                    {
-                        AddBothPreviewEntry("", shortenedFileName, "Create");
-                    }
-                }
-                if (file.ChangeType == Changes.Update)
-                {
-                    if (file.RootPath == leftPath)
-                    {
-                        AddBothPreviewEntry("Update", shortenedFileName, "");
-                    }
-                    else
-                    {
-                        AddBothPreviewEntry("", shortenedFileName, "Update");
-                    }
-
-                }
-                if (file.ChangeType == Changes.Delete)
-                {
-                    if (file.RootPath == leftPath)
-                    {
-                        AddBothPreviewEntry("Delete", shortenedFileName, "");
-                    }
-                    else
-                    {
-                        AddBothPreviewEntry("", shortenedFileName, "Delete");
-                    }
-                }
-                if (file.ChangeType == Changes.Rename)
-                {
-                    if (file.RootPath == leftPath)
-                    {
-                        AddBothPreviewEntry("Rename", shortenedFileName, "");
-                    }
-                    else
-                    {
-                        AddBothPreviewEntry("", shortenedFileName, "Rename");
-                    }
-                }
-            }
+            //todo: load a favourite filter
+            ComboBoxFilter.SelectedIndex = 0;
         }
 
         /// <summary>
-        /// Adds an entry into the preview list view
+        /// Adds an entry into the preview both list view
         /// </summary>
         /// <param name="previewLeftItem"></param>
         /// <param name="previewFileItem"></param>
@@ -145,6 +104,20 @@ namespace nsync
                 bothLeft = previewLeftItem,
                 bothFileName = previewFileItem,
                 bothRight = previewRightItem
+            });
+        }
+
+        /// <summary>
+        /// Adds an entry into the preview leftright list view
+        /// </summary>
+        /// <param name="previewLeftRightFileName"></param>
+        /// <param name="previewLeftRightAction"></param>
+        private void AddLeftRightPreviewEntry(string previewLeftRightFileName, string previewLeftRightAction)
+        {
+            leftRightPreviewCollection.Add(new LeftRightPreviewItemData
+            {
+                leftRightFileName = previewLeftRightFileName,
+                leftRightAction = previewLeftRightAction,
             });
         }
 
@@ -200,21 +173,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// Shortens file name if its too long
-        /// </summary>
-        /// <param name="fullPath">original long filename</param>
-        /// <param name="maxLength">max length before shortening</param>
-        /// <returns>shortened file name</returns>
-        private string ShortenFileName(string fullPath, int maxLength)
-        {
-            if (fullPath.Length > maxLength)
-            {
-                return fullPath.Substring(0, (maxLength / 2)-3) + "..." + fullPath.Substring(fullPath.Length - (maxLength / 2), maxLength / 2);
-            }
-            return fullPath;
-        }
-
-        /// <summary>
         /// event handler when the filter combobox is changed, change the view of the list and the interface
         /// </summary>
         /// <param name="sender"></param>
@@ -234,6 +192,7 @@ namespace nsync
                     break;
                 default:
                     //Error, unexpected behavior
+                    MessageBox.Show("Error!");
                     break;
             }
         }
@@ -245,6 +204,10 @@ namespace nsync
         {
             BoxLeftPath.IsEnabled = false;
             BoxRightPath.IsEnabled = true;
+            ListViewBoth.Visibility = Visibility.Collapsed;
+            ListViewLeftRight.Visibility = Visibility.Visible;
+
+            LoadLeftRightData(false);
         }
 
         /// <summary>
@@ -254,6 +217,10 @@ namespace nsync
         {
             BoxLeftPath.IsEnabled = true;
             BoxRightPath.IsEnabled = false;
+            ListViewBoth.Visibility = Visibility.Collapsed;
+            ListViewLeftRight.Visibility = Visibility.Visible;
+
+            LoadLeftRightData(true);
         }
 
         /// <summary>
@@ -263,12 +230,56 @@ namespace nsync
         {
             BoxLeftPath.IsEnabled = true;
             BoxRightPath.IsEnabled = true;
+            ListViewBoth.Visibility = Visibility.Visible;
+            ListViewLeftRight.Visibility = Visibility.Collapsed;
+
+            LoadBothData();
         }
 
+        /// <summary>
+        /// Load in the data to the data binding collection for the both filter
+        /// </summary>
+        private void LoadBothData()
+        {
+            bothPreviewCollection.Clear();
+
+            foreach (FileData file in previewFileData)
+            {
+                string shortenedFileName = PathShortener(file.FileName, 70);
+
+                if (file.RootPath == leftPath)
+                {
+                    AddBothPreviewEntry(file.ChangeType.ToString(), shortenedFileName, "");
+                }
+                else
+                {
+                    AddBothPreviewEntry("", shortenedFileName, file.ChangeType.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Load in the data to the data binding collection for the left and right filter
+        /// </summary>
+        /// <param name="IsLeft"></param>
+        private void LoadLeftRightData(bool IsLeft)
+        {
+            leftRightPreviewCollection.Clear();
+
+            foreach (FileData file in previewFileData)
+            {
+                string shortenedFileName = PathShortener(file.FileName, 70);
+
+                if (file.RootPath == leftPath && IsLeft || file.RootPath == rightPath && !IsLeft)
+                {
+                    AddLeftRightPreviewEntry(shortenedFileName, file.ChangeType.ToString());
+                }
+            }
+        }
     }
 
     /// <summary>
-    /// Simple data class of a preview item with 3 elements to fill the listview
+    /// Simple data class of a preview item with 3 elements to fill the both filtered listview
     /// </summary>
     public class BothPreviewItemData
     {
@@ -277,13 +288,28 @@ namespace nsync
         /// </summary>
         public string bothLeft { get; set; }
         /// <summary>
-        /// property for action column
+        /// property for right tiem column
         /// </summary>
         public string bothRight { get; set; }
         /// <summary>
-        /// property for right item column
+        /// property for filename column
         /// </summary>
         public string bothFileName { get; set; }
+    }
+
+    /// <summary>
+    /// Simple data class of a preview item with 2 elements to fill the leftright filtered listview
+    /// </summary>
+    public class LeftRightPreviewItemData
+    {
+        /// <summary>
+        /// property for filename column
+        /// </summary>
+        public string leftRightFileName { get; set; }
+        /// <summary>
+        /// property for action column
+        /// </summary>
+        public string leftRightAction { get; set; }
     }
 
 }

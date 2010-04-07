@@ -964,16 +964,23 @@
         </member>
         <member name="M:nsync.VisualPreviewWindow.DisplayInfo">
             <summary>
-            Method to display the preview information in the listview
+            Method to display no changes if there aren't any, change the combobox entry so preview listview loads
             </summary>
         </member>
         <member name="M:nsync.VisualPreviewWindow.AddBothPreviewEntry(System.String,System.String,System.String)">
             <summary>
-            Adds an entry into the preview list view
+            Adds an entry into the preview both list view
             </summary>
             <param name="previewLeftItem"></param>
             <param name="previewFileItem"></param>
             <param name="previewRightItem"></param>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.AddLeftRightPreviewEntry(System.String,System.String)">
+            <summary>
+            Adds an entry into the preview leftright list view
+            </summary>
+            <param name="previewLeftRightFileName"></param>
+            <param name="previewLeftRightAction"></param>
         </member>
         <member name="M:nsync.VisualPreviewWindow.PathCompactPathEx(System.Text.StringBuilder,System.String,System.Int32,System.Int32)">
             <summary>
@@ -992,14 +999,6 @@
             <param name="path">the full path</param>
             <param name="length">the length to shorten to</param>
             <returns>shortened string</returns>
-        </member>
-        <member name="M:nsync.VisualPreviewWindow.ShortenFileName(System.String,System.Int32)">
-            <summary>
-            Shortens file name if its too long
-            </summary>
-            <param name="fullPath">original long filename</param>
-            <param name="maxLength">max length before shortening</param>
-            <returns>shortened file name</returns>
         </member>
         <member name="M:nsync.VisualPreviewWindow.ComboBoxFilter_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
             <summary>
@@ -1023,12 +1022,28 @@
             Load the both filtered view of the list and the corresponding interface
             </summary>
         </member>
+        <member name="M:nsync.VisualPreviewWindow.LoadBothData">
+            <summary>
+            Load in the data to the data binding collection for the both filter
+            </summary>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.LoadLeftRightData(System.Boolean)">
+            <summary>
+            Load in the data to the data binding collection for the left and right filter
+            </summary>
+            <param name="IsLeft"></param>
+        </member>
         <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
             <summary>
             InitializeComponent
             </summary>
         </member>
         <member name="P:nsync.VisualPreviewWindow.BothPreviewCollection">
+            <summary>
+            property of the preview collection used in binding
+            </summary>
+        </member>
+        <member name="P:nsync.VisualPreviewWindow.LeftRightPreviewCollection">
             <summary>
             property of the preview collection used in binding
             </summary>
@@ -1050,7 +1065,7 @@
         </member>
         <member name="T:nsync.BothPreviewItemData">
             <summary>
-            Simple data class of a preview item with 3 elements to fill the listview
+            Simple data class of a preview item with 3 elements to fill the both filtered listview
             </summary>
         </member>
         <member name="P:nsync.BothPreviewItemData.bothLeft">
@@ -1060,12 +1075,27 @@
         </member>
         <member name="P:nsync.BothPreviewItemData.bothRight">
             <summary>
-            property for action column
+            property for right tiem column
             </summary>
         </member>
         <member name="P:nsync.BothPreviewItemData.bothFileName">
             <summary>
-            property for right item column
+            property for filename column
+            </summary>
+        </member>
+        <member name="T:nsync.LeftRightPreviewItemData">
+            <summary>
+            Simple data class of a preview item with 2 elements to fill the leftright filtered listview
+            </summary>
+        </member>
+        <member name="P:nsync.LeftRightPreviewItemData.leftRightFileName">
+            <summary>
+            property for filename column
+            </summary>
+        </member>
+        <member name="P:nsync.LeftRightPreviewItemData.leftRightAction">
+            <summary>
+            property for action column
             </summary>
         </member>
         <member name="M:nsync.SummaryReport.#ctor(System.Boolean)">
