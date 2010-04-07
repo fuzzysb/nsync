@@ -21,7 +21,9 @@ namespace nsync
         private string leftPath;
         private string rightPath;
         private List<string> excludeTypeList = new List<string>();
-            
+
+        private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
+
         /// <summary>
         /// Constructor for Preview
         /// </summary>
@@ -134,6 +136,8 @@ namespace nsync
                 {
                     filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
                 }
+
+                filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
