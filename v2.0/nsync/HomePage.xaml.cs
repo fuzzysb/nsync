@@ -1419,19 +1419,29 @@ namespace nsync
         /// <param name="e"></param>
         void backgroundWorkerForPreview_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            LabelProgress.Visibility = Visibility.Hidden;
-            fileData = new List<FileData>();
-            fileData = previewSync.GetData();
+            if (e.Error != null)
+            {
+                string message = e.Error.Message.Remove(e.Error.Message.IndexOf("("));
+                LabelProgress.Content = message;
+                EnableInterface(true);
+                helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+            }
+            else
+            {
+                LabelProgress.Visibility = Visibility.Hidden;
+                fileData = new List<FileData>();
+                fileData = previewSync.GetData();
 
-            VisualPreviewWindow WindowVisualPreview = new VisualPreviewWindow();
-            WindowVisualPreview.Closing += new CancelEventHandler(WindowVisualPreview_Closing);
-            WindowVisualPreview.Owner = mainWindow;
-            WindowVisualPreview.LeftPath = actualLeftPath;
-            WindowVisualPreview.RightPath = actualRightPath;
-            WindowVisualPreview.PreviewFileData = fileData;
-            mainWindow.Opacity = 0.2;
-            WindowVisualPreview.ShowDialog();
-            mainWindow.Opacity = 1;
+                VisualPreviewWindow WindowVisualPreview = new VisualPreviewWindow();
+                WindowVisualPreview.Closing += new CancelEventHandler(WindowVisualPreview_Closing);
+                WindowVisualPreview.Owner = mainWindow;
+                WindowVisualPreview.LeftPath = actualLeftPath;
+                WindowVisualPreview.RightPath = actualRightPath;
+                WindowVisualPreview.PreviewFileData = fileData;
+                mainWindow.Opacity = 0.2;
+                WindowVisualPreview.ShowDialog();
+                mainWindow.Opacity = 1;
+            }
         }
 
         void WindowVisualPreview_Closing(object sender, CancelEventArgs e)

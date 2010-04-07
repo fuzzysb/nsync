@@ -8,6 +8,7 @@ using System.ComponentModel;
 using Microsoft.Synchronization;
 using Microsoft.Synchronization.Files;
 using Microsoft.Synchronization.MetadataStorage;
+using System.Windows;
 
 namespace nsync
 {
@@ -27,8 +28,6 @@ namespace nsync
         /// <summary>
         /// Constructor for Preview
         /// </summary>
-        /// <param name="actualLeftPath">This parameter indicates the left folder path to be used</param>
-        /// <param name="actualRightPath">This parameter indicates the right folder path to be used</param>
         public Preview()
         {
             backgroundWorkerForPreview = new System.ComponentModel.BackgroundWorker();
@@ -92,8 +91,8 @@ namespace nsync
         /// </summary>
         public void PreviewSync()
         {
-            // Start the asynchronous operation.
-            backgroundWorkerForPreview.RunWorkerAsync();
+                // Start the asynchronous operation.
+                backgroundWorkerForPreview.RunWorkerAsync();
         }
 
         /// <summary>
@@ -148,11 +147,14 @@ namespace nsync
                 SyncFileSystemReplicasOneWay(leftPath, rightPath, null, options);
                 SyncFileSystemReplicasOneWay(rightPath, leftPath, null, options);
             }
-            catch (Exception e)
+            catch (System.UnauthorizedAccessException exceptionError)
             {
-                throw new Exception("Exception from File Sync Provider:\n" + e.Message.ToString());
+                throw exceptionError;
             }
-
+            catch (Exception exceptionError)
+            {
+                throw exceptionError;
+            }
         }
 
         /// <summary>
