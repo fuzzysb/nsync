@@ -25,6 +25,7 @@ namespace nsync
         private static int countDoneChanges = 0;
         private static int countChanges = 0;
         private Intelligence intelligentManager;
+        private List<string> excludeTypeList = new List<string>();
         #endregion
 
         #region Properties
@@ -44,6 +45,15 @@ namespace nsync
         {
             get { return rightPath; }
             set { rightPath = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method exclude list which contains file types
+        /// </summary>
+        public List<string> ExcludeTypeList
+        {
+            get { return excludeTypeList; }
+            set { excludeTypeList = value; }
         }
         #endregion
 
@@ -519,6 +529,10 @@ namespace nsync
 
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
+                for (int i = 0; i < excludeTypeList.Count; i++)
+                {
+                    filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
+                }
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
@@ -560,6 +574,10 @@ namespace nsync
 
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
+                for (int i = 0; i < excludeTypeList.Count; i++)
+                {
+                    filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
+                }
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications

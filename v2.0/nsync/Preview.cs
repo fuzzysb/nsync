@@ -20,17 +20,15 @@ namespace nsync
         private List<FileData> fileData;
         private string leftPath;
         private string rightPath;
-
+        private List<string> excludeTypeList = new List<string>();
+            
         /// <summary>
         /// Constructor for Preview
         /// </summary>
         /// <param name="actualLeftPath">This parameter indicates the left folder path to be used</param>
         /// <param name="actualRightPath">This parameter indicates the right folder path to be used</param>
-        public Preview(string actualLeftPath, string actualRightPath)
+        public Preview()
         {
-            this.leftPath = actualLeftPath;
-            this.rightPath = actualRightPath;
-
             backgroundWorkerForPreview = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForPreview.DoWork += new DoWorkEventHandler(backgroundWorkerForPreview_DoWork);
             backgroundWorkerForPreview.WorkerReportsProgress = true;
@@ -38,6 +36,33 @@ namespace nsync
             backgroundWorkerForSummary = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForSummary.DoWork += new DoWorkEventHandler(backgroundWorkerForSummary_DoWork);
             backgroundWorkerForSummary.WorkerReportsProgress = true;
+        }
+
+        /// <summary>
+        /// Setter and Getter method for left folder path
+        /// </summary>
+        public string LeftPath
+        {
+            get { return leftPath; }
+            set { leftPath = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for right folder path
+        /// </summary>
+        public string RightPath
+        {
+            get { return rightPath; }
+            set { rightPath = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method exclude list which contains file types
+        /// </summary>
+        public List<string> ExcludeTypeList
+        {
+            get { return excludeTypeList; }
+            set { excludeTypeList = value; }
         }
 
         /// <summary>
@@ -105,6 +130,10 @@ namespace nsync
 
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
+                for (int i = 0; i < excludeTypeList.Count; i++)
+                {
+                    filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
+                }
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications

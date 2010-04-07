@@ -77,7 +77,7 @@ namespace nsync
             CheckFolderExist();
             StreamWriter log = new StreamWriter(logPath, true);
 
-            log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString());
+            log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString("dd-MMM-yyyy h:mm:ss tt"));
 
             if(!noChanges)
             {

@@ -83,6 +83,15 @@ namespace nsync
         }
         #endregion
 
+        /// <summary>
+        /// Property for cancel to check;
+        /// </summary>
+        /// <returns>List of File Types to be excluded in sync</returns>
+        public List<string> GetFileTypeList()
+        {
+            return excludeFileTypes;
+        }
+
         #region Private Methods
         /// <summary>
         /// enable the window to be dragged and moved on mousedown

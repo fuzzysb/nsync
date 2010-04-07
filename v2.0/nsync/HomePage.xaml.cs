@@ -56,6 +56,7 @@ namespace nsync
         private Preview previewSync;
         private SummaryReport summaryReport;
         private ExcludeWindow excludeWindow;
+        private List<string> excludeTypeList;
         #endregion
 
         #region Constructor
@@ -998,6 +999,9 @@ namespace nsync
                 // Do PreSync Calculations: count how many changes need to be done
                 // If not enough disk space, return
                 // If enough, continue to start the real sync
+                excludeTypeList = new List<string>();
+                excludeTypeList = excludeWindow.GetFileTypeList();
+                synchronizer.ExcludeTypeList = excludeTypeList;
                 synchronizer.PreSync();
             }
         }
@@ -1244,7 +1248,10 @@ namespace nsync
                 return;
             }
 
-            previewSync = new Preview(actualLeftPath, actualRightPath);
+            previewSync = new Preview();
+            previewSync.LeftPath = actualLeftPath;
+            previewSync.RightPath = actualRightPath;
+            previewSync.ExcludeTypeList = excludeTypeList;
             previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
             previewSync.SummarySync();
 
@@ -1347,7 +1354,9 @@ namespace nsync
                 return;
 
             EnableInterface(false);
-            previewSync = new Preview(actualLeftPath, actualRightPath);
+            previewSync = new Preview();
+            previewSync.LeftPath = actualLeftPath;
+            previewSync.RightPath = actualRightPath;
             previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
             previewSync.PreviewSync();
             LabelProgress.Visibility = Visibility.Visible;

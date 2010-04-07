@@ -1,25 +1,23 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Eugene\Desktop\aaa</left1>
-    <right1>C:\Users\Eugene\Desktop\2</right1>
+    <left1>C:\Users\AdminNUS\Desktop\A</left1>
+    <right1>C:\Users\AdminNUS\Desktop\B</right1>
     <filter1>
       <size>0</size>
     </filter1>
-    <left2>C:\Users\Eugene\Desktop\1</left2>
+    <left2>C:\Users\Eugene\Desktop\aaa</left2>
     <right2>C:\Users\Eugene\Desktop\2</right2>
     <filter2>
       <size>0</size>
     </filter2>
-    <left3>C:\Folder1</left3>
-    <right3>C:\Folder2</right3>
+    <left3>C:\Users\Eugene\Desktop\1</left3>
+    <right3>C:\Users\Eugene\Desktop\2</right3>
     <filter3>
       <size>0</size>
     </filter3>
-    <left4>
-    </left4>
-    <right4>
-    </right4>
+    <left4>C:\Folder1</left4>
+    <right4>C:\Folder2</right4>
     <filter4>
       <size>0</size>
     </filter4>
