@@ -26,6 +26,8 @@ namespace nsync
         private static int countChanges = 0;
         private Intelligence intelligentManager;
         private List<string> excludeTypeList = new List<string>();
+
+        private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
         #endregion
 
         #region Properties
@@ -415,7 +417,7 @@ namespace nsync
                 SyncCallbacks destinationCallBacks = destProvider.DestinationCallbacks;
                 destinationCallBacks.ItemConflicting += new EventHandler<ItemConflictingEventArgs>(OnItemConflicting);
 
-                if(isPreview)
+                if (isPreview)
                     destProvider.ApplyingChange += new EventHandler<ApplyingChangeEventArgs>(OnApplyingChange);
                 else
                     destProvider.AppliedChange += new EventHandler<AppliedChangeEventArgs>(OnAppliedChange);
@@ -529,10 +531,15 @@ namespace nsync
 
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
+
+                filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
+                
+                /*
                 for (int i = 0; i < excludeTypeList.Count; i++)
                 {
                     filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
                 }
+                */
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
@@ -574,10 +581,14 @@ namespace nsync
 
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
+
+                filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
+                /*
                 for (int i = 0; i < excludeTypeList.Count; i++)
                 {
                     filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
                 }
+                */
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications

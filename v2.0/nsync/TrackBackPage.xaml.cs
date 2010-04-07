@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows;
 using System.Collections.ObjectModel;
+using System.Xml;
 
 namespace nsync
 {
@@ -9,7 +10,15 @@ namespace nsync
     /// </summary>
     public partial class TrackBackPage : Page
     {
+        #region Class Variables
         private ObservableCollection<TrackBackItemData> trackBackCollection = new ObservableCollection<TrackBackItemData>();
+        private string leftFolderPath, rightFolderPath;
+        private TrackBackEngine trackback;
+
+        private readonly string SETTINGS_FILE_NAME = "settings.xml";
+        private readonly string PATH_MRU_LEFT_FOLDER = "/nsync/MRU/left1";
+        private readonly string PATH_MRU_RIGHT_FOLDER = "/nsync/MRU/right1";
+        #endregion
 
         /// <summary>
         /// TrackBackPage Contructor
@@ -17,6 +26,29 @@ namespace nsync
         public TrackBackPage()
         {
             InitializeComponent();
+
+            LoadTrackBackXML();
+
+            trackback = new TrackBackEngine();
+        }
+
+        #region Properties
+        /// <summary>
+        /// property of the trackback collection used in binding
+        /// </summary>
+        public ObservableCollection<TrackBackItemData> TrackBackCollection
+        { 
+            get { return trackBackCollection; } 
+        }
+        #endregion
+
+        private void LoadTrackBackXML()
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(SETTINGS_FILE_NAME);
+
+            leftFolderPath = document.SelectSingleNode(PATH_MRU_LEFT_FOLDER).InnerText;
+            rightFolderPath = document.SelectSingleNode(PATH_MRU_RIGHT_FOLDER).InnerText;
         }
 
         /// <summary>
@@ -36,12 +68,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// property of the trackback collection used in binding
-        /// </summary>
-        public ObservableCollection<TrackBackItemData> TrackBackCollection
-        { get { return trackBackCollection; } }
-
-        /// <summary>
         /// Page is loaded, initialise listview
         /// </summary>
         /// <param name="sender"></param>
@@ -54,8 +80,8 @@ namespace nsync
 
         private void LoadSourceFolders()
         {
-            AddComboBoxItem("C:\\");
-            AddComboBoxItem("C:\\2");
+            AddComboBoxItem(leftFolderPath);
+            AddComboBoxItem(rightFolderPath);
             ComboBoxSourceFolder.SelectedIndex = 0;
         }
 
@@ -76,7 +102,37 @@ namespace nsync
         /// </summary>
         private void LoadTrackBackEntries()
         {
-            AddTrackBackEntry("nametest", "datetest", "foldertest");
+            string[] folderList, destinationList, timeStampList;
+            trackback.LeftFolderPath = leftFolderPath;
+            trackback.RightFolderPath = rightFolderPath;
+
+            ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
+            selectedComboBoxItem = (ComboBoxItem)ComboBoxSourceFolder.SelectedItem;
+            string folderSelected = selectedComboBoxItem.Content.ToString();
+
+            if (folderSelected == leftFolderPath && trackback.hasTrackBackData(leftFolderPath))
+            {
+                folderList = trackback.GetFolderVersions(leftFolderPath);
+                destinationList = trackback.GetFolderDestinations(leftFolderPath);
+                timeStampList = trackback.GetFolderTimeStamps(leftFolderPath);
+
+                for (int i = 0; i < folderList.Length; i++)
+                    AddTrackBackEntry(folderList[i], timeStampList[i], destinationList[i]);
+            }
+            else if (folderSelected == rightFolderPath && trackback.hasTrackBackData(rightFolderPath))
+            {
+                folderList = trackback.GetFolderVersions(rightFolderPath);
+                destinationList = trackback.GetFolderDestinations(rightFolderPath);
+                timeStampList = trackback.GetFolderTimeStamps(rightFolderPath);
+
+                for (int j = 0; j < folderList.Length; j++)
+                    AddTrackBackEntry(folderList[j], timeStampList[j], destinationList[j]);
+            }
+        }
+
+        private void ComboBoxSourceFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadTrackBackEntries();
         }
     }
 

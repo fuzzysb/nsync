@@ -1,120 +1,209 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
+using System.Management;
+using System.ComponentModel;
 
 namespace nsync
 {
     class TrackBackEngine
     {
+        #region Class Variables
         ////////////////////
         // CLASS VARIABLES
         ////////////////////
-        
-        private DirectoryInfo storageFolder, destinationFolder;
-        private string destinationPath, storagePath;
-        private Stack<TrackBackData> trackBackStack;
 
+        public System.ComponentModel.BackgroundWorker backgroundWorkerForTrackBackBackup;
+        private TrackBackFolder leftFolder, rightFolder;
+        private string leftFolderPath, rightFolderPath;
+        private string timeStamp;
+
+        private readonly string DATE_FORMAT = "yyyy-MM-dd";
+        private readonly string TIME_FORMAT = "hh.mm.ss tt";
+        #endregion
+
+        #region Properties
+        ////////////////////
+        // PROPERTIES
+        ////////////////////
+
+        /// <summary>
+        /// Getter method for left folder path
+        /// </summary>
+        public string LeftFolderPath
+        {
+            get { return leftFolderPath; }
+            set 
+            { 
+                leftFolderPath = value;
+                leftFolder = new TrackBackFolder(leftFolderPath);
+            }
+        }
+
+        /// <summary>
+        /// Getter method for right folder path
+        /// </summary>
+        public string RightFolderPath
+        {
+            get { return rightFolderPath; }
+            set 
+            { 
+                rightFolderPath = value;
+                rightFolder = new TrackBackFolder(rightFolderPath);
+            }
+        }
+
+        /// <summary>
+        /// Getter method for time stamp
+        /// </summary>
+        public string TimeStamp
+        {
+            get { return timeStamp; }
+        }
+        #endregion
+
+        #region Constructor
         ////////////////////
         // CONSTRUCTOR
         ////////////////////
 
+        /// <summary>
+        /// Creates TrackBackEngine object
+        /// </summary>
         public TrackBackEngine()
         {
-            storagePath = "trackback";
-            storageFolder = CreateFolder(storagePath);
-
-            // creates a stack to store the folder pairs synced
-            trackBackStack = new Stack<TrackBackData>(5);
+            backgroundWorkerForTrackBackBackup = new System.ComponentModel.BackgroundWorker();
+            backgroundWorkerForTrackBackBackup.DoWork += new DoWorkEventHandler(backgroundWorkerForTrackBackBackup_DoWork);
+            backgroundWorkerForTrackBackBackup.WorkerReportsProgress = true;
         }
+        #endregion
 
-        ////////////////////
-        // PRIVATE METHODS
-        ////////////////////
-
-        // copies a folder to the storage directory
-        private void CopyFolder(DirectoryInfo srcDir)
-        {
-            string srcPath = srcDir.FullName;
-
-            // queue to store subfolders
-            Queue<DirectoryInfo> dirQueue = new Queue<DirectoryInfo>(20);
-            dirQueue.Enqueue(srcDir);
-
-            while (dirQueue.Count > 0)
-            {
-                DirectoryInfo currDir = dirQueue.Dequeue();
-
-                DirectoryInfo[] dirs = null;
-
-                // stores all subfolders in the current directory
-                dirs = currDir.GetDirectories();
-
-                string desFolderPath = Path.Combine(destinationPath, currDir.FullName.Remove(0, srcDir.Parent.FullName.Length + 1));
-
-                if (!Directory.Exists(desFolderPath)) CreateFolder(desFolderPath);
-
-                foreach (DirectoryInfo dir in dirs) dirQueue.Enqueue(dir);
-
-                FileInfo[] files = currDir.GetFiles();
-
-                // copies the files found in the current directory to the destination folders
-                foreach (FileInfo file in files)
-                {
-                    string path = destinationPath + file.FullName.Remove(0, srcPath.LastIndexOf("\\" + srcDir.Name));
-                    if (file.Name != "filesync.metadata")
-                    {
-                        file.CopyTo(path);
-                        File.SetAttributes(path, FileAttributes.Hidden);
-                    }
-                }
-            }
-        }
-
-        // creates a folder and sets its attributes as hidden
-        private DirectoryInfo CreateFolder(string path)
-        {
-            DirectoryInfo dir = new DirectoryInfo(path);
-            dir.Create();
-            dir.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
-
-            return dir;
-        }
-
-        private void CreateXmlNode()
-        {
-            XmlDocument document = new XmlDocument();
-            document.Load("settings.xml");
-            XmlNode node = document.CreateNode(XmlNodeType.Element, "TrackBack", "");
-
-            if (document.GetElementsByTagName("TrackBack").Count == 0)
-            {
-                document.GetElementsByTagName("nsync")[0].InsertAfter(node,
-                                                                      document.GetElementsByTagName("nsync")[0].
-                                                                          LastChild);
-                document.Save("settings.xml");
-            }
-        }
-
-        private void SaveData()
-        {
-            
-        }
-
+        #region Public Methods
         ////////////////////
         // PUBLIC METHODS
         ////////////////////
 
-        // stores a copy of the sync folder pair in a subfolder located inside the "trackback" folder
-        public void BackupFolders(string dirPathA, string dirPathB)
+        /// <summary>
+        /// Starts the backing up of folders
+        /// </summary>
+        public void StartBackup()
         {
-            trackBackStack.Push(new TrackBackData(dirPathA, dirPathB));
-
-            // creates a folder with its timestamp
-            destinationPath = Path.Combine(storagePath, trackBackStack.Peek().TimeStamp);
-            destinationFolder = CreateFolder(destinationPath);
-
-            CopyFolder(trackBackStack.Peek().SourceDirectory);
-            CopyFolder(trackBackStack.Peek().DestinationDirectory);
+            backgroundWorkerForTrackBackBackup.RunWorkerAsync();
         }
+        
+        /// <summary>
+        /// Restores the folder back to its selected version
+        /// </summary>
+        public void RestoreFolder(string folderPath, string dateTime)
+        {
+            if (folderPath == leftFolderPath && leftFolder.isTrackBackXMLValid())
+                leftFolder.RestoreFolder(dateTime);
+            else if (folderPath == rightFolderPath && rightFolder.isTrackBackXMLValid())
+                rightFolder.RestoreFolder(dateTime);
+            else
+                return;
+        }
+
+        /// <summary>
+        /// Retrieves the folder names of the different folder versions stored in TrackBack.
+        /// </summary>
+        /// <param name="folderPath">The folder path string</param>
+        /// <returns>A string array of the folder names</returns>
+        public string[] GetFolderVersions(string folderPath)
+        {
+            if (folderPath == leftFolderPath)
+                return leftFolder.GetFolderVersions();
+            else
+                return rightFolder.GetFolderVersions();
+        }
+
+        /// <summary>
+        /// Retrieves the different folder destinations which the folder was synced to.
+        /// </summary>
+        /// <param name="folderPath">The folder path string</param>
+        /// <returns>A string array of the folder destination paths</returns>
+        public string[] GetFolderDestinations(string folderPath)
+        {
+            if (folderPath == leftFolderPath)
+                return leftFolder.GetFolderDestinations();
+            else
+                return rightFolder.GetFolderDestinations();
+        }
+
+        /// <summary>
+        /// Retrieves the dates and times of when the sync took place.
+        /// </summary>
+        /// <param name="folderPath">The folder path string</param>
+        /// <returns>A string array of the dates and times of the sync sessions</returns>
+        public string[] GetFolderTimeStamps(string folderPath)
+        {
+            if (folderPath == leftFolderPath)
+                return leftFolder.GetFolderTimeStamp();
+            else
+                return rightFolder.GetFolderTimeStamp();
+        }
+
+        /// <summary>
+        /// Checks that there is enough disk space for TrackBack to run smoothly
+        /// </summary>
+        /// <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
+        public bool hasEnoughDiskSpace()
+        {
+            return leftFolder.hasEnoughDiskSpace() && rightFolder.hasEnoughDiskSpace();
+        }
+
+        /// <summary>
+        /// Checks that the folder has any previous stored versions in TrackBack.
+        /// </summary>
+        /// <param name="folderPath">The folder path string</param>
+        /// <returns>If the folder has stored previous folder versions, return true, false otherwise.</returns>
+        public bool hasTrackBackData(string folderPath)
+        {
+            if (folderPath == leftFolderPath)
+                return leftFolder.hasTrackBackData();
+            else
+                return rightFolder.hasTrackBackData();
+        }
+
+        #endregion
+
+        #region Private Methods
+        ////////////////////
+        // PRIVATE METHODS
+        ////////////////////
+
+        /// <summary>
+        /// Gets the background worker to start working and start backing up of folders
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerForTrackBackBackup_DoWork(object sender, DoWorkEventArgs e)
+        {
+            timeStamp = DateTime.Now.ToString(DATE_FORMAT) + " " + DateTime.Now.ToString(TIME_FORMAT);
+
+            leftFolder = new TrackBackFolder(leftFolderPath, rightFolderPath, timeStamp);
+            rightFolder = new TrackBackFolder(rightFolderPath, leftFolderPath, timeStamp);
+
+            e.Result = BackupFolders();
+        }
+
+        /// <summary>
+        /// Stores a copy of the sync folder pair in a subfolder located inside the "_nsync_trackback" folder
+        /// </summary>
+        private bool BackupFolders()
+        {
+            try
+            {
+                leftFolder.BackupFolder();
+                rightFolder.BackupFolder();
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            return true;
+        }
+        #endregion
     }
 }

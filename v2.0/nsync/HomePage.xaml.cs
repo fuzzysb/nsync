@@ -27,7 +27,7 @@ namespace nsync
         private bool hasRightPath = false;
         private string settingsFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + nsync.Properties.Resources.settingsFilePath;
         private SyncEngine synchronizer;
-        //private TrackBackEngine trackBack;
+        private TrackBackEngine trackback;
         private LinearGradientBrush blankOpacityMask;
         private HelperManager helper;
         private Window mainWindow = Application.Current.MainWindow;
@@ -95,6 +95,7 @@ namespace nsync
 
             //Create SyncEngine object
             synchronizer = new SyncEngine();
+            trackback = new TrackBackEngine();
 
             // Initialize folder path array
             originalFolderPaths = new string[10];
@@ -103,13 +104,13 @@ namespace nsync
                 originalFolderPaths[i] = "";
             }
 
-            //trackBack = new TrackBackEngine();
-
             // Create event handlers for backgroundWorkerForSync
             synchronizer.backgroundWorkerForSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSync_RunWorkerCompleted);
             synchronizer.backgroundWorkerForSync.ProgressChanged += new ProgressChangedEventHandler(backgroundWorkerForSync_ProgressChanged);
 
             synchronizer.backgroundWorkerForPreSync.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreSync_RunWorkerCompleted);
+
+            trackback.backgroundWorkerForTrackBackBackup.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackBackup_RunWorkerCompleted);
 
             //Load the previous folder paths from settings.xml
             LoadFolderPaths();
@@ -117,6 +118,8 @@ namespace nsync
             //Add event handler to check when main window is moved, move helper window too
             mainWindow.LocationChanged += new EventHandler(mainWindow_LocationChanged);
         }
+
+        
 
         /// <summary>
         /// This method will be called when the position of mainWindow is changed
@@ -1267,18 +1270,18 @@ namespace nsync
             fileData = new List<FileData>();
             fileData = previewSync.GetData();
 
-            ImageTeam14Over.OpacityMask = blankOpacityMask;
-
             // When all sync job done, save the folder pairs to MR and settings.xml
             SaveFolderPaths();
             ReloadFolderPaths();
 
             helper.Show(nsync.Properties.Resources.syncComplete, 5, HelperWindow.windowStartPosition.windowTop);
-            LabelProgress.Visibility = Visibility.Visible;
-            LabelProgressPercent.Visibility = Visibility.Visible;
+            //LabelProgress.Visibility = Visibility.Visible;
+            //LabelProgressPercent.Visibility = Visibility.Visible;
 
             LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
             LabelProgressPercent.Content = "100 %";
+
+            ImageTeam14Over.OpacityMask = blankOpacityMask;
 
             if (fileData.Count == 0)
             {
@@ -1293,6 +1296,42 @@ namespace nsync
 
             // Save folder pair if the sync involves a removeable disk
             SaveFolderPathsForRemoveableDisk();
+        }
+
+        /// <summary>
+        /// This method is called when the TrackBack has finished backing up the folders
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerForTrackBackBackup_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (!(bool) e.Result)
+            {
+                EnableInterface(true);
+                helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                
+                // Unsuccessful sync jobs folders will be saved in MRU
+                // This is to give users convenience so that
+                // They can just click on MRU to retrieve the folder pairs again
+                SaveFolderPaths();
+                ReloadFolderPaths();
+
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                LabelProgressPercent.Visibility = Visibility.Hidden;
+                // Users should be able click the sync button again,
+                // in case they've freed some disk space
+                ButtonSync.Visibility = Visibility.Visible;
+                ButtonPreview.Visibility = Visibility.Visible;
+                return;
+            }
+            EnableInterface(false);
+
+            LabelProgress.Content = MESSAGE_SYNCING_FOLDERS;
+            LabelProgressPercent.Visibility = Visibility.Visible;
+            LabelProgressPercent.Content = "0 %";
+
+            synchronizer.StartSync();
         }
 
         /// <summary>
@@ -1337,14 +1376,21 @@ namespace nsync
                 //FolderCheck();
                 return;
             }
+            if (!synchronizer.IsFoldersSync())
+            {
+                trackback.LeftFolderPath = actualLeftPath;
+                trackback.RightFolderPath = actualRightPath;
 
-            EnableInterface(false);
+                EnableInterface(false);
 
-            LabelProgress.Content = MESSAGE_SYNCING_FOLDERS;
-            LabelProgressPercent.Visibility = Visibility.Visible;
-            LabelProgressPercent.Content = "0 %";
-            //if (!synchronizer.IsFoldersSync()) trackBack.BackupFolders(LeftText.Text, RightText.Text);
-            synchronizer.StartSync();
+                LabelProgress.Content = "Backing up folders...";
+                // LabelProgressPercent.Visibility = Visibility.Visible;
+                // LabelProgressPercent.Content = "0 %";
+
+                trackback.StartBackup();
+            }
+            else
+                synchronizer.StartSync();
         }
 
         private void ButtonPreview_Click(object sender, RoutedEventArgs e)

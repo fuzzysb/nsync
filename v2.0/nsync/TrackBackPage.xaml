@@ -6,7 +6,7 @@
     <Grid>
         <Label />
         <Image x:Name="ImageTrackBack" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/trackback.png" Width="210"/>
-        <ComboBox x:Name="ComboBoxSourceFolder" HorizontalAlignment="Left" Margin="20,55,0,0" VerticalAlignment="Top" Width="478" Height="36" Style="{DynamicResource ComboBoxSourceFolderStyle}" Foreground="White" Cursor="Hand"/>
+        <ComboBox x:Name="ComboBoxSourceFolder" SelectionChanged="ComboBoxSourceFolder_SelectionChanged" HorizontalAlignment="Left" Margin="20,55,0,0" VerticalAlignment="Top" Width="478" Height="36" Style="{DynamicResource ComboBoxSourceFolderStyle}" Foreground="White" Cursor="Hand"/>
         <StackPanel Name="BoxTrackBack" Width="488" Height="167" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="15,100,15,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
             <ListView Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollection}" Cursor="Hand">
                 <ListView.View>
