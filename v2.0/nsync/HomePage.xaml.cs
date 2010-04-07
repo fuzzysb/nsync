@@ -964,6 +964,7 @@ namespace nsync
             if (!ShowSync())
                 return;
 
+            EnableInterface(false);
             excludeWindow = new ExcludeWindow();
             excludeWindow.Closing += new CancelEventHandler(excludeWindow_Closing);
             excludeWindow.LeftPath = actualLeftPath;
@@ -978,6 +979,7 @@ namespace nsync
             if (excludeWindow.Cancel == true)
             {
                 mainWindow.Opacity = 1;
+                EnableInterface(true);
             }
             else
             {
@@ -1212,6 +1214,7 @@ namespace nsync
             ButtonPageTrackBack.IsEnabled = enableButtons;
 
             //Set Opacity
+            helper.HideWindow();
             BoxLeft.Opacity = BoxRight.Opacity = opacityValue;
             ButtonSideTabLeft.Opacity = ButtonSideTabRight.Opacity = opacityValue;
             ButtonPageSettings.Opacity = ButtonPageHome.Opacity = ButtonPageTrackBack.Opacity = opacityValue;
