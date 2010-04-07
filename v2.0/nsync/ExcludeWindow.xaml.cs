@@ -138,7 +138,19 @@ namespace nsync
             LabelRightPath.Content = PathShortener(rightPath, 46);
             LabelRightPath.ToolTip = rightPath;
 
-            PopulateFileTypes();
+            try
+            {
+                PopulateFileTypes();
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+                //just close as homepage will handle the file access issues
+                this.Close();
+            }
+            catch (Exception exceptionError)
+            {
+                MessageBox.Show(exceptionError.Message);
+            }
         }
 
         /// <summary>
@@ -170,18 +182,31 @@ namespace nsync
         /// </summary>
         private void PopulateFileTypes()
         {
-            string[] filePathsLeft = Directory.GetFiles(leftPath, "*.*",
-                                         SearchOption.AllDirectories);
-            string[] filePathsRight = Directory.GetFiles(rightPath, "*.*",
-                                         SearchOption.AllDirectories);
-            foreach(string paths in filePathsLeft) {
-                AddToFileTypesList(System.IO.Path.GetExtension(paths));
-            }
-            foreach (string paths in filePathsRight)
+            try
             {
-                AddToFileTypesList(System.IO.Path.GetExtension(paths));
+                string[] filePathsLeft = Directory.GetFiles(leftPath, "*.*",
+                                             SearchOption.AllDirectories);
+                string[] filePathsRight = Directory.GetFiles(rightPath, "*.*",
+                                             SearchOption.AllDirectories);
+                foreach (string paths in filePathsLeft)
+                {
+                    AddToFileTypesList(System.IO.Path.GetExtension(paths));
+                }
+                foreach (string paths in filePathsRight)
+                {
+                    AddToFileTypesList(System.IO.Path.GetExtension(paths));
+                }
+                PopulateFileTypesComboBox();
             }
-            PopulateFileTypesComboBox();
+            catch (System.UnauthorizedAccessException e)
+            {
+                //Cannot access files; locked
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error:\n" + e.Message);
+            }
         }
 
         /// <summary>
@@ -228,7 +253,7 @@ namespace nsync
         /// <param name="e"></param>
         private void BoxExclude_DragEnter(object sender, DragEventArgs e)
         {
-            
+
             if (reallyLeft)
             {
                 SaveLastState();
@@ -401,7 +426,7 @@ namespace nsync
                 CopyList(excludeFiles, oldExcludeFiles);
                 CopyList(excludeFileTypes, oldExcludeFileTypes);
                 CopyList(excludeInvalid, oldExcludeInvalid);
-            }            
+            }
         }
 
         /// <summary>
@@ -412,7 +437,8 @@ namespace nsync
         private void CopyList(List<string> source, List<string> destination)
         {
             destination.Clear();
-            foreach(string i in source) {
+            foreach (string i in source)
+            {
                 destination.Add(i);
             }
         }
