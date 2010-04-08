@@ -1229,7 +1229,6 @@ C:\Users\Eugene\Desktop\nsync2.0failedfix1\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Eugene\Desktop\nsync2.0failedfix1\nsync\obj\Debug\nsync.application
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\VisualPreviewWindow.g.cs
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\VisualPreviewWindow.baml
-C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\bin\Debug\nsync.XML
 C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\obj\Debug\nsync.exe
 C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\obj\Debug\nsync.pdb
 C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\bin\Debug\nsync.exe.manifest
@@ -1422,3 +1421,4 @@ C:\Documents and Settings\Paralleluni\Desktop\updated nsync\nsync\obj\Debug\nsyn
 C:\Documents and Settings\Paralleluni\Desktop\updated nsync\nsync\obj\Debug\nsync.exe.manifest
 C:\Documents and Settings\Paralleluni\Desktop\updated nsync\nsync\obj\Debug\nsync.application
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.XML
+C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\bin\Debug\nsync.XML

@@ -15,6 +15,7 @@ namespace nsync
         private DispatcherTimer dispatcherTimer;
         private windowStartPosition windowPostionType;
         private bool windowActive;
+        private string hyperLinkPath;
         #endregion
 
         #region Enumeration
@@ -66,8 +67,9 @@ namespace nsync
         /// <param name="helpText">This is the string to be displayed</param>
         /// <param name="helpDuration">Duration for which the notification window should be active</param>
         /// <param name="windowPosition">The position where notification window should be displayed</param>
-        public void SetSettings(string helpText, int helpDuration, windowStartPosition windowPosition)
+        public void SetSettings(string helpText, int helpDuration, windowStartPosition windowPosition, string hyperLinkPath)
         {
+            this.hyperLinkPath = hyperLinkPath;
             windowActive = true;
             ContentText.Text = helpText;
             delayTime = helpDuration;
@@ -213,6 +215,17 @@ namespace nsync
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             CloseWindow();
+        }
+
+        /// <summary>
+        /// This method is called when the the helperWindow textBlock is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ContentText_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (this.hyperLinkPath != null)
+                System.Diagnostics.Process.Start(@hyperLinkPath);
         }
         #endregion
     }

@@ -15,6 +15,8 @@ namespace nsync
         private HelperWindow windowHelper;
         private Settings settingsManager;
         private int timer;
+        private int errorCount;
+        private string logPath;
         #endregion
 
         #region Public Methods
@@ -35,13 +37,27 @@ namespace nsync
         /// Tell windowHelper to display the notification
         /// </summary>
         /// <param name="helpString">The string to be displayed in the notifiation window</param>
-        /// <param name="piority">The piority of the window to be displayed</param>
+        /// <param name="priority">The piority of the window to be displayed</param>
         /// <param name="windowPosition">The position for which the notification window should be placed</param>
         public void Show(string helpString, int priority, HelperWindow.windowStartPosition windowPosition)
         {
-            if ((helperWindowIsOn()) || ((!helperWindowIsOn()) && (priority == 0)))
+            if ((helperWindowIsOn()) || (priority == -1) || (priority == 0))
             {
-                windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition);
+                if (priority == -1)
+                {
+                    if (errorCount != 0)
+                    {
+                        helpString += " " + errorCount + " Files are Not Synced.";
+                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath);
+                    }
+                    else
+                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null);
+                }
+                else
+                {
+                    windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null);
+                }
+
                 if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)
                 {
                     windowHelper.Visibility = Visibility.Visible;
@@ -73,6 +89,24 @@ namespace nsync
         {
             windowHelper.Visibility = Visibility.Hidden;
         }
+
+        /// <summary>
+        /// Setter and Getter method for errorCount
+        /// </summary>
+        public int ErrorCount
+        {
+            get { return errorCount; }
+            set { errorCount = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for getting log path
+        /// </summary>
+        public string LogPath
+        {
+            get { return logPath; }
+            set { logPath = value; }
+        }
         #endregion
 
         #region Private Methods
@@ -80,12 +114,14 @@ namespace nsync
         /// Determines the duration for displaying the helper message
         /// </summary>
         /// <returns>The result is returned as an int</returns>
-        private int determineTimer(int piority)
+        private int determineTimer(int priority)
         {
-            if (piority == 0)
+            if ((priority == 0) || (priority == -1))
             {
-                if ((timer < 5) && (timer > 0))
+                if ((timer < 5) && (timer > -1))
+                {
                     return 5;
+                }
                 return timer;
             }
             else

@@ -49,7 +49,7 @@
         <Grid>
             <Button Name="ButtonClose" ToolTip="Close" Template="{StaticResource ButtonCloseTemplate}" Width="15" Height="15" Click="ButtonClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="8,5"></Button>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Name="ContentText" Foreground="White" FontFamily="Verdana" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="350" TextWrapping="Wrap" TextAlignment="Center" Padding="8"></TextBlock>
+                    <TextBlock Name="ContentText" Foreground="White" FontFamily="Verdana" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="350" TextWrapping="Wrap" TextAlignment="Center" Padding="8" MouseDown="ContentText_MouseRightButtonDown"></TextBlock>
                 </StackPanel>
     </Grid>
     </Border>

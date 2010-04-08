@@ -162,6 +162,15 @@ namespace nsync
 
             log.Close();
         }
+
+        /// <summary>
+        /// Setter and Getter method for getting log path
+        /// </summary>
+        public string LogPath
+        {
+            get { return logPath; }
+            set { logPath = value; }
+        }
         #endregion
 
     }

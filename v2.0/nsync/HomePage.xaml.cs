@@ -49,8 +49,9 @@ namespace nsync
         private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
         private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
 
-        private int HELPER_WINDOW_HIGH_PRIORITY = 0; 
+        private int HELPER_WINDOW_HIGH_PRIORITY = 0;
         private int HELPER_WINDOW_LOW_PRIORITY = 1;
+        private int HELPER_WINDOW_SYNC_COMPLETE_PRIORITY = -1;
 
         private List<FileData> fileData;
         private Preview previewSync;
@@ -586,20 +587,20 @@ namespace nsync
 
             if (!rightFolderExists && !leftFolderExists)
             {
-                helper.Show(nsync.Properties.Resources.bothFoldersNotExist, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.bothFoldersNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 LeftIcon.Source = RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
                 return false;
             }
             else if (!rightFolderExists)
             {
-                helper.Show(nsync.Properties.Resources.rightFolderNotExist, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.rightFolderNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
                 LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
                 return false;
             }
             else if (!leftFolderExists)
             {
-                helper.Show(nsync.Properties.Resources.leftFolderNotExist, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.leftFolderNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
                 LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
                 return false;
@@ -619,7 +620,7 @@ namespace nsync
         {
             if (synchronizer.IsFoldersSimilar())
             {
-                helper.Show(nsync.Properties.Resources.similarFolders, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.similarFolders, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 return true;
             }
             return false;
@@ -633,7 +634,7 @@ namespace nsync
         {
             if (synchronizer.IsFolderSubfolder())
             {
-                helper.Show(nsync.Properties.Resources.subfolderOfFolder, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.subfolderOfFolder, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 return true;
             }
             return false;
@@ -1089,9 +1090,9 @@ namespace nsync
             else
             {
                 if (leftOrRight == "left" || leftOrRight == "Left")
-                    helper.Show(nsync.Properties.Resources.modifiedRightPath, 5, HelperWindow.windowStartPosition.windowTop);
+                    helper.Show(nsync.Properties.Resources.modifiedRightPath, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 else if (leftOrRight == "right" || leftOrRight == "Right")
-                    helper.Show(nsync.Properties.Resources.modifiedLeftPath, 5, HelperWindow.windowStartPosition.windowTop);
+                    helper.Show(nsync.Properties.Resources.modifiedLeftPath, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 
                 actualLeftPath = newFolderPaths[0];
                 actualRightPath = newFolderPaths[1];
@@ -1151,7 +1152,7 @@ namespace nsync
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 
-                        helper.Show("Your last synced folder pair on this removeable disk is restored", 5, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show("Your last synced folder pair on this removeable disk is restored", HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     }
                 }
             }
@@ -1305,8 +1306,6 @@ namespace nsync
             // When all sync job done, save the folder pairs to MR and settings.xml
             SaveFolderPaths();
             ReloadFolderPaths();
-
-            helper.Show(nsync.Properties.Resources.syncComplete, 5, HelperWindow.windowStartPosition.windowTop);
             //LabelProgress.Visibility = Visibility.Visible;
             //LabelProgressPercent.Visibility = Visibility.Visible;
 
@@ -1325,6 +1324,10 @@ namespace nsync
                 summaryReport = new SummaryReport(fileData, synchronizer.ErrorMessageForSummaryReport);
                 summaryReport.CreateLog();
             }
+
+            helper.ErrorCount = fileData.Count;
+            helper.LogPath = summaryReport.LogPath;
+            helper.Show(nsync.Properties.Resources.syncComplete, HELPER_WINDOW_SYNC_COMPLETE_PRIORITY, HelperWindow.windowStartPosition.windowTop);
 
             // Save folder pair if the sync involves a removeable disk
             SaveFolderPathsForRemoveableDisk();
