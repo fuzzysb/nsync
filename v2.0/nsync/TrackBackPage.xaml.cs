@@ -3,6 +3,8 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using System.Xml;
 using System.ComponentModel;
+using System.Windows.Data;
+
 
 namespace nsync
 {
@@ -117,7 +119,29 @@ namespace nsync
                 LoadTrackBackEntriesForLeftFolder();
             else
                 LoadTrackBackEntriesForRightFolder();
+            
+            //Sort left and right lists according to date/time
+            SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
+            SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
         }
+
+        /// <summary>
+        /// Sorting method to sort a listview
+        /// </summary>
+        /// <param name="sortBy">data name/parameter to sort by as a string</param>
+        /// <param name="direction">ascending or descending order</param>
+        /// <param name="lv">listview to be sorted</param>
+        private void SortList(string sortBy, ListSortDirection direction, ListView lv)
+        {
+            ICollectionView dataView =
+              CollectionViewSource.GetDefaultView(lv.ItemsSource);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
+        }
+
 
         private void LoadSourceFolders()
         {
