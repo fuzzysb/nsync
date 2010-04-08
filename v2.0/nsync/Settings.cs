@@ -83,6 +83,44 @@ namespace nsync
         }
 
         /// <summary>
+        /// Change the status of the exclude window
+        /// </summary>
+        /// <param name="status">This parameter indicates if the exclude window is enabled or disabled</param>
+        public void SetExcludeWindowStatus(bool status)
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
+
+            excludeWindowStatusNode.InnerText = "" + status.ToString();
+
+            doc.Save(settingsFile);
+            protectFile(settingsFile);
+        }
+
+        /// <summary>
+        /// Gets the current status of the Exclude Window
+        /// </summary>
+        /// <returns>Returns a boolean which indicates whether the exclude window is enabled or disabled</returns>
+        public bool GetExcludeWindowStatus()
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
+
+            protectFile(settingsFile);
+            return bool.Parse(excludeWindowStatusNode.InnerText);
+        }
+
+        /// <summary>
         /// Loads the saved folder paths into a list
         /// </summary>
         /// <returns>Returns a list of strings which contains the saved folder paths</returns>
@@ -386,6 +424,10 @@ namespace nsync
 
             textWriter.WriteStartElement("HelperWindowTimer");
             textWriter.WriteString("5");
+            textWriter.WriteEndElement();
+
+            textWriter.WriteStartElement("ExcludeWindowStatus");
+            textWriter.WriteString("false");
             textWriter.WriteEndElement();
 
             textWriter.WriteEndElement();

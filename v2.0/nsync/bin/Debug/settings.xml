@@ -1,34 +1,43 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Eugene\Desktop\1</left1>
-    <right1>C:\Users\Eugene\Desktop\2</right1>
+    <left1>C:\FolderA</left1>
+    <right1>C:\FolderB</right1>
     <filter1>
       <size>0</size>
     </filter1>
-    <left2>C:\Users\Administrator\Desktop\folder c</left2>
-    <right2>C:\Users\Administrator\Desktop\folder b</right2>
+    <left2>
+    </left2>
+    <right2>
+    </right2>
     <filter2>
       <size>0</size>
     </filter2>
-    <left3>C:\FolderA</left3>
-    <right3>C:\FolderB</right3>
+    <left3>
+    </left3>
+    <right3>
+    </right3>
     <filter3>
       <size>0</size>
     </filter3>
-    <left4>C:\FolderA</left4>
-    <right4>C:\FolderA</right4>
+    <left4>
+    </left4>
+    <right4>
+    </right4>
     <filter4>
       <size>0</size>
     </filter4>
-    <left5>C:\Users\Eugene\Desktop\2</left5>
-    <right5>C:\Users\Eugene\Desktop\3</right5>
+    <left5>
+    </left5>
+    <right5>
+    </right5>
     <filter5>
       <size>0</size>
     </filter5>
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
+    <ExcludeWindowStatus>True</ExcludeWindowStatus>
   </SETTINGS>
   <REMOVEABLEDISK />
 </nsync>

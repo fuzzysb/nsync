@@ -84,7 +84,7 @@ namespace nsync
         {
             if (piority == 0)
             {
-                if (timer < 5)
+                if ((timer < 5) && (timer > 0))
                     return 5;
                 return timer;
             }

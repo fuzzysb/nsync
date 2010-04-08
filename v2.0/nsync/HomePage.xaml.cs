@@ -964,14 +964,43 @@ namespace nsync
             if (!ShowSync())
                 return;
 
-            EnableInterface(false);
-            excludeWindow = new ExcludeWindow();
-            excludeWindow.Closing += new CancelEventHandler(excludeWindow_Closing);
-            excludeWindow.LeftPath = actualLeftPath;
-            excludeWindow.RightPath = actualRightPath;
-            excludeWindow.Owner = mainWindow;
-            mainWindow.Opacity = 0.2;
-            excludeWindow.ShowDialog();
+            if (settingsManager.GetExcludeWindowStatus())
+            {
+                EnableInterface(false);
+                excludeWindow = new ExcludeWindow();
+                excludeWindow.Closing += new CancelEventHandler(excludeWindow_Closing);
+                excludeWindow.LeftPath = actualLeftPath;
+                excludeWindow.RightPath = actualRightPath;
+                excludeWindow.Owner = mainWindow;
+                mainWindow.Opacity = 0.2;
+                excludeWindow.ShowDialog();
+            }
+            else
+            {
+                LeftListBox.Visibility = Visibility.Hidden;
+                RightListBox.Visibility = Visibility.Hidden;
+
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
+
+                EnableInterface(false);
+
+                // Feed the actualleftpath and actualrightpath into SyncEngine again
+                // Safety precaution
+                synchronizer.LeftPath = actualLeftPath;
+                synchronizer.RightPath = actualRightPath;
+
+                // Ask SyncEngine to create a folder if the leftpath OR rightpath is root
+                // note: if both path are root or both are not root, then nothing will be done
+                //synchronizer.CreateFolderForRootPath();
+
+                // Do PreSync Calculations: count how many changes need to be done
+                // If not enough disk space, return
+                // If enough, continue to start the real sync
+                excludeTypeList = new List<string>();
+                synchronizer.ExcludeTypeList = excludeTypeList;
+                synchronizer.PreSync();
+            }
         }
 
         void excludeWindow_Closing(object sender, CancelEventArgs e)

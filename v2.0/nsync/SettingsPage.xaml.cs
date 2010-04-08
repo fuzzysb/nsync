@@ -26,11 +26,18 @@ namespace nsync
         private void CheckSettings()
         {
             settingsManager = Settings.Instance;
+            //gets helper window settings
             int loadedTimer = settingsManager.GetHelperWindowStatus();
             if (loadedTimer == -1)
                 loadedTimer = 11;
             HelperWindowSlider.Value = loadedTimer;
             HelperWindowSliderValue.SelectedIndex = loadedTimer;
+
+            //gets exclude window settings
+            if (!settingsManager.GetExcludeWindowStatus())
+                CheckboxToggleExcludeWindow.IsChecked = true;
+
+            //flag for enabling the boxes for user input
             pageIsLoaded = true;
         }
 
@@ -62,6 +69,19 @@ namespace nsync
                     settingsManager.SetHelperWindowStatus((int)HelperWindowSlider.Value);
                 }
             }
+        }
+
+        /// <summary>
+        /// Event when Exclude Checkbox is checked
+        /// </summary>
+        private void CheckboxToggleExcludeWindow_Checked(object sender, RoutedEventArgs e)
+        {
+            settingsManager.SetExcludeWindowStatus(false);
+        }
+
+        private void CheckboxToggleExcludeWindow_UnChecked(object sender, RoutedEventArgs e)
+        {
+            settingsManager.SetExcludeWindowStatus(true);
         }
 
 
