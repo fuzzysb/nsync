@@ -1317,12 +1317,12 @@ namespace nsync
 
             if (fileData.Count == 0)
             {
-                summaryReport = new SummaryReport(true);
+                summaryReport = new SummaryReport(true, synchronizer.ErrorMessageForSummaryReport);
                 summaryReport.CreateLog();
             }
             else
             {
-                summaryReport = new SummaryReport(fileData);
+                summaryReport = new SummaryReport(fileData, synchronizer.ErrorMessageForSummaryReport);
                 summaryReport.CreateLog();
             }
 

@@ -18,6 +18,7 @@ namespace nsync
         private int renameChanges;
 
         //Actual Variables being used
+        private List<string> errorMessage = new List<string>();
         private bool noChanges = false;
         private string directoryPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
             "\\log";
@@ -30,18 +31,20 @@ namespace nsync
         /// <summary>
         /// Constructor for SummaryReport when there are no changes
         /// </summary>
-        public SummaryReport(bool zeroChange)
+        public SummaryReport(bool zeroChange, List<string> errorMessage)
         {
             noChanges = zeroChange;
+            this.errorMessage = errorMessage;
         }
 
         /// <summary>
         /// Constructor for SummaryReport when there are some changes
         /// </summary>
-        public SummaryReport(List<FileData> information)
+        public SummaryReport(List<FileData> information, List<string> errorMessage)
         {
             fileData = new List<FileData>();
             fileData = information;
+            this.errorMessage = errorMessage;
         }
 
         /// <summary>
@@ -74,6 +77,17 @@ namespace nsync
             }
         }
 
+        private void ParseErrorMessage()
+        {
+            if(errorMessage.Count < 2)
+                return;
+
+            List<string> actualErrorMessage = new List<string>();
+            for (int i = 0; i < errorMessage.Count; i += 2)
+                actualErrorMessage.Add("There was a file renaming conflict in " + errorMessage[i] + " and " + errorMessage[i + 1]);
+
+            errorMessage = actualErrorMessage;
+        }
         #endregion
 
         #region Public Methods
@@ -82,6 +96,8 @@ namespace nsync
         /// </summary>
         public void CreateLog()
         {
+            ParseErrorMessage();
+
             CheckFolderExist();
             StreamWriter log = new StreamWriter(logPath, true);
 
@@ -121,10 +137,27 @@ namespace nsync
                             break;
                     }
                 }
+                if (errorMessage.Count != 0)
+                {
+                    foreach (string message in errorMessage)
+                    {
+                        log.WriteLine(" ");
+                        log.WriteLine(message);
+                    }
+                }
+
             }
             else
             {
                 log.WriteLine("File Sync Successful. No Error Detected");
+                if (errorMessage.Count != 0)
+                {
+                    foreach (string message in errorMessage)
+                    {
+                        log.WriteLine(" ");
+                        log.WriteLine(message);
+                    }
+                }
             }
 
             log.Close();

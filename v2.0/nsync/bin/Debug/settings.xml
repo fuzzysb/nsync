@@ -1,41 +1,35 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\AdminNUS\Desktop\A</left1>
-    <right1>C:\Users\AdminNUS\Desktop\B</right1>
+    <left1>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</left1>
+    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\121212</right1>
     <filter1>
       <size>0</size>
     </filter1>
-    <left2>C:\FolderA</left2>
-    <right2>C:\FolderB</right2>
+    <left2>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</left2>
+    <right2>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder (2)</right2>
     <filter2>
       <size>0</size>
     </filter2>
-    <left3>
-    </left3>
-    <right3>
-    </right3>
+    <left3>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder (2)</left3>
+    <right3>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</right3>
     <filter3>
       <size>0</size>
     </filter3>
-    <left4>
-    </left4>
-    <right4>
-    </right4>
+    <left4>C:\Users\Seah Shao Qi\Desktop\TestFolders\New</left4>
+    <right4>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</right4>
     <filter4>
       <size>0</size>
     </filter4>
-    <left5>
-    </left5>
-    <right5>
-    </right5>
+    <left5>C:\Users\Seah Shao Qi\Desktop\TestFolders\aaa</left5>
+    <right5>C:\Users\Seah Shao Qi\Desktop\TestFolders\xxx</right5>
     <filter5>
       <size>0</size>
     </filter5>
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
-    <ExcludeWindowStatus>True</ExcludeWindowStatus>
+    <ExcludeWindowStatus>False</ExcludeWindowStatus>
   </SETTINGS>
   <REMOVEABLEDISK />
 </nsync>

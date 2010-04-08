@@ -26,11 +26,16 @@ namespace nsync
         private static int countChanges = 0;
         private Intelligence intelligentManager;
         private List<string> excludeTypeList = new List<string>();
-
+        private List<string> errorMessageForSummaryReport = new List<string>();
         private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
         #endregion
 
         #region Properties
+        public List<string> ErrorMessageForSummaryReport
+        {
+            get { return errorMessageForSummaryReport; }
+        }
+
         /// <summary>
         /// Setter and Getter method for left folder path
         /// </summary>
@@ -243,6 +248,7 @@ namespace nsync
         /// </summary>
         public void PreSync()
         {
+            errorMessageForSummaryReport.Clear();
             backgroundWorkerForPreSync.RunWorkerAsync();
         }
 
@@ -446,8 +452,20 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private static void OnItemConflicting(object sender, ItemConflictingEventArgs args)
+        private void OnItemConflicting(object sender, ItemConflictingEventArgs args)
         {
+            IFileDataRetriever localfileDataRetriever = ((IFileDataRetriever)args.SourceChangeData);
+            IFileDataRetriever remotefileDataRetriever = ((IFileDataRetriever)args.DestinationChangeData);
+            //MessageBox.Show(localfileDataRetriever.FileData.RelativePath + "\n" + remotefileDataRetriever.FileData.RelativePath);
+            if(localfileDataRetriever.FileData.RelativePath != remotefileDataRetriever.FileData.RelativePath)
+            {
+                if (!errorMessageForSummaryReport.Contains(localfileDataRetriever.AbsoluteSourceFilePath) && !errorMessageForSummaryReport.Contains(remotefileDataRetriever.AbsoluteSourceFilePath))
+                {
+                    errorMessageForSummaryReport.Add(localfileDataRetriever.AbsoluteSourceFilePath);
+                    errorMessageForSummaryReport.Add(remotefileDataRetriever.AbsoluteSourceFilePath);
+                }
+            }
+            
             // Latest change wins policy
             args.SetResolutionAction(ConflictResolutionAction.Merge);
         }
