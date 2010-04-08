@@ -277,11 +277,13 @@ namespace nsync
                                 {
                                     if (!IsSubFolder(excludeFolders, i))
                                     {
+                                        //RemoveSubFolders(i);
                                         excludeFolders.Add(i);
                                     }
                                     else
                                     {
-                                        MessageBox.Show("");
+                                        if(IsNotInList(excludeSubFolders,i))
+                                            excludeSubFolders.Add(i);
                                     }
                                 }
                             }
@@ -305,6 +307,22 @@ namespace nsync
             }
         }
 
+        private void RemoveSubFolders(string folderPath)
+        {
+            foreach (string singlePath in excludeFolders)
+            {
+                if (IsSubFolderCheck(singlePath, folderPath))
+                {
+                    if (singlePath != folderPath)
+                    {
+                        excludeSubFolders.Add(singlePath);
+                        excludeFolders.Remove(singlePath);
+                    }
+                }
+                    
+            }
+        }
+
         private bool IsSubFolder(List<string> excludeFolderPaths, string folderPath)
         {
             foreach (string singlePath in excludeFolderPaths)
@@ -320,10 +338,14 @@ namespace nsync
             string[] childPathArray = childPath.Split(new char[] { '\\' });
             string[] parentPathArray = parentPath.Split(new char[] { '\\' });
 
-            if (parentPathArray.Length > childPathArray.Length)
-                return false;
+            int shorterLength;
 
-            for (int i = 0; i < parentPath.Length; i++)
+            if (parentPathArray.Length > childPathArray.Length)
+                shorterLength = childPathArray.Length;
+            else
+                shorterLength = parentPathArray.Length;
+
+            for (int i = 0; i < shorterLength; i++)
             {
                 if (parentPathArray[i] != childPathArray[i])
                     return false;
