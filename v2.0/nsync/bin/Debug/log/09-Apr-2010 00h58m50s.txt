@@ -1,0 +1,5 @@
+Sync Done at : 09-Apr-2010 12:58:50 AM
+--------------------------------------
+File Sync Successful. No Error Detected
+ 
+There was a file renaming conflict in C:\Users\Eugene\Desktop\2\1\3.wmv and C:\Users\Eugene\Desktop\3\1\2.wmv

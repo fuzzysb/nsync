@@ -44,6 +44,7 @@ namespace nsync
         private string ICON_LINK_FOLDER = nsync.Properties.Resources.folderIconPath;
         private string ICON_LINK_FOLDER_MISSING = nsync.Properties.Resources.folderMissingIconPath;
 
+        private string MESSAGE_ACCESS_DENIED_ERROR = "Access is denied. ";
         private string MESSAGE_SYNC_COMPLETED = "Sync completed";
         private string MESSAGE_ERROR_DETECTED = "Error detected";
         private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
@@ -1454,9 +1455,17 @@ namespace nsync
             if (e.Error != null)
             {
                 string message = e.Error.Message.Remove(e.Error.Message.IndexOf("("));
-                LabelProgress.Content = message;
+
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 EnableInterface(true);
-                helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                if (message == MESSAGE_ACCESS_DENIED_ERROR)
+                {
+                    helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
+                else
+                {
+                    helper.Show("Please try again!", HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
             }
             else
             {
