@@ -204,6 +204,9 @@
   <data name="similarFolders" xml:space="preserve">
     <value>The left and right folders cannot be similar.</value>
   </data>
+  <data name="stopButtonToolTip" xml:space="preserve">
+    <value>Cancel Sync</value>
+  </data>
   <data name="subfolderOfFolder" xml:space="preserve">
     <value>Folders that are to be synchronized cannot be a subfolder of each other.</value>
   </data>

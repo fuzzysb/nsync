@@ -601,6 +601,14 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:nsync.TrackBackPage.SortList(System.String,System.ComponentModel.ListSortDirection,System.Windows.Controls.ListView)">
+            <summary>
+            Sorting method to sort a listview
+            </summary>
+            <param name="sortBy">data name/parameter to sort by as a string</param>
+            <param name="direction">ascending or descending order</param>
+            <param name="lv">listview to be sorted</param>
+        </member>
         <member name="M:nsync.TrackBackPage.AddComboBoxItem(System.String)">
             <summary>
             adds an item to the combobox
@@ -1832,6 +1840,11 @@
         <member name="P:nsync.Properties.Resources.similarFolders">
             <summary>
               Looks up a localized string similar to The left and right folders cannot be similar..
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.stopButtonToolTip">
+            <summary>
+              Looks up a localized string similar to Cancel Sync.
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.subfolderOfFolder">

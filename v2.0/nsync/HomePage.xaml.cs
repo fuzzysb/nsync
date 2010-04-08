@@ -36,6 +36,7 @@ namespace nsync
         private string actualRightPath;
         private string oldLeftPath;
         private string oldRightPath;
+        private bool isInterfaceEnabled;
         
         private string[] originalFolderPaths;
 
@@ -1215,6 +1216,8 @@ namespace nsync
                 ButtonSync.Visibility = Visibility.Visible;
                 ButtonPreview.IsEnabled = true;
                 SyncingImage.Visibility = Visibility.Hidden;
+                ButtonStop.Visibility = Visibility.Hidden;
+                isInterfaceEnabled = true;
             }
             else
             {
@@ -1223,6 +1226,7 @@ namespace nsync
                 ButtonSync.Visibility = Visibility.Hidden;
                 ButtonPreview.IsEnabled = false;
                 SyncingImage.Visibility = Visibility.Visible;
+                isInterfaceEnabled = false;
             }
 
             //Enable/Disable the interface
@@ -1490,5 +1494,23 @@ namespace nsync
             EnableInterface(true);
         }
         #endregion
+
+        private void SyncingImage_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (!isInterfaceEnabled)
+            {
+                ButtonStop.Visibility = Visibility.Visible;
+                SyncingImage.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ButtonStop_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (!isInterfaceEnabled)
+            {
+                ButtonStop.Visibility = Visibility.Hidden;
+                SyncingImage.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

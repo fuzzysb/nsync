@@ -322,6 +322,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel Sync.
+        /// </summary>
+        public static string stopButtonToolTip {
+            get {
+                return ResourceManager.GetString("stopButtonToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Folders that are to be synchronized cannot be a subfolder of each other..
         /// </summary>
         public static string subfolderOfFolder {

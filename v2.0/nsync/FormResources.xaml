@@ -1390,6 +1390,24 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <ControlTemplate x:Key="ButtonStopTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resources/stop.png" />
+            </Grid.Background>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" TargetName="grid">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="Resources/stopover.png" />
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    
     <ControlTemplate x:Key="ButtonSyncTemplate" TargetType="{x:Type Button}">
         <Grid x:Name="grid">
             <Grid.Background>
