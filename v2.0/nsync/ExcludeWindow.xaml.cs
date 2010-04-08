@@ -27,6 +27,8 @@ namespace nsync
         private List<string> excludeFolders;
         private List<string> excludeFiles;
         private List<string> excludeFileTypes;
+        private List<string> excludeSubFolders;
+        private List<string> oldExcludeSubFolders;
         private List<string> oldExcludeFolders;
         private List<string> oldExcludeFiles;
         private List<string> oldExcludeFileTypes;
@@ -48,6 +50,8 @@ namespace nsync
             excludeFolders = new List<string>();
             excludeFiles = new List<string>();
             excludeFileTypes = new List<string>();
+            excludeSubFolders = new List<string>();
+            oldExcludeSubFolders = new List<string>();
             oldExcludeFolders = new List<string>();
             oldExcludeFiles = new List<string>();
             oldExcludeFileTypes = new List<string>();
@@ -267,16 +271,25 @@ namespace nsync
                         if (IsAChildPath(i, leftPath) || IsAChildPath(i, rightPath))
                         {
                             DirectoryInfo dirTemp = new DirectoryInfo(i);
-                            //FileInfo fileTemp = new FileInfo(i);
                             if (dirTemp.Exists)
                             {
                                 if (IsNotInList(excludeFolders, i))
-                                    excludeFolders.Add(i);
+                                {
+                                    if (!IsSubFolder(excludeFolders, i))
+                                    {
+                                        excludeFolders.Add(i);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("");
+                                    }
+                                }
                             }
                             else
                             {
-                                if (IsNotInList(excludeFiles, i))
-                                    excludeFiles.Add(i);
+                                string fileName = System.IO.Path.GetFileName(i);
+                                if (IsNotInList(excludeFiles, fileName))
+                                    excludeFiles.Add(fileName);
                             }
                         }
                         else
@@ -290,6 +303,33 @@ namespace nsync
                 }
                 reallyLeft = false;
             }
+        }
+
+        private bool IsSubFolder(List<string> excludeFolderPaths, string folderPath)
+        {
+            foreach (string singlePath in excludeFolderPaths)
+            {
+                if (IsSubFolderCheck(folderPath, singlePath))
+                    return true;
+            }
+            return false;
+        }
+
+        private bool IsSubFolderCheck(string childPath, string parentPath)
+        {
+            string[] childPathArray = childPath.Split(new char[] { '\\' });
+            string[] parentPathArray = parentPath.Split(new char[] { '\\' });
+
+            if (parentPathArray.Length > childPathArray.Length)
+                return false;
+
+            for (int i = 0; i < parentPath.Length; i++)
+            {
+                if (parentPathArray[i] != childPathArray[i])
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -358,7 +398,7 @@ namespace nsync
             }
             for (int i = 0; i < excludeFiles.Count; i++)
             {
-                AddListBoxItem("Exclude File: ", new SolidColorBrush(Colors.White), excludeFiles[i]);
+                AddListBoxItem("Exclude All Files: ", new SolidColorBrush(Colors.White), excludeFiles[i]);
             }
             for (int i = 0; i < excludeFileTypes.Count; i++)
             {
@@ -367,6 +407,10 @@ namespace nsync
             for (int i = 0; i < excludeInvalid.Count; i++)
             {
                 AddListBoxItem("Not in synchronized folders: ", new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
+            }
+            for (int i = 0; i < excludeSubFolders.Count; i++)
+            {
+                AddListBoxItem("Parent Folder Included: ", new SolidColorBrush(Colors.LightPink), excludeSubFolders[i]);
             }
 
             RefreshInterface();
@@ -426,6 +470,7 @@ namespace nsync
                 CopyList(excludeFiles, oldExcludeFiles);
                 CopyList(excludeFileTypes, oldExcludeFileTypes);
                 CopyList(excludeInvalid, oldExcludeInvalid);
+                CopyList(excludeSubFolders, oldExcludeSubFolders);
             }
         }
 
@@ -469,6 +514,7 @@ namespace nsync
             CopyList(oldExcludeFiles, excludeFiles);
             CopyList(oldExcludeFileTypes, excludeFileTypes);
             CopyList(oldExcludeInvalid, excludeInvalid);
+            CopyList(oldExcludeSubFolders, excludeSubFolders);
 
             ClearListBox();
             UpdateListBox();
@@ -536,6 +582,7 @@ namespace nsync
                 excludeFiles.Remove(path);
                 excludeFileTypes.Remove(path);
                 excludeInvalid.Remove(path);
+                excludeSubFolders.Remove(path);
 
                 ClearListBox();
                 UpdateListBox();
@@ -563,6 +610,7 @@ namespace nsync
             excludeFileTypes.Clear();
             excludeFolders.Clear();
             excludeInvalid.Clear();
+            excludeSubFolders.Clear();
         }
 
         private void ComboBoxFileType_DropDownOpened(object sender, EventArgs e)

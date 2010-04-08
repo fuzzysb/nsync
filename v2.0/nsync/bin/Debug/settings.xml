@@ -29,7 +29,7 @@
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
-    <ExcludeWindowStatus>False</ExcludeWindowStatus>
+    <ExcludeWindowStatus>True</ExcludeWindowStatus>
   </SETTINGS>
   <REMOVEABLEDISK />
 </nsync>
