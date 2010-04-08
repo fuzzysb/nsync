@@ -15,6 +15,8 @@ namespace nsync
         private string fileName;
         private string fileType;
         private string rootPath;
+        private string relativePath;
+        private bool isFolder;
         private Changes changeType;
         #endregion
 
@@ -22,12 +24,14 @@ namespace nsync
         /// <summary>
         /// Constructor of FileData class
         /// </summary>
-        public FileData(string rootPath, string fileName, Changes changeType)
+        public FileData(string rootPath, string fileName, string relativePath, Changes changeType, bool isFolder)
         {
             this.rootPath = rootPath;
             this.fileName = fileName;
+            this.relativePath = relativePath;
             this.fileType = Path.GetExtension(fileName);
             this.changeType = changeType;
+            this.isFolder = isFolder;
         }
 
         /// <summary>
@@ -73,9 +77,32 @@ namespace nsync
                 return rootPath;
             }
         }
+
+        /// <summary>
+        /// Gets the RelativePath of FileData object
+        /// </summary>
+        public String RelativePath
+        {
+            get
+            {
+                return relativePath;
+            }
+        }
+
+        /// <summary>
+        /// Checks whether fileData is a folder or a file
+        /// </summary>
+        public bool IsFolder
+        {
+            get
+            {
+                return isFolder;
+            }
+        }
         #endregion
     }
 
+    #region Enum Variables
     /// <summary>
     /// Types Of Changes In FileData Object
     /// </summary>
@@ -86,4 +113,5 @@ namespace nsync
         Update,
         Rename
     }
+    #endregion
 }

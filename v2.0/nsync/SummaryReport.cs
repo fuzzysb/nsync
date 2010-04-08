@@ -9,6 +9,7 @@ namespace nsync
     //CLASS FOR SUMMARY REPORT
     class SummaryReport
     {
+        #region Class Variables
         //Unused Variables Kept For Future Use If Required
         private int totalChanges;
         private int createChanges;
@@ -23,7 +24,9 @@ namespace nsync
         private string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
             "\\log\\" + System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'") + ".txt";
         private List<FileData> fileData;
+        #endregion
 
+        #region Constructors
         /// <summary>
         /// Constructor for SummaryReport when there are no changes
         /// </summary>
@@ -57,7 +60,9 @@ namespace nsync
             fileData = new List<FileData>();
             fileData = information;
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Check whether log folder exists. If not create new.
         /// </summary>
@@ -69,6 +74,9 @@ namespace nsync
             }
         }
 
+        #endregion
+
+        #region Public Methods
         /// <summary>
         /// Generates log data and writes to log file.
         /// </summary>
@@ -78,9 +86,11 @@ namespace nsync
             StreamWriter log = new StreamWriter(logPath, true);
 
             log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString("dd-MMM-yyyy h:mm:ss tt"));
+            log.WriteLine("--------------------------------------");
 
             if(!noChanges)
             {
+                log.WriteLine("File Sync Completed");
                 log.WriteLine("Number of errors found : " + fileData.Count.ToString());
                 log.WriteLine("-----------------------------");
                 foreach (FileData file in fileData)
@@ -117,9 +127,9 @@ namespace nsync
                 log.WriteLine("File Sync Successful. No Error Detected");
             }
 
-            log.WriteLine("");
             log.Close();
         }
-    }
+        #endregion
 
+    }
 }

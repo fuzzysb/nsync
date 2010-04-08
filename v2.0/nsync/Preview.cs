@@ -15,7 +15,7 @@ namespace nsync
     //CLASS FOR PREVIEW
     class Preview
     {
-
+        #region Class Variables
         public System.ComponentModel.BackgroundWorker backgroundWorkerForPreview;
         public System.ComponentModel.BackgroundWorker backgroundWorkerForSummary;
         private List<FileData> fileData;
@@ -24,7 +24,9 @@ namespace nsync
         private List<string> excludeTypeList = new List<string>();
 
         private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Constructor for Preview
         /// </summary>
@@ -38,7 +40,9 @@ namespace nsync
             backgroundWorkerForSummary.DoWork += new DoWorkEventHandler(backgroundWorkerForSummary_DoWork);
             backgroundWorkerForSummary.WorkerReportsProgress = true;
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Setter and Getter method for left folder path
         /// </summary>
@@ -67,32 +71,12 @@ namespace nsync
         }
 
         /// <summary>
-        /// This method is called when backgroundWorkerForPreview is called to start working
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void backgroundWorkerForPreview_DoWork(object sender, DoWorkEventArgs e)
-        {
-            InternalPreviewSync();
-        }
-
-        /// <summary>
-        /// This method is called when backgroundWorkerForSummary is called to start working
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void backgroundWorkerForSummary_DoWork(object sender, DoWorkEventArgs e)
-        {
-            InternalPreviewSync();
-        }
-
-        /// <summary>
         /// Gets backgroundWorkerForPreview to do synchronization preparations
         /// </summary>
         public void PreviewSync()
         {
-                // Start the asynchronous operation.
-                backgroundWorkerForPreview.RunWorkerAsync();
+            // Start the asynchronous operation.
+            backgroundWorkerForPreview.RunWorkerAsync();
         }
 
         /// <summary>
@@ -111,6 +95,28 @@ namespace nsync
         public List<FileData> GetData()
         {
             return fileData;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// This method is called when backgroundWorkerForPreview is called to start working
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerForPreview_DoWork(object sender, DoWorkEventArgs e)
+        {
+            InternalPreviewSync();
+        }
+
+        /// <summary>
+        /// This method is called when backgroundWorkerForSummary is called to start working
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerForSummary_DoWork(object sender, DoWorkEventArgs e)
+        {
+            InternalPreviewSync();
         }
 
         /// <summary>
@@ -235,18 +241,22 @@ namespace nsync
                 switch (args.ChangeType)
                 {
                     case ChangeType.Delete:
-                        fileData.Add(new FileData(rootPath, args.CurrentFileData.Name, Changes.Delete));
+                        fileData.Add(new FileData(rootPath, args.CurrentFileData.Name, args.CurrentFileData.RelativePath, Changes.Delete,
+                            args.CurrentFileData.IsDirectory));
                         break;
 
                     case ChangeType.Create:
-                        fileData.Add(new FileData(rootPath, args.NewFileData.Name, Changes.Create));
+                        fileData.Add(new FileData(rootPath, args.NewFileData.Name, args.NewFileData.RelativePath, Changes.Create,
+                            args.NewFileData.IsDirectory));
                         break;
 
                     case ChangeType.Update:
-                        fileData.Add(new FileData(rootPath, args.NewFileData.Name, Changes.Update));
+                        fileData.Add(new FileData(rootPath, args.NewFileData.Name, args.NewFileData.RelativePath, Changes.Update,
+                            args.NewFileData.IsDirectory));
                         break;
                     case ChangeType.Rename:
-                        fileData.Add(new FileData(rootPath, args.NewFileData.Name, Changes.Rename));
+                        fileData.Add(new FileData(rootPath, args.NewFileData.Name, args.NewFileData.RelativePath, Changes.Rename,
+                            args.NewFileData.IsDirectory));
                         break;
                 }
             }
@@ -276,5 +286,6 @@ namespace nsync
         {
             args.SetResolutionAction(ConstraintConflictResolutionAction.Merge);
         }
+        #endregion
     }
 }

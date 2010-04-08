@@ -265,8 +265,16 @@ namespace nsync
 
             foreach (FileData file in previewFileData)
             {
-                string shortenedFileName = PathShortener(file.FileName, 70);
-
+                string shortenedFileName;
+                if (file.IsFolder == true)
+                {
+                    shortenedFileName = PathShortener(file.RelativePath, 60);
+                    shortenedFileName = shortenedFileName + " [Folder]";
+                }
+                else
+                {
+                    shortenedFileName = PathShortener(file.RelativePath, 70);
+                }
                 if (file.RootPath == leftPath)
                 {
                     AddBothPreviewEntry(file.ChangeType.ToString(), shortenedFileName, "");
@@ -288,8 +296,16 @@ namespace nsync
 
             foreach (FileData file in previewFileData)
             {
-                string shortenedFileName = PathShortener(file.FileName, 70);
-
+                string shortenedFileName;
+                if (file.IsFolder == true)
+                {
+                    shortenedFileName = PathShortener(file.RelativePath, 60);
+                    shortenedFileName = shortenedFileName + " [Folder]";
+                }
+                else
+                {
+                    shortenedFileName = PathShortener(file.RelativePath, 70);
+                }
                 if (file.RootPath == leftPath && IsLeft || file.RootPath == rightPath && !IsLeft)
                 {
                     AddLeftRightPreviewEntry(shortenedFileName, file.ChangeType.ToString());
