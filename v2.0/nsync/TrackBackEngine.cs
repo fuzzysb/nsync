@@ -194,6 +194,11 @@ namespace nsync
             e.Result = BackupFolders();
         }
 
+        /// <summary>
+        /// Gets the background worker to start working and start restoring of folders
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backgroundWorkerForTrackBackRestore_DoWork(object sender, DoWorkEventArgs e)
         {
             TrackBackData data = e.Argument as TrackBackData;

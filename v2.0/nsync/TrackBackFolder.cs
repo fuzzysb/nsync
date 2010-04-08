@@ -17,12 +17,13 @@ namespace nsync
 
         private readonly string PATH_TRACKBACK = "/nsync/TrackBack";
         private readonly string PATH_SESSION = "/nsync/TrackBack/session";
-        private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
-        private readonly string METADATA_FILE_NAME = "filesync.metadata";
-        private readonly string TRACKBACK_XML_FILE_NAME = "_trackback.xml";
         private readonly string TIMESTAMP_REGEX = "yyyy-MM-dd hh.mm.ss tt";
         private readonly string DATE_REGEX = "yyyy-MM-dd";
         private readonly string TIME_REGEX = "hh.mm.ss tt";
+
+        private readonly string TRACKBACK_FOLDER_NAME = nsync.Properties.Resources.trackBackFolderName;
+        private readonly string METADATA_FILE_NAME = nsync.Properties.Resources.metadataFileName;
+        private readonly string TRACKBACK_XML_FILE_NAME = nsync.Properties.Resources.trackBackMetaDataFileName;
         #endregion
 
         #region Constructor
@@ -498,6 +499,12 @@ namespace nsync
             return earliestSession;
         }
 
+        /// <summary>
+        /// Checks if the folder list contains the specified search key
+        /// </summary>
+        /// <param name="list">The folder list to be searched</param>
+        /// <param name="key">The search key</param>
+        /// <returns></returns>
         private bool ContainsFolder(DirectoryInfo[] list, string key)
         {
             foreach (DirectoryInfo folder in list)

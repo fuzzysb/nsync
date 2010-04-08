@@ -162,6 +162,9 @@
   <data name="metaDataFileExtension" xml:space="preserve">
     <value>.metadata</value>
   </data>
+  <data name="metadataFileName" xml:space="preserve">
+    <value>filesync.metadata</value>
+  </data>
   <data name="minimiseToolTip" xml:space="preserve">
     <value>Minimise</value>
   </data>
@@ -221,6 +224,12 @@
   </data>
   <data name="thumbdriveIconPath" xml:space="preserve">
     <value>pack://siteoforigin:,,,/Resources/Icons/removabledrive.png</value>
+  </data>
+  <data name="trackBackFolderName" xml:space="preserve">
+    <value>_nsync_trackback</value>
+  </data>
+  <data name="trackBackMetaDataFileName" xml:space="preserve">
+    <value>_trackback.xml</value>
   </data>
   <data name="trackBackToolTip" xml:space="preserve">
     <value>TrackBack</value>

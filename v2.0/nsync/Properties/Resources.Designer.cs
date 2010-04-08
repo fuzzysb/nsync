@@ -196,6 +196,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to filesync.metadata.
+        /// </summary>
+        public static string metadataFileName {
+            get {
+                return ResourceManager.GetString("metadataFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimise.
         /// </summary>
         public static string minimiseToolTip {
@@ -372,6 +381,24 @@ namespace nsync.Properties {
         public static string thumbdriveIconPath {
             get {
                 return ResourceManager.GetString("thumbdriveIconPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _nsync_trackback.
+        /// </summary>
+        public static string trackBackFolderName {
+            get {
+                return ResourceManager.GetString("trackBackFolderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _trackback.xml.
+        /// </summary>
+        public static string trackBackMetaDataFileName {
+            get {
+                return ResourceManager.GetString("trackBackMetaDataFileName", resourceCulture);
             }
         }
         

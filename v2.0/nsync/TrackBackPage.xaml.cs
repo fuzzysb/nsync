@@ -1,9 +1,12 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Text;
+using System.Windows.Controls;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Xml;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Runtime.InteropServices;
 
 
 namespace nsync
@@ -16,7 +19,9 @@ namespace nsync
         #region Class Variables
         private ObservableCollection<TrackBackItemData> trackBackCollectionForLeftFolder = new ObservableCollection<TrackBackItemData>();
         private ObservableCollection<TrackBackItemData> trackBackCollectionForRightFolder = new ObservableCollection<TrackBackItemData>();
+        private string actualLeftFolderPath, actualRightFolderPath;
         private string leftFolderPath, rightFolderPath;
+        private string[] shortenedFolderPaths;
         private TrackBackEngine trackback;
         private HelperManager helper;
         private Window mainWindow = Application.Current.MainWindow;
@@ -31,6 +36,7 @@ namespace nsync
         private readonly int HELPER_WINDOW_LOW_PRIORITY = 1;
         #endregion
 
+        #region Constructor
         /// <summary>
         /// TrackBackPage Contructor
         /// </summary>
@@ -43,11 +49,12 @@ namespace nsync
             helper = new HelperManager(mainWindow);
 
             trackback = new TrackBackEngine();
-            trackback.LeftFolderPath = leftFolderPath;
-            trackback.RightFolderPath = rightFolderPath;
+            trackback.LeftFolderPath = actualLeftFolderPath;
+            trackback.RightFolderPath = actualRightFolderPath;
 
             trackback.backgroundWorkerForTrackBackRestore.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackRestore_RunWorkerCompleted);
         }
+        #endregion
 
         #region Properties
         /// <summary>
@@ -67,21 +74,30 @@ namespace nsync
         }
         #endregion
 
+        #region Private Methods
+        /// <summary>
+        /// Loads the TrackBack XML document
+        /// </summary>
         private void LoadTrackBackXML()
         {
             XmlDocument document = new XmlDocument();
             document.Load(SETTINGS_FILE_NAME);
 
-            leftFolderPath = document.SelectSingleNode(PATH_MRU_LEFT_FOLDER).InnerText;
-            rightFolderPath = document.SelectSingleNode(PATH_MRU_RIGHT_FOLDER).InnerText;
+            shortenedFolderPaths = new string[2];
+
+            actualLeftFolderPath = document.SelectSingleNode(PATH_MRU_LEFT_FOLDER).InnerText;
+            shortenedFolderPaths[0] = leftFolderPath = ShortenPath(actualLeftFolderPath, 65);
+
+            actualRightFolderPath = document.SelectSingleNode(PATH_MRU_RIGHT_FOLDER).InnerText;
+            shortenedFolderPaths[1] = rightFolderPath = ShortenPath(actualRightFolderPath, 65);
         }
 
         /// <summary>
         /// Adds an entry into the trackback list view
         /// </summary>
-        /// <param name="trackBackName"></param>
-        /// <param name="trackBackDate"></param>
-        /// <param name="trackBackFolder"></param>
+        /// <param name="trackBackName">Name of the folder</param>
+        /// <param name="trackBackDate">Date and time of the folder</param>
+        /// <param name="trackBackFolder">Destination folder it was synced with</param>
         private void AddTrackBackEntryForLeftFolder(string trackBackName, string trackBackDate, string trackBackFolder)
         {
             TrackBackItemData data = new TrackBackItemData
@@ -94,6 +110,12 @@ namespace nsync
                 trackBackCollectionForLeftFolder.Add(data); 
         }
 
+        /// <summary>
+        /// Adds an entry into the trackback list view
+        /// </summary>
+        /// <param name="trackBackName">Name of the folder</param>
+        /// <param name="trackBackDate">Date and time of the folder</param>
+        /// <param name="trackBackFolder">Destination folder it was synced with</param>
         private void AddTrackBackEntryForRightFolder(string trackBackName, string trackBackDate, string trackBackFolder)
         {
             TrackBackItemData data = new TrackBackItemData
@@ -115,9 +137,9 @@ namespace nsync
         {
             LoadSourceFolders();
 
-            if (GetSelectedComboBoxItem() == leftFolderPath)
+            if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
                 LoadTrackBackEntriesForLeftFolder();
-            else
+            else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
                 LoadTrackBackEntriesForRightFolder();
             
             //Sort left and right lists according to date/time
@@ -129,20 +151,22 @@ namespace nsync
         /// Sorting method to sort a listview
         /// </summary>
         /// <param name="sortBy">data name/parameter to sort by as a string</param>
-        /// <param name="direction">ascending or descending order</param>
-        /// <param name="lv">listview to be sorted</param>
-        private void SortList(string sortBy, ListSortDirection direction, ListView lv)
+        /// <param name="direction">Ascending or descending order</param>
+        /// <param name="lv">Listview to be sorted</param>
+        private void SortList(string sortBy, ListSortDirection direction, ListView listView)
         {
             ICollectionView dataView =
-              CollectionViewSource.GetDefaultView(lv.ItemsSource);
+              CollectionViewSource.GetDefaultView(listView.ItemsSource);
 
             dataView.SortDescriptions.Clear();
-            SortDescription sd = new SortDescription(sortBy, direction);
-            dataView.SortDescriptions.Add(sd);
+            SortDescription description = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(description);
             dataView.Refresh();
         }
 
-
+        /// <summary>
+        /// Loads the folder names into the combo box
+        /// </summary>
         private void LoadSourceFolders()
         {
             AddComboBoxItem(leftFolderPath);
@@ -151,9 +175,9 @@ namespace nsync
         }
 
         /// <summary>
-        /// adds an item to the combobox
+        /// Adds an item to the combo box
         /// </summary>
-        /// <param name="itemName"></param>
+        /// <param name="itemName">The name of the item to be added</param>
         private void AddComboBoxItem(string itemName)
         {
             ComboBoxItem SourceFolderComboBoxItem = new ComboBoxItem();
@@ -163,7 +187,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// Loads the trackback entries for the folder into the listview
+        /// Loads the trackback entries for the left folder into the listview
         /// </summary>
         private void LoadTrackBackEntriesForLeftFolder()
         {
@@ -171,17 +195,20 @@ namespace nsync
             ListViewForLeftFolder.Visibility = Visibility.Visible;
             ListViewForRightFolder.Visibility = Visibility.Collapsed;
 
-            if (trackback.hasTrackBackData(leftFolderPath))
+            if (trackback.hasTrackBackData(actualLeftFolderPath))
             {
-                string[] folderList = trackback.GetFolderVersions(leftFolderPath);
-                string[] destinationList = trackback.GetFolderDestinations(leftFolderPath);
-                string[] timeStampList = trackback.GetFolderTimeStamps(leftFolderPath);
+                string[] folderList = trackback.GetFolderVersions(actualLeftFolderPath);
+                string[] destinationList = trackback.GetFolderDestinations(actualLeftFolderPath);
+                string[] timeStampList = trackback.GetFolderTimeStamps(actualLeftFolderPath);
 
                 for (int i = 0; i < folderList.Length; i++)
                     AddTrackBackEntryForLeftFolder(folderList[i], timeStampList[i], destinationList[i]);
             }
         }
 
+        /// <summary>
+        /// Loads the trackback entries for the right folder into the listview
+        /// </summary>
         private void LoadTrackBackEntriesForRightFolder()
         {
             trackBackCollectionForRightFolder.Clear();
@@ -189,37 +216,50 @@ namespace nsync
             ListViewForLeftFolder.Visibility = Visibility.Collapsed;
             ListViewForRightFolder.Visibility = Visibility.Visible;
 
-            if (trackback.hasTrackBackData(rightFolderPath))
+            if (trackback.hasTrackBackData(actualRightFolderPath))
             {
-                string[] folderList = trackback.GetFolderVersions(rightFolderPath);
-                string[] destinationList = trackback.GetFolderDestinations(rightFolderPath);
-                string[] timeStampList = trackback.GetFolderTimeStamps(rightFolderPath);
+                string[] folderList = trackback.GetFolderVersions(actualRightFolderPath);
+                string[] destinationList = trackback.GetFolderDestinations(actualRightFolderPath);
+                string[] timeStampList = trackback.GetFolderTimeStamps(actualRightFolderPath);
 
                 for (int j = 0; j < folderList.Length; j++)
                     AddTrackBackEntryForRightFolder(folderList[j], timeStampList[j], destinationList[j]);
             }
         }
 
+        /// <summary>
+        /// Handles the event when the combo box selected item is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBoxSourceFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (GetSelectedComboBoxItem() == leftFolderPath)
+            if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
                 LoadTrackBackEntriesForLeftFolder();
-            else
+            else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
                 LoadTrackBackEntriesForRightFolder();
         }
-
+        /// <summary>
+        /// This method is called when user clicks on the Restore button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonRestore_Click(object sender, RoutedEventArgs e)
         {
             EnableInterface(false);
             LabelProgress.Visibility = Visibility.Visible;
             LabelProgress.Content = MESSAGE_RESTORING_FOLDERS;
 
-            if (GetSelectedComboBoxItem() == leftFolderPath)
-                trackback.StartRestore(leftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
-            else
-                trackback.StartRestore(rightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
+            if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+                trackback.StartRestore(actualLeftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
+            else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+                trackback.StartRestore(actualRightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
         }
 
+        /// <summary>
+        /// Gets the value of the selected item in combo box
+        /// </summary>
+        /// <returns>The string representation of the selected item</returns>
         private string GetSelectedComboBoxItem()
         {
             ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
@@ -227,12 +267,35 @@ namespace nsync
             return selectedComboBoxItem.Content.ToString();
         }
 
+        /// <summary>
+        /// Gets the value of the selected item in list view
+        /// </summary>
+        /// <param name="listView">The list view selected</param>
+        /// <returns>The string representation of the selected item</returns>
         private string GetSelectedListViewItem(ListView listView)
         {
             TrackBackItemData selectedListViewItem = (TrackBackItemData)listView.SelectedItem;
             return selectedListViewItem.dateItem;
         }
 
+        /// <summary>
+        /// Gets the orignial path of the folder
+        /// </summary>
+        /// <param name="shortenedFolderPath">The shortened folder path</param>
+        /// <returns>The original folder path</returns>
+        private string GetOriginalFolderPath(string shortenedFolderPath)
+        {
+            if (shortenedFolderPaths[0] == shortenedFolderPath)
+                return actualLeftFolderPath;
+            else if (shortenedFolderPaths[1] == shortenedFolderPath)
+                return actualRightFolderPath;
+            return "";
+        }
+
+        /// <summary>
+        /// Enables or disables the interface after and during restoring of folders
+        /// </summary>
+        /// <param name="status"></param>
         private void EnableInterface(bool status)
         {
             double opacityValue;
@@ -274,7 +337,12 @@ namespace nsync
             ButtonPageSettings.Opacity = ButtonPageHome.Opacity = ButtonPageTrackBack.Opacity = opacityValue;
         }
 
-        void backgroundWorkerForTrackBackRestore_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        /// <summary>
+        /// This method is called when the background worker has finished restoring the folders
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerForTrackBackRestore_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if ((bool) e.Result)
             {
@@ -291,6 +359,30 @@ namespace nsync
                 helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
             }
         }
+
+        /// <summary>
+        /// Use Win32 Api for shortening paths
+        /// </summary>
+        /// <param name="pszOut"></param>
+        /// <param name="szPath"></param>
+        /// <param name="cchMax"></param>
+        /// <param name="dwFlags"></param>
+        /// <returns></returns>
+        [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
+        static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
+
+        /// <summary>
+        /// Shortens folder path for MRU list
+        /// </summary>
+        /// <param name="oldPath">The path that is to be shortened is passed in</param>
+        /// <returns>A string containing the new folder path is returned</returns>
+        private string ShortenPath(string oldPath, int maxLength)
+        {
+            StringBuilder sb = new StringBuilder();
+            PathCompactPathEx(sb, oldPath, maxLength, 0);
+            return sb.ToString();
+        }
+        #endregion
     }
 
     /// <summary>

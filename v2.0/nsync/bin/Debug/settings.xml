@@ -1,28 +1,28 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Eugene\Desktop\2</left1>
-    <right1>C:\Users\Eugene\Desktop\3</right1>
+    <left1>C:\Users\Administrator\Desktop\123456789012345612345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</left1>
+    <right1>C:\Users\Administrator\Desktop\folder c</right1>
     <filter1>
       <size>0</size>
     </filter1>
-    <left2>C:\Users\Eugene\Desktop\1</left2>
-    <right2>C:\Users\Eugene\Desktop\2</right2>
+    <left2>C:\Users\Administrator\Desktop\folder b</left2>
+    <right2>C:\Users\Administrator\Desktop\folder c</right2>
     <filter2>
       <size>0</size>
     </filter2>
-    <left3>C:\Users\Eugene\Desktop\cacacacacacacacacacacaccacacacacacacacacacacacacacacacacacac</left3>
-    <right3>C:\Users\Eugene\Desktop\New folder</right3>
+    <left3>E:\folder a</left3>
+    <right3>E:\folder b</right3>
     <filter3>
       <size>0</size>
     </filter3>
-    <left4>C:\FolderA</left4>
-    <right4>C:\FolderB</right4>
+    <left4>C:\Users\Eugene\Desktop\2</left4>
+    <right4>C:\Users\Eugene\Desktop\3</right4>
     <filter4>
       <size>0</size>
     </filter4>
-    <left5>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</left5>
-    <right5>C:\Users\Seah Shao Qi\Desktop\TestFolders\121212</right5>
+    <left5>C:\Users\Eugene\Desktop\1</left5>
+    <right5>C:\Users\Eugene\Desktop\2</right5>
     <filter5>
       <size>0</size>
     </filter5>
@@ -31,5 +31,10 @@
     <HelperWindowTimer>5</HelperWindowTimer>
     <ExcludeWindowStatus>True</ExcludeWindowStatus>
   </SETTINGS>
-  <REMOVEABLEDISK />
+  <REMOVEABLEDISK>
+    <Disk ID="E41DF33A">
+      <left>E:\folder a</left>
+      <right>E:\folder b</right>
+    </Disk>
+  </REMOVEABLEDISK>
 </nsync>
