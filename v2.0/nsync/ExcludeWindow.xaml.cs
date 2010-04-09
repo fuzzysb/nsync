@@ -277,7 +277,6 @@ namespace nsync
                                 {
                                     if (!IsSubFolder(excludeFolders, i))
                                     {
-                                        RemoveSubFolders(i);
                                         excludeFolders.Add(i);
                                     }
                                     else
@@ -285,6 +284,7 @@ namespace nsync
                                         if (IsNotInList(excludeSubFolders, i))
                                             excludeSubFolders.Add(i);
                                     }
+                                    //RemoveSubFolders(i);
                                 }
                             }
                             else
@@ -319,7 +319,6 @@ namespace nsync
                         excludeFolders.Remove(singlePath);
                     }
                 }
-
             }
         }
 
