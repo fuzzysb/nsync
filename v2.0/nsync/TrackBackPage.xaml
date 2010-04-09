@@ -8,23 +8,7 @@
         <Image x:Name="ImageTrackBack" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/trackback.png" Width="210"/>
         <ComboBox x:Name="ComboBoxSourceFolder" FontFamily="Verdana" FontSize="11" SelectionChanged="ComboBoxSourceFolder_SelectionChanged" Margin="20,55,20,0" VerticalAlignment="Top" Height="29" Style="{DynamicResource ComboBoxSourceFolderStyle}" Foreground="White" Cursor="Hand"/>
         <StackPanel Name="BoxTrackBack" Margin="15,100,15,42" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
-            <ListView Name="ListViewForLeftFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForLeftFolder}" Cursor="Hand" Visibility="Visible">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Style.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="True" />
-                                    <Condition Property="IsMouseOver" Value="False" />
-                                </MultiTrigger.Conditions>
-                                <MultiTrigger.Setters>
-                                    <Setter Property="Background" Value="Blue" />
-                                    <Setter Property="BorderBrush" Value="Blue" />
-                                </MultiTrigger.Setters>
-                            </MultiTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.ItemContainerStyle>
+            <ListView Name="ListViewForLeftFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForLeftFolder}" Cursor="Hand" Visibility="Visible" ItemContainerStyle="{StaticResource TrackBackItemStyle}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
@@ -45,23 +29,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Name="ListViewForRightFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForRightFolder}" Cursor="Hand" Visibility="Collapsed">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Style.Triggers>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsSelected" Value="True" />
-                                    <Condition Property="IsMouseOver" Value="False" />
-                                </MultiTrigger.Conditions>
-                                <MultiTrigger.Setters>
-                                    <Setter Property="Background" Value="Blue" />
-                                    <Setter Property="BorderBrush" Value="Blue" />
-                                </MultiTrigger.Setters>
-                            </MultiTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListView.ItemContainerStyle>
+            <ListView Name="ListViewForRightFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForRightFolder}" Cursor="Hand" Visibility="Collapsed" ItemContainerStyle="{StaticResource TrackBackItemStyle}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
