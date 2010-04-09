@@ -295,6 +295,7 @@ namespace nsync
                                 {
                                     if (!IsSubFolder(excludeFolders, i))
                                     {
+                                        RemoveSubFolders(i);
                                         excludeFolders.Add(i);
                                     }
                                     else
@@ -302,7 +303,6 @@ namespace nsync
                                         if (IsNotInList(excludeSubFolders, i))
                                             excludeSubFolders.Add(i);
                                     }
-                                    //RemoveSubFolders(i);
                                 }
                             }
                             else
@@ -327,6 +327,8 @@ namespace nsync
 
         private void RemoveSubFolders(string folderPath)
         {
+            List<string> pathsToRemove = new List<string>();
+
             foreach (string singlePath in excludeFolders)
             {
                 if (IsSubFolderCheck(singlePath, folderPath))
@@ -334,9 +336,13 @@ namespace nsync
                     if (singlePath != folderPath)
                     {
                         excludeSubFolders.Add(singlePath);
-                        excludeFolders.Remove(singlePath);
+                        pathsToRemove.Add(singlePath);
                     }
                 }
+            }
+
+            foreach(string singlePath in pathsToRemove) {
+                excludeFolders.Remove(singlePath);
             }
         }
 
