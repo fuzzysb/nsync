@@ -628,6 +628,11 @@ namespace nsync
                 string path = selectedListBoxItem.Tag.ToString();
                 ListBoxExclude.SelectedIndex = -1;
 
+                if (excludeFolders.Contains(path))
+                {
+                    RestoreSubFolders(path);
+                }
+
                 excludeFolders.Remove(path);
                 excludeFileNames.Remove(path);
                 excludeFileTypes.Remove(path);
@@ -636,6 +641,28 @@ namespace nsync
 
                 ClearListBox();
                 UpdateListBox();
+            }
+        }
+
+        private void RestoreSubFolders(string folderPath)
+        {
+            List<string> pathsToRemove = new List<string>();
+
+            foreach (string singlePath in excludeSubFolders)
+            {
+                if (IsSubFolderCheck(singlePath, folderPath))
+                {
+                    if (singlePath != folderPath)
+                    {
+                        excludeFolders.Add(singlePath);
+                        pathsToRemove.Add(singlePath);
+                    }
+                }
+            }
+
+            foreach (string singlePath in pathsToRemove)
+            {
+                excludeSubFolders.Remove(singlePath);
             }
         }
 
