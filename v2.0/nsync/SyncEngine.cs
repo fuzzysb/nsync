@@ -29,10 +29,11 @@ namespace nsync
         private List<string> excludeFileNameList = new List<string>();
         private List<string> excludeFolderList = new List<string>();
         private List<string> errorMessageForSummaryReport = new List<string>();
-        private string NSYNC_METADATA = "filesync.metadata";
-        private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
         private ExcludeData excludeData;
+        private SyncOrchestrator agent;
 
+        private string METADATA_FILE_NAME = nsync.Properties.Resources.metadataFileName;
+        private readonly string TRACKBACK_FOLDER_NAME = nsync.Properties.Resources.trackBackFolderName;
         #endregion
 
         #region Properties
@@ -99,6 +100,7 @@ namespace nsync
             backgroundWorkerForSync = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForSync.DoWork += new DoWorkEventHandler(backgroundWorkerForSync_DoWork);
             backgroundWorkerForSync.WorkerReportsProgress = true;
+            backgroundWorkerForSync.WorkerSupportsCancellation = true;
 
             backgroundWorkerForPreSync = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForPreSync.DoWork += new DoWorkEventHandler(backgroundWorkerForPreSync_DoWork);
@@ -453,7 +455,7 @@ namespace nsync
                 else
                     destProvider.AppliedChange += new EventHandler<AppliedChangeEventArgs>(OnAppliedChange);
 
-                SyncOrchestrator agent = new SyncOrchestrator();
+                agent = new SyncOrchestrator();
                 agent.LocalProvider = sourceProvider;
                 agent.RemoteProvider = destProvider;
                 agent.Direction = SyncDirectionOrder.Upload;
@@ -464,6 +466,10 @@ namespace nsync
                     return CheckSpace();
 
                 return true;
+            }
+            catch (SyncAbortedException e)
+            {
+                throw new SyncAbortedException();
             }
             finally
             {
@@ -504,7 +510,10 @@ namespace nsync
         /// <param name="args"></param>
         private void OnAppliedChange(object sender, AppliedChangeEventArgs args)
         {
-            
+            if ((agent.State == SyncOrchestratorState.Downloading || agent.State == SyncOrchestratorState.Uploading
+                || agent.State == SyncOrchestratorState.UploadingAndDownloading) && backgroundWorkerForSync.CancellationPending)
+                    agent.Cancel();
+
             countDoneChanges++;
             // This method will raise an event to the backgroundWorkerForSync via backgroundWorkerForSync_ProgressChanged
             backgroundWorkerForSync.ReportProgress((int)((double)countDoneChanges / countChanges * 100));
@@ -536,6 +545,9 @@ namespace nsync
             // e.Result will be available to RunWorkerCompletedEventArgs later
             // when the job is completed.
             e.Result = InternalStartSync();
+
+            if (backgroundWorkerForSync.CancellationPending)
+                e.Cancel = true;
         }
 
         /// <summary>
@@ -575,7 +587,7 @@ namespace nsync
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
                 filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
-                filter.FileNameExcludes.Add(NSYNC_METADATA);
+                filter.FileNameExcludes.Add(METADATA_FILE_NAME);
 
                 // Add filters for file types
                 for (int i = 0; i < excludeFileTypeList.Count; i++)
@@ -636,7 +648,7 @@ namespace nsync
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
                 filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
-                filter.FileNameExcludes.Add(NSYNC_METADATA);
+                filter.FileNameExcludes.Add(METADATA_FILE_NAME);
 
                 // Add filters for file types
                 for (int i = 0; i < excludeFileTypeList.Count; i++)

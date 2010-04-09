@@ -1273,10 +1273,18 @@ namespace nsync
         {
             EnableInterface(true);
 
-            if (!(bool)e.Result)
+            if (e.Cancelled || e.Error != null)
             {
-                helper.Show(nsync.Properties.Resources.insufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                if (e.Cancelled)
+                {
+                    helper.Show("Sync terminated!", HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    LabelProgress.Content = "Syncing is terminated"; 
+                }
+                else if (e.Error != null)
+                {
+                    helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    LabelProgress.Content = MESSAGE_ERROR_DETECTED; 
+                }
                 LabelProgressPercent.Visibility = Visibility.Hidden;
                 ImageTeam14Over.OpacityMask = blankOpacityMask;
                 ButtonSync.Visibility = Visibility.Hidden;
@@ -1284,26 +1292,40 @@ namespace nsync
                 IsFolderExist();
                 return;
             }
-
-            if (synchronizer.IsFoldersSync())
+            else
             {
-                ImageTeam14Over.OpacityMask = blankOpacityMask;
+                if (!(bool)e.Result)
+                {
+                    helper.Show(nsync.Properties.Resources.insufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                    LabelProgressPercent.Visibility = Visibility.Hidden;
+                    ImageTeam14Over.OpacityMask = blankOpacityMask;
+                    ButtonSync.Visibility = Visibility.Hidden;
+                    ButtonPreview.Visibility = Visibility.Hidden;
+                    IsFolderExist();
+                    return;
+                }
 
-                SaveFolderPaths();
-                ReloadFolderPaths();
+                if (synchronizer.IsFoldersSync())
+                {
+                    ImageTeam14Over.OpacityMask = blankOpacityMask;
 
-                LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
-                LabelProgressPercent.Content = "100 %";
-                helper.Show(nsync.Properties.Resources.synchronizedFolders, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                return;
+                    SaveFolderPaths();
+                    ReloadFolderPaths();
+
+                    LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
+                    LabelProgressPercent.Content = "100 %";
+                    helper.Show(nsync.Properties.Resources.synchronizedFolders, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    return;
+                }
+
+                previewSync = new Preview();
+                previewSync.LeftPath = actualLeftPath;
+                previewSync.RightPath = actualRightPath;
+                previewSync.ExcludeFileTypeList = excludeFileTypeList;
+                previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
+                previewSync.SummarySync(); 
             }
-
-            previewSync = new Preview();
-            previewSync.LeftPath = actualLeftPath;
-            previewSync.RightPath = actualRightPath;
-            previewSync.ExcludeFileTypeList = excludeFileTypeList;
-            previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
-            previewSync.SummarySync();
 
         }
 
@@ -1443,6 +1465,11 @@ namespace nsync
                 synchronizer.StartSync();
         }
 
+        /// <summary>
+        /// This method is called when the preview button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonPreview_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1464,7 +1491,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void backgroundWorkerForPreview_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void backgroundWorkerForPreview_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
             {
@@ -1499,15 +1526,14 @@ namespace nsync
             }
         }
 
-        void WindowVisualPreview_Closing(object sender, CancelEventArgs e)
+        private void WindowVisualPreview_Closing(object sender, CancelEventArgs e)
         {
             EnableInterface(true);
         }
-        #endregion
 
         private void SyncingImage_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (!isInterfaceEnabled)
+            if (!isInterfaceEnabled && LabelProgress.Content == MESSAGE_SYNCING_FOLDERS)
             {
                 ButtonStop.Visibility = Visibility.Visible;
                 SyncingImage.Visibility = Visibility.Hidden;
@@ -1522,5 +1548,11 @@ namespace nsync
                 SyncingImage.Visibility = Visibility.Visible;
             }
         }
+
+        private void ButtonStop_Click(object sender, RoutedEventArgs e)
+        {
+            synchronizer.backgroundWorkerForSync.CancelAsync();
+        }
+        #endregion
     }
 }
