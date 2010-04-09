@@ -360,6 +360,9 @@ namespace nsync
 
             for (int i = 0; i < parentPathArray.Length; i++)
             {
+                if (parentPathArray[i] == "")
+                    continue;
+
                 if (parentPathArray[i] != childPathArray[i])
                     return false;
             }
@@ -399,6 +402,12 @@ namespace nsync
 
             for (int i = 0; i < sourceArray.Length; i++)
             {
+                if (sourceArray[i] == "")
+                    continue;
+
+                if (destinationArray[i] == "")
+                    continue;
+
                 if (sourceArray[i] != destinationArray[i])
                     return false;
             }
