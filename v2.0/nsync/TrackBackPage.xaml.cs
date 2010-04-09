@@ -136,6 +136,7 @@ namespace nsync
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             LoadSourceFolders();
+            ButtonRestore.Visibility = Visibility.Hidden;
 
             if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
                 LoadTrackBackEntriesForLeftFolder();
@@ -238,6 +239,8 @@ namespace nsync
                 LoadTrackBackEntriesForLeftFolder();
             else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
                 LoadTrackBackEntriesForRightFolder();
+
+            ButtonRestore.Visibility = Visibility.Hidden;
         }
         /// <summary>
         /// This method is called when user clicks on the Restore button
@@ -381,6 +384,16 @@ namespace nsync
             StringBuilder sb = new StringBuilder();
             PathCompactPathEx(sb, oldPath, maxLength, 0);
             return sb.ToString();
+        }
+
+        private void ListViewForLeftFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ButtonRestore.Visibility = Visibility.Visible;
+        }
+
+        private void ListViewForRightFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ButtonRestore.Visibility = Visibility.Visible;
         }
         #endregion
     }

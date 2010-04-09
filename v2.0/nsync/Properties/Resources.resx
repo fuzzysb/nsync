@@ -147,6 +147,9 @@
   <data name="folderMissingIconPath" xml:space="preserve">
     <value>pack://siteoforigin:,,,/Resources/Icons/folder_missing.png</value>
   </data>
+  <data name="folderOnRemovableDiskRestored" xml:space="preserve">
+    <value>Your last synced folder pair on this removeable disk is restored.</value>
+  </data>
   <data name="homeToolTip" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -224,6 +227,9 @@
   </data>
   <data name="synchronizedFolders" xml:space="preserve">
     <value>Folders are already synchronized.</value>
+  </data>
+  <data name="syncTerminated" xml:space="preserve">
+    <value>Sync terminated!</value>
   </data>
   <data name="thumbdriveIconPath" xml:space="preserve">
     <value>pack://siteoforigin:,,,/Resources/Icons/removabledrive.png</value>

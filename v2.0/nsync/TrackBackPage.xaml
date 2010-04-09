@@ -8,18 +8,18 @@
         <Label />
         <Image x:Name="ImageTrackBack" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/trackback.png" Width="210"/>
         <ComboBox x:Name="ComboBoxSourceFolder" FontFamily="Verdana" FontSize="11" SelectionChanged="ComboBoxSourceFolder_SelectionChanged" Margin="20,55,20,0" VerticalAlignment="Top" Height="29" Style="{DynamicResource ComboBoxSourceFolderStyle}" Foreground="White" Cursor="Hand"/>
-        <StackPanel Name="BoxTrackBack" Margin="15,100,15,42" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
-            <ListView Name="ListViewForLeftFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForLeftFolder}" Cursor="Hand" Visibility="Visible" ItemContainerStyle="{StaticResource TrackBackItemStyle}">
+        <StackPanel Name="BoxTrackBack" Margin="15,100,15,42" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}" Orientation="Vertical" Width="488" Height="145">
+            <ListView Name="ListViewForLeftFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForLeftFolder}" Cursor="Hand" Visibility="Visible" ItemContainerStyle="{StaticResource TrackBackItemStyle}" SelectionChanged="ListViewForLeftFolder_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Name" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Folder Name" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding dateItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Date/Time" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Date &amp; Time" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding folderItem}">
@@ -30,17 +30,17 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Name="ListViewForRightFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForRightFolder}" Cursor="Hand" Visibility="Collapsed" ItemContainerStyle="{StaticResource TrackBackItemStyle}">
+            <ListView Name="ListViewForRightFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForRightFolder}" Cursor="Hand" Visibility="Collapsed" ItemContainerStyle="{StaticResource TrackBackItemStyle}" SelectionChanged="ListViewForRightFolder_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Name" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Folder Name" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding dateItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Date/Time" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Date &amp; Time" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding folderItem}">
@@ -52,7 +52,7 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
-        <Label Height="28" HorizontalAlignment="Left" Margin="20,0,0,16" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
+        <Label Height="28" HorizontalAlignment="Left" Margin="20,0,0,10" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
         <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,10" Name="ButtonRestore" ToolTip="{x:Static const:Resources.restoreToolTip}" Template="{StaticResource ButtonRestoreTemplate}" Width="23" Height="30" Click="ButtonRestore_Click"></Button>
     </Grid>
 </Page>

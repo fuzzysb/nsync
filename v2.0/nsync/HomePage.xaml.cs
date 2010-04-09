@@ -50,6 +50,7 @@ namespace nsync
         private string MESSAGE_ERROR_DETECTED = "Error detected";
         private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
         private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
+        private string MESSAGE_SYNC_TERMINATED = "Sync terminated";
 
         private int HELPER_WINDOW_HIGH_PRIORITY = 0;
         private int HELPER_WINDOW_LOW_PRIORITY = 1;
@@ -1163,7 +1164,7 @@ namespace nsync
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 
-                        helper.Show("Your last synced folder pair on this removeable disk is restored", HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(nsync.Properties.Resources.folderOnRemovableDiskRestored, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     }
                 }
             }
@@ -1181,7 +1182,7 @@ namespace nsync
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 
-                        helper.Show("Your last synced folder pair on this removeable disk is restored", HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(nsync.Properties.Resources.folderOnRemovableDiskRestored, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     }
                 }
             }
@@ -1273,13 +1274,17 @@ namespace nsync
         {
             EnableInterface(true);
 
+            // This condition eliminates the scenario when e.Result throws an exception when the background
+            // worker encounters an error or gets cancelled
             if (e.Cancelled || e.Error != null)
             {
+                // This condition is met when the background worker is cancelled
                 if (e.Cancelled)
                 {
-                    helper.Show("Sync terminated!", HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                    LabelProgress.Content = "Syncing is terminated"; 
+                    helper.Show(nsync.Properties.Resources.syncTerminated, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    LabelProgress.Content = MESSAGE_SYNC_TERMINATED; 
                 }
+                // This condition is met when the background worker encounters an error
                 else if (e.Error != null)
                 {
                     helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);

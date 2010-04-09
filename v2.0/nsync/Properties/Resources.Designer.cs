@@ -151,6 +151,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your last synced folder pair on this removeable disk is restored..
+        /// </summary>
+        public static string folderOnRemovableDiskRestored {
+            get {
+                return ResourceManager.GetString("folderOnRemovableDiskRestored", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string homeToolTip {
@@ -381,6 +390,15 @@ namespace nsync.Properties {
         public static string synchronizedFolders {
             get {
                 return ResourceManager.GetString("synchronizedFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync terminated!.
+        /// </summary>
+        public static string syncTerminated {
+            get {
+                return ResourceManager.GetString("syncTerminated", resourceCulture);
             }
         }
         
