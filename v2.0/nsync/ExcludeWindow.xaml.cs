@@ -277,12 +277,12 @@ namespace nsync
                                 {
                                     if (!IsSubFolder(excludeFolders, i))
                                     {
-                                        //RemoveSubFolders(i);
+                                        RemoveSubFolders(i);
                                         excludeFolders.Add(i);
                                     }
                                     else
                                     {
-                                        if(IsNotInList(excludeSubFolders,i))
+                                        if (IsNotInList(excludeSubFolders, i))
                                             excludeSubFolders.Add(i);
                                     }
                                 }
@@ -319,7 +319,7 @@ namespace nsync
                         excludeFolders.Remove(singlePath);
                     }
                 }
-                    
+
             }
         }
 
@@ -338,14 +338,10 @@ namespace nsync
             string[] childPathArray = childPath.Split(new char[] { '\\' });
             string[] parentPathArray = parentPath.Split(new char[] { '\\' });
 
-            int shorterLength;
-
             if (parentPathArray.Length > childPathArray.Length)
-                shorterLength = childPathArray.Length;
-            else
-                shorterLength = parentPathArray.Length;
+                return false;
 
-            for (int i = 0; i < shorterLength; i++)
+            for (int i = 0; i < parentPathArray.Length; i++)
             {
                 if (parentPathArray[i] != childPathArray[i])
                     return false;
