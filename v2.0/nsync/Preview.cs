@@ -21,7 +21,9 @@ namespace nsync
         private List<FileData> fileData;
         private string leftPath;
         private string rightPath;
-        private List<string> excludeTypeList = new List<string>();
+        private List<string> excludeFileTypeList = new List<string>();
+        private List<string> excludeFileNameList = new List<string>();
+        private List<string> excludeFolderList = new List<string>();
 
         private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
         #endregion
@@ -64,10 +66,28 @@ namespace nsync
         /// <summary>
         /// Setter and Getter method exclude list which contains file types
         /// </summary>
-        public List<string> ExcludeTypeList
+        public List<string> ExcludeFileTypeList
         {
-            get { return excludeTypeList; }
-            set { excludeTypeList = value; }
+            get { return excludeFileTypeList; }
+            set { excludeFileTypeList = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method exclude list which contains file names
+        /// </summary>
+        public List<string> ExcludeFileNameList
+        {
+            get { return excludeFileNameList; }
+            set { excludeFileNameList = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method exclude list which contains folders
+        /// </summary>
+        public List<string> ExcludeFolderList
+        {
+            get { return excludeFolderList; }
+            set { excludeFolderList = value; }
         }
 
         /// <summary>
@@ -137,9 +157,23 @@ namespace nsync
 
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
-                for (int i = 0; i < excludeTypeList.Count; i++)
+
+                // add filters for file types
+                for (int i = 0; i < excludeFileTypeList.Count; i++)
                 {
-                    filter.FileNameExcludes.Add("*" + excludeTypeList[i]);
+                    filter.FileNameExcludes.Add("*" + excludeFileTypeList[i]);
+                }
+
+                // add filters for file names
+                for (int i = 0; i < excludeFileNameList.Count; i++)
+                {
+                    filter.FileNameExcludes.Add(excludeFileNameList[i]);
+                }
+
+                // add filters for folders
+                for (int i = 0; i < excludeFolderList.Count; i++)
+                {
+                    filter.SubdirectoryExcludes.Add(excludeFolderList[i]);
                 }
 
                 filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);

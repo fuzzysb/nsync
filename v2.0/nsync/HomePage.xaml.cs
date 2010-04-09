@@ -59,7 +59,9 @@ namespace nsync
         private Preview previewSync;
         private SummaryReport summaryReport;
         private ExcludeWindow excludeWindow;
-        private List<string> excludeTypeList;
+        private List<string> excludeFileTypeList;
+        private List<string> excludeFileNameList;
+        private List<string> excludeFolderList;
         #endregion
 
         #region Constructor
@@ -1000,8 +1002,8 @@ namespace nsync
                 // Do PreSync Calculations: count how many changes need to be done
                 // If not enough disk space, return
                 // If enough, continue to start the real sync
-                excludeTypeList = new List<string>();
-                synchronizer.ExcludeTypeList = excludeTypeList;
+                excludeFileTypeList = new List<string>();
+                synchronizer.ExcludeFileTypeList = excludeFileTypeList;
                 synchronizer.PreSync();
             }
         }
@@ -1036,9 +1038,15 @@ namespace nsync
                 // Do PreSync Calculations: count how many changes need to be done
                 // If not enough disk space, return
                 // If enough, continue to start the real sync
-                excludeTypeList = new List<string>();
-                excludeTypeList = excludeWindow.GetFileTypeList();
-                synchronizer.ExcludeTypeList = excludeTypeList;
+                excludeFileTypeList = new List<string>();
+                excludeFileNameList = new List<string>();
+                excludeFolderList = new List<string>();
+                excludeFileTypeList = excludeWindow.GetFileTypeList();
+                excludeFileNameList = excludeWindow.GetFileNameList();
+                excludeFolderList = excludeWindow.GetFolderList();
+                synchronizer.ExcludeFileTypeList = excludeFileTypeList;
+                synchronizer.ExcludeFileNameList = excludeFileNameList;
+                synchronizer.ExcludeFolderList = excludeFolderList;
                 synchronizer.PreSync();
             }
         }
@@ -1292,7 +1300,7 @@ namespace nsync
             previewSync = new Preview();
             previewSync.LeftPath = actualLeftPath;
             previewSync.RightPath = actualRightPath;
-            previewSync.ExcludeTypeList = excludeTypeList;
+            previewSync.ExcludeFileTypeList = excludeFileTypeList;
             previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
             previewSync.SummarySync();
 
@@ -1331,6 +1339,7 @@ namespace nsync
             }
 
             helper.ErrorCount = fileData.Count;
+            helper.ConflictCount = synchronizer.ErrorMessageForSummaryReport.Count;
             helper.LogPath = summaryReport.LogPath;
             helper.Show(nsync.Properties.Resources.syncComplete, HELPER_WINDOW_SYNC_COMPLETE_PRIORITY, HelperWindow.windowStartPosition.windowTop);
 

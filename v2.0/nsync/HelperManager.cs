@@ -16,6 +16,7 @@ namespace nsync
         private Settings settingsManager;
         private int timer;
         private int errorCount;
+        private int conflictCount;
         private string logPath;
         #endregion
 
@@ -45,13 +46,17 @@ namespace nsync
             {
                 if (priority == -1)
                 {
-                    if (errorCount != 0)
+                    if ((errorCount == 0) && (conflictCount == 0))                    
+                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null);
+                    else
                     {
-                        helpString += " " + errorCount + " Files are Not Synced.";
+                        if (errorCount != 0)
+                            helpString += " " + errorCount + " Files Not Synced.";
+                        if (conflictCount != 0)
+                            helpString += " " + conflictCount + " Files Conflicted.";
+                        helpString += "\nClick here to view Log.";
                         windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath);
                     }
-                    else
-                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null);
                 }
                 else
                 {
@@ -97,6 +102,15 @@ namespace nsync
         {
             get { return errorCount; }
             set { errorCount = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for conflictCount
+        /// </summary>
+        public int ConflictCount
+        {
+            get { return conflictCount; }
+            set { conflictCount = value; }
         }
 
         /// <summary>

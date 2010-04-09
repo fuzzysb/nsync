@@ -25,12 +25,12 @@ namespace nsync
         private string leftPath;
         private string rightPath;
         private List<string> excludeFolders;
-        private List<string> excludeFiles;
+        private List<string> excludeFileNames;
         private List<string> excludeFileTypes;
         private List<string> excludeSubFolders;
         private List<string> oldExcludeSubFolders;
         private List<string> oldExcludeFolders;
-        private List<string> oldExcludeFiles;
+        private List<string> oldExcludeFileNames;
         private List<string> oldExcludeFileTypes;
         private List<string> availableFileTypes;
         private List<string> excludeInvalid;
@@ -48,12 +48,12 @@ namespace nsync
         {
             InitializeComponent();
             excludeFolders = new List<string>();
-            excludeFiles = new List<string>();
+            excludeFileNames = new List<string>();
             excludeFileTypes = new List<string>();
             excludeSubFolders = new List<string>();
             oldExcludeSubFolders = new List<string>();
             oldExcludeFolders = new List<string>();
-            oldExcludeFiles = new List<string>();
+            oldExcludeFileNames = new List<string>();
             oldExcludeFileTypes = new List<string>();
             oldExcludeInvalid = new List<string>();
             availableFileTypes = new List<string>();
@@ -85,7 +85,6 @@ namespace nsync
         {
             get { return cancel; }
         }
-        #endregion
 
         /// <summary>
         /// Function to return list of File Types in Exclude Box
@@ -95,6 +94,25 @@ namespace nsync
         {
             return excludeFileTypes;
         }
+
+        /// <summary>
+        /// Function to return list of File Names in Exclude Box
+        /// </summary>
+        /// <returns>List of File Names to be excluded in sync</returns>
+        public List<string> GetFileNameList()
+        {
+            return excludeFileNames;
+        }
+
+        /// <summary>
+        /// Function to return list of Folders in Exclude Box
+        /// </summary>
+        /// <returns>List of Folders to be excluded in sync</returns>
+        public List<string> GetFolderList()
+        {
+            return excludeFolders;
+        }
+        #endregion
 
         #region Private Methods
         /// <summary>
@@ -290,8 +308,8 @@ namespace nsync
                             else
                             {
                                 string fileName = System.IO.Path.GetFileName(i);
-                                if (IsNotInList(excludeFiles, fileName))
-                                    excludeFiles.Add(fileName);
+                                if (IsNotInList(excludeFileNames, fileName))
+                                    excludeFileNames.Add(fileName);
                             }
                         }
                         else
@@ -413,9 +431,9 @@ namespace nsync
             {
                 AddListBoxItem("Exclude Folder: ", new SolidColorBrush(Colors.SkyBlue), excludeFolders[i]);
             }
-            for (int i = 0; i < excludeFiles.Count; i++)
+            for (int i = 0; i < excludeFileNames.Count; i++)
             {
-                AddListBoxItem("Exclude All Files: ", new SolidColorBrush(Colors.White), excludeFiles[i]);
+                AddListBoxItem("Exclude All Files: ", new SolidColorBrush(Colors.White), excludeFileNames[i]);
             }
             for (int i = 0; i < excludeFileTypes.Count; i++)
             {
@@ -484,7 +502,7 @@ namespace nsync
             {
                 //backup lists
                 CopyList(excludeFolders, oldExcludeFolders);
-                CopyList(excludeFiles, oldExcludeFiles);
+                CopyList(excludeFileNames, oldExcludeFileNames);
                 CopyList(excludeFileTypes, oldExcludeFileTypes);
                 CopyList(excludeInvalid, oldExcludeInvalid);
                 CopyList(excludeSubFolders, oldExcludeSubFolders);
@@ -528,7 +546,7 @@ namespace nsync
         {
             //restore old lists
             CopyList(oldExcludeFolders, excludeFolders);
-            CopyList(oldExcludeFiles, excludeFiles);
+            CopyList(oldExcludeFileNames, excludeFileNames);
             CopyList(oldExcludeFileTypes, excludeFileTypes);
             CopyList(oldExcludeInvalid, excludeInvalid);
             CopyList(oldExcludeSubFolders, excludeSubFolders);
@@ -596,7 +614,7 @@ namespace nsync
                 ListBoxExclude.SelectedIndex = -1;
 
                 excludeFolders.Remove(path);
-                excludeFiles.Remove(path);
+                excludeFileNames.Remove(path);
                 excludeFileTypes.Remove(path);
                 excludeInvalid.Remove(path);
                 excludeSubFolders.Remove(path);
@@ -623,7 +641,7 @@ namespace nsync
         /// </summary>
         private void ClearLists()
         {
-            excludeFiles.Clear();
+            excludeFileNames.Clear();
             excludeFileTypes.Clear();
             excludeFolders.Clear();
             excludeInvalid.Clear();
