@@ -2391,6 +2391,34 @@
             Setter and Getter method exclude list which contains folder
             </summary>
         </member>
+        <member name="T:nsync.ExcludeData">
+            <summary>
+            ExcludeData Class
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeData.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Constructor of ExcludeData class
+            </summary>
+        </member>
+        <member name="M:nsync.ExcludeData.GetFileTypeList">
+            <summary>
+            Function to return list of File Types in Exclude Box
+            </summary>
+            <returns>List of File Types to be excluded in sync</returns>
+        </member>
+        <member name="M:nsync.ExcludeData.GetFileNameList">
+            <summary>
+            Function to return list of File Names in Exclude Box
+            </summary>
+            <returns>List of File Names to be excluded in sync</returns>
+        </member>
+        <member name="M:nsync.ExcludeData.GetFolderList">
+            <summary>
+            Function to return list of Folders in Exclude Box
+            </summary>
+            <returns>List of Folders to be excluded in sync</returns>
+        </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>
             GeneratedInternalTypeHelper

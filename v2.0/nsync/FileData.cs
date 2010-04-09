@@ -20,7 +20,7 @@ namespace nsync
         private Changes changeType;
         #endregion
 
-        #region Public Methods
+        #region Constructor
         /// <summary>
         /// Constructor of FileData class
         /// </summary>
@@ -33,7 +33,9 @@ namespace nsync
             this.changeType = changeType;
             this.isFolder = isFolder;
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Gets the FileName of FileData object
         /// </summary>

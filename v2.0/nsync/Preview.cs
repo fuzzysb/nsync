@@ -24,7 +24,7 @@ namespace nsync
         private List<string> excludeFileTypeList = new List<string>();
         private List<string> excludeFileNameList = new List<string>();
         private List<string> excludeFolderList = new List<string>();
-
+        private string NSYNC_METADATA = "filesync.metadata";
         private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
         #endregion
 
@@ -157,6 +157,8 @@ namespace nsync
 
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
+                filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
+                filter.FileNameExcludes.Add(NSYNC_METADATA);
 
                 // Add filters for file types
                 for (int i = 0; i < excludeFileTypeList.Count; i++)
@@ -175,8 +177,6 @@ namespace nsync
                 {
                     filter.SubdirectoryExcludes.Add(excludeFolderList[i]);
                 }
-
-                filter.SubdirectoryExcludes.Add(TRACKBACK_FOLDER_NAME);
 
                 // Update metadata of the folders before sync to
                 // check for any changes or modifications
