@@ -143,6 +143,9 @@ namespace nsync
             if (!(intelligentManager.IsFolderSubFolder(targetPath, oldTargetPath)))
                 return null;
 
+            if (targetPath.Length < oldTargetPath.Length)
+                return null;
+
             if (!(intelligentManager.IsFolderExists(oldNonTargetPath + targetPath.Substring(oldTargetPath.Length))))
                 return null;
 
