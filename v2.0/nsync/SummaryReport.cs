@@ -11,6 +11,7 @@ namespace nsync
     {
         #region Class Variables
         //Unused Variables Kept For Future Use If Required
+        //Possible For Displaying Statistics
         private int totalChanges;
         private int createChanges;
         private int updateChanges;      
@@ -51,6 +52,7 @@ namespace nsync
         /// Constructor for SummaryReport when there are some changes
         /// Unused for now, future development might want to display all the types of changes
         /// For now, only erroneous is displayed
+        /// Possible For Displaying Statistics
         /// </summary>
         public SummaryReport(int allChanges, int newFiles, int overwrittenFiles, int deletedFiles,
             int renamedFiles, List<FileData> information)
@@ -77,6 +79,9 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// Method to Parse rename errors into another format
+        /// </summary>
         private void ParseErrorMessage()
         {
             if(errorMessage.Count < 2)
@@ -96,52 +101,62 @@ namespace nsync
         /// </summary>
         public void CreateLog()
         {
+            //Edits rename errors into different format
             ParseErrorMessage();
 
+            //Checks if folder exist, will create new log folder if not found
             CheckFolderExist();
             StreamWriter log = new StreamWriter(logPath, true);
 
             log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString("dd-MMM-yyyy h:mm:ss tt"));
             log.WriteLine("--------------------------------------");
+            log.WriteLine("");
 
+            //If there are errors, display all files that are not propagated
             if(!noChanges)
             {
                 log.WriteLine("File Sync Completed");
                 log.WriteLine("Number of errors found : " + fileData.Count.ToString());
-                log.WriteLine("-----------------------------");
+                log.WriteLine("");
                 foreach (FileData file in fileData)
                 {
                     switch (file.ChangeType)
                     {
                         case Changes.Delete:
                             log.WriteLine("File Failed To Be Delete");
-                            log.WriteLine("-----------------------------");
+                            log.WriteLine("--------------------------------------");
                             log.WriteLine(file.FileName);
+                            log.WriteLine("");
                             break;
 
                         case Changes.Create:
                             log.WriteLine("File Failed To Be Copied Over");
-                            log.WriteLine("-----------------------------");
+                            log.WriteLine("--------------------------------------");
                             log.WriteLine(file.FileName);
+                            log.WriteLine("");
                             break;
 
                         case Changes.Update:
                             log.WriteLine("File Failed To Be Overwritten");
-                            log.WriteLine("-----------------------------");
+                            log.WriteLine("--------------------------------------");
                             log.WriteLine(file.FileName);
+                            log.WriteLine("");
                             break;
                         case Changes.Rename:
                             log.WriteLine("File Failed To Be Renamed");
-                            log.WriteLine("-----------------------------");
+                            log.WriteLine("--------------------------------------");
                             log.WriteLine(file.FileName);
+                            log.WriteLine("");
                             break;
                     }
                 }
+                //When there are renaming conflicts
+                //Will display which files 'wins'
                 if (errorMessage.Count != 0)
                 {
                     foreach (string message in errorMessage)
                     {
-                        log.WriteLine(" ");
+                        log.WriteLine("");
                         log.WriteLine(message);
                     }
                 }
@@ -149,12 +164,13 @@ namespace nsync
             }
             else
             {
+                //If not error founds, display rename conflicts if any
                 log.WriteLine("File Sync Successful. No Error Detected");
                 if (errorMessage.Count != 0)
                 {
                     foreach (string message in errorMessage)
                     {
-                        log.WriteLine(" ");
+                        log.WriteLine("");
                         log.WriteLine(message);
                     }
                 }

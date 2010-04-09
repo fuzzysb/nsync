@@ -20,12 +20,15 @@ namespace nsync
     /// </summary>
     public partial class VisualPreviewWindow : Window
     {
+        #region Class Variables
         private ObservableCollection<BothPreviewItemData> bothPreviewCollection = new ObservableCollection<BothPreviewItemData>();
         private ObservableCollection<LeftRightPreviewItemData> leftRightPreviewCollection = new ObservableCollection<LeftRightPreviewItemData>();
         private string leftPath;
         private string rightPath;
         private List<FileData> previewFileData = new List<FileData>();
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Constructor for VisualPreviewWindow
         /// </summary>
@@ -33,9 +36,10 @@ namespace nsync
         {
             InitializeComponent();
         }
+        #endregion
 
         /// <summary>
-        /// enable the window to be dragged and moved on mousedown
+        /// Enable the window to be dragged and moved on mousedown
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -43,18 +47,6 @@ namespace nsync
         {
             this.DragMove();
         }
-
-        /// <summary>
-        /// property of the preview collection used in binding
-        /// </summary>
-        public ObservableCollection<BothPreviewItemData> BothPreviewCollection
-        { get { return bothPreviewCollection; } }
-
-        /// <summary>
-        /// property of the preview collection used in binding
-        /// </summary>
-        public ObservableCollection<LeftRightPreviewItemData> LeftRightPreviewCollection
-        { get { return leftRightPreviewCollection; } }
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
@@ -138,6 +130,18 @@ namespace nsync
                 leftRightAction = previewLeftRightAction,
             });
         }
+
+        /// <summary>
+        /// property of the preview collection used in binding
+        /// </summary>
+        public ObservableCollection<BothPreviewItemData> BothPreviewCollection
+        { get { return bothPreviewCollection; } }
+
+        /// <summary>
+        /// property of the preview collection used in binding
+        /// </summary>
+        public ObservableCollection<LeftRightPreviewItemData> LeftRightPreviewCollection
+        { get { return leftRightPreviewCollection; } }
 
         /// <summary>
         /// Property for left path

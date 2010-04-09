@@ -158,19 +158,19 @@ namespace nsync
                 // Configure sync filters
                 FileSyncScopeFilter filter = new FileSyncScopeFilter();
 
-                // add filters for file types
+                // Add filters for file types
                 for (int i = 0; i < excludeFileTypeList.Count; i++)
                 {
                     filter.FileNameExcludes.Add("*" + excludeFileTypeList[i]);
                 }
 
-                // add filters for file names
+                // Add filters for file names
                 for (int i = 0; i < excludeFileNameList.Count; i++)
                 {
                     filter.FileNameExcludes.Add(excludeFileNameList[i]);
                 }
 
-                // add filters for folders
+                // Add filters for folders
                 for (int i = 0; i < excludeFolderList.Count; i++)
                 {
                     filter.SubdirectoryExcludes.Add(excludeFolderList[i]);
