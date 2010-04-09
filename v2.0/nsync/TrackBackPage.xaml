@@ -1,6 +1,7 @@
 ﻿<Page x:Class="nsync.TrackBackPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:const="clr-namespace:nsync.Properties"  
     DataContext="{Binding RelativeSource={RelativeSource Self}}"
     Title="TrackBackPage" Width="518" Height="287" Loaded="Page_Loaded">
     <Grid>
@@ -52,6 +53,6 @@
             </ListView>
         </StackPanel>
         <Label Height="28" HorizontalAlignment="Left" Margin="20,0,0,16" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
-        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,20,13" Name="ButtonRestore" VerticalAlignment="Bottom" Width="75" Click="ButtonRestore_Click">Restore</Button>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,10" Name="ButtonRestore" ToolTip="{x:Static const:Resources.restoreToolTip}" Template="{StaticResource ButtonRestoreTemplate}" Width="23" Height="30" Click="ButtonRestore_Click"></Button>
     </Grid>
 </Page>

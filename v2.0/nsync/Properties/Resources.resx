@@ -192,6 +192,9 @@
   <data name="restoreComplete" xml:space="preserve">
     <value>Restore done!</value>
   </data>
+  <data name="restoreToolTip" xml:space="preserve">
+    <value>Restore folder</value>
+  </data>
   <data name="rightFolderInsufficientDiskSpace" xml:space="preserve">
     <value>Right folder has insufficient disk space.</value>
   </data>

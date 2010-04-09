@@ -286,6 +286,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restore folder.
+        /// </summary>
+        public static string restoreToolTip {
+            get {
+                return ResourceManager.GetString("restoreToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right folder has insufficient disk space..
         /// </summary>
         public static string rightFolderInsufficientDiskSpace {

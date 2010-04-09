@@ -1987,6 +1987,11 @@
               Looks up a localized string similar to Restore done!.
             </summary>
         </member>
+        <member name="P:nsync.Properties.Resources.restoreToolTip">
+            <summary>
+              Looks up a localized string similar to Restore folder.
+            </summary>
+        </member>
         <member name="P:nsync.Properties.Resources.rightFolderInsufficientDiskSpace">
             <summary>
               Looks up a localized string similar to Right folder has insufficient disk space..
