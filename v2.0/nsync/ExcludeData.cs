@@ -12,49 +12,49 @@ namespace nsync
     class ExcludeData
     {
         #region Class Variables
-        private List<string> excludeFolders;
-        private List<string> excludeFileNames;
-        private List<string> excludeFileTypes;
+        private List<string> excludeFolderList;
+        private List<string> excludeFileNameList;
+        private List<string> excludeFileTypeList;
         #endregion
 
         #region Constructor
         /// <summary>
         /// Constructor of ExcludeData class
         /// </summary>
-        public ExcludeData(List<string> excludeFolders, List<string> excludeFileNames, List<string> excludeFiletypes)
+        public ExcludeData()
         {
-            this.excludeFolders = excludeFolders;
-            this.excludeFileNames = excludeFileNames;
-            this.excludeFileTypes = excludeFileTypes;
+            excludeFolderList = new List<string>();
+            excludeFileNameList = new List<string>();
+            excludeFileTypeList = new List<string>();
         }
         #endregion
 
         #region Public Methods
         /// <summary>
-        /// Function to return list of File Types in Exclude Box
+        /// Setter and Getter method exclude list which contains file types
         /// </summary>
-        /// <returns>List of File Types to be excluded in sync</returns>
-        public List<string> GetFileTypeList()
+        public List<string> ExcludeFileTypeList
         {
-            return excludeFileTypes;
+            get { return excludeFileTypeList; }
+            set { excludeFileTypeList = value; }
         }
 
         /// <summary>
-        /// Function to return list of File Names in Exclude Box
+        /// Setter and Getter method exclude list which contains file names
         /// </summary>
-        /// <returns>List of File Names to be excluded in sync</returns>
-        public List<string> GetFileNameList()
+        public List<string> ExcludeFileNameList
         {
-            return excludeFileNames;
+            get { return excludeFileNameList; }
+            set { excludeFileNameList = value; }
         }
 
         /// <summary>
-        /// Function to return list of Folders in Exclude Box
+        /// Setter and Getter method exclude list which contains folder
         /// </summary>
-        /// <returns>List of Folders to be excluded in sync</returns>
-        public List<string> GetFolderList()
+        public List<string> ExcludeFolderList
         {
-            return excludeFolders;
+            get { return excludeFolderList; }
+            set { excludeFolderList = value; }
         }
         #endregion
     }

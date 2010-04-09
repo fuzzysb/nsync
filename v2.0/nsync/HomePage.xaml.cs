@@ -59,6 +59,7 @@ namespace nsync
         private Preview previewSync;
         private SummaryReport summaryReport;
         private ExcludeWindow excludeWindow;
+        private ExcludeData excludeData;
         private List<string> excludeFileTypeList;
         private List<string> excludeFileNameList;
         private List<string> excludeFolderList;

@@ -19,6 +19,7 @@ namespace nsync
         public System.ComponentModel.BackgroundWorker backgroundWorkerForPreview;
         public System.ComponentModel.BackgroundWorker backgroundWorkerForSummary;
         private List<FileData> fileData;
+        private ExcludeData excludeData;
         private string leftPath;
         private string rightPath;
         private List<string> excludeFileTypeList = new List<string>();
@@ -63,6 +64,7 @@ namespace nsync
             set { rightPath = value; }
         }
 
+        //NEED TO REMOVE TO ALLOW EXCLUDE DATA OBJECT TO HANDLE FILTER
         /// <summary>
         /// Setter and Getter method exclude list which contains file types
         /// </summary>
@@ -89,7 +91,7 @@ namespace nsync
             get { return excludeFolderList; }
             set { excludeFolderList = value; }
         }
-
+        //END NEED TO REMOVE TO ALLOW EXCLUDE DATA OBJECT TO HANDLE FILTER
         /// <summary>
         /// Gets backgroundWorkerForPreview to do synchronization preparations
         /// </summary>

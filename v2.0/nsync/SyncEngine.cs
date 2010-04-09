@@ -31,7 +31,7 @@ namespace nsync
         private List<string> errorMessageForSummaryReport = new List<string>();
         private string NSYNC_METADATA = "filesync.metadata";
         private readonly string TRACKBACK_FOLDER_NAME = "_nsync_trackback";
-
+        private ExcludeData excludeData;
 
         #endregion
 
@@ -59,6 +59,7 @@ namespace nsync
             set { rightPath = value; }
         }
 
+        //NEED TO REMOVE TO ALLOW EXCLUDE DATA OBJECT TO HANDLE FILTER
         /// <summary>
         /// Setter and Getter method exclude list which contains file types
         /// </summary>
@@ -78,13 +79,14 @@ namespace nsync
         }
 
         /// <summary>
-        /// Setter and Getter method exclude list which contains folder
+        /// Setter and Getter method exclude list which contains folders
         /// </summary>
         public List<string> ExcludeFolderList
         {
             get { return excludeFolderList; }
             set { excludeFolderList = value; }
         }
+        //END NEED TO REMOVE TO ALLOW EXCLUDE DATA OBJECT TO HANDLE FILTER
         #endregion
 
         #region Public Methods
