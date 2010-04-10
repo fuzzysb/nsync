@@ -1480,7 +1480,15 @@ namespace nsync
                 trackback.StartBackup();
             }
             else
+            {
+                EnableInterface(false);
+
+                LabelProgress.Content = MESSAGE_SYNCING_FOLDERS;
+                LabelProgressPercent.Visibility = Visibility.Visible;
+                LabelProgressPercent.Content = "0 %";
+
                 synchronizer.StartSync();
+            }
         }
 
         /// <summary>

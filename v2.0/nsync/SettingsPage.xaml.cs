@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.IO;
 
 namespace nsync
 {
@@ -50,6 +51,7 @@ namespace nsync
         /// </summary>
         private void HelperWindowSliderValue_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            ResetUI();
             if (pageIsLoaded)
             {
                 if (HelperWindowSlider.Value != HelperWindowSliderValue.SelectedIndex)
@@ -65,6 +67,7 @@ namespace nsync
         /// </summary>
         private void HelperWindowSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            ResetUI();
             if (pageIsLoaded)
             {
                 if (HelperWindowSliderValue.SelectedIndex != HelperWindowSlider.Value)
@@ -80,23 +83,44 @@ namespace nsync
         /// </summary>
         private void CheckboxToggleExcludeWindow_Checked(object sender, RoutedEventArgs e)
         {
+            ResetUI();
             settingsManager.SetExcludeWindowStatus(false);
         }
 
         private void CheckboxToggleExcludeWindow_UnChecked(object sender, RoutedEventArgs e)
         {
+            ResetUI();
             settingsManager.SetExcludeWindowStatus(true);
         }
 
         private void CheckboxToggleTrackBack_Checked(object sender, RoutedEventArgs e)
         {
+            ResetUI();
             settingsManager.SetTrackBackStatus(false);
         }
 
         private void CheckboxToggleTrackBack_UnChecked(object sender, RoutedEventArgs e)
         {
+            ResetUI();
             settingsManager.SetTrackBackStatus(true);
         }
 
+        private void ButtonClearLogFolder_Click(object sender, RoutedEventArgs e)
+        {
+            ResetUI();
+            settingsManager.ClearLogFolder(this);
+        }
+
+        private void ButtonOpenLogFolder_Click(object sender, RoutedEventArgs e)
+        {
+            ResetUI();
+            System.Diagnostics.Process.Start(@Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
+            "\\log\\");
+        }
+
+        private void ResetUI()
+        {
+            LabelProgress.Visibility = Visibility.Hidden;
+        }
     }
 }

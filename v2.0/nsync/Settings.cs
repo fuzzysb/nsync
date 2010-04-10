@@ -347,6 +347,26 @@ namespace nsync
                 filterNode.AppendChild(tempFilterElement);
             }
         }
+
+        /// <summary>
+        /// Clears logs in log folder
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
+        public void ClearLogFolder(SettingsPage settingsPage)
+        {
+            settingsPage.LabelProgress.Content = "Clearing Logs...";
+            settingsPage.LabelProgress.Visibility = Visibility.Visible;
+            string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
+            "\\log\\";
+
+            foreach (string fileName in Directory.GetFiles(logPath))
+            {
+                File.SetAttributes(fileName, FileAttributes.Normal);
+                File.Delete(fileName);
+            }
+            settingsPage.LabelProgress.Content = "Logs Cleared.";
+        }
         #endregion
 
         #region Private Methods

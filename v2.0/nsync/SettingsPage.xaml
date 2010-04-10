@@ -5,7 +5,7 @@
     <Grid>
         <Label />
         <Image x:Name="ImageSettings" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/settings.png" Width="151"/>
-        <StackPanel Margin="20,55,20,20" Name="PanelSettings" Style="{StaticResource PanelSettingsStyle}">
+        <StackPanel Margin="20,55,20,42" Name="PanelSettings" Style="{StaticResource PanelSettingsStyle}">
             <Grid Margin="20, 20">
                 <Label Margin="0,-2,0,0" Name="HelperWindowSettingsDescription" Foreground="White" HorizontalAlignment="Left" Width="205" VerticalAlignment="Center">Duration of the Helper Window (sec)</Label>
                 <Slider Name="HelperWindowSlider" IsSnapToTickEnabled="True" TickFrequency="1" Ticks="0,1,2,3,4,5,6,7,8,9,10,11" TickPlacement="BottomRight" Margin="210,0,88,0" ValueChanged="HelperWindowSlider_ValueChanged" Maximum="11" Cursor="Hand" VerticalAlignment="Center" Foreground="White"/>
@@ -31,5 +31,10 @@
         <Grid Margin="40,152,40,0" VerticalAlignment="Top" Height="13.277">
             <CheckBox Style="{StaticResource CheckBoxSettingsStyle}" Name="CheckboxToggleTrackBack" Foreground="White" Checked="CheckboxToggleTrackBack_Checked" Unchecked="CheckboxToggleTrackBack_UnChecked" Margin="0,0,50,0">Disable TrackBack</CheckBox>
         </Grid>
+        <Grid Margin="40,182,40,0" VerticalAlignment="Top" Height="23">
+            <Button HorizontalAlignment="Left" Name="ButtonOpenLogFolder" Width="100" Click="ButtonOpenLogFolder_Click">Open Log Folder</Button>
+            <Button Name="ButtonClearLogFolder" Margin="126,0,212,0" Click="ButtonClearLogFolder_Click">Clear Log Folder</Button>
+        </Grid>
+        <Label Height="28" HorizontalAlignment="Left" Margin="31,0,0,12" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
     </Grid>
 </Page>
