@@ -153,11 +153,9 @@ namespace nsync
             else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
                 LoadTrackBackEntriesForRightFolder();
             
-            //Sort left and right lists according to date/time
-            SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
-            SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
-
-            
+                //Sort left and right lists according to date/time
+                SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
+                SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
         }
 
         /// <summary>
@@ -251,14 +249,26 @@ namespace nsync
             {
                 ComboBoxSourceFolder.ToolTip = actualLeftFolderPath;
                 LoadTrackBackEntriesForLeftFolder();
+                if (ListViewForLeftFolder.Items.Count == 0)
+                {
+                    ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+                    LabelNoChanges.Visibility = Visibility.Visible;
+                }
+                else
+                    LabelNoChanges.Visibility = Visibility.Hidden;
             }
             else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
             {
                 ComboBoxSourceFolder.ToolTip = actualRightFolderPath;
                 LoadTrackBackEntriesForRightFolder();
+                if (ListViewForRightFolder.Items.Count == 0)
+                {
+                    ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+                    LabelNoChanges.Visibility = Visibility.Visible;
+                }
+                else
+                    LabelNoChanges.Visibility = Visibility.Hidden;
             }
-
-            
             
             ButtonRestore.Visibility = Visibility.Hidden;
         }

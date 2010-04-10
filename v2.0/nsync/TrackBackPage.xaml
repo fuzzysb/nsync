@@ -53,9 +53,10 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
+        <Label Height="28" HorizontalAlignment="Center" Margin="0,150,0,0" Name="LabelNoChanges" VerticalAlignment="Top" Foreground="White" Visibility="Hidden">No TrackBack data</Label>
         <Label Height="28" HorizontalAlignment="Left" Margin="20,0,0,10" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
         <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,10" Name="ButtonRestore" ToolTip="{x:Static const:Resources.restoreToolTip}" Template="{StaticResource ButtonRestoreTemplate}" Width="23" Height="30" Click="ButtonRestore_Click"></Button>
     </Grid>
-        <Label Height="28" HorizontalAlignment="Center" Margin="20,0,0,10" Name="LabelDisabled" VerticalAlignment="Bottom" Foreground="White" Visibility="Hidden">Trackback is disabled. Enable it in settings to use.</Label>
+        <Label Height="28" HorizontalAlignment="Center" Margin="20,0,0,10" Name="LabelDisabled" VerticalAlignment="Bottom" Foreground="White" Visibility="Hidden">TrackBack is disabled. Enable it in settings to use.</Label>
         </Grid>
 </Page>
