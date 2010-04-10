@@ -22,9 +22,6 @@ namespace nsync
         private ExcludeData excludeData;
         private string leftPath;
         private string rightPath;
-        private List<string> excludeFileTypeList = new List<string>();
-        private List<string> excludeFileNameList = new List<string>();
-        private List<string> excludeFolderList = new List<string>();
 
         private string METADATA_FILE_NAME = nsync.Properties.Resources.metadataFileName;
         private readonly string TRACKBACK_FOLDER_NAME = nsync.Properties.Resources.trackBackFolderName;
@@ -46,7 +43,7 @@ namespace nsync
         }
         #endregion
 
-        #region Public Methods
+        #region Properties
         /// <summary>
         /// Setter and Getter method for left folder path
         /// </summary>
@@ -65,34 +62,20 @@ namespace nsync
             set { rightPath = value; }
         }
 
-        //NEED TO REMOVE TO ALLOW EXCLUDE DATA OBJECT TO HANDLE FILTER
         /// <summary>
-        /// Setter and Getter method exclude list which contains file types
+        /// Setter method for filters in ExcludeData
         /// </summary>
-        public List<string> ExcludeFileTypeList
+        public ExcludeData ExcludeData
         {
-            get { return excludeFileTypeList; }
-            set { excludeFileTypeList = value; }
+            set
+            {
+                excludeData = new ExcludeData();
+                excludeData = value;
+            }
         }
+        #endregion
 
-        /// <summary>
-        /// Setter and Getter method exclude list which contains file names
-        /// </summary>
-        public List<string> ExcludeFileNameList
-        {
-            get { return excludeFileNameList; }
-            set { excludeFileNameList = value; }
-        }
-
-        /// <summary>
-        /// Setter and Getter method exclude list which contains folders
-        /// </summary>
-        public List<string> ExcludeFolderList
-        {
-            get { return excludeFolderList; }
-            set { excludeFolderList = value; }
-        }
-        //END NEED TO REMOVE TO ALLOW EXCLUDE DATA OBJECT TO HANDLE FILTER
+        #region Public Methods
         /// <summary>
         /// Gets backgroundWorkerForPreview to do synchronization preparations
         /// </summary>
@@ -164,21 +147,21 @@ namespace nsync
                 filter.FileNameExcludes.Add(METADATA_FILE_NAME);
 
                 // Add filters for file types
-                for (int i = 0; i < excludeFileTypeList.Count; i++)
+                for (int i = 0; i < excludeData.ExcludeFileTypeList.Count; i++)
                 {
-                    filter.FileNameExcludes.Add("*" + excludeFileTypeList[i]);
+                    filter.FileNameExcludes.Add("*" + excludeData.ExcludeFileTypeList[i]);
                 }
 
                 // Add filters for file names
-                for (int i = 0; i < excludeFileNameList.Count; i++)
+                for (int i = 0; i < excludeData.ExcludeFileNameList.Count; i++)
                 {
-                    filter.FileNameExcludes.Add(excludeFileNameList[i]);
+                    filter.FileNameExcludes.Add(excludeData.ExcludeFileNameList[i]);
                 }
 
                 // Add filters for folders
-                for (int i = 0; i < excludeFolderList.Count; i++)
+                for (int i = 0; i < excludeData.ExcludeFolderList.Count; i++)
                 {
-                    filter.SubdirectoryExcludes.Add(excludeFolderList[i]);
+                    filter.SubdirectoryExcludes.Add(excludeData.ExcludeFolderList[i]);
                 }
 
                 // Update metadata of the folders before sync to

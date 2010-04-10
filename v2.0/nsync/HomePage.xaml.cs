@@ -61,9 +61,6 @@ namespace nsync
         private SummaryReport summaryReport;
         private ExcludeWindow excludeWindow;
         private ExcludeData excludeData;
-        private List<string> excludeFileTypeList;
-        private List<string> excludeFileNameList;
-        private List<string> excludeFolderList;
         #endregion
 
         #region Constructor
@@ -1000,8 +997,6 @@ namespace nsync
                 // Do PreSync Calculations: count how many changes need to be done
                 // If not enough disk space, return
                 // If enough, continue to start the real sync
-                excludeFileTypeList = new List<string>();
-                synchronizer.ExcludeFileTypeList = excludeFileTypeList;
                 synchronizer.PreSync();
             }
         }
@@ -1032,15 +1027,11 @@ namespace nsync
                 // Do PreSync Calculations: count how many changes need to be done
                 // If not enough disk space, return
                 // If enough, continue to start the real sync
-                excludeFileTypeList = new List<string>();
-                excludeFileNameList = new List<string>();
-                excludeFolderList = new List<string>();
-                excludeFileTypeList = excludeWindow.GetFileTypeList();
-                excludeFileNameList = excludeWindow.GetFileNameList();
-                excludeFolderList = excludeWindow.GetFolderList();
-                synchronizer.ExcludeFileTypeList = excludeFileTypeList;
-                synchronizer.ExcludeFileNameList = excludeFileNameList;
-                synchronizer.ExcludeFolderList = excludeFolderList;
+                excludeData = new ExcludeData();
+                excludeData.ExcludeFileNameList = excludeWindow.GetFileTypeList();
+                excludeData.ExcludeFileTypeList = excludeWindow.GetFileTypeList();
+                excludeData.ExcludeFolderList = excludeWindow.GetFolderList();
+                synchronizer.ExcludeData = excludeData;
                 synchronizer.PreSync();
             }
         }
@@ -1319,7 +1310,11 @@ namespace nsync
                 previewSync = new Preview();
                 previewSync.LeftPath = actualLeftPath;
                 previewSync.RightPath = actualRightPath;
-                previewSync.ExcludeFileTypeList = excludeFileTypeList;
+                //If filters were activated, let summary sync know as well.
+                if (settingsManager.GetExcludeWindowStatus())
+                {
+                    previewSync.ExcludeData = excludeData;
+                }
                 previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
                 previewSync.SummarySync(); 
             }
