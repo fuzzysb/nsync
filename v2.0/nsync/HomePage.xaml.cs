@@ -1000,6 +1000,8 @@ namespace nsync
                 // Do PreSync Calculations: count how many changes need to be done
                 // If not enough disk space, return
                 // If enough, continue to start the real sync
+                excludeData = new ExcludeData();
+                synchronizer.ExcludeData = excludeData;
                 synchronizer.PreSync();
             }
         }
@@ -1318,6 +1320,12 @@ namespace nsync
                 {
                     previewSync.ExcludeData = excludeData;
                 }
+                else
+                {
+                    excludeData = new ExcludeData();
+                    previewSync.ExcludeData = excludeData;
+                }
+
                 previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
                 previewSync.SummarySync(); 
             }
