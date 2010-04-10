@@ -26,7 +26,7 @@
         </ComboBox>
         <Label Foreground="White" Height="25.96" Margin="0,123,185,0" Name="LabelChangeFilter" VerticalAlignment="Top" HorizontalAlignment="Right">Filter:</Label>
         <StackPanel Name="BoxVisualPreview" Width="672" Height="418" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
-  <ListView Margin="8, 5" Name="ListViewBoth" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding BothPreviewCollection}">
+  <ListView Margin="8, 5" Name="ListViewBoth" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding BothPreviewCollection}" Cursor="Hand">
     <ListView.View>
       <GridView>
         <GridViewColumn Width="86" Header="Left" DisplayMemberBinding="{Binding bothLeft}" />
@@ -37,7 +37,7 @@
       </GridView>
     </ListView.View>
   </ListView>
-            <ListView Margin="8, 5" Name="ListViewLeftRight" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding LeftRightPreviewCollection}" HorizontalContentAlignment="Left" Visibility="Collapsed">
+            <ListView Margin="8, 5" Name="ListViewLeftRight" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding LeftRightPreviewCollection}" HorizontalContentAlignment="Left" Visibility="Collapsed" Cursor="Hand">
                 <ListView.View>
                   <GridView>
                     <GridViewColumn Width="560" Header="Filename" DisplayMemberBinding="{Binding leftRightFileName}" />
