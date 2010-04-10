@@ -26,12 +26,31 @@
         </ComboBox>
         <Label Foreground="White" Height="25.96" Margin="0,123,185,0" Name="LabelChangeFilter" VerticalAlignment="Top" HorizontalAlignment="Right">Filter:</Label>
         <StackPanel Name="BoxVisualPreview" Width="672" Height="418" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
+            <StackPanel.Resources>
+                <DataTemplate x:Key="leftRightFileNameTemplate">
+                    <TextBlock Text="{Binding leftRightFileName}"  Margin="-6,0">
+                            <TextBlock.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="{Binding leftRightToolTip}"/>
+                                </ToolTip>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                </DataTemplate>
+                <DataTemplate x:Key="bothFileNameTemplate">
+                    <TextBlock Text="{Binding bothFileName}"  Margin="-6,0">
+                            <TextBlock.ToolTip>
+                                <ToolTip>
+                                    <TextBlock Text="{Binding bothToolTip}"/>
+                                </ToolTip>
+                            </TextBlock.ToolTip>
+                        </TextBlock>
+                </DataTemplate>
+            </StackPanel.Resources>
   <ListView Margin="8, 5" Name="ListViewBoth" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding BothPreviewCollection}" Cursor="Hand">
     <ListView.View>
       <GridView>
         <GridViewColumn Width="86" Header="Left" DisplayMemberBinding="{Binding bothLeft}" />
-        <GridViewColumn Width="474" Header="Filename"  
-           DisplayMemberBinding="{Binding bothFileName}" />
+        <GridViewColumn Width="474" Header="Filename" CellTemplate="{StaticResource bothFileNameTemplate}" />
         <GridViewColumn Width="86" Header="Right" 
            DisplayMemberBinding="{Binding bothRight}" />
       </GridView>
@@ -40,7 +59,7 @@
             <ListView Margin="8, 5" Name="ListViewLeftRight" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding LeftRightPreviewCollection}" HorizontalContentAlignment="Left" Visibility="Collapsed" Cursor="Hand">
                 <ListView.View>
                   <GridView>
-                    <GridViewColumn Width="560" Header="Filename" DisplayMemberBinding="{Binding leftRightFileName}" />
+                        <GridViewColumn Width="560" Header="Filename" CellTemplate="{StaticResource leftRightFileNameTemplate}" />
                     <GridViewColumn Width="86" Header="Action"  
                        DisplayMemberBinding="{Binding leftRightAction}" />
                   </GridView>

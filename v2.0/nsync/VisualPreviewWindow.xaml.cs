@@ -107,13 +107,14 @@ namespace nsync
         /// <param name="previewLeftItem"></param>
         /// <param name="previewFileItem"></param>
         /// <param name="previewRightItem"></param>
-        private void AddBothPreviewEntry(string previewLeftItem, string previewFileItem, string previewRightItem )
+        private void AddBothPreviewEntry(string previewLeftItem, string previewFileItem, string previewRightItem , string previewToolTip)
         {
             bothPreviewCollection.Add(new BothPreviewItemData
             {
                 bothLeft = previewLeftItem,
                 bothFileName = previewFileItem,
-                bothRight = previewRightItem
+                bothRight = previewRightItem,
+                bothToolTip = previewToolTip
             });
         }
 
@@ -122,12 +123,13 @@ namespace nsync
         /// </summary>
         /// <param name="previewLeftRightFileName"></param>
         /// <param name="previewLeftRightAction"></param>
-        private void AddLeftRightPreviewEntry(string previewLeftRightFileName, string previewLeftRightAction)
+        private void AddLeftRightPreviewEntry(string previewLeftRightFileName, string previewLeftRightAction, string previewLeftRightToolTip)
         {
             leftRightPreviewCollection.Add(new LeftRightPreviewItemData
             {
                 leftRightFileName = previewLeftRightFileName,
                 leftRightAction = previewLeftRightAction,
+                leftRightToolTip = previewLeftRightToolTip
             });
         }
 
@@ -270,10 +272,12 @@ namespace nsync
             foreach (FileData file in previewFileData)
             {
                 string shortenedFileName;
+                string fullFileName = file.RelativePath;
                 if (file.IsFolder == true)
                 {
                     shortenedFileName = PathShortener(file.RelativePath, 60);
                     shortenedFileName = shortenedFileName + " [Folder]";
+                    fullFileName += " [Folder]";
                 }
                 else
                 {
@@ -281,11 +285,11 @@ namespace nsync
                 }
                 if (file.RootPath == leftPath)
                 {
-                    AddBothPreviewEntry(file.ChangeType.ToString(), shortenedFileName, "");
+                    AddBothPreviewEntry(file.ChangeType.ToString(), shortenedFileName, "", fullFileName);
                 }
                 else
                 {
-                    AddBothPreviewEntry("", shortenedFileName, file.ChangeType.ToString());
+                    AddBothPreviewEntry("", shortenedFileName, file.ChangeType.ToString(), fullFileName);
                 }
             }
         }
@@ -301,10 +305,12 @@ namespace nsync
             foreach (FileData file in previewFileData)
             {
                 string shortenedFileName;
+                string fullFileName = file.RelativePath;
                 if (file.IsFolder == true)
                 {
                     shortenedFileName = PathShortener(file.RelativePath, 60);
                     shortenedFileName = shortenedFileName + " [Folder]";
+                    fullFileName += " [Folder]";
                 }
                 else
                 {
@@ -312,7 +318,7 @@ namespace nsync
                 }
                 if (file.RootPath == leftPath && IsLeft || file.RootPath == rightPath && !IsLeft)
                 {
-                    AddLeftRightPreviewEntry(shortenedFileName, file.ChangeType.ToString());
+                    AddLeftRightPreviewEntry(shortenedFileName, file.ChangeType.ToString(), fullFileName);
                 }
             }
         }
@@ -335,6 +341,10 @@ namespace nsync
         /// property for filename column
         /// </summary>
         public string bothFileName { get; set; }
+        /// <summary>
+        /// property for tooltip
+        /// </summary>
+        public string bothToolTip { get; set; }
     }
 
     /// <summary>
@@ -350,6 +360,10 @@ namespace nsync
         /// property for action column
         /// </summary>
         public string leftRightAction { get; set; }
+        /// <summary>
+        /// property for tooltip
+        /// </summary>
+        public string leftRightToolTip { get; set; }
     }
 
 }
