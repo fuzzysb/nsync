@@ -83,7 +83,7 @@ namespace nsync
         }
         #endregion
 
-        #region Private Methods
+        #region HomePage Controls
         /// <summary>
         /// This method will be called when HomePage is loaded
         /// </summary>
@@ -121,9 +121,7 @@ namespace nsync
 
             //Add event handler to check when main window is moved, move helper window too
             mainWindow.LocationChanged += new EventHandler(mainWindow_LocationChanged);
-        }
-
-        
+        }     
 
         /// <summary>
         /// This method will be called when the position of mainWindow is changed
@@ -155,7 +153,9 @@ namespace nsync
         {
             SaveFolderPaths();
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// This method resolves the shortcut
         /// </summary>

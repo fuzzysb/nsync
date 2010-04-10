@@ -40,7 +40,7 @@ namespace nsync
         private bool cancel = false;
         #endregion
 
-        #region Public Methods
+        #region Constructor
         /// <summary>
         /// Constructor for ExcludeWindow
         /// </summary>
@@ -59,7 +59,9 @@ namespace nsync
             availableFileTypes = new List<string>();
             excludeInvalid = new List<string>();
         }
+        #endregion
 
+        #region Properties
         /// <summary>
         /// Property for left path
         /// </summary>
@@ -85,7 +87,9 @@ namespace nsync
         {
             get { return cancel; }
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Function to return list of File Types in Exclude Box
         /// </summary>
@@ -133,7 +137,6 @@ namespace nsync
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             cancel = true;
-
             this.Close();
         }
 

@@ -38,6 +38,62 @@ namespace nsync
         }
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// property of the preview collection used in binding
+        /// </summary>
+        public ObservableCollection<BothPreviewItemData> BothPreviewCollection
+        { get { return bothPreviewCollection; } }
+
+        /// <summary>
+        /// property of the preview collection used in binding
+        /// </summary>
+        public ObservableCollection<LeftRightPreviewItemData> LeftRightPreviewCollection
+        { get { return leftRightPreviewCollection; } }
+
+        /// <summary>
+        /// Property for left path
+        /// </summary>
+        public string LeftPath
+        {
+            get { return leftPath; }
+            set { leftPath = value; }
+        }
+
+        /// <summary>
+        /// Property for right path
+        /// </summary>
+        public string RightPath
+        {
+            get { return rightPath; }
+            set { rightPath = value; }
+        }
+
+        /// <summary>
+        /// Property for filedata list
+        /// </summary>
+        public List<FileData> PreviewFileData
+        {
+            get { return previewFileData; }
+            set { previewFileData = value; }
+        }
+
+        #endregion
+
+        #region Path Shortener
+        /// <summary>
+        /// Use Win32 Api for shortening paths
+        /// </summary>
+        /// <param name="pszOut"></param>
+        /// <param name="szPath"></param>
+        /// <param name="cchMax"></param>
+        /// <param name="dwFlags"></param>
+        /// <returns></returns>
+        [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
+        static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
+        #endregion
+
+        #region Private Methods
         /// <summary>
         /// Enable the window to be dragged and moved on mousedown
         /// </summary>
@@ -132,56 +188,6 @@ namespace nsync
                 leftRightToolTip = previewLeftRightToolTip
             });
         }
-
-        /// <summary>
-        /// property of the preview collection used in binding
-        /// </summary>
-        public ObservableCollection<BothPreviewItemData> BothPreviewCollection
-        { get { return bothPreviewCollection; } }
-
-        /// <summary>
-        /// property of the preview collection used in binding
-        /// </summary>
-        public ObservableCollection<LeftRightPreviewItemData> LeftRightPreviewCollection
-        { get { return leftRightPreviewCollection; } }
-
-        /// <summary>
-        /// Property for left path
-        /// </summary>
-        public string LeftPath
-        {
-            get { return leftPath; }
-            set { leftPath = value; }
-        }
-
-        /// <summary>
-        /// Property for right path
-        /// </summary>
-        public string RightPath
-        {
-            get { return rightPath; }
-            set { rightPath = value; }
-        }
-
-        /// <summary>
-        /// Property for filedata list
-        /// </summary>
-        public List<FileData> PreviewFileData
-        {
-            get { return previewFileData; }
-            set { previewFileData = value; }
-        }
-
-        /// <summary>
-        /// Use Win32 Api for shortening paths
-        /// </summary>
-        /// <param name="pszOut"></param>
-        /// <param name="szPath"></param>
-        /// <param name="cchMax"></param>
-        /// <param name="dwFlags"></param>
-        /// <returns></returns>
-        [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
-        static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
 
         /// <summary>
         /// Method to shorten paths to a certain length
@@ -322,8 +328,10 @@ namespace nsync
                 }
             }
         }
+        #endregion
     }
 
+    #region DataClass for ListView
     /// <summary>
     /// Simple data class of a preview item with 3 elements to fill the both filtered listview
     /// </summary>
@@ -365,5 +373,5 @@ namespace nsync
         /// </summary>
         public string leftRightToolTip { get; set; }
     }
-
+    #endregion
 }

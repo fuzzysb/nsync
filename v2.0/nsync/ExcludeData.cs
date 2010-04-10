@@ -29,7 +29,7 @@ namespace nsync
         }
         #endregion
 
-        #region Public Methods
+        #region Properties
         /// <summary>
         /// Setter and Getter method exclude list which contains file types
         /// </summary>

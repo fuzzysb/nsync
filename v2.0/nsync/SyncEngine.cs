@@ -70,7 +70,7 @@ namespace nsync
         }
         #endregion
 
-        #region Public Methods
+        #region Constructor
         /// <summary>
         /// Constructor for SyncEngine
         /// </summary>
@@ -89,7 +89,9 @@ namespace nsync
             // Create the Intelligence object
             intelligentManager = new Intelligence();
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Try to provide 2 new folder path (appropriate folder hierarchy), if possible
         /// </summary>

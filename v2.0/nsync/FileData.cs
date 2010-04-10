@@ -35,7 +35,7 @@ namespace nsync
         }
         #endregion
 
-        #region Public Methods
+        #region Properties
         /// <summary>
         /// Gets the FileName of FileData object
         /// </summary>
