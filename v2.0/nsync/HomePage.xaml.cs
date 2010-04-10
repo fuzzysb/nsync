@@ -37,6 +37,7 @@ namespace nsync
         private string oldLeftPath;
         private string oldRightPath;
         private bool isInterfaceEnabled;
+        private string errorDirectory = null;
         
         private string[] originalFolderPaths;
 
@@ -1062,6 +1063,7 @@ namespace nsync
                 excludeWindow.LeftPath = actualLeftPath;
                 excludeWindow.RightPath = actualRightPath;
                 excludeWindow.Owner = mainWindow;
+                excludeWindow.LogError += new ExcludeWindow.LogHandler(excludeWindow_LogError);
                 mainWindow.Opacity = 0.2;
                 excludeWindow.ShowDialog();
             }
@@ -1086,6 +1088,22 @@ namespace nsync
                 excludeData = new ExcludeData();
                 synchronizer.ExcludeData = excludeData;
                 synchronizer.PreSync();
+            }
+        }
+
+        void excludeWindow_LogError(string message)
+        {
+            try
+            {
+                string[] directory = message.Split(new char[] { '\'' });
+                if (directory[0] == "Access to the path ")
+                {
+                    errorDirectory = directory[1];
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
             }
         }
 
@@ -1558,7 +1576,12 @@ namespace nsync
                         helper.Show(nsync.Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 3:
-                        helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        string extraMessage = null;
+                        if (errorDirectory != null)
+                        {
+                            extraMessage = "\nError in " + errorDirectory;
+                        }
+                        helper.Show(nsync.Properties.Resources.accessRightsInsufficient + extraMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 4:
                         helper.Show(nsync.Properties.Resources.fileNotAccessible, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);

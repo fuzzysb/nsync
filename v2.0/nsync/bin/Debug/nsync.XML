@@ -2457,6 +2457,20 @@
             populates the combobox with the file types present in the left and right folders
             </summary>
         </member>
+        <member name="M:nsync.ExcludeWindow.backgroundWorkerFileTypes_DoWork(System.Object,System.ComponentModel.DoWorkEventArgs)">
+            <summary>
+            background worker for file stypes do work portion
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.ExcludeWindow.backgroundWorkerFileTypes_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            backgroundworker complete for file types event handler
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:nsync.ExcludeWindow.PopulateFileTypesComboBox">
             <summary>
             adds entries from the list to the combobox.
@@ -2605,6 +2619,17 @@
             <summary>
             Property for cancel to check;
             </summary>
+        </member>
+        <member name="E:nsync.ExcludeWindow.LogError">
+            <summary>
+            log error event
+            </summary>
+        </member>
+        <member name="T:nsync.ExcludeWindow.LogHandler">
+            <summary>
+            delegate for a log handler
+            </summary>
+            <param name="message"></param>
         </member>
         <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
             <summary>

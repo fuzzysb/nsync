@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 
 namespace nsync
@@ -36,7 +37,10 @@ namespace nsync
         private List<string> excludeInvalid;
         private List<string> oldExcludeInvalid;
         private readonly int MAX_STRING_LENGTH = 90;
-        bool reallyLeft = true;
+        private string[] filePathsLeft;
+        private string[] filePathsRight;
+        private BackgroundWorker backgroundWorkerFileTypes = new BackgroundWorker();
+        private bool reallyLeft = true;
         private bool cancel = false;
         #endregion
 
@@ -227,32 +231,75 @@ namespace nsync
         /// </summary>
         private void PopulateFileTypes()
         {
-            try
+            backgroundWorkerFileTypes.WorkerReportsProgress = false;
+            backgroundWorkerFileTypes.WorkerSupportsCancellation = false;
+            backgroundWorkerFileTypes.DoWork += new DoWorkEventHandler(backgroundWorkerFileTypes_DoWork);
+            backgroundWorkerFileTypes.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerFileTypes_RunWorkerCompleted);
+            if (backgroundWorkerFileTypes.IsBusy != true)
             {
-                string[] filePathsLeft = Directory.GetFiles(leftPath, "*.*",
+                backgroundWorkerFileTypes.RunWorkerAsync();
+            }
+        }
+
+        /// <summary>
+        /// background worker for file stypes do work portion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerFileTypes_DoWork(object sender, DoWorkEventArgs e)
+        {
+            filePathsLeft = Directory.GetFiles(leftPath, "*.*",
                                              SearchOption.AllDirectories);
-                string[] filePathsRight = Directory.GetFiles(rightPath, "*.*",
-                                             SearchOption.AllDirectories);
+            filePathsRight = Directory.GetFiles(rightPath, "*.*",
+                                         SearchOption.AllDirectories);
+        }
+
+        /// <summary>
+        /// delegate for a log handler
+        /// </summary>
+        /// <param name="message"></param>
+        public delegate void LogHandler(string message);
+
+        /// <summary>
+        /// log error event
+        /// </summary>
+        public event LogHandler LogError;
+
+        /// <summary>
+        /// backgroundworker complete for file types event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void backgroundWorkerFileTypes_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                LogError(e.Error.Message);
+                this.Close();
+            }
+            else
+            {
                 foreach (string paths in filePathsLeft)
                 {
-                    AddToFileTypesList(System.IO.Path.GetExtension(paths));
+                    string testPath = System.IO.Path.GetFileName(paths).ToLower();
+                    if (testPath != "" && testPath != "nsync.xml" && testPath != "settings.xml" && testPath != "_trackback.xml")
+                    {
+                        AddToFileTypesList(System.IO.Path.GetExtension(paths));
+                    }
                 }
                 foreach (string paths in filePathsRight)
                 {
-                    AddToFileTypesList(System.IO.Path.GetExtension(paths));
+                    string testPath = System.IO.Path.GetFileName(paths).ToLower();
+                    if (testPath != "" && testPath != "nsync.xml" && testPath != "settings.xml" && testPath != "_trackback.xml")
+                    {
+                        AddToFileTypesList(System.IO.Path.GetExtension(paths));
+                    }
                 }
                 PopulateFileTypesComboBox();
             }
-            catch (System.UnauthorizedAccessException e)
-            {
-                //Cannot access files; locked
-                throw e;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Error:\n" + e.Message);
-            }
         }
+
+
 
         /// <summary>
         /// adds entries from the list to the combobox.
