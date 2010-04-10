@@ -1,42 +1,88 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>E:\folder b</left1>
-    <right1>E:\folder a</right1>
+    <left1>C:\FolderA</left1>
+    <right1>C:\FolderD</right1>
     <filter1>
-      <size>0</size>
+      <excludeFileTypes>
+        <size>0</size>
+      </excludeFileTypes>
+      <excludeFileNames>
+        <size>1</size>
+        <fileName0>fgf173.exe</fileName0>
+      </excludeFileNames>
+      <excludeFolders>
+        <size>1</size>
+        <folder0>C:\FolderA\2</folder0>
+      </excludeFolders>
     </filter1>
-    <left2>C:\Users\AdminNUS\Desktop\A</left2>
-    <right2>C:\Users\AdminNUS\Desktop\B</right2>
+    <left2>C:\FolderA</left2>
+    <right2>C:\FolderC</right2>
     <filter2>
-      <size>0</size>
+      <excludeFileTypes>
+        <size>1</size>
+        <fileType0>.txt</fileType0>
+      </excludeFileTypes>
+      <excludeFileNames>
+        <size>1</size>
+        <fileName0>midterm-marks.xls</fileName0>
+      </excludeFileNames>
+      <excludeFolders>
+        <size>1</size>
+        <folder0>C:\FolderA\4</folder0>
+      </excludeFolders>
     </filter2>
-    <left3>
-    </left3>
-    <right3>
-    </right3>
+    <left3>C:\FolderA</left3>
+    <right3>C:\FolderB</right3>
     <filter3>
-      <size>0</size>
+      <excludeFileTypes>
+        <size>1</size>
+        <fileType0>.exe</fileType0>
+      </excludeFileTypes>
+      <excludeFileNames>
+        <size>1</size>
+        <fileName0>4.txt</fileName0>
+      </excludeFileNames>
+      <excludeFolders>
+        <size>1</size>
+        <folder0>C:\FolderA\4</folder0>
+      </excludeFolders>
     </filter3>
     <left4>
     </left4>
     <right4>
     </right4>
     <filter4>
-      <size>0</size>
+      <excludeFileTypes>
+        <size>0</size>
+      </excludeFileTypes>
+      <excludeFileNames>
+        <size>0</size>
+      </excludeFileNames>
+      <excludeFolders>
+        <size>0</size>
+      </excludeFolders>
     </filter4>
     <left5>
     </left5>
     <right5>
     </right5>
     <filter5>
-      <size>0</size>
+      <excludeFileTypes>
+        <size>0</size>
+      </excludeFileTypes>
+      <excludeFileNames>
+        <size>0</size>
+      </excludeFileNames>
+      <excludeFolders>
+        <size>0</size>
+      </excludeFolders>
     </filter5>
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
-    <ExcludeWindowStatus>False</ExcludeWindowStatus>
-    <TrackBackStatus>True</TrackBackStatus>
+    <ExcludeWindowStatus>True</ExcludeWindowStatus>
+    <TrackBackStatus>False</TrackBackStatus>
   </SETTINGS>
   <REMOVEABLEDISK />
 </nsync>

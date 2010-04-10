@@ -716,6 +716,7 @@ namespace nsync
             if (hasLeftPath && hasRightPath)
             {
                 //SQ settingsManager.SaveFolderPaths(LeftText.Text, RightText.Text);
+                settingsManager.ExcludedData = excludeData;
                 settingsManager.SaveFolderPaths(actualLeftPath, actualRightPath); //SQ
             }
             else
@@ -1045,7 +1046,7 @@ namespace nsync
                 // If not enough disk space, return
                 // If enough, continue to start the real sync
                 excludeData = new ExcludeData();
-                excludeData.ExcludeFileNameList = excludeWindow.GetFileTypeList();
+                excludeData.ExcludeFileNameList = excludeWindow.GetFileNameList();
                 excludeData.ExcludeFileTypeList = excludeWindow.GetFileTypeList();
                 excludeData.ExcludeFolderList = excludeWindow.GetFolderList();
                 synchronizer.ExcludeData = excludeData;

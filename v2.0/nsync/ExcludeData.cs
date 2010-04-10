@@ -9,7 +9,7 @@ namespace nsync
     /// <summary>
     /// ExcludeData Class
     /// </summary>
-    class ExcludeData
+    public class ExcludeData
     {
         #region Class Variables
         private List<string> excludeFolderList;
@@ -55,6 +55,30 @@ namespace nsync
         {
             get { return excludeFolderList; }
             set { excludeFolderList = value; }
+        }
+
+        /// <summary>
+        /// Add method to add fileType to exclude List
+        /// </summary>
+        public void AddExcludeFileType(string fileType)
+        {
+            excludeFileTypeList.Add(fileType);
+        }
+
+        /// <summary>
+        /// Add method to add fileName to exclude List
+        /// </summary>
+        public void AddExcludeFileName(string fileName)
+        {
+            excludeFileNameList.Add(fileName);
+        }
+
+        /// <summary>
+        /// Add method to add folder to exclude List
+        /// </summary>
+        public void AddExcludeFolder(string folder)
+        {
+            excludeFolderList.Add(folder);
         }
         #endregion
     }

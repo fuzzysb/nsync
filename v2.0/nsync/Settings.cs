@@ -18,6 +18,7 @@ namespace nsync
         private const string PATH_SETTINGS = "/nsync/SETTINGS";
         private const string PATH_MRU = "/nsync/MRU";
         private const string PATH_REMOVEABLEDISK = "/nsync/REMOVEABLEDISK";
+        private ExcludeData excludeData;
         #endregion
 
         #region Singleton Setup
@@ -203,14 +204,123 @@ namespace nsync
             XmlDocument doc = new XmlDocument();
             XmlNode mruNode = SelectNode(doc, PATH_MRU);
 
+            XmlNode filterNode;
+            XmlNode excludeFileTypeNode;
+            XmlNode excludeFileNameNode;
+            XmlNode excludeFolderNode;
+            XmlNode newSizeNode;
+            ExcludeData[] tempExcludeData = new ExcludeData[5];
+            int[] fileTypeListSize = new int[5];
+            int[] fileNameListSize = new int[5];
+            int[] folderListSize = new int[5];
+
+            for (int i = 0; i < NUMBER_OF_MOST_RECENT; i++)
+                tempExcludeData[i] = new ExcludeData();
+
             for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
             {
                 tempStorage[counter++] = mruNode["left" + i.ToString()].InnerText;
                 tempStorage[counter++] = mruNode["right" + i.ToString()].InnerText;
+
+                filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+
+                // Backup File Type from xml file
+                excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
+
+                fileTypeListSize[i - 1] = int.Parse(excludeFileTypeNode["size"].InnerText);
+                if (fileTypeListSize[i - 1] != 0)
+                {
+                    for (int j = 0; j < fileTypeListSize[i - 1]; j++)
+                    {
+                        tempExcludeData[i - 1].AddExcludeFileType(excludeFileTypeNode["fileType" + j.ToString()].InnerText);
+                    }
+                }
+
+                // Backup File Name from xml file
+                excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+
+                fileNameListSize[i - 1] = int.Parse(excludeFileNameNode["size"].InnerText);
+                if (fileNameListSize[i - 1] != 0)
+                {
+                    for (int j = 0; j < fileNameListSize[i - 1]; j++)
+                    {
+                        tempExcludeData[i - 1].AddExcludeFileName(excludeFileNameNode["fileName" + j.ToString()].InnerText);
+                    }
+                }
+
+                // Backup Folder from xml file
+                excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+
+                folderListSize[i - 1] = int.Parse(excludeFolderNode["size"].InnerText);
+                if (folderListSize[i - 1] != 0)
+                {
+                    for (int j = 0; j < folderListSize[i - 1]; j++)
+                    {
+                        tempExcludeData[i - 1].AddExcludeFolder(excludeFolderNode["folder" + j.ToString()].InnerText);
+                    }
+                }
             }
 
             mruNode["left1"].InnerText = leftPath;
             mruNode["right1"].InnerText = rightPath;
+
+            // Change the nodes to the first filter
+            filterNode = mruNode.SelectSingleNode("filter1");
+
+            excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
+            excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+            excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+
+            // storing exclude for File Types
+            // Clearing the first node for space of new node
+            excludeFileTypeNode.RemoveAll();
+            newSizeNode = doc.CreateElement("size");
+            newSizeNode.InnerText = excludeData.ExcludeFileTypeList.Count.ToString();
+            excludeFileTypeNode.AppendChild(newSizeNode);
+
+            if (excludeData.ExcludeFileTypeList.Count != 0)
+            {
+                for (int i = 0; i < excludeData.ExcludeFileTypeList.Count; i++)
+                {
+                    XmlNode newFileTypeNode = doc.CreateElement("fileType" + i.ToString());
+                    newFileTypeNode.InnerText = excludeData.ExcludeFileTypeList[i];
+                    excludeFileTypeNode.AppendChild(newFileTypeNode);
+                }
+            }
+
+            // storing exclude for File Names
+            // Clearing the first node for space of new node
+            excludeFileNameNode.RemoveAll();
+            newSizeNode = doc.CreateElement("size");
+            newSizeNode.InnerText = excludeData.ExcludeFileNameList.Count.ToString();
+            excludeFileNameNode.AppendChild(newSizeNode);
+
+            if (excludeData.ExcludeFileNameList.Count != 0)
+            {
+                for (int i = 0; i < excludeData.ExcludeFileNameList.Count; i++)
+                {
+                    XmlNode newFileNameNode = doc.CreateElement("fileName" + i.ToString());
+                    newFileNameNode.InnerText = excludeData.ExcludeFileNameList[i];
+                    excludeFileNameNode.AppendChild(newFileNameNode);
+                }
+            }
+
+            // storing exclude for Folder
+            // Clearing the first node for space of new node
+            excludeFolderNode.RemoveAll();
+            newSizeNode = doc.CreateElement("size");
+            newSizeNode.InnerText = excludeData.ExcludeFolderList.Count.ToString();
+            excludeFolderNode.AppendChild(newSizeNode);
+
+            if (excludeData.ExcludeFolderList.Count != 0)
+            {
+                for (int i = 0; i < excludeData.ExcludeFolderList.Count; i++)
+                {
+                    XmlNode newFolderNode = doc.CreateElement("folder" + i.ToString());
+                    newFolderNode.InnerText = excludeData.ExcludeFolderList[i];
+                    excludeFolderNode.AppendChild(newFolderNode);
+                }
+            }
 
             for (int i = 0; i < 10; i += 2)
             {
@@ -227,12 +337,70 @@ namespace nsync
                 while (tempStorage[counter] == "REPLACED" && tempStorage[counter + 1] == "REPLACED")
                     counter += 2;
 
+                // Stores the temp File Type into 2, 3, 4, 5th filters
+                if (fileTypeListSize[counter / 2] != 0)
+                {
+                    filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+                    excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
+
+                    excludeFileTypeNode.RemoveAll();
+                    newSizeNode = doc.CreateElement("size");
+                    newSizeNode.InnerText = fileTypeListSize[counter / 2].ToString();
+                    excludeFileTypeNode.AppendChild(newSizeNode);
+
+                    for (int j = 0; j < fileTypeListSize[counter / 2]; j++)
+                    {
+                        XmlNode newFileTypeNode = doc.CreateElement("fileType" + j.ToString());
+                        newFileTypeNode.InnerText = tempExcludeData[counter / 2].ExcludeFileTypeList[j];
+                        excludeFileTypeNode.AppendChild(newFileTypeNode);
+                    }
+                }
+
+                // Stores the temp File Name into 2, 3, 4, 5th filters
+                if (fileNameListSize[counter / 2] != 0)
+                {
+                    filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+                    excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+
+                    excludeFileNameNode.RemoveAll();
+                    newSizeNode = doc.CreateElement("size");
+                    newSizeNode.InnerText = fileNameListSize[counter / 2].ToString();
+                    excludeFileNameNode.AppendChild(newSizeNode);
+
+                    for (int j = 0; j < fileNameListSize[counter / 2]; j++)
+                    {
+                        XmlNode newFileNameNode = doc.CreateElement("fileName" + j.ToString());
+                        newFileNameNode.InnerText = tempExcludeData[counter / 2].ExcludeFileNameList[j];
+                        excludeFileNameNode.AppendChild(newFileNameNode);
+                    }
+                }
+
+                // Stores the temp Folder into 2, 3, 4, 5th filters
+                if (folderListSize[counter / 2] != 0)
+                {
+                    filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+                    excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+
+                    excludeFolderNode.RemoveAll();
+                    newSizeNode = doc.CreateElement("size");
+                    newSizeNode.InnerText = folderListSize[counter / 2].ToString();
+                    excludeFolderNode.AppendChild(newSizeNode);
+
+                    for (int j = 0; j < folderListSize[counter / 2]; j++)
+                    {
+                        XmlNode newFolderNode = doc.CreateElement("folder" + j.ToString());
+                        newFolderNode.InnerText = tempExcludeData[counter / 2].ExcludeFolderList[j];
+                        excludeFolderNode.AppendChild(newFolderNode);
+                    }
+                }
+
                 mruNode["left" + i.ToString()].InnerText = tempStorage[counter];
                 mruNode["right" + i.ToString()].InnerText = tempStorage[counter + 1];
 
                 counter += 2;
             }
 
+            unprotectFile(settingsFile);
             doc.Save(settingsFile);
             protectFile(settingsFile);
         }
@@ -321,32 +489,6 @@ namespace nsync
                 return null;
             }
         }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="excludeList"></param>
-        /// <returns></returns>
-        public void StoreFilters(List<string> filterList)
-        {
-            int filterSize = filterList.Count;
-
-            IsSettingsFileExists();
-
-            XmlDocument doc = new XmlDocument();
-            XmlNode mruNode = SelectNode(doc, PATH_MRU);
-            XmlElement tempFilterElement;
-
-            XmlNode filterNode = mruNode.SelectSingleNode("filter1");
-            filterNode["size"].InnerText = filterSize.ToString();
-
-            for (int i = 0; i < filterSize; i++)
-            {
-                tempFilterElement = doc.CreateElement("exclude" + i.ToString());
-                tempFilterElement.InnerText = filterList[i];
-                filterNode.AppendChild(tempFilterElement);
-            }
-        }
 
         /// <summary>
         /// Clears logs in log folder
@@ -366,6 +508,15 @@ namespace nsync
                 File.Delete(fileName);
             }
             settingsPage.LabelProgress.Content = "Logs Cleared.";
+        }
+
+        /// <summary>
+        /// Setter and Getter method excludeData
+        /// </summary>
+        public ExcludeData ExcludedData
+        {
+            get { return excludeData; }
+            set { excludeData = value; }
         }
         #endregion
 
@@ -469,9 +620,25 @@ namespace nsync
 
                 //Write Filter information
                 textWriter.WriteStartElement("filter" + i.ToString());
+
+                textWriter.WriteStartElement("excludeFileTypes");
                 textWriter.WriteStartElement("size");
                 textWriter.WriteString("0");
                 textWriter.WriteEndElement();
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("excludeFileNames");
+                textWriter.WriteStartElement("size");
+                textWriter.WriteString("0");
+                textWriter.WriteEndElement();
+                textWriter.WriteEndElement();
+
+                textWriter.WriteStartElement("excludeFolders");
+                textWriter.WriteStartElement("size");
+                textWriter.WriteString("0");
+                textWriter.WriteEndElement();
+                textWriter.WriteEndElement();
+
                 textWriter.WriteEndElement();
             }
 
