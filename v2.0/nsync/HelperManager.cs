@@ -50,10 +50,14 @@ namespace nsync
                         windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null);
                     else
                     {
-                        if (errorCount != 0)
-                            helpString += " " + errorCount + " Files Not Synced.";
-                        if (conflictCount != 0)
-                            helpString += " " + conflictCount + " Files Conflicted.";
+                        if (errorCount == 1)
+                            helpString += " " + errorCount + " file not synchronized.";
+                        else if(errorCount > 1)
+                            helpString += " " + errorCount + " files not synchronized.";
+                        if (conflictCount == 0)
+                            helpString += " " + conflictCount + " file conflicted.";
+                        else if(conflictCount > 1)
+                            helpString += " " + conflictCount + " files conflicted.";
                         helpString += "\nClick here to view Log.";
                         windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath);
                     }
