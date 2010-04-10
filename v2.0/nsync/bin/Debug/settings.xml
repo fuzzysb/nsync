@@ -8,12 +8,10 @@
         <size>0</size>
       </excludeFileTypes>
       <excludeFileNames>
-        <size>1</size>
-        <fileName0>fgf173.exe</fileName0>
+        <size>0</size>
       </excludeFileNames>
       <excludeFolders>
-        <size>1</size>
-        <folder0>C:\FolderA\2</folder0>
+        <size>0</size>
       </excludeFolders>
     </filter1>
     <left2>C:\FolderA</left2>

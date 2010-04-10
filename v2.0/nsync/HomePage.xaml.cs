@@ -61,7 +61,7 @@ namespace nsync
         private Preview previewSync;
         private SummaryReport summaryReport;
         private ExcludeWindow excludeWindow;
-        private ExcludeData excludeData;
+        private ExcludeData excludeData = new ExcludeData();
         #endregion
 
         #region Constructor

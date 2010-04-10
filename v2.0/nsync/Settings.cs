@@ -273,7 +273,7 @@ namespace nsync
 
             // storing exclude for File Types
             // Clearing the first node for space of new node
-            /*excludeFileTypeNode.RemoveAll();
+            excludeFileTypeNode.RemoveAll();
             newSizeNode = doc.CreateElement("size");
             newSizeNode.InnerText = excludeData.ExcludeFileTypeList.Count.ToString();
             excludeFileTypeNode.AppendChild(newSizeNode);
@@ -320,7 +320,7 @@ namespace nsync
                     newFolderNode.InnerText = excludeData.ExcludeFolderList[i];
                     excludeFolderNode.AppendChild(newFolderNode);
                 }
-            }*/
+            }
 
             for (int i = 0; i < 10; i += 2)
             {
