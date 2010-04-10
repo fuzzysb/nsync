@@ -1345,11 +1345,15 @@ namespace nsync
             if (fileData.Count == 0)
             {
                 summaryReport = new SummaryReport(true, synchronizer.ErrorMessageForSummaryReport);
+                summaryReport.LeftPath = actualLeftPath;
+                summaryReport.RightPath = actualRightPath;
                 summaryReport.CreateLog();
             }
             else
             {
                 summaryReport = new SummaryReport(fileData, synchronizer.ErrorMessageForSummaryReport);
+                summaryReport.LeftPath = actualLeftPath;
+                summaryReport.RightPath = actualRightPath;
                 summaryReport.CreateLog();
             }
 
@@ -1472,6 +1476,8 @@ namespace nsync
             previewSync = new Preview();
             previewSync.LeftPath = actualLeftPath;
             previewSync.RightPath = actualRightPath;
+            excludeData = new ExcludeData();
+            previewSync.ExcludeData = excludeData;
             previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
             previewSync.PreviewSync();
             LabelProgress.Visibility = Visibility.Visible;

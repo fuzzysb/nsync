@@ -21,6 +21,8 @@ namespace nsync
         //Actual Variables being used
         private List<string> errorMessage = new List<string>();
         private bool noChanges = false;
+        private string leftPath;
+        private string rightPath;
         private string directoryPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
             "\\log";
         private string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
@@ -67,6 +69,24 @@ namespace nsync
         }
         #endregion
 
+        #region Properties
+        /// <summary>
+        /// Setter and Getter method for left folder path
+        /// </summary>
+        public string LeftPath
+        {
+            set { leftPath = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for right folder path
+        /// </summary>
+        public string RightPath
+        {
+            set { rightPath = value; }
+        }
+        #endregion
+
         #region Private Methods
         /// <summary>
         /// Check whether log folder exists. If not create new.
@@ -109,7 +129,10 @@ namespace nsync
             StreamWriter log = new StreamWriter(logPath, true);
 
             log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString("dd-MMM-yyyy h:mm:ss tt"));
-            log.WriteLine("--------------------------------------");
+            log.WriteLine("Folders Involved In Synchronization : ");
+            log.WriteLine(leftPath.ToString());
+            log.WriteLine(rightPath.ToString());
+            log.WriteLine("------------------------------------------------------------------------");
             log.WriteLine("");
 
             //If there are errors, display all files that are not propagated
