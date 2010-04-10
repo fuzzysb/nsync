@@ -83,6 +83,36 @@ namespace nsync
             return int.Parse(helperWindowStatusNode.InnerText);
         }
 
+        public void SetPreviewFilterStatus(string filterType)
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode previewFilterStatusNode = SelectNode(doc, PATH_SETTINGS + "/PreviewFilterType");
+
+            previewFilterStatusNode.InnerText = filterType;
+
+            doc.Save(settingsFile);
+            protectFile(settingsFile);
+        }
+
+        public string GetPreviewFilterStatus()
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode previewFilterStatusNode = SelectNode(doc, PATH_SETTINGS + "/PreviewFilterType");
+
+            protectFile(settingsFile);
+            return previewFilterStatusNode.InnerText;
+        }
+
         /// <summary>
         /// Change the status of the exclude window
         /// </summary>
@@ -657,6 +687,10 @@ namespace nsync
 
             textWriter.WriteStartElement("TrackBackStatus");
             textWriter.WriteString("false");
+            textWriter.WriteEndElement();
+
+            textWriter.WriteStartElement("PreviewFilterType");
+            textWriter.WriteString("both");
             textWriter.WriteEndElement();
 
             textWriter.WriteEndElement();

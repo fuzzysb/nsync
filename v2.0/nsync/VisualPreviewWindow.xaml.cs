@@ -29,6 +29,7 @@ namespace nsync
         private List<FileData> previewFileData = new List<FileData>();
         private GridViewColumnHeader _lastHeaderClicked = null;
         private ListSortDirection _lastDirection = ListSortDirection.Ascending;
+        private Settings settingsManager;
 
         #endregion
 
@@ -39,6 +40,8 @@ namespace nsync
         public VisualPreviewWindow()
         {
             InitializeComponent();
+
+            settingsManager = Settings.Instance;
         }
         #endregion
 
@@ -150,8 +153,16 @@ namespace nsync
         /// </summary>
         private void DisplayInfo()
         {
-            //todo: load a favourite filter
-            ComboBoxFilter.SelectedIndex = 0;
+            string filterStatus = settingsManager.GetPreviewFilterStatus();
+
+            if (filterStatus == "both")
+                ComboBoxFilter.SelectedIndex = 0;
+            else if (filterStatus == "left")
+                ComboBoxFilter.SelectedIndex = 1;
+            else if (filterStatus == "right")
+                ComboBoxFilter.SelectedIndex = 2;
+            else
+                throw new Exception("Settings.xml filter type is of wrong format.");
 
             CheckEmptyList();
         }
@@ -220,16 +231,19 @@ namespace nsync
             {
                 case 0:
                     LoadBothFilter();
+                    settingsManager.SetPreviewFilterStatus("both");
                     break;
                 case 1:
                     LoadLeftFilter();
+                    settingsManager.SetPreviewFilterStatus("left");
                     break;
                 case 2:
                     LoadRightFilter();
+                    settingsManager.SetPreviewFilterStatus("right");
                     break;
                 default:
                     //Error, unexpected behavior
-                    MessageBox.Show("Error!");
+                    throw new Exception("Error: ComboBoxFilter out of bounds!");
                     break;
             }
 
