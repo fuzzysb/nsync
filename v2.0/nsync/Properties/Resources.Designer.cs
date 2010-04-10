@@ -124,6 +124,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specified argument was out of the range of valid values..
+        /// </summary>
+        public static string excludingFileTypesException {
+            get {
+                return ResourceManager.GetString("excludingFileTypesException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a folder to synchronise with nsync..
         /// </summary>
         public static string folderExplorerText {

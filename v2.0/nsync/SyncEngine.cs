@@ -407,8 +407,24 @@ namespace nsync
         /// <param name="args"></param>
         private void OnItemConflicting(object sender, ItemConflictingEventArgs args)
         {
-            IFileDataRetriever localfileDataRetriever = ((IFileDataRetriever)args.SourceChangeData);
-            IFileDataRetriever remotefileDataRetriever = ((IFileDataRetriever)args.DestinationChangeData);
+            IFileDataRetriever localfileDataRetriever;
+            IFileDataRetriever remotefileDataRetriever;
+
+            try
+            {
+                localfileDataRetriever = ((IFileDataRetriever)args.SourceChangeData);
+                remotefileDataRetriever = ((IFileDataRetriever)args.DestinationChangeData);
+            }
+            catch (Exception e)
+            {
+                if (e.Message.ToString().Contains(nsync.Properties.Resources.excludingFileTypesException))
+                    return;
+                else
+                    throw;
+            }
+
+            localfileDataRetriever = ((IFileDataRetriever)args.SourceChangeData);
+            remotefileDataRetriever = ((IFileDataRetriever)args.DestinationChangeData);
             //MessageBox.Show(localfileDataRetriever.FileData.RelativePath + "\n" + remotefileDataRetriever.FileData.RelativePath);
             if(localfileDataRetriever.FileData.RelativePath != remotefileDataRetriever.FileData.RelativePath)
             {

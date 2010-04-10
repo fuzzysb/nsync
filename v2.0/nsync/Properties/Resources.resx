@@ -243,4 +243,7 @@
   <data name="trackBackToolTip" xml:space="preserve">
     <value>TrackBack</value>
   </data>
+  <data name="excludingFileTypesException" xml:space="preserve">
+    <value>Specified argument was out of the range of valid values.</value>
+  </data>
 </root>
