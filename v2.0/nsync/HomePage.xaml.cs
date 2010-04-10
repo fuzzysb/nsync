@@ -1455,7 +1455,7 @@ namespace nsync
                 //FolderCheck();
                 return;
             }
-            if (!synchronizer.IsFoldersSync())
+            if ((!synchronizer.IsFoldersSync()) && (settingsManager.GetTrackBackStatus()))
             {
                 trackback.LeftFolderPath = actualLeftPath;
                 trackback.RightFolderPath = actualRightPath;

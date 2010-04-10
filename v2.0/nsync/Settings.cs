@@ -121,6 +121,44 @@ namespace nsync
         }
 
         /// <summary>
+        /// Change the status of the TrackBack
+        /// </summary>
+        /// <param name="status">This parameter indicates if the trackback is enabled or disabled</param>
+        public void SetTrackBackStatus(bool status)
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
+
+            trackBackStatusNode.InnerText = "" + status.ToString();
+
+            doc.Save(settingsFile);
+            protectFile(settingsFile);
+        }
+
+        /// <summary>
+        /// Gets the current status of the TrackBack
+        /// </summary>
+        /// <returns>Returns a boolean which indicates whether the trackback is enabled or disabled</returns>
+        public bool GetTrackBackStatus()
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+            }
+
+            XmlDocument doc = new XmlDocument();
+            XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
+
+            protectFile(settingsFile);
+            return bool.Parse(trackBackStatusNode.InnerText);
+        }
+
+        /// <summary>
         /// Loads the saved folder paths into a list
         /// </summary>
         /// <returns>Returns a list of strings which contains the saved folder paths</returns>
@@ -427,6 +465,10 @@ namespace nsync
             textWriter.WriteEndElement();
 
             textWriter.WriteStartElement("ExcludeWindowStatus");
+            textWriter.WriteString("false");
+            textWriter.WriteEndElement();
+
+            textWriter.WriteStartElement("TrackBackStatus");
             textWriter.WriteString("false");
             textWriter.WriteEndElement();
 

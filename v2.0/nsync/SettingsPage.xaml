@@ -28,5 +28,8 @@
         <Grid Margin="40,122,40,0" VerticalAlignment="Top" Height="13.277">
             <CheckBox Style="{StaticResource CheckBoxSettingsStyle}" Name="CheckboxToggleExcludeWindow" Foreground="White" Checked="CheckboxToggleExcludeWindow_Checked" Unchecked="CheckboxToggleExcludeWindow_UnChecked" Margin="0,0,50,0">Disable Exclude Window</CheckBox>
         </Grid>
+        <Grid Margin="40,152,40,0" VerticalAlignment="Top" Height="13.277">
+            <CheckBox Style="{StaticResource CheckBoxSettingsStyle}" Name="CheckboxToggleTrackBack" Foreground="White" Checked="CheckboxToggleTrackBack_Checked" Unchecked="CheckboxToggleTrackBack_UnChecked" Margin="0,0,50,0">Disable TrackBack</CheckBox>
+        </Grid>
     </Grid>
 </Page>

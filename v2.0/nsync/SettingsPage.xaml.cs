@@ -37,6 +37,10 @@ namespace nsync
             if (!settingsManager.GetExcludeWindowStatus())
                 CheckboxToggleExcludeWindow.IsChecked = true;
 
+            //gets trackback settings
+            if (!settingsManager.GetTrackBackStatus())
+                CheckboxToggleTrackBack.IsChecked = true;
+
             //flag for enabling the boxes for user input
             pageIsLoaded = true;
         }
@@ -84,6 +88,15 @@ namespace nsync
             settingsManager.SetExcludeWindowStatus(true);
         }
 
+        private void CheckboxToggleTrackBack_Checked(object sender, RoutedEventArgs e)
+        {
+            settingsManager.SetTrackBackStatus(false);
+        }
+
+        private void CheckboxToggleTrackBack_UnChecked(object sender, RoutedEventArgs e)
+        {
+            settingsManager.SetTrackBackStatus(true);
+        }
 
     }
 }
