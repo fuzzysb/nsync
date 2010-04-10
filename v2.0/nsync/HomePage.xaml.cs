@@ -175,6 +175,9 @@ namespace nsync
         /// <returns>Returns a boolean which indicates whether the path is a shortcut link</returns>
         private bool IsPathShortcut(string path)
         {
+            if (path.Length < 4) // To handle C:\ shortcut
+                return false;
+
             if (path.Substring(path.Length - 4) == ".lnk")
                 return true;
             else
