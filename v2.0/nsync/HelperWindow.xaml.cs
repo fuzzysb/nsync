@@ -102,6 +102,11 @@ namespace nsync
                     MoveWindow();
                     break;
             }
+
+            if (this.hyperLinkPath != null)
+                ContentText.Cursor = Cursors.Hand;
+            else
+                ContentText.Cursor = Cursors.Arrow;
         }
 
         /// <summary>
