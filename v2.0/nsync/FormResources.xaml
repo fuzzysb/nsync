@@ -1312,6 +1312,33 @@
 
     <!-- End Pages -->
 
+    <ControlTemplate x:Key="ButtonStandardTemplate" TargetType="{x:Type Button}">
+        <Grid x:Name="grid">
+            <Grid.Background>
+                <ImageBrush ImageSource="Resources/button.png"/>
+            </Grid.Background>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="10" Foreground="White" x:Name="ButtonBack">
+                <InlineUIContainer>
+                    		<ContentPresenter x:Name="contentPresenter" RecognizesAccessKey="True" />
+                </InlineUIContainer>
+            </TextBlock>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="ButtonBack" Property="Foreground" Value="White" />
+                <Setter TargetName="ButtonBack" Property="Cursor" Value="Hand" />
+                <Setter Property="Background" TargetName="grid">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="Resources/buttonover.png"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="OpacityMask" TargetName="contentPresenter" Value="{x:Null}"/>
+                <Setter Property="Cursor" TargetName="contentPresenter" Value="Hand"/>
+                <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
     <ControlTemplate x:Key="ButtonPageTemplate" TargetType="{x:Type Button}">
         <Grid x:Name="grid">
             <Ellipse x:Name="circle"

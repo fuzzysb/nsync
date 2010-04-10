@@ -1,7 +1,0 @@
-Sync Done at : 10-Apr-2010 12:52:32 PM
-Folders Involved In Synchronization : 
-C:\Users\Eugene\Desktop\1
-C:\Users\Eugene\Desktop\3
-------------------------------------------------------------------------
-
-File Sync Successful. No Error Detected
