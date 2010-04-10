@@ -27,6 +27,8 @@ namespace nsync
         private HelperManager helper;
         private Window mainWindow = Application.Current.MainWindow;
         private Settings settingsManager;
+        private GridViewColumnHeader _lastHeaderClicked = null;
+        private ListSortDirection _lastDirection = ListSortDirection.Ascending;
 
         private readonly string SETTINGS_FILE_NAME = "settings.xml";
         private readonly string PATH_MRU_LEFT_FOLDER = "/nsync/MRU/left1";
@@ -196,11 +198,56 @@ namespace nsync
         }
 
         /// <summary>
+        /// event called on clicking on the header of a column
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortClick(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader headerClicked =
+              e.OriginalSource as GridViewColumnHeader;
+            ListSortDirection direction;
+
+            if (headerClicked != null)
+            {
+                if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
+                {
+                    if (headerClicked != _lastHeaderClicked)
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        if (_lastDirection == ListSortDirection.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            direction = ListSortDirection.Ascending;
+                        }
+                    }
+
+                    string header = headerClicked.Tag as string;
+                    if (ListViewForLeftFolder.Visibility == Visibility.Visible)
+                        SortList(header, direction, ListViewForLeftFolder);
+                    else if (ListViewForRightFolder.Visibility == Visibility.Visible)
+                        SortList(header, direction, ListViewForRightFolder);
+                    else
+                        throw new Exception("Error: No listview visible!");
+
+                    _lastHeaderClicked = headerClicked;
+                    _lastDirection = direction;
+                }
+            }
+        }
+
+        /// <summary>
         /// Sorting method to sort a listview
         /// </summary>
         /// <param name="sortBy">data name/parameter to sort by as a string</param>
         /// <param name="direction">Ascending or descending order</param>
-        /// <param name="lv">Listview to be sorted</param>
+        /// <param name="listView">Listview to be sorted</param>
         private void SortList(string sortBy, ListSortDirection direction, ListView listView)
         {
             ICollectionView dataView =

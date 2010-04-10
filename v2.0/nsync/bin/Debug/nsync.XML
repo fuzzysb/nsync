@@ -641,13 +641,20 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:nsync.TrackBackPage.SortClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            event called on clicking on the header of a column
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:nsync.TrackBackPage.SortList(System.String,System.ComponentModel.ListSortDirection,System.Windows.Controls.ListView)">
             <summary>
             Sorting method to sort a listview
             </summary>
             <param name="sortBy">data name/parameter to sort by as a string</param>
             <param name="direction">Ascending or descending order</param>
-            <param name="lv">Listview to be sorted</param>
+            <param name="listView">Listview to be sorted</param>
         </member>
         <member name="M:nsync.TrackBackPage.LoadSourceFolders">
             <summary>
@@ -1400,6 +1407,21 @@
             <summary>
             Fix the window postition so it's not out of the screen
             </summary>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.SortClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            event called on clicking on the header of a column
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.VisualPreviewWindow.SortList(System.String,System.ComponentModel.ListSortDirection,System.Windows.Controls.ListView)">
+            <summary>
+            method to sort a listview list by a column
+            </summary>
+            <param name="sortBy">data name/parameter to sort by as a string</param>
+            <param name="direction">Ascending or descending order</param>
+            <param name="listView">Listview to be sorted</param>
         </member>
         <member name="M:nsync.VisualPreviewWindow.InitializeComponent">
             <summary>

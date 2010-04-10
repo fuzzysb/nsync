@@ -15,17 +15,17 @@
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Folder Name" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Folder Name" Tag="nameItem" Click="SortClick" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding dateItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Date &amp; Time" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Date &amp; Time" Tag="dateItem" Click="SortClick" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding folderItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Folder synced with" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Folder synced with" Tag="folderItem" Click="SortClick" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                     </GridView>
@@ -36,17 +36,17 @@
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Folder Name" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Folder Name" Tag="nameItem" Click="SortClick" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding dateItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Date &amp; Time" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Date &amp; Time" Tag="dateItem" Click="SortClick" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding folderItem}">
                             <GridViewColumn.Header>
-                                <GridViewColumnHeader Content="Folder synced with" FontFamily="Verdana" FontSize="11" HorizontalContentAlignment="Left"/>
+                                <GridViewColumnHeader Content="Folder synced with" Tag="folderItem" Click="SortClick" HorizontalContentAlignment="Left"/>
                             </GridViewColumn.Header>
                         </GridViewColumn>
                     </GridView>

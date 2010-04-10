@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Eugene\Desktop\lightning talks</left1>
-    <right1>C:\Users\Eugene\Desktop\2</right1>
+    <left1>C:\Users\Eugene\Desktop\2</left1>
+    <right1>C:\Users\Eugene\Desktop\3</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,8 +14,8 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>G:\books3</left2>
-    <right2>G:\books2</right2>
+    <left2>C:\Users\Eugene\Desktop\lightning talks</left2>
+    <right2>C:\Users\Eugene\Desktop\2</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
@@ -27,7 +27,7 @@
         <size>0</size>
       </excludeFolders>
     </filter2>
-    <left3>G:\Books</left3>
+    <left3>G:\books3</left3>
     <right3>G:\books2</right3>
     <filter3>
       <excludeFileTypes>
@@ -40,8 +40,8 @@
         <size>0</size>
       </excludeFolders>
     </filter3>
-    <left4>E:\folder b</left4>
-    <right4>E:\folder a</right4>
+    <left4>G:\Books</left4>
+    <right4>G:\books2</right4>
     <filter4>
       <excludeFileTypes>
         <size>0</size>
@@ -53,8 +53,8 @@
         <size>0</size>
       </excludeFolders>
     </filter4>
-    <left5>C:\folder ABC</left5>
-    <right5>D:\folder XYZ</right5>
+    <left5>E:\folder b</left5>
+    <right5>E:\folder a</right5>
     <filter5>
       <excludeFileTypes>
         <size>0</size>

@@ -355,6 +355,11 @@ namespace nsync
         }
         #endregion
 
+        /// <summary>
+        /// event called on clicking on the header of a column
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SortClick(object sender, RoutedEventArgs e)
         {
             GridViewColumnHeader headerClicked =
@@ -383,9 +388,9 @@ namespace nsync
 
                     string header = headerClicked.Tag as string;
                     if (ListViewBoth.Visibility == Visibility.Visible)
-                        Sort(header, direction, ListViewBoth);
+                        SortList(header, direction, ListViewBoth);
                     else if (ListViewLeftRight.Visibility == Visibility.Visible)
-                        Sort(header, direction, ListViewLeftRight);
+                        SortList(header, direction, ListViewLeftRight);
                     else
                         throw new Exception("Error: No listview visible!");
 
@@ -395,10 +400,16 @@ namespace nsync
             }
         }
 
-        private void Sort(string sortBy, ListSortDirection direction, ListView lv)
+        /// <summary>
+        /// method to sort a listview list by a column
+        /// </summary>
+        /// <param name="sortBy">data name/parameter to sort by as a string</param>
+        /// <param name="direction">Ascending or descending order</param>
+        /// <param name="listView">Listview to be sorted</param>
+        private void SortList(string sortBy, ListSortDirection direction, ListView listView)
         {
             ICollectionView dataView =
-              CollectionViewSource.GetDefaultView(lv.ItemsSource);
+              CollectionViewSource.GetDefaultView(listView.ItemsSource);
 
             dataView.SortDescriptions.Clear();
             SortDescription sd = new SortDescription(sortBy, direction);
