@@ -1,0 +1,41 @@
+Sync Done at : 10-Apr-2010 11:04:28 PM
+Folders Involved In Synchronization : 
+G:\books3
+G:\books2
+------------------------------------------------------------------------
+
+File Sync Completed
+Number of errors found : 8
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Mallorean 1 - Guardians of the West.doc
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Malloreon 2 - King Of The Murgos.htm
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Malloreon 5 - The Seeress of Kel.htm
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Malloreon 3 - Demon Lord of Karanda.htm
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Malloreon 4 - Sorceress Of Darshiva.htm
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Malloreon 2 - King Of The Murgos.doc
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Malloreon 4 - Sorceress Of Darshiva.doc
+
+File Failed To Be Copied Over
+--------------------------------------
+G:\books2\David Eddings - The Malloreon\Eddings, David - The Malloreon 5 - The Seeress of Kel.doc
+

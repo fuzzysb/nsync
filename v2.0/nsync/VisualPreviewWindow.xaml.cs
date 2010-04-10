@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace nsync
@@ -26,6 +27,9 @@ namespace nsync
         private string leftPath;
         private string rightPath;
         private List<FileData> previewFileData = new List<FileData>();
+        private GridViewColumnHeader _lastHeaderClicked = null;
+        private ListSortDirection _lastDirection = ListSortDirection.Ascending;
+
         #endregion
 
         #region Constructor
@@ -91,6 +95,20 @@ namespace nsync
         /// <returns></returns>
         [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
         static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
+
+        /// <summary>
+        /// Method to shorten paths to a certain length
+        /// </summary>
+        /// <param name="path">the full path</param>
+        /// <param name="length">the length to shorten to</param>
+        /// <returns>shortened string</returns>
+        static string PathShortener(string path, int length)
+        {
+            StringBuilder sb = new StringBuilder();
+            PathCompactPathEx(sb, path, length, 0);
+            return sb.ToString();
+        }
+
         #endregion
 
         #region Private Methods
@@ -124,7 +142,7 @@ namespace nsync
             LabelRightPath.Content = PathShortener(rightPath,64);
             LabelRightPath.ToolTip = rightPath;
 
-            DisplayInfo();          
+            DisplayInfo();
         }
 
         /// <summary>
@@ -189,19 +207,6 @@ namespace nsync
                 leftRightAction = previewLeftRightAction,
                 leftRightToolTip = previewLeftRightToolTip
             });
-        }
-
-        /// <summary>
-        /// Method to shorten paths to a certain length
-        /// </summary>
-        /// <param name="path">the full path</param>
-        /// <param name="length">the length to shorten to</param>
-        /// <returns>shortened string</returns>
-        static string PathShortener(string path, int length)
-        {
-            StringBuilder sb = new StringBuilder();
-            PathCompactPathEx(sb, path, length, 0);
-            return sb.ToString();
         }
 
         /// <summary>
@@ -349,6 +354,57 @@ namespace nsync
                 this.Top = SystemParameters.PrimaryScreenHeight - (double)GetValue(HeightProperty);
         }
         #endregion
+
+        private void SortClick(object sender, RoutedEventArgs e)
+        {
+            GridViewColumnHeader headerClicked =
+              e.OriginalSource as GridViewColumnHeader;
+            ListSortDirection direction;
+
+            if (headerClicked != null)
+            {
+                if (headerClicked.Role != GridViewColumnHeaderRole.Padding)
+                {
+                    if (headerClicked != _lastHeaderClicked)
+                    {
+                        direction = ListSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        if (_lastDirection == ListSortDirection.Ascending)
+                        {
+                            direction = ListSortDirection.Descending;
+                        }
+                        else
+                        {
+                            direction = ListSortDirection.Ascending;
+                        }
+                    }
+
+                    string header = headerClicked.Tag as string;
+                    if (ListViewBoth.Visibility == Visibility.Visible)
+                        Sort(header, direction, ListViewBoth);
+                    else if (ListViewLeftRight.Visibility == Visibility.Visible)
+                        Sort(header, direction, ListViewLeftRight);
+                    else
+                        throw new Exception("Error: No listview visible!");
+
+                    _lastHeaderClicked = headerClicked;
+                    _lastDirection = direction;
+                }
+            }
+        }
+
+        private void Sort(string sortBy, ListSortDirection direction, ListView lv)
+        {
+            ICollectionView dataView =
+              CollectionViewSource.GetDefaultView(lv.ItemsSource);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(sortBy, direction);
+            dataView.SortDescriptions.Add(sd);
+            dataView.Refresh();
+        }
     }
 
     #region DataClass for ListView

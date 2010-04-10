@@ -49,19 +49,27 @@
   <ListView Margin="8, 5" Name="ListViewBoth" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding BothPreviewCollection}" Cursor="Hand">
     <ListView.View>
       <GridView>
-        <GridViewColumn Width="86" Header="Left" DisplayMemberBinding="{Binding bothLeft}" />
-        <GridViewColumn Width="474" Header="Filename" CellTemplate="{StaticResource bothFileNameTemplate}" />
-        <GridViewColumn Width="86" Header="Right" 
-           DisplayMemberBinding="{Binding bothRight}" />
+        <GridViewColumn Width="86" DisplayMemberBinding="{Binding bothLeft}"> 
+            <GridViewColumnHeader Click="SortClick" Tag="bothLeft" Content="Left" />
+        </GridViewColumn>
+        <GridViewColumn Width="474" CellTemplate="{StaticResource bothFileNameTemplate}">
+            <GridViewColumnHeader Click="SortClick" Tag="bothFileNameTemplate" Content="Filename" />
+        </GridViewColumn>
+        <GridViewColumn Width="86" DisplayMemberBinding="{Binding bothRight}">
+            <GridViewColumnHeader Click="SortClick" Tag="bothRight" Content="Right" />
+        </GridViewColumn>
       </GridView>
     </ListView.View>
   </ListView>
             <ListView Margin="8, 5" Name="ListViewLeftRight" Foreground="White" MaxHeight="410" ScrollViewer.HorizontalScrollBarVisibility="Disabled" MaxWidth="670" ItemsSource="{Binding LeftRightPreviewCollection}" HorizontalContentAlignment="Left" Visibility="Collapsed" Cursor="Hand">
                 <ListView.View>
                   <GridView>
-                        <GridViewColumn Width="560" Header="Filename" CellTemplate="{StaticResource leftRightFileNameTemplate}" />
-                    <GridViewColumn Width="86" Header="Action"  
-                       DisplayMemberBinding="{Binding leftRightAction}" />
+                        <GridViewColumn Width="560" CellTemplate="{StaticResource leftRightFileNameTemplate}">
+                            <GridViewColumnHeader Click="SortClick" Tag="leftRightFileName" Content="Filename" />
+                        </GridViewColumn>
+                        <GridViewColumn Width="86" DisplayMemberBinding="{Binding leftRightAction}">
+                            <GridViewColumnHeader Click="SortClick" Tag="leftRightAction" Content="Action" />
+                        </GridViewColumn>
                   </GridView>
                 </ListView.View>
             </ListView>

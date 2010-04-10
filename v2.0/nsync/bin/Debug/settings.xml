@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>E:\folder b</left1>
-    <right1>E:\folder a</right1>
+    <left1>C:\Users\Eugene\Desktop\lightning talks</left1>
+    <right1>C:\Users\Eugene\Desktop\2</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,8 +14,8 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>C:\folder ABC</left2>
-    <right2>D:\folder XYZ</right2>
+    <left2>G:\books3</left2>
+    <right2>G:\books2</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
@@ -27,10 +27,8 @@
         <size>0</size>
       </excludeFolders>
     </filter2>
-    <left3>
-    </left3>
-    <right3>
-    </right3>
+    <left3>G:\Books</left3>
+    <right3>G:\books2</right3>
     <filter3>
       <excludeFileTypes>
         <size>0</size>
@@ -42,10 +40,8 @@
         <size>0</size>
       </excludeFolders>
     </filter3>
-    <left4>
-    </left4>
-    <right4>
-    </right4>
+    <left4>E:\folder b</left4>
+    <right4>E:\folder a</right4>
     <filter4>
       <excludeFileTypes>
         <size>0</size>
@@ -57,10 +53,8 @@
         <size>0</size>
       </excludeFolders>
     </filter4>
-    <left5>
-    </left5>
-    <right5>
-    </right5>
+    <left5>C:\folder ABC</left5>
+    <right5>D:\folder XYZ</right5>
     <filter5>
       <excludeFileTypes>
         <size>0</size>
@@ -75,8 +69,13 @@
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>1</HelperWindowTimer>
-    <ExcludeWindowStatus>False</ExcludeWindowStatus>
+    <ExcludeWindowStatus>True</ExcludeWindowStatus>
     <TrackBackStatus>True</TrackBackStatus>
   </SETTINGS>
-  <REMOVEABLEDISK />
+  <REMOVEABLEDISK>
+    <Disk ID="42030047">
+      <left>G:\books3</left>
+      <right>G:\books2</right>
+    </Disk>
+  </REMOVEABLEDISK>
 </nsync>
