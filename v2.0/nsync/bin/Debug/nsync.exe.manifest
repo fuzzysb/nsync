@@ -80,19 +80,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>IzykfGNsWicV0PhQrPhll8jWsKg=</dsig:DigestValue>
+        <dsig:DigestValue>4samwuSy7W+VQ/kHI0UPYXsjqiU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nsync.exe" size="1584640">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nsync.exe" size="1585152">
       <assemblyIdentity name="nsync" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>uIkXGnGA/wMg1q98KNcr8tIjeGI=</dsig:DigestValue>
+        <dsig:DigestValue>N4VqMjRF/hkPfORnnPnYQHeLtWA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

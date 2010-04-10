@@ -565,9 +565,16 @@ namespace nsync
             {
                 return 3;
             }
-            catch // catch other remaining unknown errors
+            catch (System.Exception e)// catch other remaining unknown errors
             {
-                return 4;
+                if (e.Message.Contains("The process cannot access the file because it is being used by another process"))
+                {
+                    return 4;
+                }
+                else
+                {
+                    return 5;
+                }
             }
         }
 

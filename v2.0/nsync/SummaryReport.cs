@@ -146,29 +146,57 @@ namespace nsync
                     switch (file.ChangeType)
                     {
                         case Changes.Delete:
-                            log.WriteLine("File Failed To Be Delete");
+                            log.WriteLine("File Failed To Be Deleted");
                             log.WriteLine("--------------------------------------");
-                            log.WriteLine(file.FileName);
+                            if (file.RootPath == leftPath)
+                            {
+                                log.WriteLine(rightPath + "\\" + file.RelativePath);
+                            }
+                            else
+                            {
+                                log.WriteLine(leftPath + "\\" + file.RelativePath);
+                            }
                             log.WriteLine("");
                             break;
 
                         case Changes.Create:
                             log.WriteLine("File Failed To Be Copied Over");
                             log.WriteLine("--------------------------------------");
-                            log.WriteLine(file.FileName);
+                            if (file.RootPath == leftPath)
+                            {
+                                log.WriteLine(rightPath + "\\" + file.RelativePath);
+                            }
+                            else
+                            {
+                                log.WriteLine(leftPath + "\\" + file.RelativePath);
+                            }
                             log.WriteLine("");
                             break;
 
                         case Changes.Update:
                             log.WriteLine("File Failed To Be Overwritten");
                             log.WriteLine("--------------------------------------");
-                            log.WriteLine(file.FileName);
+                            if (file.RootPath == leftPath)
+                            {
+                                log.WriteLine(rightPath + "\\" + file.RelativePath);
+                            }
+                            else
+                            {
+                                log.WriteLine(leftPath + "\\" + file.RelativePath);
+                            }
                             log.WriteLine("");
                             break;
                         case Changes.Rename:
                             log.WriteLine("File Failed To Be Renamed");
                             log.WriteLine("--------------------------------------");
-                            log.WriteLine(file.FileName);
+                            if (file.RootPath == leftPath)
+                            {
+                                log.WriteLine(rightPath + "\\" + file.RelativePath);
+                            }
+                            else
+                            {
+                                log.WriteLine(leftPath + "\\" + file.RelativePath);
+                            }
                             log.WriteLine("");
                             break;
                     }

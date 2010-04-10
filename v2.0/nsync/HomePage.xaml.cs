@@ -1474,6 +1474,9 @@ namespace nsync
                     case 3:
                         helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
+                    case 4:
+                        helper.Show(nsync.Properties.Resources.fileNotAccessible, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
                     default:
                         helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;

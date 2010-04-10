@@ -138,6 +138,9 @@
   <data name="excludeText" xml:space="preserve">
     <value>Drag &amp; Drop Files or Folders to Exclude</value>
   </data>
+  <data name="fileNotAccessible" xml:space="preserve">
+    <value>File(s) Open. Please Close File(s) And Try Again</value>
+  </data>
   <data name="folderExplorerText" xml:space="preserve">
     <value>Select a folder to synchronise with nsync.</value>
   </data>
