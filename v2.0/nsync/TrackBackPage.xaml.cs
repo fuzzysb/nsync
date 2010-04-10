@@ -52,6 +52,7 @@ namespace nsync
 
             if (!File.Exists(SETTINGS_FILE_NAME) || settingsManager.LoadFolderPaths()[0] == "")
             {
+                GridTrackBack.IsEnabled = false;
                 ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
                 LabelNoChanges.Visibility = Visibility.Visible;
                 return;
@@ -63,6 +64,13 @@ namespace nsync
                 trackback = new TrackBackEngine();
                 trackback.LeftFolderPath = actualLeftFolderPath;
                 trackback.RightFolderPath = actualRightFolderPath;
+
+                if (!trackback.hasTrackBackData(actualLeftFolderPath) && !trackback.hasTrackBackData(actualRightFolderPath))
+                {
+                    GridTrackBack.IsEnabled = false;
+                    ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+                    LabelNoChanges.Visibility = Visibility.Visible;
+                }
 
                 trackback.backgroundWorkerForTrackBackRestore.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackRestore_RunWorkerCompleted);
             }
@@ -158,12 +166,8 @@ namespace nsync
             LabelProgress.Visibility = Visibility.Hidden;
             ButtonRestore.Visibility = Visibility.Hidden;
 
-            if (!File.Exists(SETTINGS_FILE_NAME) || settingsManager.LoadFolderPaths()[0] == "")
-            {
-                ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
-                LabelNoChanges.Visibility = Visibility.Visible;
-            }
-            else
+            if ((File.Exists(SETTINGS_FILE_NAME) && settingsManager.LoadFolderPaths()[0] != "") &&
+                trackback.hasTrackBackData(actualLeftFolderPath) && trackback.hasTrackBackData(actualRightFolderPath))
             {
                 LoadSourceFolders();
 
@@ -176,6 +180,19 @@ namespace nsync
                 SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
                 SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
             }
+
+            //Add event handler to check when main window is moved, move helper window too
+            mainWindow.LocationChanged += new EventHandler(mainWindow_LocationChanged);
+        }
+
+        /// <summary>
+        /// This method will be called when the position of mainWindow is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mainWindow_LocationChanged(object sender, EventArgs e)
+        {
+            helper.UpdateMove();
         }
 
         /// <summary>
@@ -292,6 +309,9 @@ namespace nsync
 
             LabelProgress.Visibility = Visibility.Hidden;
             ButtonRestore.Visibility = Visibility.Hidden;
+
+            //Add event handler to check when main window is moved, move helper window too
+            mainWindow.LocationChanged += new EventHandler(mainWindow_LocationChanged);
         }
         /// <summary>
         /// This method is called when user clicks on the Restore button
