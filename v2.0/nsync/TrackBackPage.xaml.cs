@@ -248,10 +248,18 @@ namespace nsync
         private void ComboBoxSourceFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+            {
+                ComboBoxSourceFolder.ToolTip = actualLeftFolderPath;
                 LoadTrackBackEntriesForLeftFolder();
+            }
             else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+            {
+                ComboBoxSourceFolder.ToolTip = actualRightFolderPath;
                 LoadTrackBackEntriesForRightFolder();
+            }
 
+            
+            
             ButtonRestore.Visibility = Visibility.Hidden;
         }
         /// <summary>
