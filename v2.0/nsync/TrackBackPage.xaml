@@ -10,7 +10,7 @@
         <Image x:Name="ImageTrackBack" Margin="5" VerticalAlignment="Top" Height="45" Source="Resources/trackback.png" Width="210"/>
         <ComboBox x:Name="ComboBoxSourceFolder" FontFamily="Verdana" FontSize="11" SelectionChanged="ComboBoxSourceFolder_SelectionChanged" Margin="20,55,20,0" VerticalAlignment="Top" Height="29" Style="{DynamicResource ComboBoxSourceFolderStyle}" Foreground="White" Cursor="Hand"/>
         <StackPanel Name="BoxTrackBack" Margin="15,100,15,42" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}" Orientation="Vertical" Width="488" Height="145">
-            <ListView Name="ListViewForLeftFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForLeftFolder}" Cursor="Hand" Visibility="Visible" ItemContainerStyle="{StaticResource TrackBackItemStyle}" SelectionChanged="ListViewForLeftFolder_SelectionChanged">
+            <ListView Name="ListViewForLeftFolder" Margin="5, 3" MaxHeight="140" Foreground="White" MinHeight="140" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForLeftFolder}" Cursor="Hand" Visibility="Visible" ItemContainerStyle="{StaticResource TrackBackItemStyle}" SelectionChanged="ListViewForLeftFolder_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
@@ -31,7 +31,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Name="ListViewForRightFolder" Margin="5, 3" MaxHeight="161" Foreground="White" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForRightFolder}" Cursor="Hand" Visibility="Collapsed" ItemContainerStyle="{StaticResource TrackBackItemStyle}" SelectionChanged="ListViewForRightFolder_SelectionChanged">
+            <ListView Name="ListViewForRightFolder" Margin="5, 3" MaxHeight="140" Foreground="White" MinHeight="140" MaxWidth="478" ItemsSource="{Binding TrackBackCollectionForRightFolder}" Cursor="Hand" Visibility="Collapsed" ItemContainerStyle="{StaticResource TrackBackItemStyle}" SelectionChanged="ListViewForRightFolder_SelectionChanged">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding nameItem}">
