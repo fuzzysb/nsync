@@ -67,7 +67,7 @@ namespace nsync
         /// <param name="helpText">This is the string to be displayed</param>
         /// <param name="helpDuration">Duration for which the notification window should be active</param>
         /// <param name="windowPosition">The position where notification window should be displayed</param>
-        public void SetSettings(string helpText, int helpDuration, windowStartPosition windowPosition, string hyperLinkPath)
+        public void SetSettings(string helpText, int helpDuration, windowStartPosition windowPosition, string hyperLinkPath, string hyperLinkText)
         {
             this.hyperLinkPath = hyperLinkPath;
             windowActive = true;
@@ -75,6 +75,14 @@ namespace nsync
             delayTime = helpDuration;
             windowPostionType = windowPosition;
             dispatcherTimer.Start();
+
+            if (hyperLinkText == null)
+                HyperLinkText.Visibility = Visibility.Collapsed;
+            else
+            {
+                HyperLinkText.Visibility = Visibility.Visible;
+                HyperLinkText.Text = hyperLinkText;
+            }
 
             switch (windowPosition)
             {
@@ -104,9 +112,9 @@ namespace nsync
             }
 
             if (this.hyperLinkPath != null)
-                ContentText.Cursor = Cursors.Hand;
+                HyperLinkText.Cursor = Cursors.Hand;
             else
-                ContentText.Cursor = Cursors.Arrow;
+                HyperLinkText.Cursor = Cursors.Arrow;
         }
 
         /// <summary>
@@ -227,7 +235,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ContentText_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void HyperLinkText_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (this.hyperLinkPath != null)
                 System.Diagnostics.Process.Start(@hyperLinkPath);

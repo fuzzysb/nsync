@@ -47,7 +47,7 @@ namespace nsync
                 if (priority == -1)
                 {
                     if ((errorCount == 0) && (conflictCount == 0))                    
-                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null);
+                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
                     else
                     {
                         if (errorCount == 1)
@@ -58,13 +58,13 @@ namespace nsync
                             helpString += " " + conflictCount + " file conflicted.";
                         else if(conflictCount > 1)
                             helpString += " " + conflictCount + " files conflicted.";
-                        helpString += "\nClick here to view Log.";
-                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath);
+                        string extraHelpString = "Click here to view Log.";
+                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath, extraHelpString);
                     }
                 }
                 else
                 {
-                    windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null);
+                    windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
                 }
 
                 if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)

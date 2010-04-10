@@ -48,8 +48,9 @@
     <Border Background="Black" CornerRadius="20" BorderBrush="{StaticResource DarkBorderBrush}" BorderThickness="2,2,2,2" MouseRightButtonDown="windowHelper_MouseRightButtonDown" Opacity="0.8">
         <Grid>
             <Button Name="ButtonClose" ToolTip="Close" Template="{StaticResource ButtonCloseTemplate}" Width="15" Height="15" Click="ButtonClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="8,5"></Button>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <TextBlock Name="ContentText" Foreground="White" FontFamily="Verdana" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="350" TextWrapping="Wrap" TextAlignment="Center" Padding="8" MouseDown="ContentText_MouseRightButtonDown"></TextBlock>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Name="ContentText" Foreground="White" FontFamily="Verdana" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="350" Width="310" TextWrapping="Wrap" TextAlignment="Center" Padding="8"></TextBlock>
+                    <TextBlock Name="HyperLinkText" Foreground="SkyBlue" FontFamily="Verdana" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="350" Width="350" TextWrapping="Wrap" TextAlignment="Center" Padding="8" MouseDown="HyperLinkText_MouseDown"></TextBlock>
                 </StackPanel>
     </Grid>
     </Border>

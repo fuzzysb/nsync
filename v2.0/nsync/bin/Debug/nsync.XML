@@ -1717,7 +1717,7 @@
             Constructor for HelperWindow class
             </summary>
         </member>
-        <member name="M:nsync.HelperWindow.SetSettings(System.String,System.Int32,nsync.HelperWindow.windowStartPosition,System.String)">
+        <member name="M:nsync.HelperWindow.SetSettings(System.String,System.Int32,nsync.HelperWindow.windowStartPosition,System.String,System.String)">
             <summary>
             Set the settings for notification window
             </summary>
@@ -1769,7 +1769,7 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HelperWindow.ContentText_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+        <member name="M:nsync.HelperWindow.HyperLinkText_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <summary>
             This method is called when the the helperWindow textBlock is clicked
             </summary>
