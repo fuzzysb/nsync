@@ -148,7 +148,7 @@
     <value>pack://siteoforigin:,,,/Resources/Icons/folder_missing.png</value>
   </data>
   <data name="folderOnRemovableDiskRestored" xml:space="preserve">
-    <value>Your last synced folder pair on this removeable disk is restored. If you want, you can ask nsync to forget your settings.</value>
+    <value>Your last synced folder pair on this removeable disk is restored.</value>
   </data>
   <data name="homeToolTip" xml:space="preserve">
     <value>Home</value>
@@ -242,6 +242,42 @@
   </data>
   <data name="trackBackToolTip" xml:space="preserve">
     <value>TrackBack</value>
+  </data>
+  <data name="folderIOException" xml:space="preserve">
+    <value>nsync is having problems accessing the folder. Please close any applications that are using this folder or free up more disk space.</value>
+  </data>
+  <data name="folderNotExists" xml:space="preserve">
+    <value>The folder has file(s)/folder(s) that do not exist.</value>
+  </data>
+  <data name="folderPathTooLong" xml:space="preserve">
+    <value>The folder has file(s)/folder(s) with path names exceeding the limit.</value>
+  </data>
+  <data name="folderRestrictedAccess" xml:space="preserve">
+    <value>The folder has file(s)/folder(s) with restricted file security permissions.</value>
+  </data>
+  <data name="leftFolderIOException" xml:space="preserve">
+    <value>nsync is having problems accessing the left folder. Please close any applications that are using this folder or free up more disk space.</value>
+  </data>
+  <data name="leftFolderNotExistsForTrackBack" xml:space="preserve">
+    <value>The left folder has file(s)/folder(s) that do not exist.</value>
+  </data>
+  <data name="leftFolderPathTooLong" xml:space="preserve">
+    <value>The left folder has file(s)/folder(s) with path names exceeding the limit.</value>
+  </data>
+  <data name="leftFolderRestrictedAccess" xml:space="preserve">
+    <value>The left folder has file(s)/folder(s) with restricted file security permissions.</value>
+  </data>
+  <data name="rightFolderIOException" xml:space="preserve">
+    <value>nsync is having problems accessing the right folder. Please close any applications that are using this folder or free up more disk space.</value>
+  </data>
+  <data name="rightFolderNotExistsForTrackBack" xml:space="preserve">
+    <value>The right folder has file(s)/folder(s) that do not exist.</value>
+  </data>
+  <data name="rightFolderPathTooLong" xml:space="preserve">
+    <value>The right folder has file(s)/folder(s) with path names exceeding the limit.</value>
+  </data>
+  <data name="rightFolderRestrictedAccess" xml:space="preserve">
+    <value>The right folder has file(s)/folder(s) with restricted file security permissions.</value>
   </data>
   <data name="excludingFileTypesException" xml:space="preserve">
     <value>Specified argument was out of the range of valid values.</value>

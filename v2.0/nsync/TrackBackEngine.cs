@@ -208,24 +208,64 @@ namespace nsync
         /// <summary>
         /// Stores a copy of the sync folder pair in a subfolder located inside the "_nsync_trackback" folder
         /// </summary>
-        private bool BackupFolders()
+        private int BackupFolders()
         {
             try
             {
                 leftFolder.BackupFolder();
-                rightFolder.BackupFolder();
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                return 1;
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                return 2;
+            }
+            catch (PathTooLongException e)
+            {
+                return 3;
+            }
+            catch (IOException e)
+            {
+                return 4;
             }
             catch (Exception e)
             {
-                return false;
+                return 5;
             }
-            return true;
+
+            try
+            {
+                rightFolder.BackupFolder();
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                return -1;
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                return -2;
+            }
+            catch (PathTooLongException e)
+            {
+                return -3;
+            }
+            catch (IOException e)
+            {
+                return -4;
+            }
+            catch (Exception e)
+            {
+                return 5;
+            }
+            return 0;
         }
 
         /// <summary>
         /// Restores the folder back to its selected version
         /// </summary>
-        private bool RestoreFolder(string folderPath, string dateTime)
+        private int RestoreFolder(string folderPath, string dateTime)
 		{
 		    try 
 	        {	        
@@ -234,13 +274,29 @@ namespace nsync
 			    else if (folderPath == rightFolderPath && rightFolder.isTrackBackXMLValid())
 			        rightFolder.RestoreFolder(dateTime);
 			    else
-			        return false;
-	        }
-	        catch (Exception e)
-		    {
-                return false;
+                    return 6;
             }
-            return true;
+            catch (UnauthorizedAccessException e)
+            {
+                return 1;
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                return 2;
+            }
+            catch (PathTooLongException e)
+            {
+                return 3;
+            }
+            catch (IOException e)
+            {
+                return 4;
+            }
+            catch (Exception e)
+            {
+                return 5;
+            }
+            return 0;
 		}
         #endregion
     }

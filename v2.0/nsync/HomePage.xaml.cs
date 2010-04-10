@@ -1395,10 +1395,39 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForTrackBackBackup_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (!(bool) e.Result)
+            if ((int) e.Result != 0)
             {
                 EnableInterface(true);
-                helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                switch ((int) e.Result)
+                {
+                    case 1:
+                        helper.Show(nsync.Properties.Resources.leftFolderRestrictedAccess, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case -1:
+                        helper.Show(nsync.Properties.Resources.rightFolderRestrictedAccess, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 2:
+                        helper.Show(nsync.Properties.Resources.leftFolderNotExistsForTrackBack, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case -2:
+                        helper.Show(nsync.Properties.Resources.rightFolderNotExistsForTrackBack, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 3:
+                        helper.Show(nsync.Properties.Resources.leftFolderPathTooLong, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case -3:
+                        helper.Show(nsync.Properties.Resources.rightFolderPathTooLong, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 4:
+                        helper.Show(nsync.Properties.Resources.leftFolderIOException, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case -4:
+                        helper.Show(nsync.Properties.Resources.rightFolderIOException, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    default:
+                        helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                }
                 
                 // Unsuccessful sync jobs folders will be saved in MRU
                 // This is to give users convenience so that

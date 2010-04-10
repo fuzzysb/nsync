@@ -377,7 +377,7 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForTrackBackRestore_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if ((bool) e.Result)
+            if ((int) e.Result == 0)
             {
                 EnableInterface(true);
                 LabelProgress.Visibility = Visibility.Visible;
@@ -389,7 +389,24 @@ namespace nsync
                 EnableInterface(true);
                 LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
-                helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                switch ((int) e.Result)
+                {
+                    case 1:
+                        helper.Show(nsync.Properties.Resources.folderRestrictedAccess, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 2:
+                        helper.Show(nsync.Properties.Resources.folderNotExists, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 3:
+                        helper.Show(nsync.Properties.Resources.folderPathTooLong, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 4:
+                        helper.Show(nsync.Properties.Resources.folderIOException, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    default:
+                        helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;                    
+                }
             }
         }
 
