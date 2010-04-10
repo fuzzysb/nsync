@@ -213,67 +213,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// Creates a folder in the root path and updates leftpath/rightpath, if required
-        /// </summary>
-        /// <returns>Returns a boolean to indicate if a folder was created</returns>
-        public bool CreateFolderForRootPath()
-        {
-            if (IsRequiredToCreateFolder())
-            {
-                int leftOrRight; // 0 for left, 1 for right
-
-                // Find the directory path to create the new folder
-                string rootPath, sourcePath;
-                if (intelligentManager.IsPathRoot(leftPath))
-                {
-                    leftOrRight = 0;
-                    rootPath = leftPath;
-                    sourcePath = rightPath;
-                }
-                else
-                {
-                    leftOrRight = 1;
-                    rootPath = rightPath;
-                    sourcePath = leftPath;
-                }
-
-                // If there are already files on the rootpath,
-                // we assume that user is okay with having files flooding their rootpath
-                // so we won't be creating a folder for them
-                if (intelligentManager.IsThereFilesInRootPath(rootPath))
-                {
-                    return false;
-                }
-
-                rootPath += sourcePath.Substring(sourcePath.LastIndexOf("\\") + 1);
-
-                // Create the folder in the root path
-                try
-                {
-                    Directory.CreateDirectory(rootPath);
-                }
-                catch
-                {
-                    // If there is problem creating the folder, then forget it
-                    return false;
-                }
-
-                // update the folder path in the synchronizer
-                if (leftOrRight == 0) // left
-                    leftPath = rootPath;
-                else // right
-                    rightPath = rootPath;
-
-                return true;
-            }
-            else
-            {
-                // do nothing
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Gets backgroundWorkerForPreSync to do presync preparations
         /// </summary>
         public void PreSync()
