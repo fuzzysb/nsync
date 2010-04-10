@@ -176,6 +176,26 @@ namespace nsync
             {
                 MessageBox.Show(exceptionError.Message);
             }
+
+            FixWindowPosition();
+        }
+
+        /// <summary>
+        /// Fix the window postition so it's not out of the screen
+        /// </summary>
+        private void FixWindowPosition()
+        {
+            if (this.Left < 0)
+                this.Left = 0;
+
+            if (this.Top < 0)
+                this.Top = 0;
+
+            if (this.Left > SystemParameters.PrimaryScreenWidth - (double)GetValue(WidthProperty))
+                this.Left = SystemParameters.PrimaryScreenWidth - (double)GetValue(WidthProperty);
+
+            if (this.Top > SystemParameters.PrimaryScreenHeight - (double)GetValue(HeightProperty))
+                this.Top = SystemParameters.PrimaryScreenHeight - (double)GetValue(HeightProperty);   
         }
 
         /// <summary>
