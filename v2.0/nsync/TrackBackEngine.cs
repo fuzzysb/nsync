@@ -151,12 +151,21 @@ namespace nsync
         }
 
         /// <summary>
-        /// Checks that there is enough disk space for TrackBack to run smoothly
+        /// Checks that there is enough disk space in left folder for TrackBack to run smoothly
         /// </summary>
         /// <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
-        public bool hasEnoughDiskSpace()
+        public bool hasEnoughDiskSpaceInLeftFolder()
         {
-            return leftFolder.hasEnoughDiskSpace() && rightFolder.hasEnoughDiskSpace();
+            return leftFolder.hasEnoughDiskSpace();
+        }
+
+        /// <summary>
+        /// Checks that there is enough disk space in right folder for TrackBack to run smoothly
+        /// </summary>
+        /// <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
+        public bool hasEnoughDiskSpaceInRightFolder()
+        {
+            return rightFolder.hasEnoughDiskSpace();
         }
 
         /// <summary>
@@ -214,23 +223,23 @@ namespace nsync
             {
                 leftFolder.BackupFolder();
             }
-            catch (UnauthorizedAccessException e)
+            catch (UnauthorizedAccessException)
             {
                 return 1;
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 return 2;
             }
-            catch (PathTooLongException e)
+            catch (PathTooLongException)
             {
                 return 3;
             }
-            catch (IOException e)
+            catch (IOException)
             {
                 return 4;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return 5;
             }
@@ -239,23 +248,23 @@ namespace nsync
             {
                 rightFolder.BackupFolder();
             }
-            catch (UnauthorizedAccessException e)
+            catch (UnauthorizedAccessException)
             {
                 return -1;
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 return -2;
             }
-            catch (PathTooLongException e)
+            catch (PathTooLongException)
             {
                 return -3;
             }
-            catch (IOException e)
+            catch (IOException)
             {
                 return -4;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return 5;
             }
@@ -276,23 +285,23 @@ namespace nsync
 			    else
                     return 6;
             }
-            catch (UnauthorizedAccessException e)
+            catch (UnauthorizedAccessException)
             {
                 return 1;
             }
-            catch (DirectoryNotFoundException e)
+            catch (DirectoryNotFoundException)
             {
                 return 2;
             }
-            catch (PathTooLongException e)
+            catch (PathTooLongException)
             {
                 return 3;
             }
-            catch (IOException e)
+            catch (IOException)
             {
                 return 4;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return 5;
             }

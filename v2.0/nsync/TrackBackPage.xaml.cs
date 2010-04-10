@@ -7,6 +7,7 @@ using System.Xml;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Runtime.InteropServices;
+using System.IO;
 
 
 namespace nsync
@@ -47,15 +48,24 @@ namespace nsync
 
             settingsManager = Settings.Instance;
 
-            LoadTrackBackXML();
-
             helper = new HelperManager(mainWindow);
 
-            trackback = new TrackBackEngine();
-            trackback.LeftFolderPath = actualLeftFolderPath;
-            trackback.RightFolderPath = actualRightFolderPath;
+            if (!File.Exists(SETTINGS_FILE_NAME) || settingsManager.LoadFolderPaths()[0] == "")
+            {
+                ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+                LabelNoChanges.Visibility = Visibility.Visible;
+                return;
+            }
+            else
+            {
+                LoadTrackBackXML();
 
-            trackback.backgroundWorkerForTrackBackRestore.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackRestore_RunWorkerCompleted);
+                trackback = new TrackBackEngine();
+                trackback.LeftFolderPath = actualLeftFolderPath;
+                trackback.RightFolderPath = actualRightFolderPath;
+
+                trackback.backgroundWorkerForTrackBackRestore.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackRestore_RunWorkerCompleted);
+            }
         }
         #endregion
 
@@ -145,17 +155,27 @@ namespace nsync
                 LabelDisabled.Visibility = Visibility.Visible;
             }
 
-            LoadSourceFolders();
+            LabelProgress.Visibility = Visibility.Hidden;
             ButtonRestore.Visibility = Visibility.Hidden;
 
-            if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
-                LoadTrackBackEntriesForLeftFolder();
-            else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
-                LoadTrackBackEntriesForRightFolder();
-            
+            if (!File.Exists(SETTINGS_FILE_NAME) || settingsManager.LoadFolderPaths()[0] == "")
+            {
+                ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+                LabelNoChanges.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                LoadSourceFolders();
+
+                if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+                    LoadTrackBackEntriesForLeftFolder();
+                else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+                    LoadTrackBackEntriesForRightFolder();
+
                 //Sort left and right lists according to date/time
                 SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
                 SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
+            }
         }
 
         /// <summary>
@@ -269,7 +289,8 @@ namespace nsync
                 else
                     LabelNoChanges.Visibility = Visibility.Hidden;
             }
-            
+
+            LabelProgress.Visibility = Visibility.Hidden;
             ButtonRestore.Visibility = Visibility.Hidden;
         }
         /// <summary>
@@ -279,14 +300,27 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonRestore_Click(object sender, RoutedEventArgs e)
         {
-            EnableInterface(false);
-            LabelProgress.Visibility = Visibility.Visible;
-            LabelProgress.Content = MESSAGE_RESTORING_FOLDERS;
+            if (!trackback.hasEnoughDiskSpaceInLeftFolder() || !trackback.hasEnoughDiskSpaceInRightFolder())
+            {
+                EnableInterface(true);
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath && !trackback.hasEnoughDiskSpaceInLeftFolder())
+                    helper.Show(nsync.Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath && !trackback.hasEnoughDiskSpaceInRightFolder())
+                    helper.Show(nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+            }
+            else
+            {
+                EnableInterface(false);
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_RESTORING_FOLDERS;
 
-            if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
-                trackback.StartRestore(actualLeftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
-            else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
-                trackback.StartRestore(actualRightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
+                if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+                    trackback.StartRestore(actualLeftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
+                else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+                    trackback.StartRestore(actualRightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
+            }
         }
 
         /// <summary>
@@ -377,18 +411,18 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForTrackBackRestore_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            EnableInterface(true);
+            LabelProgress.Visibility = Visibility.Visible;
+
             if ((int) e.Result == 0)
             {
-                EnableInterface(true);
-                LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_RESTORE_COMPLETED;
-                helper.Show(nsync.Properties.Resources.restoreComplete, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(nsync.Properties.Resources.restoreComplete, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
             }
             else
             {
-                EnableInterface(true);
-                LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                
                 switch ((int) e.Result)
                 {
                     case 1:
@@ -435,11 +469,13 @@ namespace nsync
 
         private void ListViewForLeftFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            LabelProgress.Visibility = Visibility.Hidden;
             ButtonRestore.Visibility = Visibility.Visible;
         }
 
         private void ListViewForRightFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            LabelProgress.Visibility = Visibility.Hidden;
             ButtonRestore.Visibility = Visibility.Visible;
         }
         #endregion

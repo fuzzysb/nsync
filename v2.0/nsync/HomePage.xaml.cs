@@ -51,6 +51,7 @@ namespace nsync
         private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
         private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
         private string MESSAGE_SYNC_TERMINATED = "Sync terminated";
+        private string MESSAGE_BACKING_UP_FOLDERS = "Backing up folders...";
 
         private int HELPER_WINDOW_HIGH_PRIORITY = 0;
         private int HELPER_WINDOW_LOW_PRIORITY = 1;
@@ -1281,18 +1282,21 @@ namespace nsync
                 if (e.Cancelled)
                 {
                     helper.Show(nsync.Properties.Resources.syncTerminated, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                    LabelProgress.Content = MESSAGE_SYNC_TERMINATED; 
+                    LabelProgress.Content = MESSAGE_SYNC_TERMINATED;
+                    ButtonSync.Visibility = Visibility.Visible;
+                    ButtonPreview.Visibility = Visibility.Visible;
                 }
                 // This condition is met when the background worker encounters an error
                 else if (e.Error != null)
                 {
                     helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                    LabelProgress.Content = MESSAGE_ERROR_DETECTED; 
+                    LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                    ButtonSync.Visibility = Visibility.Hidden;
+                    ButtonPreview.Visibility = Visibility.Hidden;
                 }
                 LabelProgressPercent.Visibility = Visibility.Hidden;
                 ImageTeam14Over.OpacityMask = blankOpacityMask;
-                ButtonSync.Visibility = Visibility.Hidden;
-                ButtonPreview.Visibility = Visibility.Hidden;
+                
                 IsFolderExist();
                 return;
             }
@@ -1505,11 +1509,19 @@ namespace nsync
 
                 EnableInterface(false);
 
-                LabelProgress.Content = "Backing up folders...";
-                // LabelProgressPercent.Visibility = Visibility.Visible;
-                // LabelProgressPercent.Content = "0 %";
+                LabelProgress.Content = MESSAGE_BACKING_UP_FOLDERS;
 
-                trackback.StartBackup();
+                if (trackback.hasEnoughDiskSpaceInLeftFolder() && trackback.hasEnoughDiskSpaceInRightFolder())
+                    trackback.StartBackup();
+                else
+                {
+                    EnableInterface(true);
+                    LabelProgress.Visibility = Visibility.Visible;
+                    LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                    helper.Show((!trackback.hasEnoughDiskSpaceInLeftFolder()) ? nsync.Properties.Resources.leftFolderInsufficientDiskSpace :
+                        nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    return;
+                }
             }
             else
             {
@@ -1565,7 +1577,7 @@ namespace nsync
                 }
                 else
                 {
-                    helper.Show("Please try again!", HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
             }
             else

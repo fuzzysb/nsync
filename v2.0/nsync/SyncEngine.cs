@@ -393,7 +393,7 @@ namespace nsync
             }
             catch (SyncAbortedException e)
             {
-                throw new SyncAbortedException();
+                throw e;
             }
             finally
             {
