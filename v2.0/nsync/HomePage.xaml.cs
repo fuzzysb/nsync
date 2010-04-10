@@ -134,6 +134,16 @@ namespace nsync
         }
 
         /// <summary>
+        /// Update tooltips
+        /// </summary>
+        private void RefreshToolTips()
+        {
+            //update tooltips
+            LeftText.ToolTip = actualLeftPath;
+            RightText.ToolTip = actualRightPath;
+        }
+
+        /// <summary>
         /// This method is called when HomePage is unloaded
         /// </summary>
         /// <param name="sender"></param>
@@ -653,6 +663,7 @@ namespace nsync
         private bool ShowSync()
         {
             //helper.HideWindow();
+            RefreshToolTips();
 
             LabelProgress.Visibility = Visibility.Hidden;
             LabelProgressPercent.Visibility = Visibility.Hidden;
