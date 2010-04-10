@@ -271,7 +271,14 @@ namespace nsync
                 //SQ synchronizer.LeftPath = LeftText.Text;
                 synchronizer.LeftPath = actualLeftPath; //SQ
 
-                LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                try
+                {
+                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 //SQ ShowRemovableDrives(LeftText.Text, "left");
                 ShowRemovableDrives(actualLeftPath, "left"); //SQ
             }
@@ -318,7 +325,14 @@ namespace nsync
                 //SQ synchronizer.RightPath = RightText.Text;
                 synchronizer.RightPath = actualRightPath; //SQ
 
-                RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                try
+                {
+                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 //SQ ShowRemovableDrives(RightText.Text, "right");
                 ShowRemovableDrives(actualRightPath, "right");
             }
@@ -584,11 +598,25 @@ namespace nsync
             {
                 if (leftOrRight == "left" || leftOrRight == "Left")
                 {
-                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_REMOVABLE_DRIVE));
+                    try
+                    {
+                        LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_REMOVABLE_DRIVE));
+                    }
+                    catch (Exception exceptionError)
+                    {
+                        helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    }
                 }
                 else if (leftOrRight == "right" || leftOrRight == "Right")
                 {
-                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_REMOVABLE_DRIVE));
+                    try
+                    {
+                        RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_REMOVABLE_DRIVE));
+                    }
+                    catch (Exception exceptionError)
+                    {
+                        helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    }
                 }
             }
         }
@@ -605,26 +633,54 @@ namespace nsync
             if (!rightFolderExists && !leftFolderExists)
             {
                 helper.Show(nsync.Properties.Resources.bothFoldersNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                LeftIcon.Source = RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                try
+                {
+                    LeftIcon.Source = RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 return false;
             }
             else if (!rightFolderExists)
             {
                 helper.Show(nsync.Properties.Resources.rightFolderNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
-                LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                try
+                {
+                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 return false;
             }
             else if (!leftFolderExists)
             {
                 helper.Show(nsync.Properties.Resources.leftFolderNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                try
+                {
+                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 return false;
             }
             else
             {
-                RightIcon.Source = LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                try
+                {
+                    RightIcon.Source = LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 return true;
             }
         }
@@ -672,13 +728,27 @@ namespace nsync
             // Updates the folder icons accordingly first, if the folder path exists in the first place
             if (hasLeftPath)
             {
-                LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                try
+                {
+                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 //SQ ShowRemovableDrives(LeftText.Text, "left");
                 ShowRemovableDrives(actualLeftPath, "left"); //SQ
             }
             if (hasRightPath)
             {
-                RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                try
+                {
+                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 //SQ ShowRemovableDrives(RightText.Text, "right");
                 ShowRemovableDrives(actualRightPath, "right"); //SQ
             }
