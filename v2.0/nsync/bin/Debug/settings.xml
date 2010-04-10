@@ -38,7 +38,7 @@
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
     <ExcludeWindowStatus>True</ExcludeWindowStatus>
-    <TrackBackStatus>False</TrackBackStatus>
+    <TrackBackStatus>True</TrackBackStatus>
   </SETTINGS>
   <REMOVEABLEDISK />
 </nsync>

@@ -25,6 +25,7 @@ namespace nsync
         private TrackBackEngine trackback;
         private HelperManager helper;
         private Window mainWindow = Application.Current.MainWindow;
+        private Settings settingsManager;
 
         private readonly string SETTINGS_FILE_NAME = "settings.xml";
         private readonly string PATH_MRU_LEFT_FOLDER = "/nsync/MRU/left1";
@@ -43,6 +44,8 @@ namespace nsync
         public TrackBackPage()
         {
             InitializeComponent();
+
+            settingsManager = Settings.Instance;
 
             LoadTrackBackXML();
 
@@ -135,6 +138,13 @@ namespace nsync
         /// <param name="e"></param>
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (!settingsManager.GetTrackBackStatus())
+            {
+                GridTrackBack.IsEnabled = false;
+                GridTrackBack.Opacity = 0.5;
+                LabelDisabled.Visibility = Visibility.Visible;
+            }
+
             LoadSourceFolders();
             ButtonRestore.Visibility = Visibility.Hidden;
 
@@ -146,6 +156,8 @@ namespace nsync
             //Sort left and right lists according to date/time
             SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
             SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
+
+            
         }
 
         /// <summary>
