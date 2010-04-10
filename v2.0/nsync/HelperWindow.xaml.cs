@@ -111,7 +111,7 @@ namespace nsync
                     break;
             }
 
-            if (this.hyperLinkPath != null)
+            if (this.HyperLinkText!=null)
                 HyperLinkText.Cursor = Cursors.Hand;
             else
                 HyperLinkText.Cursor = Cursors.Arrow;
@@ -231,6 +231,11 @@ namespace nsync
         }
 
         /// <summary>
+        /// event when the mouse is down on the hypertext portion of the helper window
+        /// </summary>
+        public event MouseButtonEventHandler HyperTextMouseDown;
+
+        /// <summary>
         /// This method is called when the the helperWindow textBlock is clicked
         /// </summary>
         /// <param name="sender"></param>
@@ -239,6 +244,11 @@ namespace nsync
         {
             if (this.hyperLinkPath != null)
                 System.Diagnostics.Process.Start(@hyperLinkPath);
+            else if (this.HyperLinkText != null)
+            {
+                HyperTextMouseDown(sender, e);
+                CloseWindow();
+            }
         }
         #endregion
     }

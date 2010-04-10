@@ -1662,6 +1662,13 @@
             <param name="priority">The piority of the window to be displayed</param>
             <param name="windowPosition">The position for which the notification window should be placed</param>
         </member>
+        <member name="M:nsync.HelperManager.windowHelper_HyperTextMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            event handler for the mouse down
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:nsync.HelperManager.CloseWindow">
             <summary>
             Closes the notification window
@@ -1689,6 +1696,11 @@
             </summary>
             <returns>The result is returned as a boolean</returns>
         </member>
+        <member name="E:nsync.HelperManager.HyperTextMouseDown">
+            <summary>
+            event when the mouse is down on the hypertext portion of the helper window
+            </summary>
+        </member>
         <member name="P:nsync.HelperManager.ErrorCount">
             <summary>
             Setter and Getter method for errorCount
@@ -1700,6 +1712,11 @@
             </summary>
         </member>
         <member name="P:nsync.HelperManager.LogPath">
+            <summary>
+            Setter and Getter method for getting log path
+            </summary>
+        </member>
+        <member name="P:nsync.HelperManager.IsRevertPathDialog">
             <summary>
             Setter and Getter method for getting log path
             </summary>
@@ -1784,6 +1801,11 @@
         <member name="P:nsync.HelperWindow.WindowActiveState">
             <summary>
             Get the state of the notification window
+            </summary>
+        </member>
+        <member name="E:nsync.HelperWindow.HyperTextMouseDown">
+            <summary>
+            event when the mouse is down on the hypertext portion of the helper window
             </summary>
         </member>
         <member name="T:nsync.HelperWindow.windowStartPosition">

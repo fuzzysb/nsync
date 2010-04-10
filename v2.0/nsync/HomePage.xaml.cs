@@ -1124,10 +1124,8 @@ namespace nsync
             }
         }
 
-        // EUGENE: this is the method to call to revert back to the original folder pair
         private void RevertBackToOldFolderPair()
         {
-            // EUGENE, MAYBE YOU WANT TO DISPLAY A MESSAGE TO USER THAT PATH WAS REVERETED BACK
             actualLeftPath = oldLeftPath;
             actualRightPath = oldRightPath;
             LeftText.Text = ShortenPath(actualLeftPath, 90);
@@ -1173,9 +1171,17 @@ namespace nsync
             else
             {
                 if (leftOrRight == "left" || leftOrRight == "Left")
+                {
+                    helper.IsRevertPathDialog = true;
+                    helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                     helper.Show(nsync.Properties.Resources.modifiedRightPath, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 else if (leftOrRight == "right" || leftOrRight == "Right")
+                {
+                    helper.IsRevertPathDialog = true;
+                    helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                     helper.Show(nsync.Properties.Resources.modifiedLeftPath, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 
                 actualLeftPath = newFolderPaths[0];
                 actualRightPath = newFolderPaths[1];
@@ -1184,6 +1190,11 @@ namespace nsync
                 synchronizer.LeftPath = actualLeftPath;
                 synchronizer.RightPath = actualRightPath;
             }
+        }
+
+        void helper_HyperTextMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            RevertBackToOldFolderPair();
         }
 
         /// <summary>

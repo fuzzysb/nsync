@@ -3,6 +3,7 @@ using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 
 namespace nsync
 {
@@ -18,6 +19,7 @@ namespace nsync
         private int errorCount;
         private int conflictCount;
         private string logPath;
+        private bool isRevertPathDialog = false;
         #endregion
 
         #region Public Methods
@@ -64,7 +66,14 @@ namespace nsync
                 }
                 else
                 {
-                    windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
+                    if (isRevertPathDialog)
+                    {
+                        string extraHelpString = "Click here to revert changes.";
+                        windowHelper.HyperTextMouseDown += new System.Windows.Input.MouseButtonEventHandler(windowHelper_HyperTextMouseDown);
+                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, extraHelpString);
+                    }
+                    else
+                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
                 }
 
                 if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)
@@ -73,6 +82,21 @@ namespace nsync
                     windowHelper.FormFade.Begin();
                 }
             }
+        }
+
+        /// <summary>
+        /// event when the mouse is down on the hypertext portion of the helper window
+        /// </summary>
+        public event MouseButtonEventHandler HyperTextMouseDown;
+
+        /// <summary>
+        /// event handler for the mouse down
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void windowHelper_HyperTextMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            HyperTextMouseDown(sender,e);
         }
 
         /// <summary>
@@ -124,6 +148,15 @@ namespace nsync
         {
             get { return logPath; }
             set { logPath = value; }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for getting log path
+        /// </summary>
+        public bool IsRevertPathDialog
+        {
+            get { return isRevertPathDialog; }
+            set { isRevertPathDialog = value; }
         }
         #endregion
 
