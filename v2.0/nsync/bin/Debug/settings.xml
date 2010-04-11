@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Seah Shao Qi\Desktop\FolderB</left1>
-    <right1>C:\Users\Seah Shao Qi\Desktop\FolderB</right1>
+    <left1>C:\FolderA</left1>
+    <right1>C:\FolderB</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,17 +14,24 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>C:\Users\Seah Shao Qi\Desktop\FolderA</left2>
-    <right2>C:\Users\Seah Shao Qi\Desktop\FolderB</right2>
+    <left2>C:\FolderA</left2>
+    <right2>C:\FolderC</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
       </excludeFileTypes>
       <excludeFileNames>
-        <size>0</size>
+        <size>4</size>
+        <fileName0>4.txt</fileName0>
+        <fileName1>6.txt</fileName1>
+        <fileName2>fgf173.exe</fileName2>
+        <fileName3>midterm-marks.xls</fileName3>
       </excludeFileNames>
       <excludeFolders>
-        <size>0</size>
+        <size>3</size>
+        <folder0>C:\FolderA\2</folder0>
+        <folder1>C:\FolderA\4</folder1>
+        <folder2>C:\FolderA\_nsync_trackback</folder2>
       </excludeFolders>
     </filter2>
     <left3>
@@ -75,8 +82,8 @@
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
-    <ExcludeWindowStatus>false</ExcludeWindowStatus>
-    <TrackBackStatus>false</TrackBackStatus>
+    <ExcludeWindowStatus>True</ExcludeWindowStatus>
+    <TrackBackStatus>False</TrackBackStatus>
     <PreviewFilterType>both</PreviewFilterType>
   </SETTINGS>
   <REMOVEABLEDISK />

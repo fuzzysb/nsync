@@ -663,6 +663,9 @@ namespace nsync
                                 outcome = 6; // both folder not exist
                         }
 
+                        deleteAllMetaData(leftPath);
+                        deleteAllMetaData(rightPath);
+
                     } // end if to check left metadata
                     else
                     {
@@ -906,6 +909,23 @@ namespace nsync
             path[1] = mruNode["right1"].InnerText;
 
             return path;
+        }
+
+        /// <summary>
+        /// Recursive method to delete metaData
+        /// </summary>
+        private void deleteAllMetaData(string path)
+        {
+            string[] filePaths = Directory.GetFiles(path, "filesync.metadata", SearchOption.AllDirectories);
+
+            foreach (string foundPath in filePaths)
+            {
+                if (File.Exists(foundPath))
+                {
+                    File.SetAttributes(foundPath, FileAttributes.Normal);
+                    File.Delete(foundPath);
+                }
+            }
         }
         #endregion
 
