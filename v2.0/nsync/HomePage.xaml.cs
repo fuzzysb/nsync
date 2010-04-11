@@ -73,9 +73,10 @@ namespace nsync
         {
             InitializeComponent();
 
-            //Initialise Helper
+            // Initialise Helper
             helper = new HelperManager(mainWindow);
 
+            // Get the settings class instance
             settingsManager = Settings.Instance;
             
             mainWindow.Closing += new CancelEventHandler(mainWindow_Closing);
@@ -130,7 +131,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void mainWindow_LocationChanged(object sender, EventArgs e)
+        private void mainWindow_LocationChanged(object sender, EventArgs e)
         {
             helper.UpdateMove(); 
         }
@@ -161,7 +162,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void mainWindow_Closing(object sender, CancelEventArgs e)
+        private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
             SaveFolderPaths();
         }
@@ -169,7 +170,7 @@ namespace nsync
 
         #region Private Methods
         /// <summary>
-        /// This method resolves the shortcut
+        /// This method resolves a shortcut link
         /// </summary>
         /// <param name="path">This parameter is a string which is the shortcut path to be resolved</param>
         /// <returns>Returns a string which contains the path of the resolved shortcut</returns>
@@ -270,15 +271,6 @@ namespace nsync
 
                 synchronizer.LeftPath = actualLeftPath;
 
-                try
-                {
-                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-
                 DisplayCorrectIcons();
             }
         }
@@ -320,15 +312,6 @@ namespace nsync
 
                 synchronizer.RightPath = actualRightPath;
 
-                try
-                {
-                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-
                 DisplayCorrectIcons();
             }
         }
@@ -342,7 +325,6 @@ namespace nsync
         {
             actualRightPath = previousTextRight;
             RightText.Text = ShortenPath(actualRightPath, 90);
-
             synchronizer.RightPath = actualRightPath;
             RightIcon.Source = previousImageRight;
 
@@ -377,6 +359,7 @@ namespace nsync
                 currentPath = actualLeftPath;
                 SaveCurrentFolderPair();
             }
+
             string directoryPath = FolderSelect(currentPath);
             if (directoryPath != actualLeftPath)
             {
@@ -390,10 +373,12 @@ namespace nsync
                     RememberLastRemoveableDiskSync("left");
                 }
             }
+
             DisplayCorrectIcons();
 
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
+
             ShowSync();
         }
 
@@ -423,11 +408,31 @@ namespace nsync
                     RememberLastRemoveableDiskSync("right");
                 }
             }
+
             DisplayCorrectIcons();
 
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
+
             ShowSync();
+        }
+
+        /// <summary>
+        /// Opens the browser dialog for user to choose a folder path
+        /// </summary>
+        /// <param name="originalPath">This parameter provides the starting point for the browser dialog</param>
+        /// <returns>Returns the selected folder path from the browser dialog</returns>
+        private string FolderSelect(string originalPath)
+        {
+            System.Windows.Forms.FolderBrowserDialog FolderDialog = new System.Windows.Forms.FolderBrowserDialog();
+            FolderDialog.Description = nsync.Properties.Resources.folderExplorerText;
+
+            if (originalPath != NULL_STRING)
+            {
+                FolderDialog.SelectedPath = originalPath;
+            }
+            FolderDialog.ShowDialog();
+            return FolderDialog.SelectedPath;
         }
 
         /// <summary>
@@ -465,7 +470,6 @@ namespace nsync
         /// <param name="e"></param>
         private void BarMRULeft_MouseEnter(object sender, MouseEventArgs e)
         {
-            
                 BarMRULeft.Opacity = 0.5;
                 BarMRULeft.Cursor = Cursors.Hand;
                 BarMRURight.Opacity = 0.5;
@@ -486,20 +490,6 @@ namespace nsync
         }
 
         /// <summary>
-        /// This method is called when the mouse pointer leaves rightbox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void BoxRight_MouseLeave(object sender, MouseEventArgs e)
-        {
-            if (!RightListBox.IsVisible)
-            {
-                BarMRURight.Visibility = Visibility.Hidden;
-                BarMRULeft.Visibility = Visibility.Hidden;
-            }
-        }
-
-        /// <summary>
         /// This method is called when the mouse pointer enters rightbox
         /// </summary>
         /// <param name="sender"></param>
@@ -510,6 +500,20 @@ namespace nsync
             {
                 BarMRURight.Visibility = Visibility.Visible;
                 BarMRULeft.Visibility = Visibility.Visible;
+            }
+        }
+
+        /// <summary>
+        /// This method is called when the mouse pointer leaves rightbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BoxRight_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (!RightListBox.IsVisible)
+            {
+                BarMRURight.Visibility = Visibility.Hidden;
+                BarMRULeft.Visibility = Visibility.Hidden;
             }
         }
 
@@ -556,7 +560,6 @@ namespace nsync
                 RightListBox.Visibility = Visibility.Visible;
                 LeftListBox.Visibility = Visibility.Visible;
             }
-
         }
 
         /// <summary>
@@ -621,61 +624,25 @@ namespace nsync
             bool rightFolderExists = synchronizer.IsFolderExists("right");
             bool leftFolderExists = synchronizer.IsFolderExists("left");
 
+            DisplayCorrectIcons();
+
             if (!rightFolderExists && !leftFolderExists)
             {
                 helper.Show(nsync.Properties.Resources.bothFoldersNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                try
-                {
-                    LeftIcon.Source = RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                DisplayCorrectIcons();
                 return false;
             }
             else if (!rightFolderExists)
             {
                 helper.Show(nsync.Properties.Resources.rightFolderNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                try
-                {
-                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
-                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                DisplayCorrectIcons();
                 return false;
             }
             else if (!leftFolderExists)
             {
                 helper.Show(nsync.Properties.Resources.leftFolderNotExist, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                try
-                {
-                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                DisplayCorrectIcons();
                 return false;
             }
             else
             {
-                try
-                {
-                    RightIcon.Source = LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                DisplayCorrectIcons();
                 return true;
             }
         }
@@ -714,42 +681,18 @@ namespace nsync
         /// <returns>Return a boolean to determine if sync button should appear</returns>
         private bool ShowSync()
         {
-            //helper.HideWindow();
             RefreshToolTips();
 
             LabelProgress.Visibility = Visibility.Hidden;
             LabelProgressPercent.Visibility = Visibility.Hidden;
 
-            // Updates the folder icons accordingly first, if the folder path exists in the first place
-            if (hasLeftPath)
-            {
-                try
-                {
-                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                DisplayCorrectIcons();
-            }
-            if (hasRightPath)
-            {
-                try
-                {
-                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                DisplayCorrectIcons();
-            }
+            DisplayCorrectIcons();
 
             // Only if both boxes are filled with folder paths, then we need to check validity
             if (!hasLeftPath || !hasRightPath)
                 return false;
-
+                
+            // Do a series of validity testing to check if the sync + preview buttons should appear
             if (!IsFolderExist() || IsFoldersSimilar() || IsFolderSubfolder())
             {
                 DisplayCorrectIcons();
@@ -769,7 +712,6 @@ namespace nsync
         /// </summary>
         private void SaveFolderPaths()
         {
-            // pass to settingsmanager the 2 current folderpaths, if any
             if (hasLeftPath && hasRightPath)
             {
                 settingsManager.ExcludedData = excludeData;
@@ -799,6 +741,7 @@ namespace nsync
             List<string> folderPaths = settingsManager.LoadFolderPaths();
             int counter;
 
+            // Do nothing if settings.xml does not exists
             if (folderPaths.Count == 0)
                 return;
 
@@ -893,6 +836,7 @@ namespace nsync
         /// Shortens folder path for MRU list
         /// </summary>
         /// <param name="oldPath">The path that is to be shortened is passed in</param>
+        /// <param name="maxLength">The maximum length to allow for the path</param>
         /// <returns>A string containing the new folder path is returned</returns>
         private string ShortenPath(string oldPath, int maxLength)
         {
@@ -954,20 +898,24 @@ namespace nsync
         /// <param name="e"></param>
         private void ListBoxLeft_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            // Update left and right path with the newly selected paths
+            // Left
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)e.Source;
             actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
             LeftText.Text = ShortenPath(actualLeftPath, 90);
-
+            // Right
             int index = Convert.ToInt32(lb.Tag);
             RightListBox.SelectedIndex = index - 1;
             lb = (ListBoxItem)RightListBox.SelectedItem;
             actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
             RightText.Text = ShortenPath(actualRightPath, 90);
 
+            // Update SyncEngine with the newly selected paths
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
 
+            // After all's done, close the listbox
             LeftListBox.SelectedIndex = -1;
             LeftListBox.Visibility = Visibility.Hidden;
             RightListBox.Visibility = Visibility.Hidden;
@@ -982,44 +930,29 @@ namespace nsync
         /// <param name="e"></param>
         private void ListBoxRight_MouseUp(object sender, MouseButtonEventArgs e)
         {
+            // Update left and right path with the newly selected paths
+            // Right
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)e.Source;
-            // Change path label to this one and update synchronizer
             actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
             RightText.Text = ShortenPath(actualRightPath, 90);
-
+            // Left
             int index = Convert.ToInt32(lb.Tag);
             LeftListBox.SelectedIndex = index - 1;
             lb = (ListBoxItem)LeftListBox.SelectedItem;
             actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
             LeftText.Text = ShortenPath(actualLeftPath, 90);
 
+            // Update SyncEngine with the newly selected paths
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
 
+            // After all's done, close the listbox
             RightListBox.SelectedIndex = -1;
             LeftListBox.Visibility = Visibility.Hidden;
             RightListBox.Visibility = Visibility.Hidden;
 
             ShowSync();
-        }
-
-        /// <summary>
-        /// Opens the browser dialog for user to choose a folder path
-        /// </summary>
-        /// <param name="originalPath">This parameter provides the starting point for the browser dialog</param>
-        /// <returns>Returns the selected folder path from the browser dialog</returns>
-        private string FolderSelect(string originalPath)
-        {
-            System.Windows.Forms.FolderBrowserDialog FolderDialog = new System.Windows.Forms.FolderBrowserDialog();
-            FolderDialog.Description = nsync.Properties.Resources.folderExplorerText;
-
-            if (originalPath != NULL_STRING)
-            {
-                FolderDialog.SelectedPath = originalPath;
-            }
-            FolderDialog.ShowDialog();
-            return FolderDialog.SelectedPath;
         }
 
         /// <summary>
@@ -1029,12 +962,13 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonSync_Click(object sender, RoutedEventArgs e)
         {
-            // check one more time
+            // do a check one more time
             // handle the situation when after a sync job is setup,
             // user deletes the 2 folders n click sync again
             if (!ShowSync())
                 return;
 
+            // Check if exclude window is enabled in settings
             if (settingsManager.GetExcludeWindowStatus())
             {
                 EnableInterface(false);
@@ -1050,12 +984,11 @@ namespace nsync
             }
             else
             {
+                // Make necessary changes to UI to prepare for sync
                 LeftListBox.Visibility = Visibility.Hidden;
                 RightListBox.Visibility = Visibility.Hidden;
-
                 LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
-
                 EnableInterface(false);
 
                 // Feed the actualleftpath and actualrightpath into SyncEngine again
@@ -1072,6 +1005,10 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// Error handler when exclude windows background worker encounters an error
+        /// </summary>
+        /// <param name="message"></param>
         private void excludeWindow_LogError(string message)
         {
             try
@@ -1088,6 +1025,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// This method is called when exclude window closes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void excludeWindow_Closing(object sender, CancelEventArgs e)
         {
             if (excludeWindow.Cancel == true)
@@ -1097,13 +1039,12 @@ namespace nsync
             }
             else
             {
+                // Make necessary changes to UI to prepare for sync
                 mainWindow.Opacity = 1;
                 LeftListBox.Visibility = Visibility.Hidden;
                 RightListBox.Visibility = Visibility.Hidden;
-
                 LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
-
                 EnableInterface(false);
 
                 // Feed the actualleftpath and actualrightpath into SyncEngine again
@@ -1123,6 +1064,9 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// Revert both paths back to their original paths before they were changed
+        /// </summary>
         private void RevertBackToOldFolderPair()
         {
             actualLeftPath = oldLeftPath;
@@ -1133,6 +1077,9 @@ namespace nsync
             synchronizer.RightPath = actualRightPath;
         }
 
+        /// <summary>
+        /// Saves the current paths for later use
+        /// </summary>
         private void SaveCurrentFolderPair()
         {
             oldLeftPath = actualLeftPath;
@@ -1153,18 +1100,18 @@ namespace nsync
             else // any other weird input, reject
                 return;
 
+            // Gets the new folder path with the correct folder hierarchy
             string[] newFolderPaths = new string[2];
             string[] oldPath = new string[2];
-
             if (oldLeftPath == null || oldRightPath == null) 
                 return;
             oldPath[0] = oldLeftPath;
             oldPath[1] = oldRightPath;
-
             newFolderPaths = synchronizer.SyncToTheSameFolderHierarchy(newTargetPath, oldPath, leftOrRight);
             
             SaveCurrentFolderPair();
             
+            // Make changes to the paths using the new folder paths
             if (newFolderPaths == null || newFolderPaths.Length != 2)
                 return;
             else
@@ -1183,7 +1130,6 @@ namespace nsync
                     helper.Show(nsync.Properties.Resources.modifiedLeftPath, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     helper.IsRevertPathDialog = false;
                 }
-                
                 actualLeftPath = newFolderPaths[0];
                 actualRightPath = newFolderPaths[1];
                 LeftText.Text = ShortenPath(actualLeftPath, 90);
@@ -1191,9 +1137,16 @@ namespace nsync
                 synchronizer.LeftPath = actualLeftPath;
                 synchronizer.RightPath = actualRightPath;
             }
+
+            DisplayCorrectIcons();
         }
 
-        void helper_HyperTextMouseDown(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// This method is called when user clicks on the hyperlink to revert the original folder path
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void helper_HyperTextMouseDown(object sender, MouseButtonEventArgs e)
         {
             RevertBackToOldFolderPair();
         }
@@ -1462,7 +1415,8 @@ namespace nsync
                 if (synchronizer.IsFoldersSync())
                 {
                     ImageTeam14Over.OpacityMask = blankOpacityMask;
-
+                    
+                    // Update MRU
                     SaveFolderPaths();
                     ReloadFolderPaths();
 
@@ -1475,7 +1429,7 @@ namespace nsync
                 previewSync = new Preview();
                 previewSync.LeftPath = actualLeftPath;
                 previewSync.RightPath = actualRightPath;
-                //If filters were activated, let summary sync know as well.
+                // If filters were activated, let summary sync know as well.
                 if (settingsManager.GetExcludeWindowStatus())
                 {
                     previewSync.ExcludeData = excludeData;
@@ -1502,17 +1456,16 @@ namespace nsync
             fileData = new List<FileData>();
             fileData = previewSync.GetData();
 
-            // When all sync job done, save the folder pairs to MR and settings.xml
+            // When all sync job done, save the folder pairs to MRU and settings.xml
             SaveFolderPaths();
             ReloadFolderPaths();
-            //LabelProgress.Visibility = Visibility.Visible;
-            //LabelProgressPercent.Visibility = Visibility.Visible;
 
+            // Update the UI
             LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
             LabelProgressPercent.Content = "100 %";
-
             ImageTeam14Over.OpacityMask = blankOpacityMask;
 
+            // Creation of summary report
             if (fileData.Count == 0)
             {
                 summaryReport = new SummaryReport(true, synchronizer.ErrorMessageForSummaryReport);
@@ -1528,6 +1481,7 @@ namespace nsync
                 summaryReport.CreateLog();
             }
 
+            // Display a notification to the user
             helper.ErrorCount = fileData.Count;
             helper.ConflictCount = synchronizer.ErrorMessageForSummaryReport.Count;
             helper.LogPath = summaryReport.LogPath;
@@ -1593,8 +1547,10 @@ namespace nsync
                 ButtonPreview.Visibility = Visibility.Visible;
                 return;
             }
-            EnableInterface(false);
 
+            // If trackback backups was successful, continue with sync job
+            // Update UI
+            EnableInterface(false);
             LabelProgress.Content = MESSAGE_SYNCING_FOLDERS;
             LabelProgressPercent.Visibility = Visibility.Visible;
             LabelProgressPercent.Content = "0 %";
@@ -1692,7 +1648,6 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonPreview_Click(object sender, RoutedEventArgs e)
         {
-
             if (!ShowSync())
                 return;
 
@@ -1703,6 +1658,8 @@ namespace nsync
             previewSync.ExcludeData = settingsManager.LoadExcludeData(actualLeftPath, actualRightPath);
             previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
             previewSync.PreviewSync();
+
+            // Updates UI
             LabelProgress.Visibility = Visibility.Visible;
             LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
         }
@@ -1720,6 +1677,7 @@ namespace nsync
 
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 EnableInterface(true);
+
                 if (message == MESSAGE_ACCESS_DENIED_ERROR)
                 {
                     helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
@@ -1747,11 +1705,21 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// This method is called when preview window closes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WindowVisualPreview_Closing(object sender, CancelEventArgs e)
         {
             EnableInterface(true);
         }
 
+        /// <summary>
+        /// This method is called when user points the mouse pointer on the rotating sync image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SyncingImage_MouseEnter(object sender, MouseEventArgs e)
         {
             if (!isInterfaceEnabled && LabelProgress.Content == MESSAGE_SYNCING_FOLDERS)
@@ -1761,6 +1729,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// This method is called when user moves the mouse pointer outside of the rotating sync image
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonStop_MouseLeave(object sender, MouseEventArgs e)
         {
             if (!isInterfaceEnabled)
@@ -1770,6 +1743,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// This method is called when user clicks on the stop sync button during sync
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonStop_Click(object sender, RoutedEventArgs e)
         {
             synchronizer.backgroundWorkerForSync.CancelAsync();

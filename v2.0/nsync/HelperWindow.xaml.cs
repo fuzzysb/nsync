@@ -67,6 +67,8 @@ namespace nsync
         /// <param name="helpText">This is the string to be displayed</param>
         /// <param name="helpDuration">Duration for which the notification window should be active</param>
         /// <param name="windowPosition">The position where notification window should be displayed</param>
+        /// <param name="hyperLinkPath"></param>
+        /// <param name="hyperLinkText"></param>
         public void SetSettings(string helpText, int helpDuration, windowStartPosition windowPosition, string hyperLinkPath, string hyperLinkText)
         {
             this.hyperLinkPath = hyperLinkPath;

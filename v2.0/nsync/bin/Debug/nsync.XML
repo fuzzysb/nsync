@@ -390,7 +390,7 @@
         </member>
         <member name="M:nsync.HomePage.ResolveShortcut(System.String)">
             <summary>
-            This method resolves the shortcut
+            This method resolves a shortcut link
             </summary>
             <param name="path">This parameter is a string which is the shortcut path to be resolved</param>
             <returns>Returns a string which contains the path of the resolved shortcut</returns>
@@ -458,6 +458,13 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:nsync.HomePage.FolderSelect(System.String)">
+            <summary>
+            Opens the browser dialog for user to choose a folder path
+            </summary>
+            <param name="originalPath">This parameter provides the starting point for the browser dialog</param>
+            <returns>Returns the selected folder path from the browser dialog</returns>
+        </member>
         <member name="M:nsync.HomePage.BoxLeft_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
             This method is called when the mouse pointer enters leftbox
@@ -486,16 +493,16 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.BoxRight_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
+        <member name="M:nsync.HomePage.BoxRight_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
-            This method is called when the mouse pointer leaves rightbox
+            This method is called when the mouse pointer enters rightbox
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.BoxRight_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+        <member name="M:nsync.HomePage.BoxRight_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
-            This method is called when the mouse pointer enters rightbox
+            This method is called when the mouse pointer leaves rightbox
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -589,6 +596,7 @@
             Shortens folder path for MRU list
             </summary>
             <param name="oldPath">The path that is to be shortened is passed in</param>
+            <param name="maxLength">The maximum length to allow for the path</param>
             <returns>A string containing the new folder path is returned</returns>
         </member>
         <member name="M:nsync.HomePage.listBoxRight_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
@@ -633,13 +641,6 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.FolderSelect(System.String)">
-            <summary>
-            Opens the browser dialog for user to choose a folder path
-            </summary>
-            <param name="originalPath">This parameter provides the starting point for the browser dialog</param>
-            <returns>Returns the selected folder path from the browser dialog</returns>
-        </member>
         <member name="M:nsync.HomePage.ButtonSync_Click(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
             This method is called when user click on the sync button
@@ -647,11 +648,41 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:nsync.HomePage.excludeWindow_LogError(System.String)">
+            <summary>
+            Error handler when exclude windows background worker encounters an error
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:nsync.HomePage.excludeWindow_Closing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            This method is called when exclude window closes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.RevertBackToOldFolderPair">
+            <summary>
+            Revert both paths back to their original paths before they were changed
+            </summary>
+        </member>
+        <member name="M:nsync.HomePage.SaveCurrentFolderPair">
+            <summary>
+            Saves the current paths for later use
+            </summary>
+        </member>
         <member name="M:nsync.HomePage.SyncToTheSameFolderHierarchy(System.String)">
             <summary>
             Try to change the 2 folder path to the appropriate folder hierarchy, if possible
             </summary>
             <param name="leftOrRight">This parameter indicates if the target path is leftPath or rightPath</param>
+        </member>
+        <member name="M:nsync.HomePage.helper_HyperTextMouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            This method is called when user clicks on the hyperlink to revert the original folder path
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
         </member>
         <member name="M:nsync.HomePage.DisplayCorrectIcons">
             <summary>
@@ -724,6 +755,34 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:nsync.HomePage.WindowVisualPreview_Closing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            This method is called when preview window closes
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.SyncingImage_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            This method is called when user points the mouse pointer on the rotating sync image
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.ButtonStop_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            This method is called when user moves the mouse pointer outside of the rotating sync image
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.ButtonStop_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This method is called when user clicks on the stop sync button during sync
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:nsync.HomePage.InitializeComponent">
             <summary>
             InitializeComponent
@@ -789,6 +848,8 @@
             <param name="helpText">This is the string to be displayed</param>
             <param name="helpDuration">Duration for which the notification window should be active</param>
             <param name="windowPosition">The position where notification window should be displayed</param>
+            <param name="hyperLinkPath"></param>
+            <param name="hyperLinkText"></param>
         </member>
         <member name="M:nsync.HelperWindow.MoveWindow">
             <summary>
