@@ -521,23 +521,140 @@ namespace nsync
         }
 
         /// <summary>
+        /// Open log folder
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
+        public string OpenLogFolder()
+        {
+            string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
+            "\\log\\";
+            
+            if (Directory.Exists(logPath))
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(logPath);
+                dirInfo.Attributes = FileAttributes.Normal; 
+                System.Diagnostics.Process.Start(@logPath);
+
+                return null;
+            }
+
+            return "Log folder does not exist.";
+        }
+
+        /// <summary>
         /// Clears logs in log folder
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public void ClearLogFolder(SettingsPage settingsPage)
+        public string ClearLogFolder()
         {
-            settingsPage.LabelProgress.Content = "Clearing Logs...";
-            settingsPage.LabelProgress.Visibility = Visibility.Visible;
             string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
             "\\log\\";
-
-            foreach (string fileName in Directory.GetFiles(logPath))
+            
+            if (Directory.Exists(logPath))
             {
-                File.SetAttributes(fileName, FileAttributes.Normal);
-                File.Delete(fileName);
+                DirectoryInfo dirInfo = new DirectoryInfo(logPath);
+                dirInfo.Attributes = FileAttributes.Normal; 
+
+                foreach (string fileName in Directory.GetFiles(logPath))
+                {
+                    File.SetAttributes(fileName, FileAttributes.Normal);
+                    File.Delete(fileName);
+                }
+
+                return "Logs Cleared.";
             }
-            settingsPage.LabelProgress.Content = "Logs Cleared.";
+
+            return "Log folder does not exist.";
+        }
+        
+        /// <summary>
+        /// Clears Meta Data in current selected left and right folder
+        /// </summary>
+        /// <param></param>
+        /// <returns>string</returns>
+        public string ClearMetaData()
+        {
+            string[] path = getLeftAndRightFolderPath();
+            string leftPath = path[0];
+            string rightPath = path[1];
+            int outcome = 0;
+            string result = null;
+
+            if ((leftPath != NULL_STRING) && (rightPath != NULL_STRING))
+            {
+                if (Directory.Exists(leftPath))
+                {
+                    if (Directory.Exists(rightPath))
+                    {
+                        string leftMetaDataName = leftPath + "\\filesync.metadata";
+                        if (File.Exists(leftMetaDataName))
+                        {
+                            File.SetAttributes(leftMetaDataName, FileAttributes.Normal);
+                            File.Delete(leftMetaDataName);
+                        }
+                        else
+                            outcome = 4; // left folder metadata not exist
+
+                        string rightMetaDataName = rightPath + "\\filesync.metadata";
+                        if (File.Exists(rightMetaDataName))
+                        {
+                            File.SetAttributes(rightMetaDataName, FileAttributes.Normal);
+                            File.Delete(rightMetaDataName);
+                        }
+                        else
+                        {
+                            if (outcome == 0)
+                                outcome = 5; // right folder not exist
+                            else
+                                outcome = 6; // both folder not exist
+                        }
+
+                    } // end if to check left metadata
+                    else
+                    {
+                        if (outcome == 0)
+                            outcome = 2; // right path not exist
+                        else
+                            outcome = 3; // both path not exist
+                    }
+
+                } // end if to check left path
+                else
+                    outcome = 1; // left path not exist
+
+            } // end if for checking if folders not exist
+            else
+                outcome = 7;
+
+
+            // determines outcome
+            switch (outcome)
+            {
+                case 0: result = "Meta data cleared."; break;
+                case 1: result = "The Left folder does not exist."; break;
+                case 2: result = "The Right folder does not exist."; break;
+                case 3: result = "Both Left and Right path does not exist."; break;
+                case 4: result = "Meta data does not exist in the Left folder."; break;
+                case 5: result = "Meta data does not exist in the Right folder."; break;
+                case 6: result = "Meta data does not exist in both folders."; break;
+                case 7: result = "No Left and Right Folder selected."; break;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Clears saved settngs
+        /// </summary>
+        /// <param>settingsPage</param>
+        /// <returns></returns>
+        public void ClearSettings()
+        {
+            unprotectFile(settingsFile);
+            File.Delete(settingsFile);
+            CreateNewSettingsXML();
         }
 
         /// <summary>
@@ -722,6 +839,23 @@ namespace nsync
         {
             File.SetAttributes(file, FileAttributes.Hidden | FileAttributes.ReadOnly);
         }
+        
+        /// <summary>
+        /// Obtains the first 2 paths from settings.xml
+        /// </summary>W
+        private string[] getLeftAndRightFolderPath()
+        {
+            XmlDocument doc = new XmlDocument();
+            //Load MRU Information
+            XmlNode mruNode = SelectNode(doc, PATH_MRU);
+
+            string[] path = new string[2];
+            path[0] = mruNode["left1"].InnerText;
+            path[1] = mruNode["right1"].InnerText;
+
+            return path;
+        }
         #endregion
+
     }
 }

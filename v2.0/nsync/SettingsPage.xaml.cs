@@ -108,14 +108,46 @@ namespace nsync
         private void ButtonClearLogFolder_Click(object sender, RoutedEventArgs e)
         {
             ResetUI();
-            settingsManager.ClearLogFolder(this);
+            LabelProgress.Content = "Clearing Logs...";
+            LabelProgress.Visibility = Visibility.Visible;
+
+            LabelProgress.Content = settingsManager.ClearLogFolder();
+            LabelProgress.Visibility = Visibility.Visible;
         }
 
         private void ButtonOpenLogFolder_Click(object sender, RoutedEventArgs e)
         {
             ResetUI();
-            System.Diagnostics.Process.Start(@Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
-            "\\log\\");
+            string message = settingsManager.OpenLogFolder();
+
+            if (message != null)
+            {
+                LabelProgress.Content = message;
+                LabelProgress.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void ButtonClearMetaData_Click(object sender, RoutedEventArgs e)
+        {
+            ResetUI();
+            LabelProgress.Content = "Clearing Meta Data...";
+            LabelProgress.Visibility = Visibility.Visible;
+
+            LabelProgress.Content = settingsManager.ClearMetaData();
+            LabelProgress.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonClearSettings_Click(object sender, RoutedEventArgs e)
+        {
+            ResetUI();
+            LabelProgress.Content = "Clearing Settings...";
+            LabelProgress.Visibility = Visibility.Visible;
+
+            settingsManager.ClearSettings();
+            CheckSettings();
+
+            LabelProgress.Content = "Settings Cleared.";
+            LabelProgress.Visibility = Visibility.Visible;
         }
 
         private void ResetUI()

@@ -31,10 +31,14 @@
         <Grid Margin="40,152,40,0" VerticalAlignment="Top" Height="13.277">
             <CheckBox Style="{StaticResource CheckBoxSettingsStyle}" Name="CheckboxToggleTrackBack" Foreground="White" Checked="CheckboxToggleTrackBack_Checked" Unchecked="CheckboxToggleTrackBack_UnChecked" Margin="0,0,50,0">Disable TrackBack</CheckBox>
         </Grid>
-        <Grid Margin="40,182,40,0" VerticalAlignment="Top" Height="23">
+        <Grid Margin="40,177,40,0" VerticalAlignment="Top" Height="23">
             <Button HorizontalAlignment="Left" Name="ButtonOpenLogFolder" Width="130" Click="ButtonOpenLogFolder_Click" Template="{StaticResource ButtonStandardTemplate}">Open Log Folder</Button>
             <Button Name="ButtonClearLogFolder" HorizontalAlignment="Left" Width="130" Margin="140,0,0,0" Click="ButtonClearLogFolder_Click" Template="{StaticResource ButtonStandardTemplate}">Clear Log Folder</Button>
         </Grid>
-        <Label Height="28" HorizontalAlignment="Left" Margin="31,0,0,12" Name="LabelProgress" VerticalAlignment="Bottom" Width="140" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
+        <Grid Margin="40,207,40,0" VerticalAlignment="Top" Height="23">
+            <Button HorizontalAlignment="Left" Name="ButtonClearMetaData" Width="130" Click="ButtonClearMetaData_Click" Template="{StaticResource ButtonStandardTemplate}">Clear Meta Data</Button>
+            <Button Name="ButtonClearSettings" HorizontalAlignment="Left" Width="130" Margin="140,0,0,0" Click="ButtonClearSettings_Click" Template="{StaticResource ButtonStandardTemplate}">Clear Settings</Button>
+        </Grid>
+        <Label Height="28" Margin="31,0,30,12" Name="LabelProgress" VerticalAlignment="Bottom" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
     </Grid>
 </Page>

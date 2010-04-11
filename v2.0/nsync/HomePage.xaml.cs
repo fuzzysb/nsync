@@ -887,6 +887,7 @@ namespace nsync
 
                 RightListBox.Items.Add(listBoxRight);
             }
+
             ShowSync();
         }
 
