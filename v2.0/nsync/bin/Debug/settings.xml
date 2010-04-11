@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>G:\</left1>
-    <right1>G:\TEST</right1>
+    <left1>G:\EE2006</left1>
+    <right1>G:\aa</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,93 +14,70 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>G:\TEST2</left2>
-    <right2>G:\TEST</right2>
+    <left2>G:\bb</left2>
+    <right2>G:\AY0809 Semester 1</right2>
     <filter2>
       <excludeFileTypes>
-        <size>2</size>
-        <fileType0>.exe</fileType0>
-        <fileType1>.xls</fileType1>
+        <size>0</size>
       </excludeFileTypes>
       <excludeFileNames>
-        <size>2</size>
-        <fileName0>fgf173.exe</fileName0>
-        <fileName1>midterm-marks.xls</fileName1>
+        <size>0</size>
       </excludeFileNames>
       <excludeFolders>
-        <size>2</size>
-        <folder0>C:\FolderA\4</folder0>
-        <folder1>C:\FolderA\2</folder1>
+        <size>0</size>
       </excludeFolders>
     </filter2>
-    <left3>G:\b</left3>
-    <right3>G:\a</right3>
+    <left3>
+    </left3>
+    <right3>
+    </right3>
     <filter3>
       <excludeFileTypes>
-        <size>2</size>
-        <fileType0>.exe</fileType0>
-        <fileType1>.xls</fileType1>
+        <size>0</size>
       </excludeFileTypes>
       <excludeFileNames>
-        <size>2</size>
-        <fileName0>fgf173.exe</fileName0>
-        <fileName1>midterm-marks.xls</fileName1>
+        <size>0</size>
       </excludeFileNames>
       <excludeFolders>
-        <size>2</size>
-        <folder0>C:\FolderA\4</folder0>
-        <folder1>C:\FolderA\2</folder1>
+        <size>0</size>
       </excludeFolders>
     </filter3>
-    <left4>G:\</left4>
-    <right4>G:\a</right4>
+    <left4>
+    </left4>
+    <right4>
+    </right4>
     <filter4>
       <excludeFileTypes>
-        <size>2</size>
-        <fileType0>.exe</fileType0>
-        <fileType1>.xls</fileType1>
+        <size>0</size>
       </excludeFileTypes>
       <excludeFileNames>
-        <size>2</size>
-        <fileName0>fgf173.exe</fileName0>
-        <fileName1>midterm-marks.xls</fileName1>
+        <size>0</size>
       </excludeFileNames>
       <excludeFolders>
-        <size>2</size>
-        <folder0>C:\FolderA\4</folder0>
-        <folder1>C:\FolderA\2</folder1>
+        <size>0</size>
       </excludeFolders>
     </filter4>
-    <left5>G:\1</left5>
-    <right5>G:\2</right5>
+    <left5>
+    </left5>
+    <right5>
+    </right5>
     <filter5>
       <excludeFileTypes>
-        <size>2</size>
-        <fileType0>.exe</fileType0>
-        <fileType1>.xls</fileType1>
+        <size>0</size>
       </excludeFileTypes>
       <excludeFileNames>
-        <size>2</size>
-        <fileName0>fgf173.exe</fileName0>
-        <fileName1>midterm-marks.xls</fileName1>
+        <size>0</size>
       </excludeFileNames>
       <excludeFolders>
-        <size>2</size>
-        <folder0>C:\FolderA\4</folder0>
-        <folder1>C:\FolderA\2</folder1>
+        <size>0</size>
       </excludeFolders>
     </filter5>
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
-    <ExcludeWindowStatus>True</ExcludeWindowStatus>
+    <ExcludeWindowStatus>False</ExcludeWindowStatus>
     <TrackBackStatus>False</TrackBackStatus>
     <PreviewFilterType>both</PreviewFilterType>
   </SETTINGS>
-  <REMOVEABLEDISK>
-    <Disk ID="74BE4B53">
-      <left>G:\b</left>
-      <right>G:\a</right>
-    </Disk>
-  </REMOVEABLEDISK>
+  <REMOVEABLEDISK />
 </nsync>

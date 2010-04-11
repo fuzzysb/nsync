@@ -774,6 +774,8 @@ namespace nsync
             {
                 settingsManager.ExcludedData = excludeData;
                 settingsManager.SaveFolderPaths(actualLeftPath, actualRightPath);
+                actualLeftPath = actualRightPath = NULL_STRING;
+                hasLeftPath = hasRightPath = false;
             }
             else
                 return;
@@ -904,7 +906,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void listBoxRight_MouseLeave(object sender, MouseEventArgs e)
+        private void listBoxRight_MouseLeave(object sender, MouseEventArgs e)
         {
             LeftListBox.SelectedIndex = -1;
         }
@@ -914,7 +916,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void listBoxLeft_MouseLeave(object sender, MouseEventArgs e)
+        private void listBoxLeft_MouseLeave(object sender, MouseEventArgs e)
         {
             RightListBox.SelectedIndex = -1;
         }
@@ -924,7 +926,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void listBoxLeft_MouseEnter(object sender, MouseEventArgs e)
+        private void listBoxLeft_MouseEnter(object sender, MouseEventArgs e)
         {
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)sender;
@@ -937,7 +939,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void listBoxRight_MouseEnter(object sender, MouseEventArgs e)
+        private void listBoxRight_MouseEnter(object sender, MouseEventArgs e)
         {
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)sender;
@@ -950,7 +952,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ListBoxLeft_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ListBoxLeft_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)e.Source;
@@ -978,7 +980,7 @@ namespace nsync
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void ListBoxRight_MouseUp(object sender, MouseButtonEventArgs e)
+        private void ListBoxRight_MouseUp(object sender, MouseButtonEventArgs e)
         {
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)e.Source;
@@ -1070,7 +1072,7 @@ namespace nsync
             }
         }
 
-        void excludeWindow_LogError(string message)
+        private void excludeWindow_LogError(string message)
         {
             try
             {
@@ -1086,7 +1088,7 @@ namespace nsync
             }
         }
 
-        void excludeWindow_Closing(object sender, CancelEventArgs e)
+        private void excludeWindow_Closing(object sender, CancelEventArgs e)
         {
             if (excludeWindow.Cancel == true)
             {
@@ -1196,6 +1198,9 @@ namespace nsync
             RevertBackToOldFolderPair();
         }
 
+        /// <summary>
+        /// Displays the correct images for the left and right box accordingly
+        /// </summary>
         private void DisplayCorrectIcons()
         {
             // left box

@@ -654,6 +654,11 @@
             </summary>
             <param name="leftOrRight">This parameter indicates if the target path is leftPath or rightPath</param>
         </member>
+        <member name="M:nsync.HomePage.DisplayCorrectIcons">
+            <summary>
+            Displays the correct images for the left and right box accordingly
+            </summary>
+        </member>
         <member name="M:nsync.HomePage.SaveFolderPathsForRemoveableDisk">
             <summary>
             Save the folder paths into settings.xml if the folder path involves a removeable disk

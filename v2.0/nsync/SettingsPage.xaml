@@ -37,7 +37,7 @@
         </Grid>
         <Grid Margin="40,207,40,0" VerticalAlignment="Top" Height="23">
             <Button HorizontalAlignment="Left" Name="ButtonClearMetaData" Width="130" Click="ButtonClearMetaData_Click" Template="{StaticResource ButtonStandardTemplate}">Clear Meta Data</Button>
-            <Button Name="ButtonClearSettings" HorizontalAlignment="Left" Width="130" Margin="140,0,0,0" Click="ButtonClearSettings_Click" Template="{StaticResource ButtonStandardTemplate}">Clear Settings</Button>
+            <Button Name="ButtonClearSettings" HorizontalAlignment="Left" Width="130" Margin="140,0,0,0" Click="ButtonClearSettings_Click" Template="{StaticResource ButtonStandardTemplate}">Reset Settings</Button>
         </Grid>
         <Label Height="28" Margin="31,0,30,12" Name="LabelProgress" VerticalAlignment="Bottom" Foreground="WhiteSmoke" Visibility="Hidden"></Label>
     </Grid>
