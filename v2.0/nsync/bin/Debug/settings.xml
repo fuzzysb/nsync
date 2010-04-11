@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>G:\</left1>
-    <right1>C:\Users\Seah Shao Qi\Desktop\aa</right1>
+    <left1>C:\Users\Seah Shao Qi\Desktop\FolderB</left1>
+    <right1>C:\Users\Seah Shao Qi\Desktop\FolderB</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,8 +14,8 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>G:\bb\000</left2>
-    <right2>G:\aa</right2>
+    <left2>C:\Users\Seah Shao Qi\Desktop\FolderA</left2>
+    <right2>C:\Users\Seah Shao Qi\Desktop\FolderB</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
@@ -27,8 +27,10 @@
         <size>0</size>
       </excludeFolders>
     </filter2>
-    <left3>G:\bb</left3>
-    <right3>G:\aa</right3>
+    <left3>
+    </left3>
+    <right3>
+    </right3>
     <filter3>
       <excludeFileTypes>
         <size>0</size>
@@ -40,8 +42,10 @@
         <size>0</size>
       </excludeFolders>
     </filter3>
-    <left4>G:\AY0809 Semester 1</left4>
-    <right4>G:\</right4>
+    <left4>
+    </left4>
+    <right4>
+    </right4>
     <filter4>
       <excludeFileTypes>
         <size>0</size>
@@ -53,8 +57,10 @@
         <size>0</size>
       </excludeFolders>
     </filter4>
-    <left5>G:\EE2006</left5>
-    <right5>G:\aa</right5>
+    <left5>
+    </left5>
+    <right5>
+    </right5>
     <filter5>
       <excludeFileTypes>
         <size>0</size>
@@ -69,8 +75,8 @@
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
-    <ExcludeWindowStatus>False</ExcludeWindowStatus>
-    <TrackBackStatus>False</TrackBackStatus>
+    <ExcludeWindowStatus>false</ExcludeWindowStatus>
+    <TrackBackStatus>false</TrackBackStatus>
     <PreviewFilterType>both</PreviewFilterType>
   </SETTINGS>
   <REMOVEABLEDISK />

@@ -1157,53 +1157,59 @@ namespace nsync
         private void DisplayCorrectIcons()
         {
             // left box
-            if (!Directory.Exists(actualLeftPath))
+            if (actualLeftPath != nsync.Properties.Resources.panelText)
             {
-                try
+                if (!Directory.Exists(actualLeftPath))
                 {
-                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                    try
+                    {
+                        LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                    }
+                    catch (Exception exceptionError)
+                    {
+                        helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    }
                 }
-                catch (Exception exceptionError)
+                else
                 {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    try
+                    {
+                        LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                    }
+                    catch (Exception exceptionError)
+                    {
+                        helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    }
+                    ShowRemovableDrives(actualLeftPath, "left");
                 }
-            }
-            else
-            {
-                try
-                {
-                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                ShowRemovableDrives(actualLeftPath, "left");
             }
 
             // right box
-            if (!Directory.Exists(actualRightPath))
+            if (actualRightPath != nsync.Properties.Resources.panelText)
             {
-                try
+                if (!Directory.Exists(actualRightPath))
                 {
-                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                    try
+                    {
+                        RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                    }
+                    catch (Exception exceptionError)
+                    {
+                        helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    }
                 }
-                catch (Exception exceptionError)
+                else
                 {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    try
+                    {
+                        RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                    }
+                    catch (Exception exceptionError)
+                    {
+                        helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    }
+                    ShowRemovableDrives(actualRightPath, "right");
                 }
-            }
-            else
-            {
-                try
-                {
-                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
-                }
-                catch (Exception exceptionError)
-                {
-                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                }
-                ShowRemovableDrives(actualRightPath, "right");
             }
         }
 
