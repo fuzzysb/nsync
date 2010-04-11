@@ -842,7 +842,7 @@ namespace nsync
         
         /// <summary>
         /// Obtains the first 2 paths from settings.xml
-        /// </summary>W
+        /// </summary>
         private string[] getLeftAndRightFolderPath()
         {
             XmlDocument doc = new XmlDocument();

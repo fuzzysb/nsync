@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\FolderA</left1>
-    <right1>C:\FolderB</right1>
+    <left1>G:\TEST</left1>
+    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,10 +14,8 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>
-    </left2>
-    <right2>
-    </right2>
+    <left2>C:\Users\Seah Shao Qi\Desktop\V2.0</left2>
+    <right2>C:\Users\Seah Shao Qi\Desktop\NEW</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
@@ -81,5 +79,10 @@
     <TrackBackStatus>false</TrackBackStatus>
     <PreviewFilterType>both</PreviewFilterType>
   </SETTINGS>
-  <REMOVEABLEDISK />
+  <REMOVEABLEDISK>
+    <Disk ID="74BE4B53">
+      <left>G:\TEST</left>
+      <right>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</right>
+    </Disk>
+  </REMOVEABLEDISK>
 </nsync>

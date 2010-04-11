@@ -14,7 +14,7 @@ namespace nsync
         //Possible For Displaying Statistics
         private int totalChanges;
         private int createChanges;
-        private int updateChanges;      
+        private int updateChanges;
         private int deleteChanges;
         private int renameChanges;
 
@@ -104,12 +104,12 @@ namespace nsync
         /// </summary>
         private void ParseErrorMessage()
         {
-            if(errorMessage.Count < 2)
+            if (errorMessage.Count < 2)
                 return;
 
             List<string> actualErrorMessage = new List<string>();
             for (int i = 0; i < errorMessage.Count; i += 2)
-                actualErrorMessage.Add("There was a file renaming conflict in " + errorMessage[i] + " and " + errorMessage[i + 1]);
+                actualErrorMessage.Add(errorMessage[i] + " and " + errorMessage[i + 1]);
 
             errorMessage = actualErrorMessage;
         }
@@ -128,15 +128,20 @@ namespace nsync
             CheckFolderExist();
             StreamWriter log = new StreamWriter(logPath, true);
 
+            log.WriteLine("======================");
+            log.WriteLine(" nsync SUMMARY REPORT");
+            log.WriteLine("======================");
+            log.WriteLine("");
             log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString("dd-MMM-yyyy h:mm:ss tt"));
             log.WriteLine("Folders Involved In Synchronization : ");
             log.WriteLine(leftPath.ToString());
             log.WriteLine(rightPath.ToString());
-            log.WriteLine("------------------------------------------------------------------------");
+            log.WriteLine("");
+            log.WriteLine("--------------------------------------");
             log.WriteLine("");
 
             //If there are errors, display all files that are not propagated
-            if(!noChanges)
+            if (!noChanges)
             {
                 log.WriteLine("File Sync Completed");
                 log.WriteLine("Number of errors found : " + fileData.Count.ToString());
@@ -146,8 +151,7 @@ namespace nsync
                     switch (file.ChangeType)
                     {
                         case Changes.Delete:
-                            log.WriteLine("File Failed To Be Deleted");
-                            log.WriteLine("--------------------------------------");
+                            log.WriteLine("File Failed To Be Deleted:");
                             if (file.RootPath == leftPath)
                             {
                                 log.WriteLine(rightPath + "\\" + file.RelativePath);
@@ -160,8 +164,7 @@ namespace nsync
                             break;
 
                         case Changes.Create:
-                            log.WriteLine("File Failed To Be Copied Over");
-                            log.WriteLine("--------------------------------------");
+                            log.WriteLine("File Failed To Be Copied Over:");
                             if (file.RootPath == leftPath)
                             {
                                 log.WriteLine(rightPath + "\\" + file.RelativePath);
@@ -174,8 +177,7 @@ namespace nsync
                             break;
 
                         case Changes.Update:
-                            log.WriteLine("File Failed To Be Overwritten");
-                            log.WriteLine("--------------------------------------");
+                            log.WriteLine("File Failed To Be Overwritten:");
                             if (file.RootPath == leftPath)
                             {
                                 log.WriteLine(rightPath + "\\" + file.RelativePath);
@@ -187,8 +189,7 @@ namespace nsync
                             log.WriteLine("");
                             break;
                         case Changes.Rename:
-                            log.WriteLine("File Failed To Be Renamed");
-                            log.WriteLine("--------------------------------------");
+                            log.WriteLine("File Failed To Be Renamed:");
                             if (file.RootPath == leftPath)
                             {
                                 log.WriteLine(rightPath + "\\" + file.RelativePath);
@@ -205,11 +206,14 @@ namespace nsync
                 //Will display which files 'wins'
                 if (errorMessage.Count != 0)
                 {
+                    log.WriteLine("--------------------------------------");
+                    log.WriteLine("");
+                    log.WriteLine("File Renaming Conflicts:");
                     foreach (string message in errorMessage)
                     {
-                        log.WriteLine("");
                         log.WriteLine(message);
                     }
+                    log.WriteLine("");
                 }
 
             }
@@ -219,11 +223,14 @@ namespace nsync
                 log.WriteLine("File Sync Successful. No Error Detected");
                 if (errorMessage.Count != 0)
                 {
+                    log.WriteLine("--------------------------------------");
+                    log.WriteLine("");
+                    log.WriteLine("File Renaming Conflicts:");
                     foreach (string message in errorMessage)
                     {
-                        log.WriteLine("");
                         log.WriteLine(message);
                     }
+                    log.WriteLine("");
                 }
             }
 
