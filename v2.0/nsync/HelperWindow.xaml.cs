@@ -253,5 +253,15 @@ namespace nsync
             }
         }
         #endregion
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            dispatcherTimer.Stop();
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            dispatcherTimer.Start();
+        }
     }
 }

@@ -45,7 +45,7 @@
 
 
     <Grid>
-    <Border Background="Black" CornerRadius="20" BorderBrush="{StaticResource DarkBorderBrush}" BorderThickness="2,2,2,2" MouseRightButtonDown="windowHelper_MouseRightButtonDown" Opacity="0.8">
+    <Border Background="Black" CornerRadius="20" BorderBrush="{StaticResource DarkBorderBrush}" BorderThickness="2,2,2,2" MouseRightButtonDown="windowHelper_MouseRightButtonDown" Opacity="0.8" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave">
         <Grid>
             <Button Name="ButtonClose" ToolTip="Close" Template="{StaticResource ButtonCloseTemplate}" Width="15" Height="15" Click="ButtonClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="8,5"></Button>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
