@@ -34,11 +34,6 @@ namespace nsync
         #endregion
 
         #region Properties
-        public List<string> ErrorMessageForSummaryReport
-        {
-            get { return errorMessageForSummaryReport; }
-        }
-
         /// <summary>
         /// Setter and Getter method for left folder path
         /// </summary>
@@ -68,6 +63,14 @@ namespace nsync
                 excludeData = value;
             }
         }
+
+        /// <summary>
+        /// Getter method for error message for summary report
+        /// </summary>
+        public List<string> ErrorMessageForSummaryReport
+        {
+            get { return errorMessageForSummaryReport; }
+        }
         #endregion
 
         #region Constructor
@@ -76,12 +79,13 @@ namespace nsync
         /// </summary>
         public SyncEngine()
         {
-            // Set up the BackgroundWorker object by attaching event handlers.
+            // Attaching event handlers for sync
             backgroundWorkerForSync = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForSync.DoWork += new DoWorkEventHandler(backgroundWorkerForSync_DoWork);
             backgroundWorkerForSync.WorkerReportsProgress = true;
             backgroundWorkerForSync.WorkerSupportsCancellation = true;
 
+            // Attaching event handlers for presync
             backgroundWorkerForPreSync = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForPreSync.DoWork += new DoWorkEventHandler(backgroundWorkerForPreSync_DoWork);
             backgroundWorkerForPreSync.WorkerReportsProgress = true;
@@ -93,17 +97,19 @@ namespace nsync
 
         #region Public Methods
         /// <summary>
-        /// Try to provide 2 new folder path (appropriate folder hierarchy), if possible
+        /// Try to provide 2 new folder path using the appropriate folder hierarchy
         /// </summary>
         /// <param name="targetPath">This parameter holds a string which contains the target folder path to be checked</param>
         /// <param name="lastSyncFolderPaths">This parameter holds a list of strings which contains the last sync folder paths</param>
         /// <param name="leftOrRight">This parameter indicates if the target path is leftPath or rightPath</param>
-        /// <returns></returns>
+        /// <returns>Returns the new folder path if it's valid<para>Otherwise, null is returned</para></returns>
         public string[] SyncToTheSameFolderHierarchy(string targetPath, string[] lastSyncFolderPaths, string leftOrRight)
         {
-            if (lastSyncFolderPaths.Length == 0) // no folder pair in MRU
+            // When there are no folder pairs in MRU
+            if (lastSyncFolderPaths.Length == 0)
                 return null;
 
+            // Setting up the local variables for use later
             string oldTargetPath, oldNonTargetPath;
             if (leftOrRight == "left" || leftOrRight == "Left")
             {
@@ -118,19 +124,17 @@ namespace nsync
             else
                 return null;
 
-            // new target path is not subfolder of old path
+            // List of error checks to be done before returning the new paths
             if (targetPath == oldTargetPath)
                 return null;
-
             if (!(intelligentManager.IsFolderSubFolder(targetPath, oldTargetPath)))
                 return null;
-
             if (targetPath.Length < oldTargetPath.Length)
                 return null;
-
             if (!(intelligentManager.IsFolderExists(oldNonTargetPath + targetPath.Substring(oldTargetPath.Length))))
                 return null;
 
+            // Setting up the folder path array which will be returned to its caller
             string[] finalFolderPaths = new string[2];
             if (leftOrRight == "left" || leftOrRight == "Left")
             {
@@ -262,24 +266,11 @@ namespace nsync
 
         #region Private Methods
         /// <summary>
-        /// Checks if it is required to create a folder on any root path
-        /// </summary>
-        /// <returns>Returns a boolean with the result of the query</returns>
-        private bool IsRequiredToCreateFolder()
-        {
-            if ((intelligentManager.IsPathRoot(leftPath) && !intelligentManager.IsPathRoot(rightPath)) ||
-                (!intelligentManager.IsPathRoot(leftPath) && intelligentManager.IsPathRoot(rightPath)))
-                return true;
-            else
-                return false;
-        }
-
-        /// <summary>
         /// Computes the amount of free disk space of a disk drive
         /// <para>Units is in bytes</para>
         /// </summary>
         /// <param name="drive">This parameter is the drive volume to be checked</param>
-        /// <returns></returns>
+        /// <returns>Returns the amount of free disk space in a disk drive</returns>
         private ulong GetFreeDiskSpaceInBytes(string drive)
         {
             ManagementObject disk = new ManagementObject(
@@ -310,8 +301,7 @@ namespace nsync
         /// <param name="replicaRootPath">This parameter is the folder path to be checked</param>
         /// <param name="filter">This parameter is the filter which will be used during synchronization</param>
         /// <param name="options">This parameter holds the synchronization options</param>
-        private static void DetectChangesonFileSystemReplica(
-            string replicaRootPath, FileSyncScopeFilter filter, FileSyncOptions options)
+        private static void DetectChangesonFileSystemReplica(string replicaRootPath, FileSyncScopeFilter filter, FileSyncOptions options)
         {
             FileSyncProvider provider = null;
 
@@ -349,7 +339,7 @@ namespace nsync
                 destProvider = new FileSyncProvider(destPath, filter, options);
 
                 // When it's in preview mode, no actual changes are done.
-                // This mode is used to check the number of changes that will be carried out later
+                // This mode is used to compute the number of changes that will be carried out later
                 if (isPreview)
                 {
                     sourceProvider.PreviewMode = true;
@@ -427,7 +417,8 @@ namespace nsync
 
             localfileDataRetriever = ((IFileDataRetriever)args.SourceChangeData);
             remotefileDataRetriever = ((IFileDataRetriever)args.DestinationChangeData);
-            //MessageBox.Show(localfileDataRetriever.FileData.RelativePath + "\n" + remotefileDataRetriever.FileData.RelativePath);
+
+            // Handling for renaming conflicts
             if(localfileDataRetriever.FileData.RelativePath != remotefileDataRetriever.FileData.RelativePath)
             {
                 if (!errorMessageForSummaryReport.Contains(localfileDataRetriever.AbsoluteSourceFilePath) && !errorMessageForSummaryReport.Contains(remotefileDataRetriever.AbsoluteSourceFilePath))
@@ -437,7 +428,7 @@ namespace nsync
                 }
             }
             
-            // Latest change wins policy
+            // Setting latest change wins policy
             args.SetResolutionAction(ConflictResolutionAction.Merge);
         }
 
@@ -455,6 +446,7 @@ namespace nsync
                     agent.Cancel();
 
             countDoneChanges++;
+
             // This method will raise an event to the backgroundWorkerForSync via backgroundWorkerForSync_ProgressChanged
             backgroundWorkerForSync.ReportProgress((int)((double)countDoneChanges / countChanges * 100));
         }
@@ -469,6 +461,7 @@ namespace nsync
         private void OnApplyingChange(object sender, ApplyingChangeEventArgs args)
         {
             countChanges++;
+
             if (!isCheckForLeftDone)
                 diskSpaceNeededForLeft += (ulong) args.NewFileData.Size;
             else
@@ -553,7 +546,7 @@ namespace nsync
                 DetectChangesonFileSystemReplica(rightPath, filter, options);
 
                 // Start the 2-way sync
-                // this one when return false, it means not enough disk space
+                // Method is returned when there is insufficient disk space
                 if (!SyncFileSystemReplicasOneWay(leftPath, rightPath, null, options, true))
                     return 1;
                 if (!SyncFileSystemReplicasOneWay(rightPath, leftPath, null, options, true))
@@ -565,16 +558,12 @@ namespace nsync
             {
                 return 3;
             }
-            catch (System.Exception e)// catch other remaining unknown errors
+            catch (System.Exception e) // catch other remaining unknown errors
             {
-                if (e.Message.Contains("The process cannot access the file because it is being used by another process"))
-                {
+                if (e.Message.Contains(nsync.Properties.Resources.filesOpenedExceptionMessage))
                     return 4;
-                }
                 else
-                {
                     return 5;
-                }
             }
         }
 

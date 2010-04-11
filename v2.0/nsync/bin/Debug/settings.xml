@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>G:\EE2006</left1>
-    <right1>G:\aa</right1>
+    <left1>G:\</left1>
+    <right1>G:\bb</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,8 +14,8 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>G:\bb</left2>
-    <right2>G:\AY0809 Semester 1</right2>
+    <left2>G:\aa</left2>
+    <right2>G:\bb</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
@@ -27,10 +27,8 @@
         <size>0</size>
       </excludeFolders>
     </filter2>
-    <left3>
-    </left3>
-    <right3>
-    </right3>
+    <left3>G:\EE2006</left3>
+    <right3>G:\aa</right3>
     <filter3>
       <excludeFileTypes>
         <size>0</size>
@@ -42,10 +40,8 @@
         <size>0</size>
       </excludeFolders>
     </filter3>
-    <left4>
-    </left4>
-    <right4>
-    </right4>
+    <left4>G:\bb</left4>
+    <right4>G:\AY0809 Semester 1</right4>
     <filter4>
       <excludeFileTypes>
         <size>0</size>

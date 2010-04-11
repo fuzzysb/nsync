@@ -145,12 +145,12 @@
         </member>
         <member name="M:nsync.SyncEngine.SyncToTheSameFolderHierarchy(System.String,System.String[],System.String)">
             <summary>
-            Try to provide 2 new folder path (appropriate folder hierarchy), if possible
+            Try to provide 2 new folder path using the appropriate folder hierarchy
             </summary>
             <param name="targetPath">This parameter holds a string which contains the target folder path to be checked</param>
             <param name="lastSyncFolderPaths">This parameter holds a list of strings which contains the last sync folder paths</param>
             <param name="leftOrRight">This parameter indicates if the target path is leftPath or rightPath</param>
-            <returns></returns>
+            <returns>Returns the new folder path if it's valid<para>Otherwise, null is returned</para></returns>
         </member>
         <member name="M:nsync.SyncEngine.GetRemovableDiskSerialNumberWithChecks(System.String)">
             <summary>
@@ -210,19 +210,13 @@
             </summary>
             <returns>Returns the result of the check in a boolean</returns>
         </member>
-        <member name="M:nsync.SyncEngine.IsRequiredToCreateFolder">
-            <summary>
-            Checks if it is required to create a folder on any root path
-            </summary>
-            <returns>Returns a boolean with the result of the query</returns>
-        </member>
         <member name="M:nsync.SyncEngine.GetFreeDiskSpaceInBytes(System.String)">
             <summary>
             Computes the amount of free disk space of a disk drive
             <para>Units is in bytes</para>
             </summary>
             <param name="drive">This parameter is the drive volume to be checked</param>
-            <returns></returns>
+            <returns>Returns the amount of free disk space in a disk drive</returns>
         </member>
         <member name="M:nsync.SyncEngine.CheckSpace">
             <summary>
@@ -314,6 +308,11 @@
         <member name="P:nsync.SyncEngine.ExcludeData">
             <summary>
             Setter method for filters in ExcludeData
+            </summary>
+        </member>
+        <member name="P:nsync.SyncEngine.ErrorMessageForSummaryReport">
+            <summary>
+            Getter method for error message for summary report
             </summary>
         </member>
         <member name="T:nsync.TestEngine">
@@ -1461,6 +1460,11 @@
         <member name="P:nsync.Properties.Resources.fileNotAccessible">
             <summary>
               Looks up a localized string similar to File(s) Open. Please Close File(s) And Try Again.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.filesOpenedExceptionMessage">
+            <summary>
+              Looks up a localized string similar to The process cannot access the file because it is being used by another process.
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.folderExplorerText">

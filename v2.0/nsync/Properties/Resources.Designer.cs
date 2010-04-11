@@ -142,6 +142,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The process cannot access the file because it is being used by another process.
+        /// </summary>
+        public static string filesOpenedExceptionMessage {
+            get {
+                return ResourceManager.GetString("filesOpenedExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a folder to synchronise with nsync..
         /// </summary>
         public static string folderExplorerText {

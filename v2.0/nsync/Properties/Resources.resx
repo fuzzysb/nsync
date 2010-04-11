@@ -285,4 +285,7 @@
   <data name="excludingFileTypesException" xml:space="preserve">
     <value>Specified argument was out of the range of valid values.</value>
   </data>
+  <data name="filesOpenedExceptionMessage" xml:space="preserve">
+    <value>The process cannot access the file because it is being used by another process</value>
+  </data>
 </root>
