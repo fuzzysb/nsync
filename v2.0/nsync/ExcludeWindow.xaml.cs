@@ -42,6 +42,7 @@ namespace nsync
         private BackgroundWorker backgroundWorkerFileTypes = new BackgroundWorker();
         private bool reallyLeft = true;
         private bool cancel = false;
+        private Settings settingsManager;
         #endregion
 
         #region Constructor
@@ -119,6 +120,55 @@ namespace nsync
         public List<string> GetFolderList()
         {
             return excludeFolders;
+        }
+
+        /// <summary>
+        /// Function to Load exclusion from settings to Exclude Box
+        /// </summary>
+        /// <returns></returns>
+        public void LoadExcludeData()
+        {
+            settingsManager = Settings.Instance;
+            ExcludeData loadedExcludeData = settingsManager.LoadExcludeData(leftPath, rightPath);
+            int fileTypeListSize = loadedExcludeData.ExcludeFileTypeList.Count;
+            int fileNameListSize = loadedExcludeData.ExcludeFileNameList.Count;
+            int folderListSize = loadedExcludeData.ExcludeFolderList.Count;
+
+            if (fileTypeListSize != 0)
+            {
+                for (int i = 0; i < fileTypeListSize; i++)
+                {
+                    excludeFileTypes.Add(loadedExcludeData.ExcludeFileTypeList[i]);
+                }
+            }
+
+            if (fileNameListSize != 0)
+            {
+                for (int i = 0; i < fileNameListSize; i++)
+                {
+                    excludeFileNames.Add(loadedExcludeData.ExcludeFileNameList[i]);
+                }
+            }
+
+            if (folderListSize != 0)
+            {
+                for (int i = 0; i < folderListSize; i++)
+                {
+                    excludeFolders.Add(loadedExcludeData.ExcludeFolderList[i]);
+                }
+            }
+
+            if ((fileTypeListSize != 0) || (fileNameListSize != 0) || (folderListSize != 0))
+            {
+                if (HintText.Visibility == Visibility.Visible)
+                {
+                    HintText.Visibility = Visibility.Collapsed;
+                    HintIcon.Visibility = Visibility.Collapsed;
+                    ListBoxExclude.Visibility = Visibility.Visible;
+                }
+                ClearListBox();
+                UpdateListBox();
+            }
         }
         #endregion
 

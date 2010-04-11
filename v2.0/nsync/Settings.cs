@@ -521,6 +521,53 @@ namespace nsync
         }
 
         /// <summary>
+        /// Load ExcludeData
+        /// </summary>
+        /// <param></param>
+        /// <returns>saved exclude data</returns>
+        public ExcludeData LoadExcludeData(string leftPath, string rightPath)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(settingsFile);
+
+            XmlNode mruNode = SelectNode(doc, PATH_MRU);
+            int filterIndex = 0;
+            ExcludeData loadedExcludeData = new ExcludeData();
+
+            for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
+            {
+                if (mruNode["left" + i.ToString()].InnerText.Equals(leftPath))
+                    if (mruNode["right" + i.ToString()].InnerText.Equals(rightPath))
+                        filterIndex = i;
+            }
+
+            if (filterIndex != 0)
+            {
+                XmlNode filterNode = mruNode.SelectSingleNode("filter" + filterIndex.ToString());
+                XmlNode excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
+                XmlNode excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+                XmlNode excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+
+                for (int i = 0; i < int.Parse(excludeFileTypeNode["size"].InnerText); i++)
+                {
+                    loadedExcludeData.AddExcludeFileType(excludeFileTypeNode["fileType" + i.ToString()].InnerText);
+                }
+
+                for (int i = 0; i < int.Parse(excludeFileNameNode["size"].InnerText); i++)
+                {
+                    loadedExcludeData.AddExcludeFileName(excludeFileNameNode["fileName" + i.ToString()].InnerText);
+                }
+
+                for (int i = 0; i < int.Parse(excludeFolderNode["size"].InnerText); i++)
+                {
+                    loadedExcludeData.AddExcludeFolder(excludeFolderNode["folder" + i.ToString()].InnerText);
+                }
+            }
+
+            return loadedExcludeData;
+        }
+
+        /// <summary>
         /// Open log folder
         /// </summary>
         /// <param></param>

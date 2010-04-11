@@ -1064,6 +1064,7 @@ namespace nsync
                 excludeWindow.LeftPath = actualLeftPath;
                 excludeWindow.RightPath = actualRightPath;
                 excludeWindow.Owner = mainWindow;
+                excludeWindow.LoadExcludeData();
                 excludeWindow.LogError += new ExcludeWindow.LogHandler(excludeWindow_LogError);
                 mainWindow.Opacity = 0.2;
                 excludeWindow.ShowDialog();
@@ -1656,8 +1657,7 @@ namespace nsync
             previewSync = new Preview();
             previewSync.LeftPath = actualLeftPath;
             previewSync.RightPath = actualRightPath;
-            excludeData = new ExcludeData();
-            previewSync.ExcludeData = excludeData;
+            previewSync.ExcludeData = settingsManager.LoadExcludeData(actualLeftPath, actualRightPath);
             previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
             previewSync.PreviewSync();
             LabelProgress.Visibility = Visibility.Visible;

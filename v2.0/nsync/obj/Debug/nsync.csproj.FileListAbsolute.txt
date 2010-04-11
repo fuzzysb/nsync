@@ -1903,3 +1903,40 @@ C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.XML
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\FormResources.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\HelperWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\SettingsPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\App.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\ExcludeWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\HelperWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\HomePage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\MainWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\SettingsPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\TrackBackPage.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\VisualPreviewWindow.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\App.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync_MarkupCompile.cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync_MarkupCompile.lref
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\ExcludeWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\HomePage.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\MainWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\TrackBackPage.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\VisualPreviewWindow.baml
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.g.resources
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.Properties.Resources.resources
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.TestEngine.resources
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.application
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.exe
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.exe.manifest
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.application

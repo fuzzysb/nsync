@@ -1,21 +1,27 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>G:\TEST</left1>
-    <right1>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</right1>
+    <left1>C:\FolderA</left1>
+    <right1>C:\FolderB</right1>
     <filter1>
       <excludeFileTypes>
-        <size>0</size>
+        <size>2</size>
+        <fileType0>.exe</fileType0>
+        <fileType1>.xls</fileType1>
       </excludeFileTypes>
       <excludeFileNames>
-        <size>0</size>
+        <size>2</size>
+        <fileName0>fgf173.exe</fileName0>
+        <fileName1>midterm-marks.xls</fileName1>
       </excludeFileNames>
       <excludeFolders>
-        <size>0</size>
+        <size>2</size>
+        <folder0>C:\FolderA\4</folder0>
+        <folder1>C:\FolderA\2</folder1>
       </excludeFolders>
     </filter1>
-    <left2>C:\Users\Seah Shao Qi\Desktop\V2.0</left2>
-    <right2>C:\Users\Seah Shao Qi\Desktop\NEW</right2>
+    <left2>G:\TEST</left2>
+    <right2>C:\Users\Seah Shao Qi\Desktop\TestFolders\New folder</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
@@ -27,10 +33,8 @@
         <size>0</size>
       </excludeFolders>
     </filter2>
-    <left3>
-    </left3>
-    <right3>
-    </right3>
+    <left3>C:\Users\Seah Shao Qi\Desktop\V2.0</left3>
+    <right3>C:\Users\Seah Shao Qi\Desktop\NEW</right3>
     <filter3>
       <excludeFileTypes>
         <size>0</size>
@@ -75,8 +79,8 @@
   </MRU>
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
-    <ExcludeWindowStatus>false</ExcludeWindowStatus>
-    <TrackBackStatus>false</TrackBackStatus>
+    <ExcludeWindowStatus>True</ExcludeWindowStatus>
+    <TrackBackStatus>False</TrackBackStatus>
     <PreviewFilterType>both</PreviewFilterType>
   </SETTINGS>
   <REMOVEABLEDISK>
