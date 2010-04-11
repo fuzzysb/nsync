@@ -187,7 +187,8 @@ namespace nsync
         /// <returns>Returns a boolean which indicates whether the path is a shortcut link</returns>
         private bool IsPathShortcut(string path)
         {
-            if (path.Length < 4) // To handle C:\ shortcut
+            // To handle the case when user drag in C:\ shortcut
+            if (path.Length < 4) 
                 return false;
 
             if (path.Substring(path.Length - 4) == ".lnk")
@@ -242,8 +243,8 @@ namespace nsync
             if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
 
             previousImageLeft = LeftIcon.Source;
-            //SQ previousTextLeft = LeftText.Text;
-            previousTextLeft = actualLeftPath; //SQ
+            previousTextLeft = actualLeftPath;
+
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
@@ -257,20 +258,17 @@ namespace nsync
                     FileInfo fileTemp = new FileInfo(actualPath);
                     if (dirTemp.Exists)
                     {
-                        //SQ LeftText.Text = i;
-                        actualLeftPath = actualPath; //SQ
-                        LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
+                        actualLeftPath = actualPath;
+                        LeftText.Text = ShortenPath(actualLeftPath, 90);
                     }
                     else
                     {
-                        actualLeftPath = fileTemp.DirectoryName; //SQ
-                        //SQ LeftText.Text = fileTemp.DirectoryName;
-                        LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
+                        actualLeftPath = fileTemp.DirectoryName;
+                        LeftText.Text = ShortenPath(actualLeftPath, 90);
                     }
                 }
 
-                //SQ synchronizer.LeftPath = LeftText.Text;
-                synchronizer.LeftPath = actualLeftPath; //SQ
+                synchronizer.LeftPath = actualLeftPath;
 
                 try
                 {
@@ -280,8 +278,8 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
-                //SQ ShowRemovableDrives(LeftText.Text, "left");
-                ShowRemovableDrives(actualLeftPath, "left"); //SQ
+
+                DisplayCorrectIcons();
             }
         }
 
@@ -295,8 +293,7 @@ namespace nsync
             if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
 
             previousImageRight = RightIcon.Source;
-            //SQ previousTextRight = RightText.Text;
-            previousTextRight = actualRightPath; //SQ
+            previousTextRight = actualRightPath;
 
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -311,20 +308,17 @@ namespace nsync
                     FileInfo fileTemp = new FileInfo(actualPath);
                     if (dirTemp.Exists)
                     {
-                        //SQ RightText.Text = i;
-                        actualRightPath = actualPath; //SQ
-                        RightText.Text = ShortenPath(actualRightPath, 90); //SQ
+                        actualRightPath = actualPath;
+                        RightText.Text = ShortenPath(actualRightPath, 90);
                     }
                     else
                     {
-                        //SQ RightText.Text = fileTemp.DirectoryName;
-                        actualRightPath = fileTemp.DirectoryName; //SQ
-                        RightText.Text = ShortenPath(actualRightPath, 90); //SQ
+                        actualRightPath = fileTemp.DirectoryName;
+                        RightText.Text = ShortenPath(actualRightPath, 90);
                     }
                 }
 
-                //SQ synchronizer.RightPath = RightText.Text;
-                synchronizer.RightPath = actualRightPath; //SQ
+                synchronizer.RightPath = actualRightPath;
 
                 try
                 {
@@ -334,8 +328,8 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
-                //SQ ShowRemovableDrives(RightText.Text, "right");
-                ShowRemovableDrives(actualRightPath, "right");
+
+                DisplayCorrectIcons();
             }
         }
 
@@ -346,12 +340,10 @@ namespace nsync
         /// <param name="e"></param>
         private void BoxRight_DragLeave(object sender, DragEventArgs e)
         {
-            //SQ RightText.Text = previousTextRight;
-            actualRightPath = previousTextRight; //SQ
-            RightText.Text = ShortenPath(actualRightPath, 90); //SQ
+            actualRightPath = previousTextRight;
+            RightText.Text = ShortenPath(actualRightPath, 90);
 
-            //SQ synchronizer.RightPath = RightText.Text;
-            synchronizer.RightPath = actualRightPath; //SQ
+            synchronizer.RightPath = actualRightPath;
             RightIcon.Source = previousImageRight;
 
             if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
@@ -364,11 +356,9 @@ namespace nsync
         /// <param name="e"></param>
         private void BoxLeft_DragLeave(object sender, DragEventArgs e)
         {
-            //SQ LeftText.Text = previousTextLeft;
-            actualLeftPath = previousTextLeft; //SQ
-            LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
-            //SQ synchronizer.LeftPath = LeftText.Text;
-            synchronizer.LeftPath = actualLeftPath; //SQ
+            actualLeftPath = previousTextLeft;
+            LeftText.Text = ShortenPath(actualLeftPath, 90);
+            synchronizer.LeftPath = actualLeftPath;
             LeftIcon.Source = previousImageLeft;
 
             if (hasLeftPath && hasRightPath) SaveCurrentFolderPair();
@@ -384,24 +374,24 @@ namespace nsync
             string currentPath = NULL_STRING;
             if (hasLeftPath)
             {
-                //SQ currentPath = LeftText.Text;
-                currentPath = actualLeftPath; //SQ
+                currentPath = actualLeftPath;
                 SaveCurrentFolderPair();
             }
             string directoryPath = FolderSelect(currentPath);
-            if (directoryPath != NULL_STRING)
+            if (directoryPath != actualLeftPath)
             {
-                //SQ LeftText.Text = directoryPath;
-                actualLeftPath = directoryPath; //SQ
-                LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
-                //SQ ShowRemovableDrives(LeftText.Text, "left");
-                ShowRemovableDrives(actualLeftPath, "left"); //SQ
-                hasLeftPath = true;
+                if (directoryPath != NULL_STRING)
+                {
+                    actualLeftPath = directoryPath;
+                    LeftText.Text = ShortenPath(actualLeftPath, 90);
+                    hasLeftPath = true;
 
-                SyncToTheSameFolderHierarchy("left");
-                RememberLastRemoveableDiskSync("left");
+                    SyncToTheSameFolderHierarchy("left");
+                    RememberLastRemoveableDiskSync("left");
+                }
             }
-            //SQ synchronizer.LeftPath = LeftText.Text;
+            DisplayCorrectIcons();
+
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
             ShowSync();
@@ -417,24 +407,24 @@ namespace nsync
             string currentPath = NULL_STRING;
             if (hasRightPath)
             {
-                //SQ currentPath = RightText.Text;
-                currentPath = actualRightPath; //SQ
+                currentPath = actualRightPath;
                 SaveCurrentFolderPair();
             }
             string directoryPath = FolderSelect(currentPath);
-            if (directoryPath != NULL_STRING)
+            if (directoryPath != actualRightPath)
             {
-                //SQ RightText.Text = directoryPath;
-                actualRightPath = directoryPath; //SQ
-                RightText.Text = ShortenPath(actualRightPath, 90); //SQ
-                //SQ ShowRemovableDrives(RightText.Text, "right");
-                ShowRemovableDrives(actualRightPath, "right"); //SQ
-                hasRightPath = true;
+                if (directoryPath != NULL_STRING)
+                {
+                    actualRightPath = directoryPath;
+                    RightText.Text = ShortenPath(actualRightPath, 90);
+                    hasRightPath = true;
 
-                SyncToTheSameFolderHierarchy("right");
-                RememberLastRemoveableDiskSync("right");
+                    SyncToTheSameFolderHierarchy("right");
+                    RememberLastRemoveableDiskSync("right");
+                }
             }
-            //SQ synchronizer.RightPath = RightText.Text;
+            DisplayCorrectIcons();
+
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
             ShowSync();
@@ -642,6 +632,7 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
+                DisplayCorrectIcons();
                 return false;
             }
             else if (!rightFolderExists)
@@ -656,6 +647,7 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
+                DisplayCorrectIcons();
                 return false;
             }
             else if (!leftFolderExists)
@@ -670,6 +662,7 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
+                DisplayCorrectIcons();
                 return false;
             }
             else
@@ -682,6 +675,7 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
+                DisplayCorrectIcons();
                 return true;
             }
         }
@@ -737,8 +731,7 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
-                //SQ ShowRemovableDrives(LeftText.Text, "left");
-                ShowRemovableDrives(actualLeftPath, "left"); //SQ
+                DisplayCorrectIcons();
             }
             if (hasRightPath)
             {
@@ -750,8 +743,7 @@ namespace nsync
                 {
                     helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
-                //SQ ShowRemovableDrives(RightText.Text, "right");
-                ShowRemovableDrives(actualRightPath, "right"); //SQ
+                DisplayCorrectIcons();
             }
 
             // Only if both boxes are filled with folder paths, then we need to check validity
@@ -760,19 +752,13 @@ namespace nsync
 
             if (!IsFolderExist() || IsFoldersSimilar() || IsFolderSubfolder())
             {
-                //SQ ShowRemovableDrives(LeftText.Text, "left");
-                //SQ ShowRemovableDrives(RightText.Text, "right");
-                ShowRemovableDrives(actualLeftPath, "left"); //SQ
-                ShowRemovableDrives(actualRightPath, "right"); //SQ
+                DisplayCorrectIcons();
                 ButtonSync.Visibility = Visibility.Hidden;
                 ButtonPreview.Visibility = Visibility.Hidden;
                 return false;
             }
 
-            //SQ ShowRemovableDrives(LeftText.Text, "left");
-            //SQ ShowRemovableDrives(RightText.Text, "right");
-            ShowRemovableDrives(actualLeftPath, "left"); //SQ
-            ShowRemovableDrives(actualRightPath, "right"); //SQ
+            DisplayCorrectIcons();
             ButtonSync.Visibility = Visibility.Visible;
             ButtonPreview.Visibility = Visibility.Visible;
             return true;
@@ -786,9 +772,8 @@ namespace nsync
             // pass to settingsmanager the 2 current folderpaths, if any
             if (hasLeftPath && hasRightPath)
             {
-                //SQ settingsManager.SaveFolderPaths(LeftText.Text, RightText.Text);
                 settingsManager.ExcludedData = excludeData;
-                settingsManager.SaveFolderPaths(actualLeftPath, actualRightPath); //SQ
+                settingsManager.SaveFolderPaths(actualLeftPath, actualRightPath);
             }
             else
                 return;
@@ -969,21 +954,17 @@ namespace nsync
         {
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)e.Source;
-            //SQ LeftText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
-            actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)]; //SQ
-            LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
+            actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
+            LeftText.Text = ShortenPath(actualLeftPath, 90);
 
             int index = Convert.ToInt32(lb.Tag);
             RightListBox.SelectedIndex = index - 1;
             lb = (ListBoxItem)RightListBox.SelectedItem;
-            //SQ RightText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
-            actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)]; //SQ
-            RightText.Text = ShortenPath(actualRightPath, 90); //SQ
+            actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
+            RightText.Text = ShortenPath(actualRightPath, 90);
 
-            //SQ synchronizer.LeftPath = LeftText.Text;
-            //SQ synchronizer.RightPath = RightText.Text;
-            synchronizer.LeftPath = actualLeftPath; //SQ
-            synchronizer.RightPath = actualRightPath; //SQ
+            synchronizer.LeftPath = actualLeftPath;
+            synchronizer.RightPath = actualRightPath;
 
             LeftListBox.SelectedIndex = -1;
             LeftListBox.Visibility = Visibility.Hidden;
@@ -1002,21 +983,17 @@ namespace nsync
             ListBoxItem lb = new ListBoxItem();
             lb = (ListBoxItem)e.Source;
             // Change path label to this one and update synchronizer
-            //SQ RightText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
-            actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)]; //SQ
-            RightText.Text = ShortenPath(actualRightPath, 90); //SQ
+            actualRightPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 1)];
+            RightText.Text = ShortenPath(actualRightPath, 90);
 
             int index = Convert.ToInt32(lb.Tag);
             LeftListBox.SelectedIndex = index - 1;
             lb = (ListBoxItem)LeftListBox.SelectedItem;
-            //SQ LeftText.Text = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
-            actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)]; //SQ
-            LeftText.Text = ShortenPath(actualLeftPath, 90); //SQ
+            actualLeftPath = originalFolderPaths[Convert.ToInt32(lb.Tag) + (Convert.ToInt32(lb.Tag) - 2)];
+            LeftText.Text = ShortenPath(actualLeftPath, 90);
 
-            //SQ synchronizer.LeftPath = LeftText.Text;
-            //SQ synchronizer.RightPath = RightText.Text;
-            synchronizer.LeftPath = actualLeftPath; //SQ
-            synchronizer.RightPath = actualRightPath; //SQ
+            synchronizer.LeftPath = actualLeftPath;
+            synchronizer.RightPath = actualRightPath;
 
             RightListBox.SelectedIndex = -1;
             LeftListBox.Visibility = Visibility.Hidden;
@@ -1195,12 +1172,14 @@ namespace nsync
                     helper.IsRevertPathDialog = true;
                     helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                     helper.Show(nsync.Properties.Resources.modifiedRightPath, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    helper.IsRevertPathDialog = false;
                 }
                 else if (leftOrRight == "right" || leftOrRight == "Right")
                 {
                     helper.IsRevertPathDialog = true;
                     helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                     helper.Show(nsync.Properties.Resources.modifiedLeftPath, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    helper.IsRevertPathDialog = false;
                 }
                 
                 actualLeftPath = newFolderPaths[0];
@@ -1215,6 +1194,59 @@ namespace nsync
         void helper_HyperTextMouseDown(object sender, MouseButtonEventArgs e)
         {
             RevertBackToOldFolderPair();
+        }
+
+        private void DisplayCorrectIcons()
+        {
+            // left box
+            if (!Directory.Exists(actualLeftPath))
+            {
+                try
+                {
+                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
+            }
+            else
+            {
+                try
+                {
+                    LeftIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
+                ShowRemovableDrives(actualLeftPath, "left");
+            }
+
+            // right box
+            if (!Directory.Exists(actualRightPath))
+            {
+                try
+                {
+                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER_MISSING));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
+            }
+            else
+            {
+                try
+                {
+                    RightIcon.Source = new BitmapImage(new Uri(ICON_LINK_FOLDER));
+                }
+                catch (Exception exceptionError)
+                {
+                    helper.Show(exceptionError.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
+                ShowRemovableDrives(actualRightPath, "right");
+            }
         }
 
         /// <summary>
@@ -1266,7 +1298,10 @@ namespace nsync
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 
+                        helper.IsRevertPathDialog = true;
+                        helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                         helper.Show(nsync.Properties.Resources.folderOnRemovableDiskRestored, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.IsRevertPathDialog = false;
                     }
                 }
             }
@@ -1284,7 +1319,10 @@ namespace nsync
                         synchronizer.LeftPath = actualLeftPath;
                         synchronizer.RightPath = actualRightPath;
 
+                        helper.IsRevertPathDialog = true;
+                        helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                         helper.Show(nsync.Properties.Resources.folderOnRemovableDiskRestored, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.IsRevertPathDialog = false;
                     }
                 }
             }

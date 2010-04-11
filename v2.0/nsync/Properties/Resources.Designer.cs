@@ -187,7 +187,7 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your last synced folder pair on this removeable disk is restored.  If you wish, you can ask nsync to forget your settings..
+        ///   Looks up a localized string similar to Your last synced folder pair on this removeable disk is restored..
         /// </summary>
         public static string folderOnRemovableDiskRestored {
             get {

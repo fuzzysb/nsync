@@ -151,7 +151,7 @@
     <value>pack://siteoforigin:,,,/Resources/Icons/folder_missing.png</value>
   </data>
   <data name="folderOnRemovableDiskRestored" xml:space="preserve">
-    <value>Your last synced folder pair on this removeable disk is restored.  If you wish, you can ask nsync to forget your settings.</value>
+    <value>Your last synced folder pair on this removeable disk is restored.</value>
   </data>
   <data name="homeToolTip" xml:space="preserve">
     <value>Home</value>

@@ -512,7 +512,12 @@ namespace nsync
                 results[0] = diskNode["left"].InnerText;
                 results[1] = diskNode["right"].InnerText;
 
-                return results;
+                // check if the path in results array exists
+                // if any of them don't exists, no point restoring it back for the users
+                if (Directory.Exists(results[0]) && Directory.Exists(results[1]))
+                    return results;
+                else
+                    return null;
             }
             else
             {
