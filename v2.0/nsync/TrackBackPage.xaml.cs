@@ -33,7 +33,7 @@ namespace nsync
         private string[] destinationList;
         private string[] timeStampList;
 
-        private readonly string SETTINGS_FILE_NAME = "settings.xml";
+        private readonly string SETTINGS_FILE_NAME = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
         private readonly string PATH_MRU_LEFT_FOLDER = "/nsync/MRU/left1";
         private readonly string PATH_MRU_RIGHT_FOLDER = "/nsync/MRU/right1";
         private readonly string MESSAGE_RESTORING_FOLDERS = "Restoring folders...";

@@ -180,7 +180,6 @@ namespace nsync
             try
             {
                 return GetDirectorySpaceInBytes(sourceFolder) < GetFreeDiskSpaceInBytes(sourceFolder.Root.Name.Substring(0, 1));
-
             }
             catch (UnauthorizedAccessException e)
             {
@@ -271,14 +270,14 @@ namespace nsync
                 // copies the files found in the current directory to the destination folders
                 foreach (FileInfo file in files)
                 {
-                    string path = isParentRootDrive?
+                    string path = isParentRootDrive ?
                         Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length)) :
-                        Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length+1));
-                    
+                        Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length + 1));
+
                     if (file.Name != METADATA_FILE_NAME)
                         file.CopyTo(path);
-                }
-            }
+                }  
+             }
         }
 
         /// <summary>
@@ -371,27 +370,20 @@ namespace nsync
         /// <returns>Amount of disk space in bytes, represented by 64-bit unsigned integer</returns>
         private ulong GetDirectorySpaceInBytes(DirectoryInfo directory)
         {
-            try
-            {
-                ulong size = 0;
+            ulong size = 0;
 
-                FileInfo[] files = directory.GetFiles();
-                foreach (FileInfo file in files)
-                {
-                    size += (ulong)file.Length;
-                }
-
-                DirectoryInfo[] folders = directory.GetDirectories();
-                foreach (DirectoryInfo folder in folders)
-                {
-                    size += GetDirectorySpaceInBytes(folder);
-                }
-                return (size);
-            }
-            catch (UnauthorizedAccessException e)
+            FileInfo[] files = directory.GetFiles();
+            foreach (FileInfo file in files)
             {
-                throw e;
+                size += (ulong)file.Length;
             }
+
+            DirectoryInfo[] folders = directory.GetDirectories();
+            foreach (DirectoryInfo folder in folders)
+            {
+                size += GetDirectorySpaceInBytes(folder);
+            }
+            return (size);
         }
 
         /// <summary>
@@ -526,6 +518,29 @@ namespace nsync
                 if (folder.Name == key)
                     return true;
             return false;
+        }
+
+        /// <summary>
+        /// Checks if the folder has restricted file permissions
+        /// </summary>
+        /// <param name="directory">The directory to be checked</param>
+        /// <returns>If the folder can be accessed, return true. Return false otherwise.</returns>
+        private bool IsDirectoryAccessible(DirectoryInfo directory)
+        {
+            try
+            {
+                directory.GetFiles();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return true;
         }
 
         #endregion
