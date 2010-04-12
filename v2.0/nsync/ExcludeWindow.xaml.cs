@@ -37,8 +37,7 @@ namespace nsync
         private List<string> excludeInvalid;
         private List<string> oldExcludeInvalid;
         private readonly int MAX_STRING_LENGTH = 90;
-        private string[] filePathsLeft;
-        private string[] filePathsRight;
+        private List<string> filePaths;
         private BackgroundWorker backgroundWorkerFileTypes = new BackgroundWorker();
         private bool reallyLeft = true;
         private bool cancel = false;
@@ -63,6 +62,8 @@ namespace nsync
             oldExcludeInvalid = new List<string>();
             availableFileTypes = new List<string>();
             excludeInvalid = new List<string>();
+
+            filePaths = new List<string>();
         }
         #endregion
 
@@ -298,10 +299,41 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerFileTypes_DoWork(object sender, DoWorkEventArgs e)
         {
-            filePathsLeft = Directory.GetFiles(leftPath, "*.*",
-                                             SearchOption.AllDirectories);
-            filePathsRight = Directory.GetFiles(rightPath, "*.*",
-                                         SearchOption.AllDirectories);
+            ApplyAllFiles(leftPath, ProcessFile);
+            ApplyAllFiles(rightPath, ProcessFile);
+        }
+
+        /// <summary>
+        /// Process a valid file, add it to the list of filepaths
+        /// </summary>
+        /// <param name="path"></param>
+        private void ProcessFile(string path) 
+        {
+            filePaths.Add(path);
+        }
+        
+        /// <summary>
+        /// Recursively search the directory and when a valid file is found, do something with it
+        /// </summary>
+        /// <param name="folder">folder to process</param>
+        /// <param name="fileAction">delgate to do something to the filepath</param>
+        private static void ApplyAllFiles(string folder, Action<string> fileAction)
+        {
+            foreach (string file in Directory.GetFiles(folder))
+            {
+                fileAction(file);
+            }
+            foreach (string subDir in Directory.GetDirectories(folder))
+            {
+                try
+                {
+                    ApplyAllFiles(subDir, fileAction);
+                }
+                catch
+                {
+                    //Some file types are locked and can't be processed, swallow the error
+                }
+            }
         }
 
         /// <summary>
@@ -328,15 +360,7 @@ namespace nsync
             }
             else
             {
-                foreach (string paths in filePathsLeft)
-                {
-                    string testPath = System.IO.Path.GetFileName(paths).ToLower();
-                    if (testPath != "" && testPath != "nsync.xml" && testPath != "settings.xml" && testPath != "_trackback.xml")
-                    {
-                        AddToFileTypesList(System.IO.Path.GetExtension(paths));
-                    }
-                }
-                foreach (string paths in filePathsRight)
+                foreach (string paths in filePaths)
                 {
                     string testPath = System.IO.Path.GetFileName(paths).ToLower();
                     if (testPath != "" && testPath != "nsync.xml" && testPath != "settings.xml" && testPath != "_trackback.xml")
@@ -347,8 +371,6 @@ namespace nsync
                 PopulateFileTypesComboBox();
             }
         }
-
-
 
         /// <summary>
         /// adds entries from the list to the combobox.
