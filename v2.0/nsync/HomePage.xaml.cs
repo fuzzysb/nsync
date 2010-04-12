@@ -1772,7 +1772,8 @@ namespace nsync
         /// <param name="e"></param>
         private void SyncingImage_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (!isInterfaceEnabled && LabelProgress.Content == MESSAGE_SYNCING_FOLDERS)
+            // Only enable the Cancel function if nsync is syncing folders
+            if (!isInterfaceEnabled && (string) LabelProgress.Content == MESSAGE_SYNCING_FOLDERS)
             {
                 ButtonStop.Visibility = Visibility.Visible;
                 SyncingImage.Visibility = Visibility.Hidden;

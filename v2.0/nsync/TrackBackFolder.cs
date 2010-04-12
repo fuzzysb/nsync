@@ -250,32 +250,48 @@ namespace nsync
 
                 DirectoryInfo[] folders = null;
 
-                // stores all subfolders in the current directory
-                folders = currentDirectory.GetDirectories();
-
-                string folderPath = isParentRootDrive ?
-                    Path.Combine(destinationDirectory.FullName, currentDirectory.FullName.Remove(0, sourceDirectory.Parent.FullName.Length)) :
-                     Path.Combine(destinationDirectory.FullName, currentDirectory.FullName.Remove(0, sourceDirectory.Parent.FullName.Length + 1));
-
-                if (!Directory.Exists(folderPath)) CreateFolder(folderPath, false);
-
-                foreach (DirectoryInfo folder in folders)
+                // If the folder is denied access due to folder security permissions, skip it
+                if (IsDirectoryAccessible(currentDirectory))
                 {
-                    if (folder.Name != TRACKBACK_FOLDER_NAME)
-                        directoryQueue.Enqueue(folder);
-                }
+                    // stores all subfolders in the current directory
+                    folders = currentDirectory.GetDirectories();
 
-                FileInfo[] files = currentDirectory.GetFiles();
+                    string folderPath = isParentRootDrive ?
+                        Path.Combine(destinationDirectory.FullName, currentDirectory.FullName.Remove(0, sourceDirectory.Parent.FullName.Length)) :
+                         Path.Combine(destinationDirectory.FullName, currentDirectory.FullName.Remove(0, sourceDirectory.Parent.FullName.Length + 1));
 
-                // copies the files found in the current directory to the destination folders
-                foreach (FileInfo file in files)
-                {
-                    string path = isParentRootDrive ?
-                        Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length)) :
-                        Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length + 1));
+                    if (!Directory.Exists(folderPath)) CreateFolder(folderPath, false);
 
-                    if (file.Name != METADATA_FILE_NAME)
-                        file.CopyTo(path);
+                    foreach (DirectoryInfo folder in folders)
+                    {
+                        if (folder.Name != TRACKBACK_FOLDER_NAME)
+                            directoryQueue.Enqueue(folder);
+                    }
+
+                    FileInfo[] files = currentDirectory.GetFiles();
+
+                    // copies the files found in the current directory to the destination folders
+                    foreach (FileInfo file in files)
+                    {
+                        string path = isParentRootDrive ?
+                            Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length)) :
+                            Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length + 1));
+
+                        // If the file is denied access due to file security permissions, skip it
+                        try
+                        {
+                            if (file.Name != METADATA_FILE_NAME)
+                                file.CopyTo(path);
+                        }
+                        catch (UnauthorizedAccessException)
+                        {
+                            // Skip the file
+                        }
+                        catch (Exception e)
+                        {
+                            throw e;
+                        }
+                    } 
                 }  
              }
         }
@@ -320,8 +336,19 @@ namespace nsync
 
             foreach (FileInfo file in files)
             {
-                File.SetAttributes(file.FullName, FileAttributes.Normal);
-                File.Delete(file.FullName);
+                try
+                {
+                    File.SetAttributes(file.FullName, FileAttributes.Normal);
+                    File.Delete(file.FullName);
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    // Skip file
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
         }
 
@@ -332,21 +359,39 @@ namespace nsync
         /// <param name="directory">The directory path that is to be deleted</param>
         private void DeleteDirectory(string directory)
         {
-            string[] files = Directory.GetFiles(directory);
-            string[] folders = Directory.GetDirectories(directory);
-
-            foreach (string file in files)
+            // If the directory is denied access due to folder security permissions, skip it
+            if (IsDirectoryAccessible(directory))
             {
-                File.SetAttributes(file, FileAttributes.Normal);
-                File.Delete(file);
-            }
+                int skippedFiles = 0;
+                string[] files = Directory.GetFiles(directory);
+                string[] folders = Directory.GetDirectories(directory);
 
-            foreach (string folder in folders)
-            {
-                DeleteDirectory(folder);
-            }
+                // If the file is denied access due to file security permissions, skip it
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        File.SetAttributes(file, FileAttributes.Normal);
+                        File.Delete(file);
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        // Skip file
+                        skippedFiles++;
+                    }
+                    catch (Exception e)
+                    {
+                        throw e;
+                    }
+                }
 
-            Directory.Delete(directory, false);
+                foreach (string folder in folders)
+                {
+                    DeleteDirectory(folder);
+                }
+
+                if (skippedFiles == 0) Directory.Delete(directory, false); 
+            }
         }
 
         /// <summary>
@@ -372,16 +417,20 @@ namespace nsync
         {
             ulong size = 0;
 
-            FileInfo[] files = directory.GetFiles();
-            foreach (FileInfo file in files)
+            // If the directory is denied access due to folder security permissions, skip it
+            if (IsDirectoryAccessible(directory))
             {
-                size += (ulong)file.Length;
-            }
+                FileInfo[] files = directory.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    size += (ulong)file.Length;
+                }
 
-            DirectoryInfo[] folders = directory.GetDirectories();
-            foreach (DirectoryInfo folder in folders)
-            {
-                size += GetDirectorySpaceInBytes(folder);
+                DirectoryInfo[] folders = directory.GetDirectories();
+                foreach (DirectoryInfo folder in folders)
+                {
+                    size += GetDirectorySpaceInBytes(folder);
+                }
             }
             return (size);
         }
@@ -530,6 +579,29 @@ namespace nsync
             try
             {
                 directory.GetFiles();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Checks if the folder has restricted file permissions
+        /// </summary>
+        /// <param name="directory">The path of the directory to be checked</param>
+        /// <returns>If the folder can be accessed, return true. Return false otherwise.</returns>
+        private bool IsDirectoryAccessible(string directory)
+        {
+            try
+            {
+                Directory.GetFiles(directory);
             }
             catch (UnauthorizedAccessException)
             {

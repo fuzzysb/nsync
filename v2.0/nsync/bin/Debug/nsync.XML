@@ -157,6 +157,13 @@
             <param name="directory">The directory to be checked</param>
             <returns>If the folder can be accessed, return true. Return false otherwise.</returns>
         </member>
+        <member name="M:nsync.TrackBackFolder.IsDirectoryAccessible(System.String)">
+            <summary>
+            Checks if the folder has restricted file permissions
+            </summary>
+            <param name="directory">The path of the directory to be checked</param>
+            <returns>If the folder can be accessed, return true. Return false otherwise.</returns>
+        </member>
         <member name="T:nsync.Properties.Resources">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -1628,6 +1635,7 @@
             Shortens folder path for MRU list
             </summary>
             <param name="oldPath">The path that is to be shortened is passed in</param>
+            <param name="maxLength">The maximum length that the path should be shortened</param>
             <returns>A string containing the new folder path is returned</returns>
         </member>
         <member name="M:nsync.TrackBackPage.InitializeComponent">

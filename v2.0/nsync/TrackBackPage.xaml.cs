@@ -602,6 +602,7 @@ namespace nsync
         /// Shortens folder path for MRU list
         /// </summary>
         /// <param name="oldPath">The path that is to be shortened is passed in</param>
+        /// <param name="maxLength">The maximum length that the path should be shortened</param>
         /// <returns>A string containing the new folder path is returned</returns>
         private string ShortenPath(string oldPath, int maxLength)
         {
