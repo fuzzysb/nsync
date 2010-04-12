@@ -253,7 +253,7 @@
         </member>
         <member name="P:nsync.Properties.Resources.folderRestrictedAccess">
             <summary>
-              Looks up a localized string similar to The folder has file(s)/folder(s) with restricted file security permissions..
+              Looks up a localized string similar to The folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder..
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.homeToolTip">
@@ -293,7 +293,7 @@
         </member>
         <member name="P:nsync.Properties.Resources.leftFolderRestrictedAccess">
             <summary>
-              Looks up a localized string similar to The left folder has file(s)/folder(s) with restricted file security permissions..
+              Looks up a localized string similar to The left folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder..
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.metaDataFileExtension">
@@ -383,7 +383,7 @@
         </member>
         <member name="P:nsync.Properties.Resources.rightFolderRestrictedAccess">
             <summary>
-              Looks up a localized string similar to The right folder has file(s)/folder(s) with restricted file security permissions..
+              Looks up a localized string similar to The right folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder..
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.settingsFilePath">
@@ -1520,6 +1520,12 @@
             Loads the trackback entries for the right folder into the listview
             </summary>
         </member>
+        <member name="M:nsync.TrackBackPage.LoadDataFromTrackBackData(System.String)">
+            <summary>
+            Loads the data from TrackBack XML document into the arrays for storing
+            </summary>
+            <param name="folderPath"></param>
+        </member>
         <member name="M:nsync.TrackBackPage.ComboBoxSourceFolder_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
             <summary>
             Handles the event when the combo box selected item is changed
@@ -1559,6 +1565,11 @@
             Enables or disables the interface after and during restoring of folders
             </summary>
             <param name="status"></param>
+        </member>
+        <member name="M:nsync.TrackBackPage.DisplayErrorInterface">
+            <summary>
+            Displays the interface that will appear visible when there is an error
+            </summary>
         </member>
         <member name="M:nsync.TrackBackPage.backgroundWorkerForTrackBackRestore_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
             <summary>

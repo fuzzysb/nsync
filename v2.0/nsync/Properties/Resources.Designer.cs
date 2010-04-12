@@ -214,7 +214,7 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The folder has file(s)/folder(s) with restricted file security permissions..
+        ///   Looks up a localized string similar to The folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder..
         /// </summary>
         public static string folderRestrictedAccess {
             get {
@@ -286,7 +286,7 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The left folder has file(s)/folder(s) with restricted file security permissions..
+        ///   Looks up a localized string similar to The left folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder..
         /// </summary>
         public static string leftFolderRestrictedAccess {
             get {
@@ -448,7 +448,7 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The right folder has file(s)/folder(s) with restricted file security permissions..
+        ///   Looks up a localized string similar to The right folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder..
         /// </summary>
         public static string rightFolderRestrictedAccess {
             get {

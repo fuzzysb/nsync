@@ -29,6 +29,9 @@ namespace nsync
         private Settings settingsManager;
         private GridViewColumnHeader _lastHeaderClicked = null;
         private ListSortDirection _lastDirection = ListSortDirection.Ascending;
+        private string[] folderList;
+        private string[] destinationList;
+        private string[] timeStampList;
 
         private readonly string SETTINGS_FILE_NAME = "settings.xml";
         private readonly string PATH_MRU_LEFT_FOLDER = "/nsync/MRU/left1";
@@ -36,6 +39,7 @@ namespace nsync
         private readonly string MESSAGE_RESTORING_FOLDERS = "Restoring folders...";
         private readonly string MESSAGE_RESTORE_COMPLETED = "Restore completed";
         private readonly string MESSAGE_ERROR_DETECTED = "Error detected";
+        private readonly string MESSAGE_NO_LISTVIEW = "Error: No listview visible!";
         private readonly int HELPER_WINDOW_HIGH_PRIORITY = 0;
         private readonly int HELPER_WINDOW_LOW_PRIORITY = 1;
         #endregion
@@ -52,6 +56,7 @@ namespace nsync
 
             helper = new HelperManager(mainWindow);
 
+            // Disables the TrackBackPage interface if no folder pairs are loaded in HomePage
             if (!File.Exists(SETTINGS_FILE_NAME) || settingsManager.LoadFolderPaths()[0] == "")
             {
                 GridTrackBack.IsEnabled = false;
@@ -67,6 +72,7 @@ namespace nsync
                 trackback.LeftFolderPath = actualLeftFolderPath;
                 trackback.RightFolderPath = actualRightFolderPath;
 
+                // Displays the message 'No TrackBack Data' if the folder does not have any previously backed up folders
                 if (trackback.hasTrackBackData(actualLeftFolderPath) && trackback.hasTrackBackData(actualRightFolderPath))
                 {
                     GridTrackBack.IsEnabled = true;
@@ -89,7 +95,7 @@ namespace nsync
                     ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
                     LabelNoChanges.Visibility = Visibility.Visible;
                 }
-
+                // Adds the event handler for Restore
                 trackback.backgroundWorkerForTrackBackRestore.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackRestore_RunWorkerCompleted);
             }
         }
@@ -272,7 +278,7 @@ namespace nsync
                     else if (ListViewForRightFolder.Visibility == Visibility.Visible)
                         SortList(header, direction, ListViewForRightFolder);
                     else
-                        throw new Exception("Error: No listview visible!");
+                        throw new Exception(MESSAGE_NO_LISTVIEW);
 
                     _lastHeaderClicked = headerClicked;
                     _lastDirection = direction;
@@ -324,15 +330,15 @@ namespace nsync
         /// </summary>
         private void LoadTrackBackEntriesForLeftFolder()
         {
+            // Refresh the list view
             trackBackCollectionForLeftFolder.Clear();
+
             ListViewForLeftFolder.Visibility = Visibility.Visible;
             ListViewForRightFolder.Visibility = Visibility.Collapsed;
 
             if (trackback.hasTrackBackData(actualLeftFolderPath))
             {
-                string[] folderList = trackback.GetFolderVersions(actualLeftFolderPath);
-                string[] destinationList = trackback.GetFolderDestinations(actualLeftFolderPath);
-                string[] timeStampList = trackback.GetFolderTimeStamps(actualLeftFolderPath);
+                LoadDataFromTrackBackData(actualLeftFolderPath);
 
                 for (int i = 0; i < folderList.Length; i++)
                     AddTrackBackEntryForLeftFolder(folderList[i], timeStampList[i], destinationList[i]);
@@ -344,6 +350,7 @@ namespace nsync
         /// </summary>
         private void LoadTrackBackEntriesForRightFolder()
         {
+            // Refresh the list view
             trackBackCollectionForRightFolder.Clear();
 
             ListViewForLeftFolder.Visibility = Visibility.Collapsed;
@@ -351,13 +358,22 @@ namespace nsync
 
             if (trackback.hasTrackBackData(actualRightFolderPath))
             {
-                string[] folderList = trackback.GetFolderVersions(actualRightFolderPath);
-                string[] destinationList = trackback.GetFolderDestinations(actualRightFolderPath);
-                string[] timeStampList = trackback.GetFolderTimeStamps(actualRightFolderPath);
+                LoadDataFromTrackBackData(actualRightFolderPath);
 
                 for (int j = 0; j < folderList.Length; j++)
                     AddTrackBackEntryForRightFolder(folderList[j], timeStampList[j], destinationList[j]);
             }
+        }
+
+        /// <summary>
+        /// Loads the data from TrackBack XML document into the arrays for storing
+        /// </summary>
+        /// <param name="folderPath"></param>
+        private void LoadDataFromTrackBackData(string folderPath)
+        {
+            folderList = trackback.GetFolderVersions(folderPath);
+            destinationList = trackback.GetFolderDestinations(folderPath);
+            timeStampList = trackback.GetFolderTimeStamps(folderPath);
         }
 
         /// <summary>
@@ -405,26 +421,35 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonRestore_Click(object sender, RoutedEventArgs e)
         {
-            if (!trackback.hasEnoughDiskSpaceInLeftFolder() || !trackback.hasEnoughDiskSpaceInRightFolder())
+            try
             {
-                EnableInterface(true);
-                LabelProgress.Visibility = Visibility.Visible;
-                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath && !trackback.hasEnoughDiskSpaceInLeftFolder())
+                {
+                    DisplayErrorInterface();
                     helper.Show(nsync.Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
                 else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath && !trackback.hasEnoughDiskSpaceInRightFolder())
+                {
+                    DisplayErrorInterface();
                     helper.Show(nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-            }
-            else
-            {
-                EnableInterface(false);
-                LabelProgress.Visibility = Visibility.Visible;
-                LabelProgress.Content = MESSAGE_RESTORING_FOLDERS;
+                }
+                else
+                {
+                    EnableInterface(false);
+                    LabelProgress.Visibility = Visibility.Visible;
+                    LabelProgress.Content = MESSAGE_RESTORING_FOLDERS;
 
-                if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
-                    trackback.StartRestore(actualLeftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
-                else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
-                    trackback.StartRestore(actualRightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
+                    if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+                        trackback.StartRestore(actualLeftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
+                    else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+                        trackback.StartRestore(actualRightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                DisplayErrorInterface();
+                helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                return;
             }
         }
 
@@ -510,23 +535,32 @@ namespace nsync
         }
 
         /// <summary>
+        /// Displays the interface that will appear visible when there is an error
+        /// </summary>
+        private void DisplayErrorInterface()
+        {
+            EnableInterface(true);
+            LabelProgress.Visibility = Visibility.Visible;
+            LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+        }
+
+        /// <summary>
         /// This method is called when the background worker has finished restoring the folders
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void backgroundWorkerForTrackBackRestore_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            EnableInterface(true);
-            LabelProgress.Visibility = Visibility.Visible;
-
             if ((int) e.Result == 0)
             {
+                EnableInterface(true);
+                LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_RESTORE_COMPLETED;
                 helper.Show(nsync.Properties.Resources.restoreComplete, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
             }
             else
             {
-                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                DisplayErrorInterface();
                 
                 switch ((int) e.Result)
                 {
