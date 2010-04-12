@@ -971,16 +971,30 @@ namespace nsync
             // Check if exclude window is enabled in settings
             if (settingsManager.GetExcludeWindowStatus())
             {
-                EnableInterface(false);
-                excludeWindow = new ExcludeWindow();
-                excludeWindow.Closing += new CancelEventHandler(excludeWindow_Closing);
-                excludeWindow.LeftPath = actualLeftPath;
-                excludeWindow.RightPath = actualRightPath;
-                excludeWindow.Owner = mainWindow;
-                excludeWindow.LoadExcludeData();
-                excludeWindow.LogError += new ExcludeWindow.LogHandler(excludeWindow_LogError);
-                mainWindow.Opacity = 0.2;
-                excludeWindow.ShowDialog();
+                bool leftDirectoryAccessible = IsDirectoryAccessible(actualLeftPath);
+                bool rightDirectoryAccessible = IsDirectoryAccessible(actualRightPath);
+                if (leftDirectoryAccessible && rightDirectoryAccessible)
+                {
+                    EnableInterface(false);
+                    excludeWindow = new ExcludeWindow();
+                    excludeWindow.Closing += new CancelEventHandler(excludeWindow_Closing);
+                    excludeWindow.LeftPath = actualLeftPath;
+                    excludeWindow.RightPath = actualRightPath;
+                    excludeWindow.Owner = mainWindow;
+                    excludeWindow.LoadExcludeData();
+                    excludeWindow.LogError += new ExcludeWindow.LogHandler(excludeWindow_LogError);
+                    mainWindow.Opacity = 0.2;
+                    excludeWindow.ShowDialog();
+                }
+                else
+                {
+                    string rightsString = nsync.Properties.Resources.accessRightsInsufficient;
+                    if (!leftDirectoryAccessible)
+                        rightsString += "\n" + ShortenPath(actualLeftPath,50);
+                    if(!rightDirectoryAccessible)
+                        rightsString += "\n" + ShortenPath(actualRightPath,50);
+                    helper.Show(rightsString, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                }
             }
             else
             {
@@ -1003,6 +1017,24 @@ namespace nsync
                 synchronizer.ExcludeData = excludeData;
                 synchronizer.PreSync();
             }
+        }
+
+        private bool IsDirectoryAccessible(string directoryPath)
+        {
+            try
+            {
+                Directory.GetFiles(directoryPath);
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+                return false;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return true;
         }
 
         /// <summary>

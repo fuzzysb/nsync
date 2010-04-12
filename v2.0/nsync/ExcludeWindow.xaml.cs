@@ -325,7 +325,6 @@ namespace nsync
             if (e.Error != null)
             {
                 LogError(e.Error.Message);
-                this.Close();
             }
             else
             {
