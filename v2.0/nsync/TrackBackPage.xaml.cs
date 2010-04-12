@@ -503,12 +503,16 @@ namespace nsync
                 opacityValue = 1;
                 enableButtons = true;
                 ButtonRestore.IsEnabled = true;
+                RestoringImage.Visibility = Visibility.Hidden;
+                ButtonRestore.Visibility = Visibility.Visible;
             }
             else
             {
                 enableButtons = false;
                 opacityValue = 0.5;
                 ButtonRestore.IsEnabled = false;
+                RestoringImage.Visibility = Visibility.Visible;
+                ButtonRestore.Visibility = Visibility.Hidden;
             }
 
             //Enable/Disable the interface
