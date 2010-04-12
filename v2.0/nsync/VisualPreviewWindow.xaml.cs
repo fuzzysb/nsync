@@ -194,14 +194,15 @@ namespace nsync
         /// <param name="previewLeftItem"></param>
         /// <param name="previewFileItem"></param>
         /// <param name="previewRightItem"></param>
-        private void AddBothPreviewEntry(string previewLeftItem, string previewFileItem, string previewRightItem , string previewToolTip)
+        private void AddBothPreviewEntry(string previewLeftItem, string previewFileItem, string previewRightItem , string previewToolTip, string previewColor)
         {
             bothPreviewCollection.Add(new BothPreviewItemData
             {
                 bothLeft = previewLeftItem,
                 bothFileName = previewFileItem,
                 bothRight = previewRightItem,
-                bothToolTip = previewToolTip
+                bothToolTip = previewToolTip,
+                bothColor = previewColor
             });
         }
 
@@ -210,13 +211,14 @@ namespace nsync
         /// </summary>
         /// <param name="previewLeftRightFileName"></param>
         /// <param name="previewLeftRightAction"></param>
-        private void AddLeftRightPreviewEntry(string previewLeftRightFileName, string previewLeftRightAction, string previewLeftRightToolTip)
+        private void AddLeftRightPreviewEntry(string previewLeftRightFileName, string previewLeftRightAction, string previewLeftRightToolTip, string previewLeftRightColor)
         {
             leftRightPreviewCollection.Add(new LeftRightPreviewItemData
             {
                 leftRightFileName = previewLeftRightFileName,
                 leftRightAction = previewLeftRightAction,
-                leftRightToolTip = previewLeftRightToolTip
+                leftRightToolTip = previewLeftRightToolTip,
+                leftRightColor = previewLeftRightColor
             });
         }
 
@@ -295,6 +297,7 @@ namespace nsync
         private void LoadBothData()
         {
             bothPreviewCollection.Clear();
+            string typeColor;
 
             foreach (FileData file in previewFileData)
             {
@@ -305,18 +308,20 @@ namespace nsync
                     shortenedFileName = PathShortener(file.RelativePath, 60);
                     shortenedFileName = shortenedFileName + " [Folder]";
                     fullFileName += " [Folder]";
+                    typeColor = "SkyBlue";
                 }
                 else
                 {
                     shortenedFileName = PathShortener(file.RelativePath, 70);
+                    typeColor = "White";
                 }
                 if (file.RootPath == leftPath)
                 {
-                    AddBothPreviewEntry(file.ChangeType.ToString(), shortenedFileName, "", fullFileName);
+                    AddBothPreviewEntry(file.ChangeType.ToString(), shortenedFileName, "", fullFileName, typeColor);
                 }
                 else
                 {
-                    AddBothPreviewEntry("", shortenedFileName, file.ChangeType.ToString(), fullFileName);
+                    AddBothPreviewEntry("", shortenedFileName, file.ChangeType.ToString(), fullFileName, typeColor);
                 }
             }
         }
@@ -328,6 +333,7 @@ namespace nsync
         private void LoadLeftRightData(bool IsLeft)
         {
             leftRightPreviewCollection.Clear();
+            string typeColor;
 
             foreach (FileData file in previewFileData)
             {
@@ -338,14 +344,16 @@ namespace nsync
                     shortenedFileName = PathShortener(file.RelativePath, 60);
                     shortenedFileName = shortenedFileName + " [Folder]";
                     fullFileName += " [Folder]";
+                    typeColor = "SkyBlue";
                 }
                 else
                 {
                     shortenedFileName = PathShortener(file.RelativePath, 70);
+                    typeColor = "White";
                 }
                 if (file.RootPath == leftPath && IsLeft || file.RootPath == rightPath && !IsLeft)
                 {
-                    AddLeftRightPreviewEntry(shortenedFileName, file.ChangeType.ToString(), fullFileName);
+                    AddLeftRightPreviewEntry(shortenedFileName, file.ChangeType.ToString(), fullFileName, typeColor);
                 }
             }
         }
@@ -454,6 +462,10 @@ namespace nsync
         /// property for tooltip
         /// </summary>
         public string bothToolTip { get; set; }
+        /// <summary>
+        /// property for color
+        /// </summary>
+        public string bothColor { get; set; }
     }
 
     /// <summary>
@@ -473,6 +485,10 @@ namespace nsync
         /// property for tooltip
         /// </summary>
         public string leftRightToolTip { get; set; }
+        /// <summary>
+        /// property for color
+        /// </summary>
+        public string leftRightColor { get; set; }
     }
     #endregion
 }

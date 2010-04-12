@@ -28,7 +28,7 @@
         <StackPanel Name="BoxVisualPreview" Width="672" Height="418" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
             <StackPanel.Resources>
                 <DataTemplate x:Key="leftRightFileNameTemplate">
-                    <TextBlock Text="{Binding leftRightFileName}"  Margin="-6,0">
+                    <TextBlock Text="{Binding leftRightFileName}" Foreground="{Binding leftRightColor}"  Margin="-6,0">
                             <TextBlock.ToolTip>
                                 <ToolTip>
                                     <TextBlock Text="{Binding leftRightToolTip}"/>
@@ -37,7 +37,7 @@
                         </TextBlock>
                 </DataTemplate>
                 <DataTemplate x:Key="bothFileNameTemplate">
-                    <TextBlock Text="{Binding bothFileName}"  Margin="-6,0">
+                    <TextBlock Text="{Binding bothFileName}" Foreground="{Binding bothColor}"  Margin="-6,0">
                             <TextBlock.ToolTip>
                                 <ToolTip>
                                     <TextBlock Text="{Binding bothToolTip}"/>
