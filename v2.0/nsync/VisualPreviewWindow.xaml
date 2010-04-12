@@ -20,11 +20,11 @@
             </StackPanel>
         </Grid>
         <ComboBox x:Name="ComboBoxFilter" VerticalAlignment="Top" Width="148" Height="32" Style="{DynamicResource ComboBoxFileTypeTemplate}" Foreground="White" HorizontalAlignment="Right" Margin="0,123,30,0" Cursor="Hand" SelectionChanged="ComboBoxFilter_SelectionChanged">
-            <ComboBoxItem Name="FilterBoth">Both</ComboBoxItem>
-            <ComboBoxItem Name="FilterLeft">Left</ComboBoxItem>
-            <ComboBoxItem Name="FilterRight">Right</ComboBoxItem>
+            <ComboBoxItem Name="FilterBoth">Both Folders</ComboBoxItem>
+            <ComboBoxItem Name="FilterLeft">Left Folder</ComboBoxItem>
+            <ComboBoxItem Name="FilterRight">Right Folder</ComboBoxItem>
         </ComboBox>
-        <Label Foreground="White" Height="25.96" Margin="0,123,185,0" Name="LabelChangeFilter" VerticalAlignment="Top" HorizontalAlignment="Right">Filter:</Label>
+        <Label Foreground="White" Height="25.96" Margin="0,123,185,0" Name="LabelChangeFilter" VerticalAlignment="Top" HorizontalAlignment="Right">Show changes in:</Label>
         <StackPanel Name="BoxVisualPreview" Width="672" Height="418" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,25" AllowDrop="False" Style="{StaticResource BoxVisualPreviewStyle}">
             <StackPanel.Resources>
                 <DataTemplate x:Key="leftRightFileNameTemplate">
