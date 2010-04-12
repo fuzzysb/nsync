@@ -191,9 +191,11 @@ namespace nsync
         /// <summary>
         /// Adds an entry into the preview both list view
         /// </summary>
-        /// <param name="previewLeftItem"></param>
-        /// <param name="previewFileItem"></param>
-        /// <param name="previewRightItem"></param>
+        /// <param name="previewLeftItem">left string</param>
+        /// <param name="previewFileItem">filename string</param>
+        /// <param name="previewRightItem">right string</param>
+        /// <param name="previewToolTip">tooltip for filename string</param>
+        /// <param name="previewColor">color of filename as a string (color keyword)</param>
         private void AddBothPreviewEntry(string previewLeftItem, string previewFileItem, string previewRightItem , string previewToolTip, string previewColor)
         {
             bothPreviewCollection.Add(new BothPreviewItemData
@@ -209,8 +211,10 @@ namespace nsync
         /// <summary>
         /// Adds an entry into the preview leftright list view
         /// </summary>
-        /// <param name="previewLeftRightFileName"></param>
-        /// <param name="previewLeftRightAction"></param>
+        /// <param name="previewLeftRightFileName">filename string</param>
+        /// <param name="previewLeftRightAction">action on file string</param>
+        /// <param name="previewLeftRightToolTip">tooltip for filename string</param>
+        /// <param name="previewLeftRightColor">color of filename as a string (color keyword)</param>
         private void AddLeftRightPreviewEntry(string previewLeftRightFileName, string previewLeftRightAction, string previewLeftRightToolTip, string previewLeftRightColor)
         {
             leftRightPreviewCollection.Add(new LeftRightPreviewItemData
@@ -246,7 +250,6 @@ namespace nsync
                 default:
                     //Error, unexpected behavior
                     throw new Exception("Error: ComboBoxFilter out of bounds!");
-                    break;
             }
 
             CheckEmptyList();

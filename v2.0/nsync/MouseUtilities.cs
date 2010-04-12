@@ -5,6 +5,9 @@ using System.Windows.Media;
 
 namespace nsync
 {
+    /// <summary>
+    /// MouseUtilities provides a class to call Win32 API to get the correct mouse position on drag and drop actions
+    /// </summary>
     public static class MouseUtilities
     {
         /// <summary>

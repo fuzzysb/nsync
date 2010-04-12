@@ -36,7 +36,7 @@ namespace nsync
         private List<string> availableFileTypes;
         private List<string> excludeInvalid;
         private List<string> oldExcludeInvalid;
-        private readonly int MAX_STRING_LENGTH = 90;
+        private readonly int MAX_STRING_LENGTH = 46;
         private List<string> filePaths;
         private BackgroundWorker backgroundWorkerFileTypes = new BackgroundWorker();
         private bool reallyLeft = true;
@@ -213,9 +213,9 @@ namespace nsync
         /// <param name="e"></param>
         private void WindowExclude_Loaded(object sender, RoutedEventArgs e)
         {
-            LabelLeftPath.Content = PathShortener(leftPath, 46);
+            LabelLeftPath.Content = PathShortener(leftPath, MAX_STRING_LENGTH);
             LabelLeftPath.ToolTip = leftPath;
-            LabelRightPath.Content = PathShortener(rightPath, 46);
+            LabelRightPath.Content = PathShortener(rightPath, MAX_STRING_LENGTH);
             LabelRightPath.ToolTip = rightPath;
 
             try
