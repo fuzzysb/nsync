@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <nsync>
   <MRU>
-    <left1>C:\Users\Seah Shao Qi\Desktop\FolderB\Programming</left1>
-    <right1>C:\Users\Seah Shao Qi\Desktop\FolderA\Music</right1>
+    <left1>C:\Users\Administrator\Desktop\New folder</left1>
+    <right1>C:\Users\Administrator\Desktop\folder b</right1>
     <filter1>
       <excludeFileTypes>
         <size>0</size>
@@ -14,8 +14,8 @@
         <size>0</size>
       </excludeFolders>
     </filter1>
-    <left2>C:\Users\Seah Shao Qi\Desktop\FolderA</left2>
-    <right2>C:\Users\Seah Shao Qi\Desktop\FolderB</right2>
+    <left2>C:\Users\Administrator\Desktop\New folder</left2>
+    <right2>C:\Users\Administrator\Desktop\New folder (2)</right2>
     <filter2>
       <excludeFileTypes>
         <size>0</size>
@@ -76,7 +76,7 @@
   <SETTINGS>
     <HelperWindowTimer>5</HelperWindowTimer>
     <ExcludeWindowStatus>False</ExcludeWindowStatus>
-    <TrackBackStatus>False</TrackBackStatus>
+    <TrackBackStatus>True</TrackBackStatus>
     <PreviewFilterType>both</PreviewFilterType>
   </SETTINGS>
   <REMOVEABLEDISK />
