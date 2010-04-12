@@ -104,7 +104,7 @@ namespace nsync
         }
         #endregion
 
-        #region Private Methods
+        #region Background Worker Methods
         /// <summary>
         /// This method is called when backgroundWorkerForPreview is called to start working
         /// </summary>
@@ -124,7 +124,9 @@ namespace nsync
         {
             InternalPreviewSync();
         }
+        #endregion
 
+        #region Sync Engine Mechanics
         /// <summary>
         /// Does Sync operation to store change events into a list of FileData objects
         /// </summary>
@@ -208,6 +210,13 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// Start the synchronization in one direction
+        /// </summary>
+        /// <param name="sourcePath">This parameter holds the source folder path</param>
+        /// <param name="destPath">This parameter holds the destination folder path</param>
+        /// <param name="filter">This parameter is the filter which will be used during synchronization</param>
+        /// <param name="options">This parameter holds the synchronization options</param>
         private void SyncFileSystemReplicasOneWay(string sourcePath, string destPath,
         FileSyncScopeFilter filter, FileSyncOptions options)
         {
