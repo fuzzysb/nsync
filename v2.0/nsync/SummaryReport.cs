@@ -23,10 +23,8 @@ namespace nsync
         private bool noChanges = false;
         private string leftPath;
         private string rightPath;
-        private string directoryPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
-            "\\log";
-        private string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
-            "\\log\\" + System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'") + ".txt";
+        private string directoryPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
+        private string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath + System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'") + ".txt";
         private List<FileData> fileData;
         #endregion
 

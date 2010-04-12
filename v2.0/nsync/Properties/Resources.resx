@@ -208,7 +208,7 @@
     <value>The right folder does not exist.</value>
   </data>
   <data name="settingsFilePath" xml:space="preserve">
-    <value>/settings.xml</value>
+    <value>\nsync\settings.xml</value>
   </data>
   <data name="settingsToolTip" xml:space="preserve">
     <value>Settings</value>
@@ -287,5 +287,8 @@
   </data>
   <data name="filesOpenedExceptionMessage" xml:space="preserve">
     <value>The process cannot access the file because it is being used by another process</value>
+  </data>
+  <data name="logFolderPath" xml:space="preserve">
+    <value>\nsync\log\</value>
   </data>
 </root>

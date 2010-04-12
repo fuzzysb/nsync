@@ -1977,3 +1977,10 @@ C:\Users\Administrator\Desktop\nsync\nsync\obj\Debug\nsync.application
 C:\Users\Administrator\Desktop\nsync\nsync\obj\Debug\nsync.exe
 C:\Users\Administrator\Desktop\nsync\nsync\obj\Debug\nsync.pdb
 C:\Users\Administrator\Desktop\nsync\nsync\bin\Debug\nsync.XML
+C:\Users\Seah Shao Qi\Desktop\LATEST\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\Seah Shao Qi\Desktop\LATEST\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
+C:\Users\Seah Shao Qi\Desktop\LATEST\nsync\bin\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\Seah Shao Qi\Desktop\LATEST\nsync\obj\Debug\ExcludeWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\LATEST\nsync\obj\Debug\VisualPreviewWindow.g.cs
+C:\Users\Seah Shao Qi\Desktop\LATEST\nsync\obj\Debug\ExcludeWindow.baml
+C:\Users\Seah Shao Qi\Desktop\LATEST\nsync\obj\Debug\VisualPreviewWindow.baml

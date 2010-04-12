@@ -295,6 +295,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \nsync\log\.
+        /// </summary>
+        public static string logFolderPath {
+            get {
+                return ResourceManager.GetString("logFolderPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .metadata.
         /// </summary>
         public static string metaDataFileExtension {
@@ -457,7 +466,7 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to /settings.xml.
+        ///   Looks up a localized string similar to \nsync\settings.xml.
         /// </summary>
         public static string settingsFilePath {
             get {

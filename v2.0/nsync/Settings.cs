@@ -12,7 +12,7 @@ namespace nsync
     public sealed class Settings
     {
         #region Class Variables
-        private string settingsFile = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + nsync.Properties.Resources.settingsFilePath;
+        private string settingsFile = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
         private string NULL_STRING = nsync.Properties.Resources.nullString;
         private const int NUMBER_OF_MOST_RECENT = 5;
         private const string PATH_SETTINGS = "/nsync/SETTINGS";
@@ -579,9 +579,8 @@ namespace nsync
         /// <returns></returns>
         public string OpenLogFolder()
         {
-            string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
-            "\\log\\";
-            
+            string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
+
             if (Directory.Exists(logPath))
             {
                 DirectoryInfo dirInfo = new DirectoryInfo(logPath);
@@ -601,8 +600,7 @@ namespace nsync
         /// <returns></returns>
         public string ClearLogFolder()
         {
-            string logPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) +
-            "\\log\\";
+            string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
             
             if (Directory.Exists(logPath))
             {
