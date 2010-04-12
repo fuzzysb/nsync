@@ -13,6 +13,7 @@ namespace nsync
     {
         #region Class Variables
         private string settingsFile = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
+        private string settingsFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
         private string NULL_STRING = nsync.Properties.Resources.nullString;
         private const int NUMBER_OF_MOST_RECENT = 5;
         private const string PATH_SETTINGS = "/nsync/SETTINGS";
@@ -798,6 +799,8 @@ namespace nsync
         /// </summary>
         private void CreateNewSettingsXML()
         {
+            CheckFolderExist();
+
             XmlTextWriter textWriter = new XmlTextWriter(settingsFile, null);
             textWriter.Formatting = Formatting.Indented;
             textWriter.WriteStartDocument();
@@ -890,6 +893,7 @@ namespace nsync
         /// </summary>
         private void protectFile(string file)
         {
+            //File.SetAttributes(file, FileAttributes.Normal | FileAttributes.ReadOnly);
             File.SetAttributes(file, FileAttributes.Hidden | FileAttributes.ReadOnly);
         }
         
@@ -923,6 +927,17 @@ namespace nsync
                     File.SetAttributes(foundPath, FileAttributes.Normal);
                     File.Delete(foundPath);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Check if the nsync folder exists in %APPDATA%
+        /// </summary>
+        private void CheckFolderExist()
+        {
+            if (!(Directory.Exists(settingsFolder)))
+            {
+                Directory.CreateDirectory(settingsFolder);
             }
         }
         #endregion

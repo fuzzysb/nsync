@@ -81,8 +81,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AACD5676FABE4C8DB6C8E3631755FDF6"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_9D57DE956AF67833CEB2FBAE59CC8B6A"
+        "OwnerKey" = "8:_78CB03C4426A41B49871FD9EFB2B91EC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -93,13 +93,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C84AA5BF440E4A9BBAB62BEC818A8EB6"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_C1B7EE0252083E9E0A569FF089635C11"
+        "OwnerKey" = "8:_9D57DE956AF67833CEB2FBAE59CC8B6A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_D502FEB0A4A04769B2769C07ECA6BA0C"
+        "MsmKey" = "8:_C84AA5BF440E4A9BBAB62BEC818A8EB6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -131,6 +131,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_78CB03C4426A41B49871FD9EFB2B91EC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9D57DE956AF67833CEB2FBAE59CC8B6A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -420,7 +426,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:nsync, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:nsync, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_78CB03C4426A41B49871FD9EFB2B91EC"
@@ -478,10 +484,21 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AACD5676FABE4C8DB6C8E3631755FDF6"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9D57DE956AF67833CEB2FBAE59CC8B6A"
             {
-            "SourcePath" = "8:..\\nsync\\load.gif"
-            "TargetName" = "8:load.gif"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Interop.IWshRuntimeLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_9D57DE956AF67833CEB2FBAE59CC8B6A"
+                    {
+                    "Name" = "8:Interop.IWshRuntimeLibrary.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Interop.IWshRuntimeLibrary.DLL"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_98BC70CCE4F44DA685EBB0BC7BE0C728"
             "Condition" = "8:"
@@ -495,7 +512,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B22BA6A05D964A2D92F41F01298DD1C7"
@@ -518,10 +535,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C84AA5BF440E4A9BBAB62BEC818A8EB6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C1B7EE0252083E9E0A569FF089635C11"
             {
-            "SourcePath" = "8:..\\nsync\\README.txt"
-            "TargetName" = "8:README.txt"
+            "SourcePath" = "8:wshom.ocx"
+            "TargetName" = "8:wshom.ocx"
             "Tag" = "8:"
             "Folder" = "8:_98BC70CCE4F44DA685EBB0BC7BE0C728"
             "Condition" = "8:"
@@ -534,16 +551,16 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D502FEB0A4A04769B2769C07ECA6BA0C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C84AA5BF440E4A9BBAB62BEC818A8EB6"
             {
-            "SourcePath" = "8:..\\nsync\\bin\\Debug\\Resources\\Icons\\information.png"
-            "TargetName" = "8:information.png"
+            "SourcePath" = "8:..\\nsync\\README.txt"
+            "TargetName" = "8:README.txt"
             "Tag" = "8:"
-            "Folder" = "8:_CED7BFE457AD4344B2AC505A7EF05F18"
+            "Folder" = "8:_98BC70CCE4F44DA685EBB0BC7BE0C728"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -688,7 +705,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:nsync"
         "ProductCode" = "8:{4F2F382E-3D60-4304-8D3C-68A808D9C1DB}"
-        "PackageCode" = "8:{5BB6B16B-91B0-406D-B134-8BF2C9BD18C2}"
+        "PackageCode" = "8:{086215E1-1511-4EE6-947A-2550699FB17E}"
         "UpgradeCode" = "8:{C4419387-B3AE-4EA2-BE8E-5442FB88413B}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"

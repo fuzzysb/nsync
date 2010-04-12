@@ -1721,6 +1721,11 @@
             Recursive method to delete metaData
             </summary>
         </member>
+        <member name="M:nsync.Settings.CheckFolderExist">
+            <summary>
+            Check if the nsync folder exists in %APPDATA%
+            </summary>
+        </member>
         <member name="P:nsync.Settings.Instance">
             <summary>
             Gets the instance of the Settings object
