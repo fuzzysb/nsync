@@ -20,8 +20,8 @@
 ----------------------
  Contact Us
 ----------------------
-Email: cs3215-team14@googlegroups.com
-Website: http://code.google.com/p/nsync/
+Email: nsync_discussion_group@googlegroups.com
+Website: http://nsynchronization.info
 
 ----------------------
  Extras
