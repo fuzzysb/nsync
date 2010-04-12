@@ -262,6 +262,17 @@ namespace nsync
         {
             return intelligentManager.IsFoldersSimilar(leftPath, rightPath);
         }
+
+        public bool hasEnoughSpaceInLeftFolder()
+        {
+            return diskSpaceNeededForRight < freeDiskSpaceForLeft;
+        }
+
+        public bool hasEnoughSpaceInRightFolder()
+        {
+            return diskSpaceNeededForLeft < freeDiskSpaceForRight;
+        }
+
         #endregion
 
         #region Private Methods

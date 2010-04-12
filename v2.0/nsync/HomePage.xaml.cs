@@ -1623,22 +1623,34 @@ namespace nsync
 
                 LabelProgress.Content = MESSAGE_BACKING_UP_FOLDERS;
 
-                if (trackback.hasEnoughDiskSpaceInLeftFolder() && trackback.hasEnoughDiskSpaceInRightFolder())
-                    trackback.StartBackup();
-                else
+                try
+                {
+                    if (trackback.hasEnoughDiskSpaceInLeftFolder() && trackback.hasEnoughDiskSpaceInRightFolder() &&
+                                        synchronizer.hasEnoughSpaceInLeftFolder() && synchronizer.hasEnoughSpaceInRightFolder())
+                        trackback.StartBackup();
+                    else
+                    {
+                        EnableInterface(true);
+                        LabelProgress.Visibility = Visibility.Visible;
+                        LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                        helper.Show((!(trackback.hasEnoughDiskSpaceInLeftFolder() && synchronizer.hasEnoughSpaceInLeftFolder())) ? nsync.Properties.Resources.leftFolderInsufficientDiskSpace :
+                            nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        return;
+                    }
+                }
+                catch (UnauthorizedAccessException)
                 {
                     EnableInterface(true);
                     LabelProgress.Visibility = Visibility.Visible;
                     LabelProgress.Content = MESSAGE_ERROR_DETECTED;
-                    helper.Show((!trackback.hasEnoughDiskSpaceInLeftFolder()) ? nsync.Properties.Resources.leftFolderInsufficientDiskSpace :
-                        nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    LabelProgressPercent.Visibility = Visibility.Hidden;
+                    helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     return;
                 }
             }
             else
             {
                 EnableInterface(false);
-
                 LabelProgress.Content = MESSAGE_SYNCING_FOLDERS;
                 LabelProgressPercent.Visibility = Visibility.Visible;
                 LabelProgressPercent.Content = "0 %";

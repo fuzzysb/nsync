@@ -177,7 +177,15 @@ namespace nsync
         /// <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
         public bool hasEnoughDiskSpace()
         {
-            return GetDirectorySpaceInBytes(sourceFolder) < GetFreeDiskSpaceInBytes(sourceFolder.Root.Name.Substring(0, 1));
+            try
+            {
+                return GetDirectorySpaceInBytes(sourceFolder) < GetFreeDiskSpaceInBytes(sourceFolder.Root.Name.Substring(0, 1));
+
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
@@ -363,20 +371,27 @@ namespace nsync
         /// <returns>Amount of disk space in bytes, represented by 64-bit unsigned integer</returns>
         private ulong GetDirectorySpaceInBytes(DirectoryInfo directory)
         {
-            ulong size = 0;
-
-            FileInfo[] files = directory.GetFiles();
-            foreach (FileInfo file in files)
+            try
             {
-                size += (ulong) file.Length;
-            }
+                ulong size = 0;
 
-            DirectoryInfo[] folders = directory.GetDirectories();
-            foreach (DirectoryInfo folder in folders)
-            {
-                size += GetDirectorySpaceInBytes(folder);
+                FileInfo[] files = directory.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    size += (ulong)file.Length;
+                }
+
+                DirectoryInfo[] folders = directory.GetDirectories();
+                foreach (DirectoryInfo folder in folders)
+                {
+                    size += GetDirectorySpaceInBytes(folder);
+                }
+                return (size);
             }
-            return (size);
+            catch (UnauthorizedAccessException e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>

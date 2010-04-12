@@ -156,7 +156,15 @@ namespace nsync
         /// <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
         public bool hasEnoughDiskSpaceInLeftFolder()
         {
-            return leftFolder.hasEnoughDiskSpace();
+            try
+            {
+                return leftFolder.hasEnoughDiskSpace();
+
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
@@ -165,7 +173,15 @@ namespace nsync
         /// <returns>If there is enough space for the folder to be copied, return true, false otherwise.</returns>
         public bool hasEnoughDiskSpaceInRightFolder()
         {
-            return rightFolder.hasEnoughDiskSpace();
+            try
+            {
+                return rightFolder.hasEnoughDiskSpace();
+
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
