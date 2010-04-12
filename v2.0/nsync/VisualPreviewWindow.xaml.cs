@@ -299,7 +299,7 @@ namespace nsync
             foreach (FileData file in previewFileData)
             {
                 string shortenedFileName;
-                string fullFileName = file.RootPath + file.RelativePath;
+                string fullFileName = file.RootPath + "\\" + file.RelativePath;
                 if (file.IsFolder == true)
                 {
                     shortenedFileName = PathShortener(file.RelativePath, 60);
