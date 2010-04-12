@@ -582,13 +582,20 @@ namespace nsync
         {
             string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
 
-            if (Directory.Exists(logPath))
+            try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(logPath);
-                dirInfo.Attributes = FileAttributes.Normal; 
-                System.Diagnostics.Process.Start(@logPath);
+                if (Directory.Exists(logPath))
+                {
+                    DirectoryInfo dirInfo = new DirectoryInfo(logPath);
+                    dirInfo.Attributes = FileAttributes.Normal;
+                    System.Diagnostics.Process.Start(@logPath);
 
-                return null;
+                    return null;
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return "Not authorized to access log folder. Please check log folder permissions.";
             }
 
             return "Log folder does not exist.";
@@ -602,24 +609,31 @@ namespace nsync
         public string ClearLogFolder()
         {
             string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
-            
-            if (Directory.Exists(logPath))
+
+            try
             {
-                DirectoryInfo dirInfo = new DirectoryInfo(logPath);
-                dirInfo.Attributes = FileAttributes.Normal; 
-
-                foreach (string fileName in Directory.GetFiles(logPath))
+                if (Directory.Exists(logPath))
                 {
-                    File.SetAttributes(fileName, FileAttributes.Normal);
-                    File.Delete(fileName);
-                }
+                    DirectoryInfo dirInfo = new DirectoryInfo(logPath);
+                    dirInfo.Attributes = FileAttributes.Normal;
 
-                return "Logs Cleared.";
+                    foreach (string fileName in Directory.GetFiles(logPath))
+                    {
+                        File.SetAttributes(fileName, FileAttributes.Normal);
+                        File.Delete(fileName);
+                    }
+
+                    return "Logs Cleared.";
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return "Not authorized to access log folder. Please check log folder permissions.";
             }
 
             return "Log folder does not exist.";
         }
-        
+
         /// <summary>
         /// Clears Meta Data in current selected left and right folder
         /// </summary>
@@ -635,65 +649,35 @@ namespace nsync
 
             if ((leftPath != NULL_STRING) && (rightPath != NULL_STRING))
             {
-                if (Directory.Exists(leftPath))
+                if (!Directory.Exists(leftPath))
+                    outcome = 2; // left path not exist
+                if (!Directory.Exists(rightPath))
                 {
-                    if (Directory.Exists(rightPath))
-                    {
-                        string leftMetaDataName = leftPath + "\\filesync.metadata";
-                        if (File.Exists(leftMetaDataName))
-                        {
-                            File.SetAttributes(leftMetaDataName, FileAttributes.Normal);
-                            File.Delete(leftMetaDataName);
-                        }
-                        else
-                            outcome = 4; // left folder metadata not exist
-
-                        string rightMetaDataName = rightPath + "\\filesync.metadata";
-                        if (File.Exists(rightMetaDataName))
-                        {
-                            File.SetAttributes(rightMetaDataName, FileAttributes.Normal);
-                            File.Delete(rightMetaDataName);
-                        }
-                        else
-                        {
-                            if (outcome == 0)
-                                outcome = 5; // right folder not exist
-                            else
-                                outcome = 6; // both folder not exist
-                        }
-
-                        deleteAllMetaData(leftPath);
-                        deleteAllMetaData(rightPath);
-
-                    } // end if to check left metadata
+                    if (outcome == 2)
+                        outcome = 4; // both path not exist
                     else
-                    {
-                        if (outcome == 0)
-                            outcome = 2; // right path not exist
-                        else
-                            outcome = 3; // both path not exist
-                    }
+                        outcome = 3; // right path not exist
+                }
 
-                } // end if to check left path
-                else
-                    outcome = 1; // left path not exist
+                if (outcome == 0)
+                {
+                    deleteAllMetaData(leftPath);
+                    deleteAllMetaData(rightPath);
+                } // both path exist
 
             } // end if for checking if folders not exist
             else
-                outcome = 7;
+                outcome = 1;
 
 
             // determines outcome
             switch (outcome)
             {
                 case 0: result = "Meta data cleared."; break;
-                case 1: result = "The Left folder does not exist."; break;
-                case 2: result = "The Right folder does not exist."; break;
-                case 3: result = "Both Left and Right path does not exist."; break;
-                case 4: result = "Meta data does not exist in the Left folder."; break;
-                case 5: result = "Meta data does not exist in the Right folder."; break;
-                case 6: result = "Meta data does not exist in both folders."; break;
-                case 7: result = "No Left and Right Folder selected."; break;
+                case 1: result = "No Left and Right Folder selected."; break;
+                case 2: result = "Left Folder does not exist."; break;
+                case 3: result = "Right Folder does not exist."; break;
+                case 4: result = "Both Left and Right Folders do not exist."; break;
             }
 
             return result;
@@ -918,16 +902,52 @@ namespace nsync
         /// </summary>
         private void deleteAllMetaData(string path)
         {
-            string[] filePaths = Directory.GetFiles(path, "filesync.metadata", SearchOption.AllDirectories);
+            string[] filePaths = new string[0];
+            List<string> directoriesToSearch = new List<string>();
 
-            foreach (string foundPath in filePaths)
+            directoriesToSearch = getSubFolder(path); // gets all accessible sub folders
+            foreach (string directories in directoriesToSearch)
             {
-                if (File.Exists(foundPath))
+                filePaths = Directory.GetFiles(directories, "filesync.metadata", SearchOption.TopDirectoryOnly);
+
+                foreach (string foundPath in filePaths)
                 {
-                    File.SetAttributes(foundPath, FileAttributes.Normal);
-                    File.Delete(foundPath);
+                    if (File.Exists(foundPath))
+                    {
+                        File.SetAttributes(foundPath, FileAttributes.Normal);
+                        File.Delete(foundPath);
+                    }
                 }
+            } // find filesync.metadata in the accessible folders
+
+        }
+
+        /// <summary>
+        /// Recursive method to get all accessible Sub Folder
+        /// </summary>
+        private List<string> getSubFolder(string path)
+        {
+            List<string> directories = new List<string>();
+            string[] subDirectories;
+
+            // child directory is not accessible
+            try
+            {
+                subDirectories = Directory.GetDirectories(path);
+                directories.Add(path); // adds the current directory to the list
             }
+            catch (UnauthorizedAccessException)
+            {
+                return directories;
+            } // return nothing as a locked folder cannot be accessed.
+
+            foreach (string subDirectory in subDirectories)
+            {
+                foreach (string allSubDirectory in getSubFolder(subDirectory))
+                    directories.Add(allSubDirectory); // recursively gets all sub directories and stores to caller.
+            }
+
+            return directories;
         }
 
         /// <summary>
