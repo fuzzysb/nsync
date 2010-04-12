@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -359,6 +359,9 @@
   <ItemGroup>
     <Resource Include="Resources\button.png" />
     <Resource Include="Resources\buttonover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="load-reverse.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
