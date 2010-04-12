@@ -146,7 +146,7 @@ namespace nsync
             settingsManager.ClearSettings();
             CheckSettings();
 
-            LabelProgress.Content = "Settings Cleared.";
+            LabelProgress.Content = "Settings Resetted.";
             LabelProgress.Visibility = Visibility.Visible;
         }
 
