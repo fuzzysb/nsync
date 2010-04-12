@@ -110,9 +110,21 @@ namespace nsync
     /// </summary>
     public enum Changes
     {
+        /// <summary>
+        /// Creation
+        /// </summary>
         Create,
+        /// <summary>
+        /// Deletion
+        /// </summary>
         Delete,
+        /// <summary>
+        /// Updating
+        /// </summary>
         Update,
+        /// <summary>
+        /// Renaming
+        /// </summary>
         Rename
     }
     #endregion
