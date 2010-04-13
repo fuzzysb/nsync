@@ -173,6 +173,11 @@
             Checks if log folder is locked.
             </summary>
         </member>
+        <member name="M:nsync.Settings.IsLogFolderExists">
+            <summary>
+            Check if log folder exists, if not, create a new copy
+            </summary>
+        </member>
         <member name="M:nsync.Settings.IsSettingsFileExists">
             <summary>
             Check if settings.xml exists, if not, create a new copy

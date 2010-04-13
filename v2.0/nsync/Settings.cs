@@ -14,6 +14,7 @@ namespace nsync
         #region Class Variables
         private string settingsFile = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
         private string settingsFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
+        private string logDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
         private string NULL_STRING = nsync.Properties.Resources.nullString;
         private const int NUMBER_OF_MOST_RECENT = 5;
         private const string PATH_SETTINGS = "/nsync/SETTINGS";
@@ -274,7 +275,6 @@ namespace nsync
         {
             if (!IsFoldersLocked())
             {
-                MessageBox.Show("saving paths");
                 string[] tempStorage = new string[10];
 
                 int counter = 0;
@@ -600,7 +600,6 @@ namespace nsync
 
             if (!IsFoldersLocked())
             {
-                MessageBox.Show("Loading exclude data");
                 XmlDocument doc = new XmlDocument();
                 doc.Load(settingsFile);
 
@@ -820,8 +819,6 @@ namespace nsync
         public bool IsFoldersLocked()
         {
             int outcome = 0;
-            string logDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
-            string settingsFilePath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
 
             if (IsLogFolderLocked())
                 outcome = 1; // only log folder locked
@@ -842,7 +839,7 @@ namespace nsync
                     emergencyHelper.Show("Log Folder is Locked.\n Path : " + logDirectory, -2, HelperWindow.windowStartPosition.center);
 
                 if (outcome == 2)
-                    emergencyHelper.Show("Settings File is Locked.\n Path : " + settingsFilePath, -2, HelperWindow.windowStartPosition.center);
+                    emergencyHelper.Show("Settings File is Locked.\n Path : " + settingsFile, -2, HelperWindow.windowStartPosition.center);
 
                 return true;
             } //some folders has been locked
@@ -852,6 +849,19 @@ namespace nsync
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Check if log folder exists, if not, create a new copy
+        /// </summary>
+        private bool IsLogFolderExists()
+        {
+            if (!File.Exists(logDirectory))
+            {
+                Directory.CreateDirectory(logDirectory);
+                return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Check if settings.xml exists, if not, create a new copy
         /// </summary>
@@ -1112,7 +1122,6 @@ namespace nsync
         /// </summary>
         private bool IsLogFolderLocked()
         {
-            string logDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
             try
             {
                 Directory.GetFiles(logDirectory, "", SearchOption.TopDirectoryOnly);
@@ -1120,6 +1129,18 @@ namespace nsync
             catch (UnauthorizedAccessException)
             {
                 return true;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                try
+                {
+                    CheckFolderExist();
+                    IsLogFolderExists();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return true;
+                }
             }
 
             return false;
@@ -1130,17 +1151,40 @@ namespace nsync
         /// </summary>
         private bool IsSettingsFileLocked()
         {
-            string settingsFilePath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
             try
             {
-                File.SetAttributes(settingsFilePath, FileAttributes.Normal);
+                File.SetAttributes(settingsFile, FileAttributes.Normal);
             }
             catch (UnauthorizedAccessException)
             {
                 return true;
             }
+            catch (DirectoryNotFoundException)
+            {
+                try
+                {
+                    CheckFolderExist();
+                    IsSettingsFileExists();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return true;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                try
+                {
+                    CheckFolderExist();
+                    IsSettingsFileExists();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return true;
+                }
+            }
 
-            ProtectFile(settingsFilePath);
+            ProtectFile(settingsFile);
 
             return false;
         }   
