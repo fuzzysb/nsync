@@ -988,14 +988,16 @@ namespace nsync
             if (!ShowSync())
                 return;
 
-            // Check if exclude window is enabled in settings
-            int excludeWindowStatus = settingsManager.GetExcludeWindowStatus(); // 0 for disabled, 1 for enabled, -1 for error
-            if (excludeWindowStatus == 1)
+            bool leftDirectoryAccessible = IsDirectoryAccessible(actualLeftPath);
+            bool rightDirectoryAccessible = IsDirectoryAccessible(actualRightPath);
+            if (leftDirectoryAccessible && rightDirectoryAccessible)
             {
-                bool leftDirectoryAccessible = IsDirectoryAccessible(actualLeftPath);
-                bool rightDirectoryAccessible = IsDirectoryAccessible(actualRightPath);
-                if (leftDirectoryAccessible && rightDirectoryAccessible)
+
+                // Check if exclude window is enabled in settings
+                int excludeWindowStatus = settingsManager.GetExcludeWindowStatus(); // 0 for disabled, 1 for enabled, -1 for error
+                if (excludeWindowStatus == 1)
                 {
+
                     EnableInterface(false);
                     excludeWindow = new ExcludeWindow();
                     excludeWindow.Closing += new CancelEventHandler(excludeWindow_Closing);
@@ -1007,42 +1009,42 @@ namespace nsync
                     mainWindow.Opacity = 0.2;
                     excludeWindow.ShowDialog();
                 }
+                else if (excludeWindowStatus == 0)
+                {
+                    // Make necessary changes to UI to prepare for sync
+                    LeftListBox.Visibility = Visibility.Hidden;
+                    RightListBox.Visibility = Visibility.Hidden;
+                    LabelProgress.Visibility = Visibility.Visible;
+                    LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
+                    EnableInterface(false);
+
+                    // Feed the actualleftpath and actualrightpath into SyncEngine again
+                    // Safety precaution
+                    synchronizer.LeftPath = actualLeftPath;
+                    synchronizer.RightPath = actualRightPath;
+
+                    // Do PreSync Calculations: count how many changes need to be done
+                    // If not enough disk space, return
+                    // If enough, continue to start the real sync
+                    excludeData = new ExcludeData();
+                    synchronizer.ExcludeData = excludeData;
+                    synchronizer.PreSync();
+                }
                 else
                 {
-                    string rightsString = nsync.Properties.Resources.accessRightsInsufficient;
-                    if (!leftDirectoryAccessible)
-                        rightsString += "\n" + ShortenPath(actualLeftPath,50);
-                    if(!rightDirectoryAccessible)
-                        rightsString += "\n" + ShortenPath(actualRightPath,50);
-                    helper.Show(rightsString, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
-                    LabelProgress.Content = MESSAGE_ERROR_DETECTED;
-                    LabelProgress.Visibility = Visibility.Visible;
+                    //Do nothing if -1
                 }
-            }
-            else if (excludeWindowStatus == 0)
-            {
-                // Make necessary changes to UI to prepare for sync
-                LeftListBox.Visibility = Visibility.Hidden;
-                RightListBox.Visibility = Visibility.Hidden;
-                LabelProgress.Visibility = Visibility.Visible;
-                LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
-                EnableInterface(false);
-
-                // Feed the actualleftpath and actualrightpath into SyncEngine again
-                // Safety precaution
-                synchronizer.LeftPath = actualLeftPath;
-                synchronizer.RightPath = actualRightPath;
-
-                // Do PreSync Calculations: count how many changes need to be done
-                // If not enough disk space, return
-                // If enough, continue to start the real sync
-                excludeData = new ExcludeData();
-                synchronizer.ExcludeData = excludeData;
-                synchronizer.PreSync();
             }
             else
             {
-                //Do nothing if -1
+                string rightsString = nsync.Properties.Resources.accessRightsInsufficient;
+                if (!leftDirectoryAccessible)
+                    rightsString += "\n" + ShortenPath(actualLeftPath, 50);
+                if (!rightDirectoryAccessible)
+                    rightsString += "\n" + ShortenPath(actualRightPath, 50);
+                helper.Show(rightsString, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                LabelProgress.Visibility = Visibility.Visible;
             }
         }
 
@@ -1740,19 +1742,35 @@ namespace nsync
             if (!ShowSync())
                 return;
 
-            if (!settingsManager.IsFoldersLocked())
+            bool leftDirectoryAccessible = IsDirectoryAccessible(actualLeftPath);
+            bool rightDirectoryAccessible = IsDirectoryAccessible(actualRightPath);
+            if (leftDirectoryAccessible && rightDirectoryAccessible)
             {
-                EnableInterface(false);
-                previewSync = new Preview();
-                previewSync.LeftPath = actualLeftPath;
-                previewSync.RightPath = actualRightPath;
-                previewSync.ExcludeData = settingsManager.LoadExcludeData(actualLeftPath, actualRightPath);
-                previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
-                previewSync.PreviewSync();
+                if (!settingsManager.IsFoldersLocked())
+                {
+                    EnableInterface(false);
+                    previewSync = new Preview();
+                    previewSync.LeftPath = actualLeftPath;
+                    previewSync.RightPath = actualRightPath;
+                    previewSync.ExcludeData = settingsManager.LoadExcludeData(actualLeftPath, actualRightPath);
+                    previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
+                    previewSync.PreviewSync();
 
-                // Updates UI
+                    // Updates UI
+                    LabelProgress.Visibility = Visibility.Visible;
+                    LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
+                }
+            }
+            else
+            {
+                string rightsString = nsync.Properties.Resources.accessRightsInsufficient;
+                if (!leftDirectoryAccessible)
+                    rightsString += "\n" + ShortenPath(actualLeftPath, 50);
+                if (!rightDirectoryAccessible)
+                    rightsString += "\n" + ShortenPath(actualRightPath, 50);
+                helper.Show(rightsString, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgress.Visibility = Visibility.Visible;
-                LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
             }
         }
 
