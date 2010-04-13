@@ -980,7 +980,7 @@ namespace nsync
                 return;
 
             // Check if exclude window is enabled in settings
-            int excludeWindowStatus = settingsManager.GetExcludeWindowStatus();
+            int excludeWindowStatus = settingsManager.GetExcludeWindowStatus(); // 0 for disabled, 1 for enabled, -1 for error
             if (excludeWindowStatus == 1)
             {
                 bool leftDirectoryAccessible = IsDirectoryAccessible(actualLeftPath);
@@ -1489,11 +1489,11 @@ namespace nsync
                 previewSync.RightPath = actualRightPath;
                 // If filters were activated, let summary sync know as well.
                 int excludeWindowStatus = settingsManager.GetExcludeWindowStatus();
-                if (excludeWindowStatus == 0)
+                if (excludeWindowStatus == 1)
                 {
                     previewSync.ExcludeData = excludeData;
                 }
-                else if (excludeWindowStatus == 1)
+                else if (excludeWindowStatus == 0)
                 {
                     excludeData = new ExcludeData();
                     previewSync.ExcludeData = excludeData;
@@ -1667,7 +1667,7 @@ namespace nsync
                 //FolderCheck();
                 return;
             }
-            if ((!synchronizer.IsFoldersSync()) && (settingsManager.GetTrackBackStatus()))
+            if ((!synchronizer.IsFoldersSync()) && (settingsManager.GetTrackBackStatus() == 1))
             {
                 trackback.LeftFolderPath = actualLeftPath;
                 trackback.RightFolderPath = actualRightPath;

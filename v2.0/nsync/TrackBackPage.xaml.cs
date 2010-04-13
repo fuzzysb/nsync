@@ -180,55 +180,61 @@ namespace nsync
         /// <param name="e"></param>
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!settingsManager.GetTrackBackStatus())
+            int trackbackStatus = settingsManager.GetTrackBackStatus(); // 0 for disabled, 1 for enabled, -1 is an error
+            if (trackbackStatus != -1)
             {
-                GridTrackBack.IsEnabled = false;
-                GridTrackBack.Opacity = 0.5;
-                LabelDisabled.Visibility = Visibility.Visible;
+
+                if (trackbackStatus == 0)
+                {
+                    GridTrackBack.IsEnabled = false;
+                    GridTrackBack.Opacity = 0.5;
+                    LabelDisabled.Visibility = Visibility.Visible;
+                }
+
+                LabelProgress.Visibility = Visibility.Hidden;
+                ButtonRestore.Visibility = Visibility.Hidden;
+
+                if ((File.Exists(SETTINGS_FILE_NAME) && settingsManager.LoadFolderPaths()[0] != "") &&
+                    trackback.hasTrackBackData(actualLeftFolderPath) && trackback.hasTrackBackData(actualRightFolderPath))
+                {
+                    LoadSourceFolders();
+
+                    if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+                        LoadTrackBackEntriesForLeftFolder();
+                    else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+                        LoadTrackBackEntriesForRightFolder();
+
+                    //Sort left and right lists according to date/time
+                    SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
+                    SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
+                }
+                else if ((File.Exists(SETTINGS_FILE_NAME) && settingsManager.LoadFolderPaths()[0] != "") &&
+                    trackback.hasTrackBackData(actualLeftFolderPath))
+                {
+                    LoadSourceFolders();
+
+                    if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+                        LoadTrackBackEntriesForLeftFolder();
+
+                    //Sort left lists according to date/time
+                    SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
+                }
+                else if ((File.Exists(SETTINGS_FILE_NAME) && settingsManager.LoadFolderPaths()[0] != "") &&
+                    trackback.hasTrackBackData(actualRightFolderPath))
+                {
+                    LoadSourceFolders();
+
+                    if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+                        LoadTrackBackEntriesForRightFolder();
+
+                    //Sort right lists according to date/time
+                    SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
+                }
+
+                //Add event handler to check when main window is moved, move helper window too
+                mainWindow.LocationChanged += new EventHandler(mainWindow_LocationChanged);
+
             }
-
-            LabelProgress.Visibility = Visibility.Hidden;
-            ButtonRestore.Visibility = Visibility.Hidden;
-
-            if ((File.Exists(SETTINGS_FILE_NAME) && settingsManager.LoadFolderPaths()[0] != "") &&
-                trackback.hasTrackBackData(actualLeftFolderPath) && trackback.hasTrackBackData(actualRightFolderPath))
-            {
-                LoadSourceFolders();
-
-                if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
-                    LoadTrackBackEntriesForLeftFolder();
-                else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
-                    LoadTrackBackEntriesForRightFolder();
-
-                //Sort left and right lists according to date/time
-                SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
-                SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
-            }
-            else if ((File.Exists(SETTINGS_FILE_NAME) && settingsManager.LoadFolderPaths()[0] != "") &&
-                trackback.hasTrackBackData(actualLeftFolderPath))
-            {
-                LoadSourceFolders();
-
-                if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
-                    LoadTrackBackEntriesForLeftFolder();
-
-                //Sort left lists according to date/time
-                SortList("dateItem", ListSortDirection.Descending, ListViewForLeftFolder);
-            }
-            else if ((File.Exists(SETTINGS_FILE_NAME) && settingsManager.LoadFolderPaths()[0] != "") &&
-                trackback.hasTrackBackData(actualRightFolderPath))
-            {
-                LoadSourceFolders();
-
-                if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
-                    LoadTrackBackEntriesForRightFolder();
-
-                //Sort right lists according to date/time
-                SortList("dateItem", ListSortDirection.Descending, ListViewForRightFolder);
-            }
-
-            //Add event handler to check when main window is moved, move helper window too
-            mainWindow.LocationChanged += new EventHandler(mainWindow_LocationChanged);
         }
 
         /// <summary>

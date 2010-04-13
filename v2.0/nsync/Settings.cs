@@ -14,12 +14,16 @@ namespace nsync
         #region Class Variables
         private string settingsFile = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
         private string settingsFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
-        private string logDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
+        private string nsyncFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
+        private string logFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\log\\";
         private string NULL_STRING = nsync.Properties.Resources.nullString;
+
         private const int NUMBER_OF_MOST_RECENT = 5;
         private const string PATH_SETTINGS = "/nsync/SETTINGS";
         private const string PATH_MRU = "/nsync/MRU";
         private const string PATH_REMOVEABLEDISK = "/nsync/REMOVEABLEDISK";
+        private const int HELPER_WINDOW_FATAL_PRIORITY = -2;
+
         private ExcludeData excludeData;
         private Window mainWindow = Application.Current.MainWindow;
         private ExcludeWindow excludeWindow;
@@ -54,7 +58,7 @@ namespace nsync
         /// <param name="timer">This parameter is an int to indicate how long the HelperWindow should appear</param>
         public void SetHelperWindowStatus(int timer)
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -80,7 +84,7 @@ namespace nsync
         /// <returns>Returns an int which indicates how long the HelperWindow should appear</returns>
         public int GetHelperWindowStatus()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -94,7 +98,7 @@ namespace nsync
                 return int.Parse(helperWindowStatusNode.InnerText);
             }
 
-            return 5;
+            return 5; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -102,7 +106,7 @@ namespace nsync
         /// </summary>
         public void SetPreviewFilterStatus(string filterType)
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -125,7 +129,7 @@ namespace nsync
         /// <returns>Status of Preview Filters</returns>
         public string GetPreviewFilterStatus()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -139,7 +143,7 @@ namespace nsync
                 return previewFilterStatusNode.InnerText;
             }
 
-            return "both";
+            return "both"; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -148,7 +152,7 @@ namespace nsync
         /// <param name="status">This parameter indicates if the exclude window is enabled or disabled</param>
         public void SetExcludeWindowStatus(bool status)
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -158,7 +162,10 @@ namespace nsync
                 XmlDocument doc = new XmlDocument();
                 XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
 
-                excludeWindowStatusNode.InnerText = "" + status.ToString();
+                if (status == true)
+                    excludeWindowStatusNode.InnerText = "1";
+                else if (status == false)
+                    excludeWindowStatusNode.InnerText = "0";
 
                 doc.Save(settingsFile);
                 ProtectFile(settingsFile);
@@ -171,7 +178,7 @@ namespace nsync
         /// <returns>Returns a boolean which indicates whether the exclude window is enabled or disabled</returns>
         public int GetExcludeWindowStatus()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -182,13 +189,10 @@ namespace nsync
                 XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
 
                 ProtectFile(settingsFile);
-                if (excludeWindowStatusNode.InnerText.Equals("True"))
-                    return 1;
-                if (excludeWindowStatusNode.InnerText.Equals("False"))
-                    return 0;
+                return int.Parse(excludeWindowStatusNode.InnerText);
             }
 
-            return -1;
+            return -1; // return a default to nsync if it lock. This return is to tell the caller to stop doing anything else.
         }
 
         /// <summary>
@@ -197,7 +201,7 @@ namespace nsync
         /// <param name="status">This parameter indicates if the trackback is enabled or disabled</param>
         public void SetTrackBackStatus(bool status)
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -207,7 +211,10 @@ namespace nsync
                 XmlDocument doc = new XmlDocument();
                 XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
 
-                trackBackStatusNode.InnerText = "" + status.ToString();
+                if (status == true)
+                    trackBackStatusNode.InnerText = "1";
+                else if (status == false)
+                    trackBackStatusNode.InnerText = "0";
 
                 doc.Save(settingsFile);
                 ProtectFile(settingsFile);
@@ -217,10 +224,10 @@ namespace nsync
         /// <summary>
         /// Gets the current status of the TrackBack
         /// </summary>
-        /// <returns>Returns a boolean which indicates whether the trackback is enabled or disabled</returns>
-        public bool GetTrackBackStatus()
+        /// <returns>Returns an int which indicates whether the trackback is enabled or disabled. 0 means disabled. 1 means enabled. -1 means theres error</returns>
+        public int GetTrackBackStatus()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
                 {
@@ -231,10 +238,10 @@ namespace nsync
                 XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
 
                 ProtectFile(settingsFile);
-                return bool.Parse(trackBackStatusNode.InnerText);
+                return int.Parse(trackBackStatusNode.InnerText);
             }
 
-            return false;
+            return -1; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -263,7 +270,8 @@ namespace nsync
                 return results;
 
             }
-            return results;
+
+            return results; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -273,7 +281,7 @@ namespace nsync
         /// <param name="rightPath">This parameter will be saved into settings.xml</param>
         public void SaveFolderPaths(string leftPath, string rightPath)
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 string[] tempStorage = new string[10];
 
@@ -499,7 +507,7 @@ namespace nsync
         /// <param name="rightPath">This parameter indicates the rightPath of the sync job</param>
         public void SaveFolderPathForRemoveableDisk(string serialNumber, string leftPath, string rightPath)
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 IsSettingsFileExists();
 
@@ -554,7 +562,7 @@ namespace nsync
         /// <returns></returns>
         public string[] GetLastRemoveableDiskSync(string serialNumber)
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (File.Exists(settingsFile))
                 {
@@ -586,7 +594,7 @@ namespace nsync
                 }
             }
 
-            return null;
+            return null; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -598,46 +606,52 @@ namespace nsync
         {
             ExcludeData loadedExcludeData = new ExcludeData();
 
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(settingsFile);
 
                 XmlNode mruNode = SelectNode(doc, PATH_MRU);
-                int filterIndex = 0;
 
+                // finds the corresponding paths to which filters are stored.
+                int filterIndex = 0;
                 for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
                 {
                     if (mruNode["left" + i.ToString()].InnerText.Equals(leftPath))
                         if (mruNode["right" + i.ToString()].InnerText.Equals(rightPath))
                             filterIndex = i;
-                }
+                } 
 
-                if (filterIndex != 0)
+                if (filterIndex != 0) // checks if there are any filters
                 {
                     XmlNode filterNode = mruNode.SelectSingleNode("filter" + filterIndex.ToString());
                     XmlNode excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
                     XmlNode excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
                     XmlNode excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
 
+                    // adds exclude File Types
                     for (int i = 0; i < int.Parse(excludeFileTypeNode["size"].InnerText); i++)
                     {
                         loadedExcludeData.AddExcludeFileType(excludeFileTypeNode["fileType" + i.ToString()].InnerText);
                     }
 
+                    // adds exclude File Names
                     for (int i = 0; i < int.Parse(excludeFileNameNode["size"].InnerText); i++)
                     {
                         loadedExcludeData.AddExcludeFileName(excludeFileNameNode["fileName" + i.ToString()].InnerText);
                     }
 
+                    // adds exclude Folders
                     for (int i = 0; i < int.Parse(excludeFolderNode["size"].InnerText); i++)
                     {
                         loadedExcludeData.AddExcludeFolder(excludeFolderNode["folder" + i.ToString()].InnerText);
-                    }
+                    } 
                 }
+
+                return loadedExcludeData; 
             }
 
-            return loadedExcludeData;
+            return loadedExcludeData; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -647,7 +661,7 @@ namespace nsync
         /// <returns></returns>
         public string OpenLogFolder()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
 
@@ -670,7 +684,7 @@ namespace nsync
                 return "Log folder does not exist.";
             }
 
-            return NULL_STRING;
+            return null; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -680,7 +694,7 @@ namespace nsync
         /// <returns></returns>
         public string ClearLogFolder()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
 
@@ -708,7 +722,7 @@ namespace nsync
                 return "Log folder does not exist.";
             }
 
-            return NULL_STRING;
+            return NULL_STRING; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -718,7 +732,7 @@ namespace nsync
         /// <returns>string</returns>
         public string ClearMetaData()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 string[] path = GetLeftAndRightFolderPath();
                 string leftPath = path[0];
@@ -762,7 +776,7 @@ namespace nsync
                 return result;
             }
 
-            return NULL_STRING;
+            return null; // return a default to nsync if it lock. This return is to prevent error.
         }
 
         /// <summary>
@@ -772,7 +786,7 @@ namespace nsync
         /// <returns></returns>
         public void ClearSettings()
         {
-            if (!IsFoldersLocked())
+            if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 UnProtectFile(settingsFile);
                 File.Delete(settingsFile);
@@ -820,10 +834,12 @@ namespace nsync
         {
             int outcome = 0;
 
-            if (IsLogFolderLocked())
-                outcome = 1; // only log folder locked
             if (IsSettingsFileLocked())
-                outcome = 2; // only settings locked
+                outcome = 3; // settings locked
+            if (IsLogFolderLocked())
+                outcome = 2; // log folder locked
+            if (IsSettingsFileLocked())
+                outcome = 1; // nsync folder locked
 
             if (outcome != 0)
             {
@@ -836,10 +852,13 @@ namespace nsync
                     excludeWindow.Visibility = Visibility.Hidden;
 
                 if (outcome == 1)
-                    emergencyHelper.Show("Log Folder is Locked.\n Path : " + logDirectory, -2, HelperWindow.windowStartPosition.center);
+                    emergencyHelper.Show("Nsync Folder is Locked.\n Path : " + nsyncFolder, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
 
                 if (outcome == 2)
-                    emergencyHelper.Show("Settings File is Locked.\n Path : " + settingsFile, -2, HelperWindow.windowStartPosition.center);
+                    emergencyHelper.Show("Log Folder is Locked.\n Path : " + logFolder, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
+
+                if (outcome == 3)
+                    emergencyHelper.Show("Settings File is Locked.\n Path : " + settingsFile, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
 
                 return true;
             } //some folders has been locked
@@ -849,32 +868,6 @@ namespace nsync
         #endregion
 
         #region Private Methods
-        /// <summary>
-        /// Check if log folder exists, if not, create a new copy
-        /// </summary>
-        private bool IsLogFolderExists()
-        {
-            if (!File.Exists(logDirectory))
-            {
-                Directory.CreateDirectory(logDirectory);
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// Check if settings.xml exists, if not, create a new copy
-        /// </summary>
-        private bool IsSettingsFileExists()
-        {
-            if (!File.Exists(settingsFile))
-            {
-                CreateNewSettingsXML();
-                return false;
-            }
-            return true;
-        }
-
         /// <summary>
         /// Gets a XMLNode from a XML document
         /// </summary>
@@ -995,11 +988,11 @@ namespace nsync
             textWriter.WriteEndElement();
 
             textWriter.WriteStartElement("ExcludeWindowStatus");
-            textWriter.WriteString("False");
+            textWriter.WriteString("0");
             textWriter.WriteEndElement();
 
             textWriter.WriteStartElement("TrackBackStatus");
-            textWriter.WriteString("False");
+            textWriter.WriteString("0");
             textWriter.WriteEndElement();
 
             textWriter.WriteStartElement("PreviewFilterType");
@@ -1118,25 +1111,84 @@ namespace nsync
         }
 
         /// <summary>
+        /// Checks if nsync folder is locked.
+        /// </summary>
+        private bool IsNsyncFolderLocked()
+        {
+            try
+            {
+                Directory.GetFiles(nsyncFolder, "", SearchOption.TopDirectoryOnly);
+                DirectoryInfo dirInfo = new DirectoryInfo(nsyncFolder);
+                dirInfo.Attributes = FileAttributes.Normal;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return true;
+            }
+            catch (ArgumentException)
+            {
+                return true;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                try // this try block checks if a parent folder is locked
+                {
+                    IsNsyncFolderExists();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return true;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                try // this try block checks if a parent folder is locked
+                {
+                    IsLogFolderExists();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// Checks if log folder is locked.
         /// </summary>
         private bool IsLogFolderLocked()
         {
             try
             {
-                FileStream fs = File.Create(logDirectory + "checkerFile.txt");
-                fs.Close();
-                File.Delete(logDirectory + "checkerFile.txt");
+                Directory.GetFiles(logFolder, "", SearchOption.TopDirectoryOnly);
+                DirectoryInfo dirInfo = new DirectoryInfo(logFolder);
+                dirInfo.Attributes = FileAttributes.Normal;
             }
             catch (UnauthorizedAccessException)
             {
                 return true;
             }
+            catch (ArgumentException)
+            {
+                return true;
+            }
             catch (DirectoryNotFoundException)
             {
-                try
+                try // this try block checks if a parent folder is locked
                 {
-                    CheckFolderExist();
+                    IsLogFolderExists();
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return true;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                try // this try block checks if a parent folder is locked
+                {
                     IsLogFolderExists();
                 }
                 catch (UnauthorizedAccessException)
@@ -1155,7 +1207,7 @@ namespace nsync
         {
             try
             {
-                File.SetAttributes(settingsFile, FileAttributes.Normal);
+                UnProtectFile(settingsFile);
             }
             catch (UnauthorizedAccessException)
             {
@@ -1163,9 +1215,8 @@ namespace nsync
             }
             catch (DirectoryNotFoundException)
             {
-                try
+                try // this try block checks if a parent folder is locked
                 {
-                    CheckFolderExist();
                     IsSettingsFileExists();
                 }
                 catch (UnauthorizedAccessException)
@@ -1175,9 +1226,8 @@ namespace nsync
             }
             catch (FileNotFoundException)
             {
-                try
+                try // this try block checks if a parent folder is locked
                 {
-                    CheckFolderExist();
                     IsSettingsFileExists();
                 }
                 catch (UnauthorizedAccessException)
@@ -1189,7 +1239,46 @@ namespace nsync
             ProtectFile(settingsFile);
 
             return false;
-        }   
+        }
+
+        /// <summary>
+        /// Check if nsync folder exists, if not, create a new copy
+        /// </summary>
+        private bool IsNsyncFolderExists()
+        {
+            if (!File.Exists(nsyncFolder))
+            {
+                Directory.CreateDirectory(nsyncFolder);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Check if log folder exists, if not, create a new copy
+        /// </summary>
+        private bool IsLogFolderExists()
+        {
+            if (!File.Exists(logFolder))
+            {
+                Directory.CreateDirectory(logFolder);
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Check if settings.xml exists, if not, create a new copy
+        /// </summary>
+        private bool IsSettingsFileExists()
+        {
+            if (!File.Exists(settingsFile))
+            {
+                CreateNewSettingsXML();
+                return false;
+            }
+            return true;
+        }
         #endregion
 
     }

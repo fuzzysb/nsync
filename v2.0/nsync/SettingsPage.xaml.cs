@@ -37,12 +37,11 @@ namespace nsync
             HelperWindowSliderValue.SelectedIndex = loadedTimer;
 
             //gets exclude window settings
-            int excludeWindowStatus = settingsManager.GetExcludeWindowStatus();
-            if (excludeWindowStatus == 0)
+            if (settingsManager.GetExcludeWindowStatus() == 0)
                 CheckboxToggleExcludeWindow.IsChecked = true;
 
             //gets trackback settings
-            if (!settingsManager.GetTrackBackStatus())
+            if (settingsManager.GetTrackBackStatus() == 0)
                 CheckboxToggleTrackBack.IsChecked = true;
 
             //flag for enabling the boxes for user input

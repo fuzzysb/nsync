@@ -1866,7 +1866,6 @@ C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.application
-C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.XML
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.exe
@@ -1984,3 +1983,4 @@ C:\Users\Administrator\Desktop\nsync\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Administrator\Desktop\nsync\nsync\obj\Debug\nsync.application
 C:\Users\Administrator\Desktop\nsync\nsync\obj\Debug\nsync.exe
 C:\Users\Administrator\Desktop\nsync\nsync\obj\Debug\nsync.pdb
+C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.XML
