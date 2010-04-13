@@ -106,11 +106,74 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag &amp; drop files and folders to exclude..
+        /// </summary>
+        public static string excludeDragDropMessage {
+            get {
+                return ResourceManager.GetString("excludeDragDropMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exclude All Files: .
+        /// </summary>
+        public static string excludeFilesDescription {
+            get {
+                return ResourceManager.GetString("excludeFilesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exclude File Type: .
+        /// </summary>
+        public static string excludeFileTypesDescription {
+            get {
+                return ResourceManager.GetString("excludeFileTypesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exclude Folder: .
+        /// </summary>
+        public static string excludeFolderDescription {
+            get {
+                return ResourceManager.GetString("excludeFolderDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drag &amp; Drop Files or Folders to Exclude.
         /// </summary>
         public static string excludeIconToolTip {
             get {
                 return ResourceManager.GetString("excludeIconToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not in synchronized folders: .
+        /// </summary>
+        public static string excludeInvalidDescription {
+            get {
+                return ResourceManager.GetString("excludeInvalidDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parent Folder Included: .
+        /// </summary>
+        public static string excludeParentIncludedDescription {
+            get {
+                return ResourceManager.GetString("excludeParentIncludedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click on entries to remove them from the exclude list..
+        /// </summary>
+        public static string excludeRemoveMessage {
+            get {
+                return ResourceManager.GetString("excludeRemoveMessage", resourceCulture);
             }
         }
         
@@ -421,6 +484,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to nsync.xml.
+        /// </summary>
+        public static string nsyncXMLFilename {
+            get {
+                return ResourceManager.GetString("nsyncXMLFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
         public static string nullString {
@@ -547,6 +619,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to settings.xml.
+        /// </summary>
+        public static string settingsXMLFilename {
+            get {
+                return ResourceManager.GetString("settingsXMLFilename", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The left and right folders cannot be similar..
         /// </summary>
         public static string similarFolders {
@@ -642,6 +723,15 @@ namespace nsync.Properties {
         public static string trackBackToolTip {
             get {
                 return ResourceManager.GetString("trackBackToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _trackback.xml.
+        /// </summary>
+        public static string trackbackXMLFilename {
+            get {
+                return ResourceManager.GetString("trackbackXMLFilename", resourceCulture);
             }
         }
     }

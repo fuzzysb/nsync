@@ -373,7 +373,8 @@ namespace nsync
                 foreach (string paths in filePaths)
                 {
                     string testPath = System.IO.Path.GetFileName(paths).ToLower();
-                    if (testPath != NULL_STRING && testPath != "nsync.xml" && testPath != "settings.xml" && testPath != "_trackback.xml")
+                    if (testPath != NULL_STRING && testPath != Properties.Resources.nsyncXMLFilename
+                        && testPath != Properties.Resources.settingsXMLFilename && testPath != Properties.Resources.trackbackXMLFilename)
                     {
                         AddToFileTypesList(System.IO.Path.GetExtension(paths));
                     }
@@ -605,23 +606,23 @@ namespace nsync
             // Setup listbox items
             for (int i = 0; i < excludeFolders.Count; i++)
             {
-                AddListBoxItem("Exclude Folder: ", new SolidColorBrush(Colors.SkyBlue), excludeFolders[i]);
+                AddListBoxItem(Properties.Resources.excludeFolderDescription, new SolidColorBrush(Colors.SkyBlue), excludeFolders[i]);
             }
             for (int i = 0; i < excludeFileNames.Count; i++)
             {
-                AddListBoxItem("Exclude All Files: ", new SolidColorBrush(Colors.White), excludeFileNames[i]);
+                AddListBoxItem(Properties.Resources.excludeFilesDescription, new SolidColorBrush(Colors.White), excludeFileNames[i]);
             }
             for (int i = 0; i < excludeFileTypes.Count; i++)
             {
-                AddListBoxItem("Exclude File Type: ", new SolidColorBrush(Colors.Orange), excludeFileTypes[i]);
+                AddListBoxItem(Properties.Resources.excludeFileTypesDescription, new SolidColorBrush(Colors.Orange), excludeFileTypes[i]);
             }
             for (int i = 0; i < excludeInvalid.Count; i++)
             {
-                AddListBoxItem("Not in synchronized folders: ", new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
+                AddListBoxItem(Properties.Resources.excludeInvalidDescription, new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
             }
             for (int i = 0; i < excludeSubFolders.Count; i++)
             {
-                AddListBoxItem("Parent Folder Included: ", new SolidColorBrush(Colors.LightPink), excludeSubFolders[i]);
+                AddListBoxItem(Properties.Resources.excludeParentIncludedDescription, new SolidColorBrush(Colors.LightPink), excludeSubFolders[i]);
             }
 
             RefreshInterface();
@@ -634,7 +635,7 @@ namespace nsync
         {
             if (ListBoxExclude.Items.Count > 0)
             {
-                LabelStatus.Content = "Click on entries to remove them from the exclude list.";
+                LabelStatus.Content = Properties.Resources.excludeDragDropMessage;
                 ButtonClear.IsEnabled = true;
                 ListBoxExclude.Visibility = Visibility.Visible;
             }
@@ -642,7 +643,7 @@ namespace nsync
             {
                 ListBoxExclude.Visibility = Visibility.Hidden;
                 ButtonClear.IsEnabled = false;
-                LabelStatus.Content = "Drag & drop files and folders to exclude.";
+                LabelStatus.Content = Properties.Resources.excludeRemoveMessage;
             }
         }
 

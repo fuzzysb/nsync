@@ -312,4 +312,34 @@
   <data name="messageSyncTerminated" xml:space="preserve">
     <value>Sync terminated</value>
   </data>
+  <data name="excludeDragDropMessage" xml:space="preserve">
+    <value>Drag &amp; drop files and folders to exclude.</value>
+  </data>
+  <data name="excludeFilesDescription" xml:space="preserve">
+    <value>Exclude All Files: </value>
+  </data>
+  <data name="excludeFileTypesDescription" xml:space="preserve">
+    <value>Exclude File Type: </value>
+  </data>
+  <data name="excludeFolderDescription" xml:space="preserve">
+    <value>Exclude Folder: </value>
+  </data>
+  <data name="excludeInvalidDescription" xml:space="preserve">
+    <value>Not in synchronized folders: </value>
+  </data>
+  <data name="excludeParentIncludedDescription" xml:space="preserve">
+    <value>Parent Folder Included: </value>
+  </data>
+  <data name="excludeRemoveMessage" xml:space="preserve">
+    <value>Click on entries to remove them from the exclude list.</value>
+  </data>
+  <data name="nsyncXMLFilename" xml:space="preserve">
+    <value>nsync.xml</value>
+  </data>
+  <data name="settingsXMLFilename" xml:space="preserve">
+    <value>settings.xml</value>
+  </data>
+  <data name="trackbackXMLFilename" xml:space="preserve">
+    <value>_trackback.xml</value>
+  </data>
 </root>
