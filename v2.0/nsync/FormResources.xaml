@@ -1345,6 +1345,7 @@
                 Fill="#FF888888"
                 StrokeThickness="0"
                 Stroke="#FF666666"
+                     Width="5" Height="5"
                      />
         </Grid>
         <ControlTemplate.Triggers>
@@ -1353,6 +1354,8 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Fill" TargetName="circle" Value="White" />
+                <Setter Property="Width" TargetName="circle" Value="10"/>
+                <Setter Property="Height" TargetName="circle" Value="10"/>
                 <Setter Property="Cursor" TargetName="grid" Value="Hand"/>
             </Trigger>
         </ControlTemplate.Triggers>

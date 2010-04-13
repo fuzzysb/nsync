@@ -1085,7 +1085,6 @@ C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\HomePage.baml
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\MainWindow.baml
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.g.resources
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.Properties.Resources.resources
-C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Eugene\Desktop\nsync2.0\nsync\obj\Debug\nsync.application
