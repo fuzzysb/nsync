@@ -11,6 +11,7 @@ namespace nsync
     {
         private Settings settingsManager;
         private bool pageIsLoaded = false;
+        private Window mainWindow = Application.Current.MainWindow;
 
         /// <summary>
         /// Constructor for SettingsPage
@@ -27,6 +28,7 @@ namespace nsync
         private void CheckSettings()
         {
             settingsManager = Settings.Instance;
+
             //gets helper window settings
             int loadedTimer = settingsManager.GetHelperWindowStatus();
             if (loadedTimer == -1)
@@ -35,7 +37,8 @@ namespace nsync
             HelperWindowSliderValue.SelectedIndex = loadedTimer;
 
             //gets exclude window settings
-            if (!settingsManager.GetExcludeWindowStatus())
+            int excludeWindowStatus = settingsManager.GetExcludeWindowStatus();
+            if (excludeWindowStatus == 0)
                 CheckboxToggleExcludeWindow.IsChecked = true;
 
             //gets trackback settings

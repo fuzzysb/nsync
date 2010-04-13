@@ -38,6 +38,7 @@ namespace nsync
         private string oldRightPath;
         private bool isInterfaceEnabled;
         private string errorDirectory = null;
+        private bool isErrorClosing = false;
         
         private string[] originalFolderPaths;
 
@@ -78,11 +79,17 @@ namespace nsync
 
             // Get the settings class instance
             settingsManager = Settings.Instance;
+            settingsManager.SetHomePage(this);
             
             mainWindow.Closing += new CancelEventHandler(mainWindow_Closing);
 
             actualLeftPath = nsync.Properties.Resources.panelText;
             actualRightPath = nsync.Properties.Resources.panelText;
+        }
+
+        public void IsErrorClosing()
+        {
+            isErrorClosing = true;
         }
         #endregion
 
@@ -164,7 +171,8 @@ namespace nsync
         /// <param name="e"></param>
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
-            SaveFolderPaths();
+            if (!isErrorClosing)
+                SaveFolderPaths();
         }
         #endregion
 
@@ -969,7 +977,8 @@ namespace nsync
                 return;
 
             // Check if exclude window is enabled in settings
-            if (settingsManager.GetExcludeWindowStatus())
+            int excludeWindowStatus = settingsManager.GetExcludeWindowStatus();
+            if (excludeWindowStatus == 1)
             {
                 bool leftDirectoryAccessible = IsDirectoryAccessible(actualLeftPath);
                 bool rightDirectoryAccessible = IsDirectoryAccessible(actualRightPath);
@@ -996,7 +1005,7 @@ namespace nsync
                     helper.Show(rightsString, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 }
             }
-            else
+            else if (excludeWindowStatus == 0)
             {
                 // Make necessary changes to UI to prepare for sync
                 LeftListBox.Visibility = Visibility.Hidden;
@@ -1016,6 +1025,10 @@ namespace nsync
                 excludeData = new ExcludeData();
                 synchronizer.ExcludeData = excludeData;
                 synchronizer.PreSync();
+            }
+            else
+            {
+                //Do nothing if -1
             }
         }
 
@@ -1068,6 +1081,10 @@ namespace nsync
             {
                 mainWindow.Opacity = 1;
                 EnableInterface(true);
+                excludeData = new ExcludeData();
+                excludeData.ExcludeFileNameList = excludeWindow.GetFileNameList();
+                excludeData.ExcludeFileTypeList = excludeWindow.GetFileTypeList();
+                excludeData.ExcludeFolderList = excludeWindow.GetFolderList();
             }
             else
             {
@@ -1468,11 +1485,12 @@ namespace nsync
                 previewSync.LeftPath = actualLeftPath;
                 previewSync.RightPath = actualRightPath;
                 // If filters were activated, let summary sync know as well.
-                if (settingsManager.GetExcludeWindowStatus())
+                int excludeWindowStatus = settingsManager.GetExcludeWindowStatus();
+                if (excludeWindowStatus == 0)
                 {
                     previewSync.ExcludeData = excludeData;
                 }
-                else
+                else if (excludeWindowStatus == 1)
                 {
                     excludeData = new ExcludeData();
                     previewSync.ExcludeData = excludeData;
@@ -1701,17 +1719,20 @@ namespace nsync
             if (!ShowSync())
                 return;
 
-            EnableInterface(false);
-            previewSync = new Preview();
-            previewSync.LeftPath = actualLeftPath;
-            previewSync.RightPath = actualRightPath;
-            previewSync.ExcludeData = settingsManager.LoadExcludeData(actualLeftPath, actualRightPath);
-            previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
-            previewSync.PreviewSync();
+            if (!settingsManager.IsFoldersLocked())
+            {
+                EnableInterface(false);
+                previewSync = new Preview();
+                previewSync.LeftPath = actualLeftPath;
+                previewSync.RightPath = actualRightPath;
+                previewSync.ExcludeData = settingsManager.LoadExcludeData(actualLeftPath, actualRightPath);
+                previewSync.backgroundWorkerForPreview.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForPreview_RunWorkerCompleted);
+                previewSync.PreviewSync();
 
-            // Updates UI
-            LabelProgress.Visibility = Visibility.Visible;
-            LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
+                // Updates UI
+                LabelProgress.Visibility = Visibility.Visible;
+                LabelProgress.Content = MESSAGE_PREPARING_FOLDERS;
+            }
         }
 
         /// <summary>

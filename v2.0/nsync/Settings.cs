@@ -20,6 +20,10 @@ namespace nsync
         private const string PATH_MRU = "/nsync/MRU";
         private const string PATH_REMOVEABLEDISK = "/nsync/REMOVEABLEDISK";
         private ExcludeData excludeData;
+        private Window mainWindow = Application.Current.MainWindow;
+        private ExcludeWindow excludeWindow;
+        private VisualPreviewWindow visualPreviewWindow;
+        private HomePage homePage;
         #endregion
 
         #region Singleton Setup
@@ -49,21 +53,24 @@ namespace nsync
         /// <param name="timer">This parameter is an int to indicate how long the HelperWindow should appear</param>
         public void SetHelperWindowStatus(int timer)
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
+
+                if (timer == 11)
+                    timer = -1;
+
+                helperWindowStatusNode.InnerText = "" + timer;
+
+                doc.Save(settingsFile);
+                ProtectFile(settingsFile);
             }
-
-            XmlDocument doc = new XmlDocument();
-            XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
-
-            if (timer == 11)
-                timer = -1;
-
-            helperWindowStatusNode.InnerText = "" + timer;
-
-            doc.Save(settingsFile);
-            protectFile(settingsFile);
         }
 
         /// <summary>
@@ -72,46 +79,66 @@ namespace nsync
         /// <returns>Returns an int which indicates how long the HelperWindow should appear</returns>
         public int GetHelperWindowStatus()
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
+
+                ProtectFile(settingsFile);
+                return int.Parse(helperWindowStatusNode.InnerText);
             }
 
-            XmlDocument doc = new XmlDocument();
-            XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
-            
-            protectFile(settingsFile);
-            return int.Parse(helperWindowStatusNode.InnerText);
+            return 5;
         }
 
+        /// <summary>
+        /// Changes preview filter status
+        /// </summary>
         public void SetPreviewFilterStatus(string filterType)
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode previewFilterStatusNode = SelectNode(doc, PATH_SETTINGS + "/PreviewFilterType");
+
+                previewFilterStatusNode.InnerText = filterType;
+
+                doc.Save(settingsFile);
+                ProtectFile(settingsFile);
             }
-
-            XmlDocument doc = new XmlDocument();
-            XmlNode previewFilterStatusNode = SelectNode(doc, PATH_SETTINGS + "/PreviewFilterType");
-
-            previewFilterStatusNode.InnerText = filterType;
-
-            doc.Save(settingsFile);
-            protectFile(settingsFile);
         }
 
+        /// <summary>
+        /// Gets preview filter status
+        /// </summary>
+        /// <returns>Status of Preview Filters</returns>
         public string GetPreviewFilterStatus()
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode previewFilterStatusNode = SelectNode(doc, PATH_SETTINGS + "/PreviewFilterType");
+
+                ProtectFile(settingsFile);
+                return previewFilterStatusNode.InnerText;
             }
 
-            XmlDocument doc = new XmlDocument();
-            XmlNode previewFilterStatusNode = SelectNode(doc, PATH_SETTINGS + "/PreviewFilterType");
-
-            protectFile(settingsFile);
-            return previewFilterStatusNode.InnerText;
+            return "both";
         }
 
         /// <summary>
@@ -120,36 +147,47 @@ namespace nsync
         /// <param name="status">This parameter indicates if the exclude window is enabled or disabled</param>
         public void SetExcludeWindowStatus(bool status)
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
+
+                excludeWindowStatusNode.InnerText = "" + status.ToString();
+
+                doc.Save(settingsFile);
+                ProtectFile(settingsFile);
             }
-
-            XmlDocument doc = new XmlDocument();
-            XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
-
-            excludeWindowStatusNode.InnerText = "" + status.ToString();
-
-            doc.Save(settingsFile);
-            protectFile(settingsFile);
         }
 
         /// <summary>
         /// Gets the current status of the Exclude Window
         /// </summary>
         /// <returns>Returns a boolean which indicates whether the exclude window is enabled or disabled</returns>
-        public bool GetExcludeWindowStatus()
+        public int GetExcludeWindowStatus()
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
+
+                ProtectFile(settingsFile);
+                if (excludeWindowStatusNode.InnerText.Equals("True"))
+                    return 1;
+                if (excludeWindowStatusNode.InnerText.Equals("False"))
+                    return 0;
             }
 
-            XmlDocument doc = new XmlDocument();
-            XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
-
-            protectFile(settingsFile);
-            return bool.Parse(excludeWindowStatusNode.InnerText);
+            return -1;
         }
 
         /// <summary>
@@ -158,18 +196,21 @@ namespace nsync
         /// <param name="status">This parameter indicates if the trackback is enabled or disabled</param>
         public void SetTrackBackStatus(bool status)
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
+
+                trackBackStatusNode.InnerText = "" + status.ToString();
+
+                doc.Save(settingsFile);
+                ProtectFile(settingsFile);
             }
-
-            XmlDocument doc = new XmlDocument();
-            XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
-
-            trackBackStatusNode.InnerText = "" + status.ToString();
-
-            doc.Save(settingsFile);
-            protectFile(settingsFile);
         }
 
         /// <summary>
@@ -178,16 +219,21 @@ namespace nsync
         /// <returns>Returns a boolean which indicates whether the trackback is enabled or disabled</returns>
         public bool GetTrackBackStatus()
         {
-            if (!File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                CreateNewSettingsXML();
+                if (!File.Exists(settingsFile))
+                {
+                    CreateNewSettingsXML();
+                }
+
+                XmlDocument doc = new XmlDocument();
+                XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
+
+                ProtectFile(settingsFile);
+                return bool.Parse(trackBackStatusNode.InnerText);
             }
 
-            XmlDocument doc = new XmlDocument();
-            XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
-
-            protectFile(settingsFile);
-            return bool.Parse(trackBackStatusNode.InnerText);
+            return false;
         }
 
         /// <summary>
@@ -197,19 +243,24 @@ namespace nsync
         public List<string> LoadFolderPaths()
         {
             List<string> results = new List<string>();
-            if (File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                XmlDocument doc = new XmlDocument();
-                //Load MRU Information
-                XmlNode mruNode = SelectNode(doc, PATH_MRU);
-
-                for (int i = 1; i <= 5; i++)
+                if (File.Exists(settingsFile))
                 {
-                    results.Add(mruNode["left" + i.ToString()].InnerText);
-                    results.Add(mruNode["right" + i.ToString()].InnerText);
-                }
+                    XmlDocument doc = new XmlDocument();
+                    //Load MRU Information
+                    XmlNode mruNode = SelectNode(doc, PATH_MRU);
 
-                protectFile(settingsFile);
+                    for (int i = 1; i <= 5; i++)
+                    {
+                        results.Add(mruNode["left" + i.ToString()].InnerText);
+                        results.Add(mruNode["right" + i.ToString()].InnerText);
+                    }
+
+                    ProtectFile(settingsFile);
+                }
+                return results;
+
             }
             return results;
         }
@@ -221,219 +272,223 @@ namespace nsync
         /// <param name="rightPath">This parameter will be saved into settings.xml</param>
         public void SaveFolderPaths(string leftPath, string rightPath)
         {
-            string[] tempStorage = new string[10];
-
-            int counter = 0;
-
-            for (int i = 0; i < 10; i++)
+            if (!IsFoldersLocked())
             {
-                tempStorage[i] = NULL_STRING;
-            }
+                MessageBox.Show("saving paths");
+                string[] tempStorage = new string[10];
 
-            IsSettingsFileExists();
+                int counter = 0;
 
-            XmlDocument doc = new XmlDocument();
-            XmlNode mruNode = SelectNode(doc, PATH_MRU);
-
-            XmlNode filterNode;
-            XmlNode excludeFileTypeNode;
-            XmlNode excludeFileNameNode;
-            XmlNode excludeFolderNode;
-            XmlNode newSizeNode;
-            ExcludeData[] tempExcludeData = new ExcludeData[5];
-            int[] fileTypeListSize = new int[5];
-            int[] fileNameListSize = new int[5];
-            int[] folderListSize = new int[5];
-
-            for (int i = 0; i < NUMBER_OF_MOST_RECENT; i++)
-                tempExcludeData[i] = new ExcludeData();
-
-            for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
-            {
-                tempStorage[counter++] = mruNode["left" + i.ToString()].InnerText;
-                tempStorage[counter++] = mruNode["right" + i.ToString()].InnerText;
-
-                filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
-
-                // Backup File Type from xml file
-                excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
-
-                fileTypeListSize[i - 1] = int.Parse(excludeFileTypeNode["size"].InnerText);
-                if (fileTypeListSize[i - 1] != 0)
+                for (int i = 0; i < 10; i++)
                 {
-                    for (int j = 0; j < fileTypeListSize[i - 1]; j++)
-                    {
-                        tempExcludeData[i - 1].AddExcludeFileType(excludeFileTypeNode["fileType" + j.ToString()].InnerText);
-                    }
+                    tempStorage[i] = NULL_STRING;
                 }
 
-                // Backup File Name from xml file
-                excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+                IsSettingsFileExists();
 
-                fileNameListSize[i - 1] = int.Parse(excludeFileNameNode["size"].InnerText);
-                if (fileNameListSize[i - 1] != 0)
+                XmlDocument doc = new XmlDocument();
+                XmlNode mruNode = SelectNode(doc, PATH_MRU);
+
+                XmlNode filterNode;
+                XmlNode excludeFileTypeNode;
+                XmlNode excludeFileNameNode;
+                XmlNode excludeFolderNode;
+                XmlNode newSizeNode;
+                ExcludeData[] tempExcludeData = new ExcludeData[5];
+                int[] fileTypeListSize = new int[5];
+                int[] fileNameListSize = new int[5];
+                int[] folderListSize = new int[5];
+
+                for (int i = 0; i < NUMBER_OF_MOST_RECENT; i++)
+                    tempExcludeData[i] = new ExcludeData();
+
+                for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
                 {
-                    for (int j = 0; j < fileNameListSize[i - 1]; j++)
-                    {
-                        tempExcludeData[i - 1].AddExcludeFileName(excludeFileNameNode["fileName" + j.ToString()].InnerText);
-                    }
-                }
+                    tempStorage[counter++] = mruNode["left" + i.ToString()].InnerText;
+                    tempStorage[counter++] = mruNode["right" + i.ToString()].InnerText;
 
-                // Backup Folder from xml file
-                excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
-
-                folderListSize[i - 1] = int.Parse(excludeFolderNode["size"].InnerText);
-                if (folderListSize[i - 1] != 0)
-                {
-                    for (int j = 0; j < folderListSize[i - 1]; j++)
-                    {
-                        tempExcludeData[i - 1].AddExcludeFolder(excludeFolderNode["folder" + j.ToString()].InnerText);
-                    }
-                }
-            }
-
-            mruNode["left1"].InnerText = leftPath;
-            mruNode["right1"].InnerText = rightPath;
-
-            // Change the nodes to the first filter
-            filterNode = mruNode.SelectSingleNode("filter1");
-
-            excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
-            excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
-            excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
-
-            // storing exclude for File Types
-            // Clearing the first node for space of new node
-            excludeFileTypeNode.RemoveAll();
-            newSizeNode = doc.CreateElement("size");
-            newSizeNode.InnerText = excludeData.ExcludeFileTypeList.Count.ToString();
-            excludeFileTypeNode.AppendChild(newSizeNode);
-
-            if (excludeData.ExcludeFileTypeList.Count != 0)
-            {
-                for (int i = 0; i < excludeData.ExcludeFileTypeList.Count; i++)
-                {
-                    XmlNode newFileTypeNode = doc.CreateElement("fileType" + i.ToString());
-                    newFileTypeNode.InnerText = excludeData.ExcludeFileTypeList[i];
-                    excludeFileTypeNode.AppendChild(newFileTypeNode);
-                }
-            }
-
-            // storing exclude for File Names
-            // Clearing the first node for space of new node
-            excludeFileNameNode.RemoveAll();
-            newSizeNode = doc.CreateElement("size");
-            newSizeNode.InnerText = excludeData.ExcludeFileNameList.Count.ToString();
-            excludeFileNameNode.AppendChild(newSizeNode);
-
-            if (excludeData.ExcludeFileNameList.Count != 0)
-            {
-                for (int i = 0; i < excludeData.ExcludeFileNameList.Count; i++)
-                {
-                    XmlNode newFileNameNode = doc.CreateElement("fileName" + i.ToString());
-                    newFileNameNode.InnerText = excludeData.ExcludeFileNameList[i];
-                    excludeFileNameNode.AppendChild(newFileNameNode);
-                }
-            }
-
-            // storing exclude for Folder
-            // Clearing the first node for space of new node
-            excludeFolderNode.RemoveAll();
-            newSizeNode = doc.CreateElement("size");
-            newSizeNode.InnerText = excludeData.ExcludeFolderList.Count.ToString();
-            excludeFolderNode.AppendChild(newSizeNode);
-
-            if (excludeData.ExcludeFolderList.Count != 0)
-            {
-                for (int i = 0; i < excludeData.ExcludeFolderList.Count; i++)
-                {
-                    XmlNode newFolderNode = doc.CreateElement("folder" + i.ToString());
-                    newFolderNode.InnerText = excludeData.ExcludeFolderList[i];
-                    excludeFolderNode.AppendChild(newFolderNode);
-                }
-            }
-
-            for (int i = 0; i < 10; i += 2)
-            {
-                if (tempStorage[i] == leftPath && tempStorage[i + 1] == rightPath)
-                {
-                    tempStorage[i] = tempStorage[i + 1] = "REPLACED";
-                    break;
-                }
-            }
-
-            counter = 0;
-            for (int i = 2; i <= NUMBER_OF_MOST_RECENT; i++)
-            {
-                while (tempStorage[counter] == "REPLACED" && tempStorage[counter + 1] == "REPLACED")
-                    counter += 2;
-
-                // Stores the temp File Type into 2, 3, 4, 5th filters
-                if (fileTypeListSize[counter / 2] != 0)
-                {
                     filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+
+                    // Backup File Type from xml file
                     excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
 
-                    excludeFileTypeNode.RemoveAll();
-                    newSizeNode = doc.CreateElement("size");
-                    newSizeNode.InnerText = fileTypeListSize[counter / 2].ToString();
-                    excludeFileTypeNode.AppendChild(newSizeNode);
-
-                    for (int j = 0; j < fileTypeListSize[counter / 2]; j++)
+                    fileTypeListSize[i - 1] = int.Parse(excludeFileTypeNode["size"].InnerText);
+                    if (fileTypeListSize[i - 1] != 0)
                     {
-                        XmlNode newFileTypeNode = doc.CreateElement("fileType" + j.ToString());
-                        newFileTypeNode.InnerText = tempExcludeData[counter / 2].ExcludeFileTypeList[j];
+                        for (int j = 0; j < fileTypeListSize[i - 1]; j++)
+                        {
+                            tempExcludeData[i - 1].AddExcludeFileType(excludeFileTypeNode["fileType" + j.ToString()].InnerText);
+                        }
+                    }
+
+                    // Backup File Name from xml file
+                    excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+
+                    fileNameListSize[i - 1] = int.Parse(excludeFileNameNode["size"].InnerText);
+                    if (fileNameListSize[i - 1] != 0)
+                    {
+                        for (int j = 0; j < fileNameListSize[i - 1]; j++)
+                        {
+                            tempExcludeData[i - 1].AddExcludeFileName(excludeFileNameNode["fileName" + j.ToString()].InnerText);
+                        }
+                    }
+
+                    // Backup Folder from xml file
+                    excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+
+                    folderListSize[i - 1] = int.Parse(excludeFolderNode["size"].InnerText);
+                    if (folderListSize[i - 1] != 0)
+                    {
+                        for (int j = 0; j < folderListSize[i - 1]; j++)
+                        {
+                            tempExcludeData[i - 1].AddExcludeFolder(excludeFolderNode["folder" + j.ToString()].InnerText);
+                        }
+                    }
+                }
+
+                mruNode["left1"].InnerText = leftPath;
+                mruNode["right1"].InnerText = rightPath;
+
+                // Change the nodes to the first filter
+                filterNode = mruNode.SelectSingleNode("filter1");
+
+                excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
+                excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+                excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+
+                // storing exclude for File Types
+                // Clearing the first node for space of new node
+                excludeFileTypeNode.RemoveAll();
+                newSizeNode = doc.CreateElement("size");
+                newSizeNode.InnerText = excludeData.ExcludeFileTypeList.Count.ToString();
+                excludeFileTypeNode.AppendChild(newSizeNode);
+
+                if (excludeData.ExcludeFileTypeList.Count != 0)
+                {
+                    for (int i = 0; i < excludeData.ExcludeFileTypeList.Count; i++)
+                    {
+                        XmlNode newFileTypeNode = doc.CreateElement("fileType" + i.ToString());
+                        newFileTypeNode.InnerText = excludeData.ExcludeFileTypeList[i];
                         excludeFileTypeNode.AppendChild(newFileTypeNode);
                     }
                 }
 
-                // Stores the temp File Name into 2, 3, 4, 5th filters
-                if (fileNameListSize[counter / 2] != 0)
+                // storing exclude for File Names
+                // Clearing the first node for space of new node
+                excludeFileNameNode.RemoveAll();
+                newSizeNode = doc.CreateElement("size");
+                newSizeNode.InnerText = excludeData.ExcludeFileNameList.Count.ToString();
+                excludeFileNameNode.AppendChild(newSizeNode);
+
+                if (excludeData.ExcludeFileNameList.Count != 0)
                 {
-                    filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
-                    excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
-
-                    excludeFileNameNode.RemoveAll();
-                    newSizeNode = doc.CreateElement("size");
-                    newSizeNode.InnerText = fileNameListSize[counter / 2].ToString();
-                    excludeFileNameNode.AppendChild(newSizeNode);
-
-                    for (int j = 0; j < fileNameListSize[counter / 2]; j++)
+                    for (int i = 0; i < excludeData.ExcludeFileNameList.Count; i++)
                     {
-                        XmlNode newFileNameNode = doc.CreateElement("fileName" + j.ToString());
-                        newFileNameNode.InnerText = tempExcludeData[counter / 2].ExcludeFileNameList[j];
+                        XmlNode newFileNameNode = doc.CreateElement("fileName" + i.ToString());
+                        newFileNameNode.InnerText = excludeData.ExcludeFileNameList[i];
                         excludeFileNameNode.AppendChild(newFileNameNode);
                     }
                 }
 
-                // Stores the temp Folder into 2, 3, 4, 5th filters
-                if (folderListSize[counter / 2] != 0)
+                // storing exclude for Folder
+                // Clearing the first node for space of new node
+                excludeFolderNode.RemoveAll();
+                newSizeNode = doc.CreateElement("size");
+                newSizeNode.InnerText = excludeData.ExcludeFolderList.Count.ToString();
+                excludeFolderNode.AppendChild(newSizeNode);
+
+                if (excludeData.ExcludeFolderList.Count != 0)
                 {
-                    filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
-                    excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
-
-                    excludeFolderNode.RemoveAll();
-                    newSizeNode = doc.CreateElement("size");
-                    newSizeNode.InnerText = folderListSize[counter / 2].ToString();
-                    excludeFolderNode.AppendChild(newSizeNode);
-
-                    for (int j = 0; j < folderListSize[counter / 2]; j++)
+                    for (int i = 0; i < excludeData.ExcludeFolderList.Count; i++)
                     {
-                        XmlNode newFolderNode = doc.CreateElement("folder" + j.ToString());
-                        newFolderNode.InnerText = tempExcludeData[counter / 2].ExcludeFolderList[j];
+                        XmlNode newFolderNode = doc.CreateElement("folder" + i.ToString());
+                        newFolderNode.InnerText = excludeData.ExcludeFolderList[i];
                         excludeFolderNode.AppendChild(newFolderNode);
                     }
                 }
 
-                mruNode["left" + i.ToString()].InnerText = tempStorage[counter];
-                mruNode["right" + i.ToString()].InnerText = tempStorage[counter + 1];
+                for (int i = 0; i < 10; i += 2)
+                {
+                    if (tempStorage[i] == leftPath && tempStorage[i + 1] == rightPath)
+                    {
+                        tempStorage[i] = tempStorage[i + 1] = "REPLACED";
+                        break;
+                    }
+                }
 
-                counter += 2;
+                counter = 0;
+                for (int i = 2; i <= NUMBER_OF_MOST_RECENT; i++)
+                {
+                    while (tempStorage[counter] == "REPLACED" && tempStorage[counter + 1] == "REPLACED")
+                        counter += 2;
+
+                    // Stores the temp File Type into 2, 3, 4, 5th filters
+                    if (fileTypeListSize[counter / 2] != 0)
+                    {
+                        filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+                        excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
+
+                        excludeFileTypeNode.RemoveAll();
+                        newSizeNode = doc.CreateElement("size");
+                        newSizeNode.InnerText = fileTypeListSize[counter / 2].ToString();
+                        excludeFileTypeNode.AppendChild(newSizeNode);
+
+                        for (int j = 0; j < fileTypeListSize[counter / 2]; j++)
+                        {
+                            XmlNode newFileTypeNode = doc.CreateElement("fileType" + j.ToString());
+                            newFileTypeNode.InnerText = tempExcludeData[counter / 2].ExcludeFileTypeList[j];
+                            excludeFileTypeNode.AppendChild(newFileTypeNode);
+                        }
+                    }
+
+                    // Stores the temp File Name into 2, 3, 4, 5th filters
+                    if (fileNameListSize[counter / 2] != 0)
+                    {
+                        filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+                        excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+
+                        excludeFileNameNode.RemoveAll();
+                        newSizeNode = doc.CreateElement("size");
+                        newSizeNode.InnerText = fileNameListSize[counter / 2].ToString();
+                        excludeFileNameNode.AppendChild(newSizeNode);
+
+                        for (int j = 0; j < fileNameListSize[counter / 2]; j++)
+                        {
+                            XmlNode newFileNameNode = doc.CreateElement("fileName" + j.ToString());
+                            newFileNameNode.InnerText = tempExcludeData[counter / 2].ExcludeFileNameList[j];
+                            excludeFileNameNode.AppendChild(newFileNameNode);
+                        }
+                    }
+
+                    // Stores the temp Folder into 2, 3, 4, 5th filters
+                    if (folderListSize[counter / 2] != 0)
+                    {
+                        filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
+                        excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+
+                        excludeFolderNode.RemoveAll();
+                        newSizeNode = doc.CreateElement("size");
+                        newSizeNode.InnerText = folderListSize[counter / 2].ToString();
+                        excludeFolderNode.AppendChild(newSizeNode);
+
+                        for (int j = 0; j < folderListSize[counter / 2]; j++)
+                        {
+                            XmlNode newFolderNode = doc.CreateElement("folder" + j.ToString());
+                            newFolderNode.InnerText = tempExcludeData[counter / 2].ExcludeFolderList[j];
+                            excludeFolderNode.AppendChild(newFolderNode);
+                        }
+                    }
+
+                    mruNode["left" + i.ToString()].InnerText = tempStorage[counter];
+                    mruNode["right" + i.ToString()].InnerText = tempStorage[counter + 1];
+
+                    counter += 2;
+                }
+
+                UnProtectFile(settingsFile);
+                doc.Save(settingsFile);
+                ProtectFile(settingsFile);
             }
-
-            unprotectFile(settingsFile);
-            doc.Save(settingsFile);
-            protectFile(settingsFile);
         }
 
         /// <summary>
@@ -444,86 +499,94 @@ namespace nsync
         /// <param name="rightPath">This parameter indicates the rightPath of the sync job</param>
         public void SaveFolderPathForRemoveableDisk(string serialNumber, string leftPath, string rightPath)
         {
-            IsSettingsFileExists();
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(settingsFile);
-
-            XmlNode removeableDiskNode = SelectNode(doc, PATH_REMOVEABLEDISK);
-            XmlNode diskNode = removeableDiskNode.SelectSingleNode("//Disk[@ID='" + serialNumber + "']");
-            if (diskNode != null) // node exists, update paths
+            if (!IsFoldersLocked())
             {
-                if (diskNode["left"] == null)
+                IsSettingsFileExists();
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(settingsFile);
+
+                XmlNode removeableDiskNode = SelectNode(doc, PATH_REMOVEABLEDISK);
+                XmlNode diskNode = removeableDiskNode.SelectSingleNode("//Disk[@ID='" + serialNumber + "']");
+                if (diskNode != null) // node exists, update paths
                 {
-                    diskNode.AppendChild(doc.CreateElement("left"));
+                    if (diskNode["left"] == null)
+                    {
+                        diskNode.AppendChild(doc.CreateElement("left"));
+                    }
+                    if (diskNode["right"] == null)
+                    {
+                        diskNode.AppendChild(doc.CreateElement("right"));
+                    }
+                    diskNode["left"].InnerText = leftPath;
+                    diskNode["right"].InnerText = rightPath;
                 }
-                if (diskNode["right"] == null)
+                else // node doesn't exists, create everything
                 {
-                    diskNode.AppendChild(doc.CreateElement("right"));
+                    // Create serial number node
+                    XmlNode newSerialNumberNode = doc.CreateNode(XmlNodeType.Element, "Disk", null);
+                    XmlAttribute serialNumberAttribute = doc.CreateAttribute("ID");
+                    serialNumberAttribute.Value = serialNumber;
+                    newSerialNumberNode.Attributes.SetNamedItem(serialNumberAttribute);
+
+                    // Create left and right node
+                    XmlNode newLeftNode = doc.CreateElement("left");
+                    newLeftNode.InnerText = leftPath;
+                    XmlNode newRightNode = doc.CreateElement("right");
+                    newRightNode.InnerText = rightPath;
+
+                    // Add left and right node to parent node
+                    newSerialNumberNode.AppendChild(newLeftNode);
+                    newSerialNumberNode.AppendChild(newRightNode);
+
+                    doc.DocumentElement["REMOVEABLEDISK"].AppendChild(newSerialNumberNode);
                 }
-                diskNode["left"].InnerText = leftPath;
-                diskNode["right"].InnerText = rightPath;
+
+                doc.Save(settingsFile);
+                ProtectFile(settingsFile);
             }
-            else // node doesn't exists, create everything
-            {
-                // Create serial number node
-                XmlNode newSerialNumberNode = doc.CreateNode(XmlNodeType.Element, "Disk", null);
-                XmlAttribute serialNumberAttribute = doc.CreateAttribute("ID");
-                serialNumberAttribute.Value = serialNumber;
-                newSerialNumberNode.Attributes.SetNamedItem(serialNumberAttribute);
-
-                // Create left and right node
-                XmlNode newLeftNode = doc.CreateElement("left");
-                newLeftNode.InnerText = leftPath;
-                XmlNode newRightNode = doc.CreateElement("right");
-                newRightNode.InnerText = rightPath;
-
-                // Add left and right node to parent node
-                newSerialNumberNode.AppendChild(newLeftNode);
-                newSerialNumberNode.AppendChild(newRightNode);
-
-                doc.DocumentElement["REMOVEABLEDISK"].AppendChild(newSerialNumberNode);
-            }
-            
-            doc.Save(settingsFile);
-            protectFile(settingsFile);
         }
 
         /// <summary>
-        /// 
+        /// Gets last removeable thumbdrive
         /// </summary>
         /// <param name="serialNumber"></param>
         /// <returns></returns>
         public string[] GetLastRemoveableDiskSync(string serialNumber)
         {
-            if (File.Exists(settingsFile))
+            if (!IsFoldersLocked())
             {
-                string[] results = new string[2];
-                XmlDocument doc = new XmlDocument();
-                doc.Load(settingsFile);
+                if (File.Exists(settingsFile))
+                {
+                    string[] results = new string[2];
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(settingsFile);
 
-                XmlNode removeableDiskNode = SelectNode(doc, PATH_REMOVEABLEDISK);
-                if (removeableDiskNode == null)
-                    return null;
+                    XmlNode removeableDiskNode = SelectNode(doc, PATH_REMOVEABLEDISK);
+                    if (removeableDiskNode == null)
+                        return null;
 
-                XmlNode diskNode = removeableDiskNode.SelectSingleNode("//Disk[@ID='" + serialNumber + "']");
-                if (diskNode == null || diskNode["left"] == null || diskNode["right"] == null)
-                    return null;
+                    XmlNode diskNode = removeableDiskNode.SelectSingleNode("//Disk[@ID='" + serialNumber + "']");
+                    if (diskNode == null || diskNode["left"] == null || diskNode["right"] == null)
+                        return null;
 
-                results[0] = diskNode["left"].InnerText;
-                results[1] = diskNode["right"].InnerText;
+                    results[0] = diskNode["left"].InnerText;
+                    results[1] = diskNode["right"].InnerText;
 
-                // check if the path in results array exists
-                // if any of them don't exists, no point restoring it back for the users
-                if (Directory.Exists(results[0]) && Directory.Exists(results[1]))
-                    return results;
+                    // check if the path in results array exists
+                    // if any of them don't exists, no point restoring it back for the users
+                    if (Directory.Exists(results[0]) && Directory.Exists(results[1]))
+                        return results;
+                    else
+                        return null;
+                }
                 else
+                {
                     return null;
+                }
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         /// <summary>
@@ -533,40 +596,45 @@ namespace nsync
         /// <returns>saved exclude data</returns>
         public ExcludeData LoadExcludeData(string leftPath, string rightPath)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(settingsFile);
-
-            XmlNode mruNode = SelectNode(doc, PATH_MRU);
-            int filterIndex = 0;
             ExcludeData loadedExcludeData = new ExcludeData();
 
-            for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
+            if (!IsFoldersLocked())
             {
-                if (mruNode["left" + i.ToString()].InnerText.Equals(leftPath))
-                    if (mruNode["right" + i.ToString()].InnerText.Equals(rightPath))
-                        filterIndex = i;
-            }
+                MessageBox.Show("Loading exclude data");
+                XmlDocument doc = new XmlDocument();
+                doc.Load(settingsFile);
 
-            if (filterIndex != 0)
-            {
-                XmlNode filterNode = mruNode.SelectSingleNode("filter" + filterIndex.ToString());
-                XmlNode excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
-                XmlNode excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
-                XmlNode excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
+                XmlNode mruNode = SelectNode(doc, PATH_MRU);
+                int filterIndex = 0;
 
-                for (int i = 0; i < int.Parse(excludeFileTypeNode["size"].InnerText); i++)
+                for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
                 {
-                    loadedExcludeData.AddExcludeFileType(excludeFileTypeNode["fileType" + i.ToString()].InnerText);
+                    if (mruNode["left" + i.ToString()].InnerText.Equals(leftPath))
+                        if (mruNode["right" + i.ToString()].InnerText.Equals(rightPath))
+                            filterIndex = i;
                 }
 
-                for (int i = 0; i < int.Parse(excludeFileNameNode["size"].InnerText); i++)
+                if (filterIndex != 0)
                 {
-                    loadedExcludeData.AddExcludeFileName(excludeFileNameNode["fileName" + i.ToString()].InnerText);
-                }
+                    XmlNode filterNode = mruNode.SelectSingleNode("filter" + filterIndex.ToString());
+                    XmlNode excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
+                    XmlNode excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
+                    XmlNode excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
 
-                for (int i = 0; i < int.Parse(excludeFolderNode["size"].InnerText); i++)
-                {
-                    loadedExcludeData.AddExcludeFolder(excludeFolderNode["folder" + i.ToString()].InnerText);
+                    for (int i = 0; i < int.Parse(excludeFileTypeNode["size"].InnerText); i++)
+                    {
+                        loadedExcludeData.AddExcludeFileType(excludeFileTypeNode["fileType" + i.ToString()].InnerText);
+                    }
+
+                    for (int i = 0; i < int.Parse(excludeFileNameNode["size"].InnerText); i++)
+                    {
+                        loadedExcludeData.AddExcludeFileName(excludeFileNameNode["fileName" + i.ToString()].InnerText);
+                    }
+
+                    for (int i = 0; i < int.Parse(excludeFolderNode["size"].InnerText); i++)
+                    {
+                        loadedExcludeData.AddExcludeFolder(excludeFolderNode["folder" + i.ToString()].InnerText);
+                    }
                 }
             }
 
@@ -580,25 +648,30 @@ namespace nsync
         /// <returns></returns>
         public string OpenLogFolder()
         {
-            string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
-
-            try
+            if (!IsFoldersLocked())
             {
-                if (Directory.Exists(logPath))
+                string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
+
+                try
                 {
-                    DirectoryInfo dirInfo = new DirectoryInfo(logPath);
-                    dirInfo.Attributes = FileAttributes.Normal;
-                    System.Diagnostics.Process.Start(@logPath);
+                    if (Directory.Exists(logPath))
+                    {
+                        DirectoryInfo dirInfo = new DirectoryInfo(logPath);
+                        dirInfo.Attributes = FileAttributes.Normal;
+                        System.Diagnostics.Process.Start(@logPath);
 
-                    return null;
+                        return null;
+                    }
                 }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return "Not authorized to access log folder. Please check log folder permissions.";
+                catch (UnauthorizedAccessException)
+                {
+                    return "Not authorized to access log folder. Please check log folder permissions.";
+                }
+
+                return "Log folder does not exist.";
             }
 
-            return "Log folder does not exist.";
+            return NULL_STRING;
         }
 
         /// <summary>
@@ -608,30 +681,35 @@ namespace nsync
         /// <returns></returns>
         public string ClearLogFolder()
         {
-            string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
-
-            try
+            if (!IsFoldersLocked())
             {
-                if (Directory.Exists(logPath))
+                string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
+
+                try
                 {
-                    DirectoryInfo dirInfo = new DirectoryInfo(logPath);
-                    dirInfo.Attributes = FileAttributes.Normal;
-
-                    foreach (string fileName in Directory.GetFiles(logPath))
+                    if (Directory.Exists(logPath))
                     {
-                        File.SetAttributes(fileName, FileAttributes.Normal);
-                        File.Delete(fileName);
+                        DirectoryInfo dirInfo = new DirectoryInfo(logPath);
+                        dirInfo.Attributes = FileAttributes.Normal;
+
+                        foreach (string fileName in Directory.GetFiles(logPath))
+                        {
+                            File.SetAttributes(fileName, FileAttributes.Normal);
+                            File.Delete(fileName);
+                        }
+
+                        return "Logs Cleared.";
                     }
-
-                    return "Logs Cleared.";
                 }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return "Not authorized to access log folder. Please check log folder permissions.";
+                catch (UnauthorizedAccessException)
+                {
+                    return "Not authorized to access log folder. Please check log folder permissions.";
+                }
+
+                return "Log folder does not exist.";
             }
 
-            return "Log folder does not exist.";
+            return NULL_STRING;
         }
 
         /// <summary>
@@ -641,46 +719,51 @@ namespace nsync
         /// <returns>string</returns>
         public string ClearMetaData()
         {
-            string[] path = getLeftAndRightFolderPath();
-            string leftPath = path[0];
-            string rightPath = path[1];
-            int outcome = 0;
-            string result = null;
-
-            if ((leftPath != NULL_STRING) && (rightPath != NULL_STRING))
+            if (!IsFoldersLocked())
             {
-                if (!Directory.Exists(leftPath))
-                    outcome = 2; // left path not exist
-                if (!Directory.Exists(rightPath))
+                string[] path = GetLeftAndRightFolderPath();
+                string leftPath = path[0];
+                string rightPath = path[1];
+                int outcome = 0;
+                string result = null;
+
+                if ((leftPath != NULL_STRING) && (rightPath != NULL_STRING))
                 {
-                    if (outcome == 2)
-                        outcome = 4; // both path not exist
-                    else
-                        outcome = 3; // right path not exist
+                    if (!Directory.Exists(leftPath))
+                        outcome = 2; // left path not exist
+                    if (!Directory.Exists(rightPath))
+                    {
+                        if (outcome == 2)
+                            outcome = 4; // both path not exist
+                        else
+                            outcome = 3; // right path not exist
+                    }
+
+                    if (outcome == 0)
+                    {
+                        DeleteAllMetaData(leftPath);
+                        DeleteAllMetaData(rightPath);
+                    } // both path exist
+
+                } // end if for checking if folders not exist
+                else
+                    outcome = 1;
+
+
+                // determines outcome
+                switch (outcome)
+                {
+                    case 0: result = "Meta data cleared."; break;
+                    case 1: result = "No Left and Right Folder selected."; break;
+                    case 2: result = "Left Folder does not exist."; break;
+                    case 3: result = "Right Folder does not exist."; break;
+                    case 4: result = "Both Left and Right Folders do not exist."; break;
                 }
 
-                if (outcome == 0)
-                {
-                    deleteAllMetaData(leftPath);
-                    deleteAllMetaData(rightPath);
-                } // both path exist
-
-            } // end if for checking if folders not exist
-            else
-                outcome = 1;
-
-
-            // determines outcome
-            switch (outcome)
-            {
-                case 0: result = "Meta data cleared."; break;
-                case 1: result = "No Left and Right Folder selected."; break;
-                case 2: result = "Left Folder does not exist."; break;
-                case 3: result = "Right Folder does not exist."; break;
-                case 4: result = "Both Left and Right Folders do not exist."; break;
+                return result;
             }
 
-            return result;
+            return NULL_STRING;
         }
 
         /// <summary>
@@ -690,9 +773,12 @@ namespace nsync
         /// <returns></returns>
         public void ClearSettings()
         {
-            unprotectFile(settingsFile);
-            File.Delete(settingsFile);
-            CreateNewSettingsXML();
+            if (!IsFoldersLocked())
+            {
+                UnProtectFile(settingsFile);
+                File.Delete(settingsFile);
+                CreateNewSettingsXML();
+            }
         }
 
         /// <summary>
@@ -702,6 +788,66 @@ namespace nsync
         {
             get { return excludeData; }
             set { excludeData = value; }
+        }
+
+        /// <summary>
+        /// References the HomePage
+        /// </summary>
+        public void SetHomePage(HomePage homePage)
+        {
+            this.homePage = homePage;
+        }
+
+        /// <summary>
+        /// References ExcludeWindow (Overloaded Method) 
+        /// </summary>
+        public void SetOwnerWindow(ExcludeWindow excludeWindow)
+        {
+            this.excludeWindow = excludeWindow;
+        }
+
+        /// <summary>
+        /// References VisualPreviewWindow (Overloaded Method)
+        /// </summary>
+        public void SetOwnerWindow(VisualPreviewWindow visualPreviewWindow)
+        {
+            this.visualPreviewWindow = visualPreviewWindow;
+        }
+
+        /// <summary>
+        /// Checks if log folder is locked.
+        /// </summary>
+        public bool IsFoldersLocked()
+        {
+            int outcome = 0;
+            string logDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
+            string settingsFilePath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
+
+            if (IsLogFolderLocked())
+                outcome = 1; // only log folder locked
+            if (IsSettingsFileLocked())
+                outcome = 2; // only settings locked
+
+            if (outcome != 0)
+            {
+                homePage.IsErrorClosing();
+                HelperManager emergencyHelper = new HelperManager(mainWindow);
+                mainWindow.Visibility = Visibility.Hidden;
+                if (visualPreviewWindow != null)
+                    visualPreviewWindow.Visibility = Visibility.Hidden;
+                if (excludeWindow != null)
+                    excludeWindow.Visibility = Visibility.Hidden;
+
+                if (outcome == 1)
+                    emergencyHelper.Show("Log Folder is Locked.\n Path : " + logDirectory, -2, HelperWindow.windowStartPosition.center);
+
+                if (outcome == 2)
+                    emergencyHelper.Show("Settings File is Locked.\n Path : " + settingsFilePath, -2, HelperWindow.windowStartPosition.center);
+
+                return true;
+            } //some folders has been locked
+
+            return false;
         }
         #endregion
 
@@ -748,7 +894,7 @@ namespace nsync
                 root = doc.DocumentElement;
             }
 
-            unprotectFile(settingsFile);
+            UnProtectFile(settingsFile);
 
             XmlNode node = root.SelectSingleNode(path);
             return node;
@@ -861,13 +1007,13 @@ namespace nsync
             textWriter.WriteEndDocument();
 
             textWriter.Close();
-            protectFile(settingsFile);
+            ProtectFile(settingsFile);
         }
 
         /// <summary>
         /// Makes the file normal for editing
         /// </summary>
-        private void unprotectFile(string file)
+        private void UnProtectFile(string file)
         {
             File.SetAttributes(file, FileAttributes.Normal);
         }
@@ -875,7 +1021,7 @@ namespace nsync
         /// <summary>
         /// Makes the file hidden and readOnly
         /// </summary>
-        private void protectFile(string file)
+        private void ProtectFile(string file)
         {
             //File.SetAttributes(file, FileAttributes.Normal | FileAttributes.ReadOnly);
             File.SetAttributes(file, FileAttributes.Hidden | FileAttributes.ReadOnly);
@@ -884,7 +1030,7 @@ namespace nsync
         /// <summary>
         /// Obtains the first 2 paths from settings.xml
         /// </summary>
-        private string[] getLeftAndRightFolderPath()
+        private string[] GetLeftAndRightFolderPath()
         {
             XmlDocument doc = new XmlDocument();
             //Load MRU Information
@@ -900,12 +1046,12 @@ namespace nsync
         /// <summary>
         /// Recursive method to delete metaData
         /// </summary>
-        private void deleteAllMetaData(string path)
+        private void DeleteAllMetaData(string path)
         {
             string[] filePaths = new string[0];
             List<string> directoriesToSearch = new List<string>();
 
-            directoriesToSearch = getSubFolder(path); // gets all accessible sub folders
+            directoriesToSearch = GetSubFolder(path); // gets all accessible sub folders
             foreach (string directories in directoriesToSearch)
             {
                 filePaths = Directory.GetFiles(directories, "filesync.metadata", SearchOption.TopDirectoryOnly);
@@ -925,7 +1071,7 @@ namespace nsync
         /// <summary>
         /// Recursive method to get all accessible Sub Folder
         /// </summary>
-        private List<string> getSubFolder(string path)
+        private List<string> GetSubFolder(string path)
         {
             List<string> directories = new List<string>();
             string[] subDirectories;
@@ -943,7 +1089,7 @@ namespace nsync
 
             foreach (string subDirectory in subDirectories)
             {
-                foreach (string allSubDirectory in getSubFolder(subDirectory))
+                foreach (string allSubDirectory in GetSubFolder(subDirectory))
                     directories.Add(allSubDirectory); // recursively gets all sub directories and stores to caller.
             }
 
@@ -960,6 +1106,44 @@ namespace nsync
                 Directory.CreateDirectory(settingsFolder);
             }
         }
+
+        /// <summary>
+        /// Checks if log folder is locked.
+        /// </summary>
+        private bool IsLogFolderLocked()
+        {
+            string logDirectory = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
+            try
+            {
+                Directory.GetFiles(logDirectory, "", SearchOption.TopDirectoryOnly);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Checks if settings file is locked.
+        /// </summary>
+        private bool IsSettingsFileLocked()
+        {
+            string settingsFilePath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
+            try
+            {
+                File.SetAttributes(settingsFilePath, FileAttributes.Normal);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return true;
+            }
+
+            ProtectFile(settingsFilePath);
+
+            return false;
+        }   
         #endregion
 
     }

@@ -42,6 +42,7 @@ namespace nsync
             InitializeComponent();
 
             settingsManager = Settings.Instance;
+            settingsManager.SetOwnerWindow(this);
         }
         #endregion
 

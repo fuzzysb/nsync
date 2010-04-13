@@ -16,6 +16,7 @@ namespace nsync
         private windowStartPosition windowPostionType;
         private bool windowActive;
         private string hyperLinkPath;
+        private Window mainWindow;
         #endregion
 
         #region Enumeration
@@ -80,6 +81,11 @@ namespace nsync
 
             if (hyperLinkText == null)
                 HyperLinkText.Visibility = Visibility.Collapsed;
+            else if (hyperLinkPath.Equals("QUIT_NSYNC"))
+            {
+                HyperLinkText.Visibility = Visibility.Visible;
+                HyperLinkText.Text = hyperLinkText;
+            }
             else
             {
                 HyperLinkText.Visibility = Visibility.Visible;
@@ -153,6 +159,15 @@ namespace nsync
                 else
                     this.Top = bottomPos;
             }
+        }
+
+        /// <summary>
+        /// Setter and Getter method for mainWindow
+        /// </summary>
+        public Window MainWindow
+        {
+            get { return mainWindow; }
+            set { mainWindow = value; }
         }
         #endregion
 
@@ -244,13 +259,21 @@ namespace nsync
         /// <param name="e"></param>
         private void HyperLinkText_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (this.hyperLinkPath != null)
-                System.Diagnostics.Process.Start(@hyperLinkPath);
-            else if (this.HyperLinkText != null)
+            if (!this.hyperLinkPath.Equals("QUIT_NSYNC"))
             {
-                HyperTextMouseDown(sender, e);
-                CloseWindow();
+                if (this.hyperLinkPath != null)
+                    System.Diagnostics.Process.Start(@hyperLinkPath);
+                else if (this.HyperLinkText != null)
+                {
+                    HyperTextMouseDown(sender, e);
+                    CloseWindow();
+                }
             }
+            else 
+            {
+                mainWindow.Close();
+            }
+
         }
         #endregion
 

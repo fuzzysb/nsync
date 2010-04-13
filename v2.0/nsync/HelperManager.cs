@@ -20,6 +20,7 @@ namespace nsync
         private int conflictCount;
         private string logPath;
         private bool isRevertPathDialog = false;
+        private Window mainWindow;
         #endregion
 
         #region Public Methods
@@ -30,8 +31,10 @@ namespace nsync
         public HelperManager(Window ownerWindow)
         {
             settingsManager = Settings.Instance;
+
             windowHelper = new HelperWindow();
             windowHelper.Owner = ownerWindow;
+            mainWindow = ownerWindow;
             windowHelper.Show();
             windowHelper.Visibility = Visibility.Hidden;
         }
@@ -44,42 +47,60 @@ namespace nsync
         /// <param name="windowPosition">The position for which the notification window should be placed</param>
         public void Show(string helpString, int priority, HelperWindow.windowStartPosition windowPosition)
         {
-            if ((helperWindowIsOn()) || (priority == -1) || (priority == 0))
+            if (priority == -2)
             {
-                if (priority == -1)
-                {
-                    if ((errorCount == 0) && (conflictCount == 0))                    
-                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
-                    else
-                    {
-                        if (errorCount == 1)
-                            helpString += " " + errorCount + " file not synchronized.";
-                        else if(errorCount > 1)
-                            helpString += " " + errorCount + " files not synchronized.";
-                        if (conflictCount == 0)
-                            helpString += " " + conflictCount + " file conflicted.";
-                        else if(conflictCount > 1)
-                            helpString += " " + conflictCount + " files conflicted.";
-                        string extraHelpString = "Click here to view Log.";
-                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath, extraHelpString);
-                    }
-                }
-                else
-                {
-                    if (isRevertPathDialog)
-                    {
-                        string extraHelpString = "Click here to revert changes.";
-                        windowHelper.HyperTextMouseDown += new System.Windows.Input.MouseButtonEventHandler(windowHelper_HyperTextMouseDown);
-                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, extraHelpString);
-                    }
-                    else
-                        windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
-                }
+                windowHelper.MainWindow = mainWindow;
+                string extraHelpString = "Click here to quit nsync.";
+                windowHelper.SetSettings(helpString, -1, windowPosition, "QUIT_NSYNC", extraHelpString);
+                windowHelper.ButtonClose.Visibility = Visibility.Hidden;
 
                 if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)
                 {
                     windowHelper.Visibility = Visibility.Visible;
                     windowHelper.FormFade.Begin();
+                }
+            }
+
+            else
+            {
+                if (helperWindowIsOn() || (priority == -1) || (priority == 0) || (priority != -2))
+                {
+                    if (priority == -1)
+                    {
+                        if ((errorCount == 0) && (conflictCount == 0))
+                            windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
+                        else
+                        {
+                            if (errorCount == 1)
+                                helpString += " " + errorCount + " file not synchronized.";
+                            else if (errorCount > 1)
+                                helpString += " " + errorCount + " files not synchronized.";
+                            if (conflictCount == 0)
+                                helpString += " " + conflictCount + " file conflicted.";
+                            else if (conflictCount > 1)
+                                helpString += " " + conflictCount + " files conflicted.";
+                            string extraHelpString = "Click here to view Log.";
+                            windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath, extraHelpString);
+                        }
+                    }
+
+                    else
+                    {
+                        if (isRevertPathDialog)
+                        {
+                            string extraHelpString = "Click here to revert changes.";
+                            windowHelper.HyperTextMouseDown += new System.Windows.Input.MouseButtonEventHandler(windowHelper_HyperTextMouseDown);
+                            windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, extraHelpString);
+                        }
+                        else
+                            windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, null, null);
+                    }
+
+                    if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)
+                    {
+                        windowHelper.Visibility = Visibility.Visible;
+                        windowHelper.FormFade.Begin();
+                    }
                 }
             }
         }

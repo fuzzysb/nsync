@@ -42,6 +42,8 @@ namespace nsync
         private bool reallyLeft = true;
         private bool cancel = false;
         private Settings settingsManager;
+        private Window mainWindow = Application.Current.MainWindow;
+        private HomePage homePage;
         #endregion
 
         #region Constructor
@@ -130,6 +132,8 @@ namespace nsync
         public void LoadExcludeData()
         {
             settingsManager = Settings.Instance;
+            settingsManager.SetOwnerWindow(this);
+
             ExcludeData loadedExcludeData = settingsManager.LoadExcludeData(leftPath, rightPath);
             int fileTypeListSize = loadedExcludeData.ExcludeFileTypeList.Count;
             int fileNameListSize = loadedExcludeData.ExcludeFileNameList.Count;
