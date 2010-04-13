@@ -49,7 +49,6 @@ namespace nsync
 
         private Settings settingsManager;
         private Window mainWindow = Application.Current.MainWindow;
-        private HomePage homePage;
         #endregion
 
         #region Constructor

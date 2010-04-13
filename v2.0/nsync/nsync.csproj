@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C419DF3E-CE4E-4A6C-A6F9-7BCFF849E34C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -178,12 +178,6 @@
     <Compile Include="SingleInstance.cs" />
     <Compile Include="SummaryReport.cs" />
     <Compile Include="SyncEngine.cs" />
-    <Compile Include="TestEngine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestEngine.Designer.cs">
-      <DependentUpon>TestEngine.cs</DependentUpon>
-    </Compile>
     <Compile Include="TrackBackEngine.cs" />
     <Compile Include="TrackBackFolder.cs" />
     <Compile Include="TrackBackPage.xaml.cs">
@@ -266,10 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="load.gif" />
-    <EmbeddedResource Include="TestEngine.resx">
-      <DependentUpon>TestEngine.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\team14over.png" />

@@ -76,7 +76,6 @@
 
         <Button Name="ButtonSideTabLeft" Template="{StaticResource ButtonSideTabLeftTemplate}" Width="16" Height="56" Click="ButtonSideTabLeft_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,140" Visibility="Hidden"></Button>
         <Button Name="ButtonSideTabRight" Template="{StaticResource ButtonSideTabRightTemplate}" Width="16" Height="56" Click="ButtonSideTabRight_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,140" Visibility="Hidden"></Button>
-        <Button Height="25" Margin="206,0,0,0" Name="ButtonTesting" VerticalAlignment="Top" FontSize="8" Padding="0" HorizontalAlignment="Left" Width="22" OpacityMask="Cyan" BorderBrush="Snow" Background="Cyan" Foreground="DarkOrange" Visibility="Visible" Opacity="0" Click="ButtonTesting_Click" IsEnabled="False">!</Button>
     </Grid>
     
 </Window>

@@ -267,21 +267,6 @@ namespace nsync
                 ButtonSideTabRight.Visibility = Visibility.Hidden;
             }
         }
-
-        /// <summary>
-        /// This method is called when user click on the letter 'n' of nsync logo
-        /// <para>The testing window will appear</para>
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonTesting_Click(object sender, RoutedEventArgs e)
-        {
-            // Disabled, unless you want to do testing, then uncomment this area.
-            // After testing, comment it back.
-            // Users should not be able to see the TestEngine Dialog
-            //TestEngine testEngine = new TestEngine();
-            //testEngine.ShowDialog();
-        }
         #endregion
     }
 }

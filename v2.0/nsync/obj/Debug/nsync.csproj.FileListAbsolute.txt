@@ -1149,7 +1149,6 @@ C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\HomePage.baml
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\MainWindow.baml
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.g.resources
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.Properties.Resources.resources
-C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.exe.manifest
 C:\Users\Seah Shao Qi\Desktop\V2.0\nsync\bin\Debug\nsync.application
