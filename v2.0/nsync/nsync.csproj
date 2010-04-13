@@ -141,6 +141,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugLogger.cs" />
     <Compile Include="ExcludeData.cs" />
     <Compile Include="ExcludeWindow.xaml.cs">
       <DependentUpon>ExcludeWindow.xaml</DependentUpon>

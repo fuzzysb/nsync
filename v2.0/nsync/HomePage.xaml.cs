@@ -34,6 +34,7 @@ namespace nsync
         private HelperManager helper;
         private Window mainWindow = Application.Current.MainWindow;
         private Settings settingsManager;
+        private DebugLogger debugLogger;
         private string actualLeftPath;
         private string actualRightPath;
         private string oldLeftPath;
@@ -83,6 +84,10 @@ namespace nsync
             settingsManager = Settings.Instance;
             settingsManager.SetHomePage(this);
             
+            // Get the debugLogger class instance
+            debugLogger = DebugLogger.Instance;
+            debugLogger.SetOwnerWindow(this);
+
             mainWindow.Closing += new CancelEventHandler(mainWindow_Closing);
 
             actualLeftPath = nsync.Properties.Resources.panelText;
@@ -176,6 +181,8 @@ namespace nsync
         /// <param name="e"></param>
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
+            debugLogger.ClosingMessage(actualLeftPath, actualRightPath, "Exit from nsync");
+
             if (!isErrorClosing)
                 SaveFolderPaths();
         }
@@ -1040,9 +1047,9 @@ namespace nsync
         }
 
         /// <summary>
-        /// checks if a directory is locked/protected (doesn't have access rights), just the directory itself
+        /// Checks if a directory is locked/protected (doesn't have access rights), just the directory itself
         /// </summary>
-        /// <param name="directoryPath">the path of the directory to check</param>
+        /// <param name="directoryPath">The path of the directory to check</param>
         /// <returns>true if directory is accessible</returns>
         private bool IsDirectoryAccessible(string directoryPath)
         {
