@@ -1,4 +1,6 @@
-﻿namespace nsync
+﻿// Eugene
+
+namespace nsync
 {
     /// <summary>
     /// 

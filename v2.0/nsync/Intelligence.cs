@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿// Shao Qi
+
+using System.IO;
 using System.Management;
 
 namespace nsync

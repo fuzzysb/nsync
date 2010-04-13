@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Eugene
+
+using System;
 using System.Threading;
 using System.Windows;
 
