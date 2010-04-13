@@ -23,6 +23,7 @@ namespace nsync
         private ExcludeWindow excludeWindow;
         private VisualPreviewWindow visualPreviewWindow;
         private HomePage homePage;
+        private SettingsPage settingsPage;
         private StreamWriter log;
         #endregion
 
@@ -89,6 +90,16 @@ namespace nsync
         public void SetOwnerWindow(VisualPreviewWindow visualPreviewWindow)
         {
             this.visualPreviewWindow = visualPreviewWindow;
+        }
+
+
+        /// <summary>
+        /// References SettingsPage (Overloaded Method)
+        /// </summary>
+        /// <param name="visualPreviewWindow"></param>
+        public void SetOwnerWindow(SettingsPage settingsPage)
+        {
+            this.settingsPage = settingsPage;
         }
 
         /// <summary>
@@ -210,6 +221,7 @@ namespace nsync
                 log.WriteLine("Username: " + System.Environment.UserName.ToString());
                 log.WriteLine("--------------------------------------");
                 log.WriteLine("");
+                log.Flush();
             }
             catch
             {
@@ -230,6 +242,7 @@ namespace nsync
                 log.WriteLine("Message: " + message);
                 log.WriteLine("--------------------------------------");
                 log.WriteLine("");
+                log.Flush();
             }
             catch
             {
