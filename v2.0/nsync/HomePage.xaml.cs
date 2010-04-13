@@ -87,6 +87,9 @@ namespace nsync
             actualRightPath = nsync.Properties.Resources.panelText;
         }
 
+        /// <summary>
+        /// Sets isErrorClosing to true when there is error
+        /// </summary>
         public void IsErrorClosing()
         {
             isErrorClosing = true;

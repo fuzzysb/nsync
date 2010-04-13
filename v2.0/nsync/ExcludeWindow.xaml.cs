@@ -25,6 +25,7 @@ namespace nsync
         #region Class Variables
         private string leftPath;
         private string rightPath;
+
         private List<string> excludeFolders;
         private List<string> excludeFileNames;
         private List<string> excludeFileTypes;
@@ -36,11 +37,14 @@ namespace nsync
         private List<string> availableFileTypes;
         private List<string> excludeInvalid;
         private List<string> oldExcludeInvalid;
+
         private readonly int MAX_STRING_LENGTH = 46;
         private List<string> filePaths;
         private BackgroundWorker backgroundWorkerFileTypes = new BackgroundWorker();
+
         private bool reallyLeft = true;
         private bool cancel = false;
+
         private Settings settingsManager;
         private Window mainWindow = Application.Current.MainWindow;
         private HomePage homePage;

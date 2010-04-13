@@ -381,6 +381,7 @@ namespace nsync
         }
         #endregion
 
+        #region Sorting
         /// <summary>
         /// event called on clicking on the header of a column
         /// </summary>
@@ -442,6 +443,7 @@ namespace nsync
             dataView.SortDescriptions.Add(sd);
             dataView.Refresh();
         }
+        #endregion
     }
 
     #region DataClass for ListView

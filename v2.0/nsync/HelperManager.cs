@@ -23,7 +23,7 @@ namespace nsync
         private Window mainWindow;
         #endregion
 
-        #region Public Methods
+        #region Constructor
         /// <summary>
         /// Constructor for HelperManager
         /// </summary>
@@ -38,7 +38,9 @@ namespace nsync
             windowHelper.Show();
             windowHelper.Visibility = Visibility.Hidden;
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Tell windowHelper to display the notification
         /// </summary>

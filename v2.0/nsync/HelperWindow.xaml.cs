@@ -52,7 +52,7 @@ namespace nsync
         };
         #endregion
 
-        #region Public Methods
+        #region Constructor
         /// <summary>
         /// Constructor for HelperWindow class
         /// </summary>
@@ -60,8 +60,10 @@ namespace nsync
         {
             InitializeComponent();
             SetTime();
-        }   
+        }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Set the settings for notification window
         /// </summary>
@@ -275,7 +277,6 @@ namespace nsync
             }
 
         }
-        #endregion
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -286,5 +287,6 @@ namespace nsync
         {
             dispatcherTimer.Start();
         }
+        #endregion
     }
 }
