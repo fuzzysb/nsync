@@ -304,6 +304,69 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access is denied. .
+        /// </summary>
+        public static string messageAccessDeniedError {
+            get {
+                return ResourceManager.GetString("messageAccessDeniedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backing up folders....
+        /// </summary>
+        public static string messageBackingUpFolders {
+            get {
+                return ResourceManager.GetString("messageBackingUpFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error detected.
+        /// </summary>
+        public static string messageErrorDetected {
+            get {
+                return ResourceManager.GetString("messageErrorDetected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preparing folders....
+        /// </summary>
+        public static string messagePreparingFolders {
+            get {
+                return ResourceManager.GetString("messagePreparingFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync completed.
+        /// </summary>
+        public static string messageSyncCompleted {
+            get {
+                return ResourceManager.GetString("messageSyncCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Syncing folders....
+        /// </summary>
+        public static string messageSyncingFolders {
+            get {
+                return ResourceManager.GetString("messageSyncingFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync terminated.
+        /// </summary>
+        public static string messageSyncTerminated {
+            get {
+                return ResourceManager.GetString("messageSyncTerminated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to .metadata.
         /// </summary>
         public static string metaDataFileExtension {

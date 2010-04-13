@@ -291,4 +291,25 @@
   <data name="logFolderPath" xml:space="preserve">
     <value>\nsync\log\</value>
   </data>
+  <data name="messageAccessDeniedError" xml:space="preserve">
+    <value>Access is denied. </value>
+  </data>
+  <data name="messageBackingUpFolders" xml:space="preserve">
+    <value>Backing up folders...</value>
+  </data>
+  <data name="messageErrorDetected" xml:space="preserve">
+    <value>Error detected</value>
+  </data>
+  <data name="messagePreparingFolders" xml:space="preserve">
+    <value>Preparing folders...</value>
+  </data>
+  <data name="messageSyncCompleted" xml:space="preserve">
+    <value>Sync completed</value>
+  </data>
+  <data name="messageSyncingFolders" xml:space="preserve">
+    <value>Syncing folders...</value>
+  </data>
+  <data name="messageSyncTerminated" xml:space="preserve">
+    <value>Sync terminated</value>
+  </data>
 </root>

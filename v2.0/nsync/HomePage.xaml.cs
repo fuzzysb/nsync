@@ -45,18 +45,18 @@ namespace nsync
         
         private string[] originalFolderPaths;
 
-        private string NULL_STRING = nsync.Properties.Resources.nullString;
-        private string ICON_LINK_REMOVABLE_DRIVE = nsync.Properties.Resources.thumbdriveIconPath;
-        private string ICON_LINK_FOLDER = nsync.Properties.Resources.folderIconPath;
-        private string ICON_LINK_FOLDER_MISSING = nsync.Properties.Resources.folderMissingIconPath;
+        private string NULL_STRING = Properties.Resources.nullString;
+        private string ICON_LINK_REMOVABLE_DRIVE = Properties.Resources.thumbdriveIconPath;
+        private string ICON_LINK_FOLDER = Properties.Resources.folderIconPath;
+        private string ICON_LINK_FOLDER_MISSING = Properties.Resources.folderMissingIconPath;
 
-        private string MESSAGE_ACCESS_DENIED_ERROR = "Access is denied. ";
-        private string MESSAGE_SYNC_COMPLETED = "Sync completed";
-        private string MESSAGE_ERROR_DETECTED = "Error detected";
-        private string MESSAGE_SYNCING_FOLDERS = "Syncing folders...";
-        private string MESSAGE_PREPARING_FOLDERS = "Preparing folders...";
-        private string MESSAGE_SYNC_TERMINATED = "Sync terminated";
-        private string MESSAGE_BACKING_UP_FOLDERS = "Backing up folders...";
+        private string MESSAGE_ACCESS_DENIED_ERROR = Properties.Resources.messageAccessDeniedError;
+        private string MESSAGE_SYNC_COMPLETED = Properties.Resources.messageSyncCompleted;
+        private string MESSAGE_ERROR_DETECTED = Properties.Resources.messageErrorDetected;
+        private string MESSAGE_SYNCING_FOLDERS = Properties.Resources.messageSyncingFolders;
+        private string MESSAGE_PREPARING_FOLDERS = Properties.Resources.messagePreparingFolders;
+        private string MESSAGE_SYNC_TERMINATED = Properties.Resources.messageSyncTerminated;
+        private string MESSAGE_BACKING_UP_FOLDERS = Properties.Resources.messageBackingUpFolders;
 
         private int HELPER_WINDOW_HIGH_PRIORITY = 0;
         private int HELPER_WINDOW_LOW_PRIORITY = 1;
