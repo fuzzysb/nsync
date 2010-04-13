@@ -14,6 +14,7 @@ namespace nsync
         private Settings settingsManager;
         private bool pageIsLoaded = false;
         private Window mainWindow = Application.Current.MainWindow;
+        private DebugLogger debugLogger;
 
         /// <summary>
         /// Constructor for SettingsPage
@@ -22,6 +23,10 @@ namespace nsync
         {
             InitializeComponent();
             CheckSettings();
+
+            // Get the debugLogger class instance
+            debugLogger = DebugLogger.Instance;
+            debugLogger.SetOwnerWindow(this);
         }
 
         /// <summary>
@@ -89,6 +94,8 @@ namespace nsync
         {
             ResetUI();
             settingsManager.SetExcludeWindowStatus(false);
+
+            //debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_Checked()", "Exclude Window option checked");
         }
 
         private void CheckboxToggleExcludeWindow_UnChecked(object sender, RoutedEventArgs e)
