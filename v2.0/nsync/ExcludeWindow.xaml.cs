@@ -41,6 +41,7 @@ namespace nsync
         private List<string> oldExcludeInvalid;
 
         private readonly int MAX_STRING_LENGTH = 46;
+        private readonly string NULL_STRING = Properties.Resources.nullString;
         private List<string> filePaths;
         private BackgroundWorker backgroundWorkerFileTypes = new BackgroundWorker();
 
@@ -372,7 +373,7 @@ namespace nsync
                 foreach (string paths in filePaths)
                 {
                     string testPath = System.IO.Path.GetFileName(paths).ToLower();
-                    if (testPath != "" && testPath != "nsync.xml" && testPath != "settings.xml" && testPath != "_trackback.xml")
+                    if (testPath != NULL_STRING && testPath != "nsync.xml" && testPath != "settings.xml" && testPath != "_trackback.xml")
                     {
                         AddToFileTypesList(System.IO.Path.GetExtension(paths));
                     }
@@ -475,6 +476,10 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// remove the subfolders of a folder from the list
+        /// </summary>
+        /// <param name="folderPath">parent folder whoose subfolders are to be removed</param>
         private void RemoveSubFolders(string folderPath)
         {
             List<string> pathsToRemove = new List<string>();
@@ -496,6 +501,12 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// checks if a folder is a subfolder of one of a list of current folders
+        /// </summary>
+        /// <param name="excludeFolderPaths">list of current folders</param>
+        /// <param name="folderPath">folder to check</param>
+        /// <returns>true when the folder is a subfolder of one in the list</returns>
         private bool IsSubFolder(List<string> excludeFolderPaths, string folderPath)
         {
             foreach (string singlePath in excludeFolderPaths)
@@ -506,6 +517,12 @@ namespace nsync
             return false;
         }
 
+        /// <summary>
+        /// checks if an folder is a child of another folder
+        /// </summary>
+        /// <param name="childPath">longer, child folder name</param>
+        /// <param name="parentPath">shorter, parent folder name</param>
+        /// <returns></returns>
         private bool IsSubFolderCheck(string childPath, string parentPath)
         {
             string[] childPathArray = childPath.Split(new char[] { '\\' });
@@ -516,7 +533,7 @@ namespace nsync
 
             for (int i = 0; i < parentPathArray.Length; i++)
             {
-                if (parentPathArray[i] == "")
+                if (parentPathArray[i] == NULL_STRING)
                     continue;
 
                 if (parentPathArray[i] != childPathArray[i])
@@ -558,12 +575,6 @@ namespace nsync
 
             for (int i = 0; i < sourceArray.Length; i++)
             {
-                if (sourceArray[i] == "")
-                    continue;
-
-                if (destinationArray[i] == "")
-                    continue;
-
                 if (sourceArray[i] != destinationArray[i])
                     return false;
             }
@@ -721,7 +732,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// Clear the listbox in the gui
+        /// clear the listbox in the gui
         /// </summary>
         private void ClearListBox()
         {
@@ -794,6 +805,10 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// restores subfolders of a folder from the invalid subfolder list to the valid folder list
+        /// </summary>
+        /// <param name="folderPath"></param>
         private void RestoreSubFolders(string folderPath)
         {
             List<string> pathsToRemove = new List<string>();
