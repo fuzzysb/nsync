@@ -100,7 +100,14 @@ namespace nsync
         public void ClosingMessage(string leftPath, string rightPath, string message)
         {
             WriteLogMessage(leftPath, rightPath, "DebugLogger.ClosingMessage()", "NSYNC CLOSING");
-            log.Close();
+            try
+            {
+                log.Close();
+            }
+            catch
+            {
+                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error closing debugFile");
+            }
         }
 
         /// <summary>
@@ -183,28 +190,37 @@ namespace nsync
 
         private void WriteHeaderMessage(string debugFileCreationTime)
         {
-            log.WriteLine("======================");
-            log.WriteLine(" nsync DEBUG LOG");
-            log.WriteLine("======================");
-            log.WriteLine("");
-            log.WriteLine("Start time: " + debugFileCreationTime);
-            log.WriteLine("");
-            log.WriteLine("--------------------------------------");
-            log.WriteLine("User's System Configuration");
-            log.WriteLine("OS: " + GetSystemInfo("Win32_OperatingSystem", "Caption"));
-            log.WriteLine("OS Architecture: " + GetSystemInfo("Win32_OperatingSystem", "OSArchitecture"));
-            log.WriteLine("System Type: " + GetSystemInfo("Win32_ComputerSystem", "SystemType"));
-            log.WriteLine("Description: " + GetSystemInfo("Win32_ComputerSystem", "Description"));
-            log.WriteLine("Manufacturer: " + GetSystemInfo("Win32_ComputerSystem", "Manufacturer"));
-            log.WriteLine("Model: " + GetSystemInfo("Win32_ComputerSystem", "Model"));
-            log.WriteLine("Machine Name: " + System.Environment.MachineName.ToString());
-            log.WriteLine("Username: " + System.Environment.UserName.ToString());
-            log.WriteLine("--------------------------------------");
-            log.WriteLine("");
+            try
+            {
+                log.WriteLine("======================");
+                log.WriteLine(" nsync DEBUG LOG");
+                log.WriteLine("======================");
+                log.WriteLine("");
+                log.WriteLine("Start time: " + debugFileCreationTime);
+                log.WriteLine("");
+                log.WriteLine("--------------------------------------");
+                log.WriteLine("User's System Configuration");
+                log.WriteLine("OS: " + GetSystemInfo("Win32_OperatingSystem", "Caption"));
+                log.WriteLine("OS Architecture: " + GetSystemInfo("Win32_OperatingSystem", "OSArchitecture"));
+                log.WriteLine("System Type: " + GetSystemInfo("Win32_ComputerSystem", "SystemType"));
+                log.WriteLine("Description: " + GetSystemInfo("Win32_ComputerSystem", "Description"));
+                log.WriteLine("Manufacturer: " + GetSystemInfo("Win32_ComputerSystem", "Manufacturer"));
+                log.WriteLine("Model: " + GetSystemInfo("Win32_ComputerSystem", "Model"));
+                log.WriteLine("Machine Name: " + System.Environment.MachineName.ToString());
+                log.WriteLine("Username: " + System.Environment.UserName.ToString());
+                log.WriteLine("--------------------------------------");
+                log.WriteLine("");
+            }
+            catch
+            {
+                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error creating/writing debugFile");
+            }
         }
 
         private void WriteLogMessage(string leftPath, string rightPath, string callingMethodName, string message)
         {
+            try
+            {
                 log.WriteLine("");
                 log.WriteLine("--------------------------------------");
                 log.WriteLine("[" + System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'") + "]");
@@ -214,6 +230,11 @@ namespace nsync
                 log.WriteLine("Message: " + message);
                 log.WriteLine("--------------------------------------");
                 log.WriteLine("");
+            }
+            catch
+            {
+                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error creating/writing debugFile");
+            }
         }
 
         private string GetSystemInfo(string strTable, string properties)
