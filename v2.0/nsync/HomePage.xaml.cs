@@ -1232,6 +1232,7 @@ namespace nsync
                 synchronizer.RightPath = actualRightPath;
             }
 
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "SyncToTheSameFolderHierarchy()", "Folder pairs were changed due to folder hierarchy");
             DisplayCorrectIcons();
         }
 
@@ -1323,10 +1324,12 @@ namespace nsync
                 if (isLeftPathRemoveableDisk)
                 {
                     settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemovableDiskSerialNumber(actualLeftPath), actualLeftPath, actualRightPath);
+                    debugLogger.LogMessage(actualLeftPath, actualRightPath, "SaveFolderPathsForRemoveableDisk()", "Folder pairs saved to setting.xml as leftpath involves removable disk");
                 }
                 if(isRightPathRemoveableDisk)
                 {
                     settingsManager.SaveFolderPathForRemoveableDisk(synchronizer.GetRemovableDiskSerialNumber(actualRightPath), actualLeftPath, actualRightPath);
+                    debugLogger.LogMessage(actualLeftPath, actualRightPath, "SaveFolderPathsForRemoveableDisk()", "Folder pairs saved to setting.xml as rightpath involves removable disk");
                 }
             }
         }
@@ -1360,6 +1363,8 @@ namespace nsync
                         helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                         helper.Show(nsync.Properties.Resources.folderOnRemovableDiskRestored, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         helper.IsRevertPathDialog = false;
+
+                        debugLogger.LogMessage(actualLeftPath, actualRightPath, "RememberLastRemoveableDiskSync()", "Folder pairs restored due to last removable drive sync (from leftbox)");
                     }
                 }
             }
@@ -1381,6 +1386,8 @@ namespace nsync
                         helper.HyperTextMouseDown += new MouseButtonEventHandler(helper_HyperTextMouseDown);
                         helper.Show(nsync.Properties.Resources.folderOnRemovableDiskRestored, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         helper.IsRevertPathDialog = false;
+
+                        debugLogger.LogMessage(actualLeftPath, actualRightPath, "RememberLastRemoveableDiskSync()", "Folder pairs restored due to last removable drive sync (from rightbox)");
                     }
                 }
             }
@@ -1761,6 +1768,8 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonPreview_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "ButtonPreview_Click()", "User clicked on preview button");
+
             if (!ShowSync())
                 return;
 
@@ -1844,6 +1853,8 @@ namespace nsync
         /// <param name="e"></param>
         private void WindowVisualPreview_Closing(object sender, CancelEventArgs e)
         {
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "WindowVisualPreview_Closing()", "Preview window closed");
+
             EnableInterface(true);
         }
 
@@ -1883,6 +1894,8 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonStop_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "ButtonStop_Click()", "User clicked to cancel sync halfway");
+
             synchronizer.backgroundWorkerForSync.CancelAsync();
         }
         #endregion
