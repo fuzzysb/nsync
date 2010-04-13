@@ -1129,6 +1129,8 @@ namespace nsync
             RightText.Text = ShortenPath(actualRightPath, 90);
             synchronizer.LeftPath = actualLeftPath;
             synchronizer.RightPath = actualRightPath;
+            
+            ShowSync();
         }
 
         /// <summary>
