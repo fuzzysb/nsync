@@ -67,7 +67,7 @@ namespace nsync
 
             else
             {
-                if (helperWindowIsOn() || (priority == -1) || (priority == 0) || (priority != -2))
+                if (helperWindowIsOn() || (priority == -1) || (priority == 0))
                 {
                     if (priority == -1)
                     {

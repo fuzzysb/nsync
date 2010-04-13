@@ -85,11 +85,6 @@ namespace nsync
 
             if (hyperLinkText == null)
                 HyperLinkText.Visibility = Visibility.Collapsed;
-            else if (hyperLinkPath.Equals("QUIT_NSYNC"))
-            {
-                HyperLinkText.Visibility = Visibility.Visible;
-                HyperLinkText.Text = hyperLinkText;
-            }
             else
             {
                 HyperLinkText.Visibility = Visibility.Visible;
@@ -263,19 +258,17 @@ namespace nsync
         /// <param name="e"></param>
         private void HyperLinkText_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!this.hyperLinkPath.Equals("QUIT_NSYNC"))
+            if (this.hyperLinkPath != null)
             {
-                if (this.hyperLinkPath != null)
+                if (this.hyperLinkPath.Equals("QUIT_NSYNC"))
+                    mainWindow.Close();
+                else
                     System.Diagnostics.Process.Start(@hyperLinkPath);
-                else if (this.HyperLinkText != null)
-                {
-                    HyperTextMouseDown(sender, e);
-                    CloseWindow();
-                }
             }
-            else 
+            else if (this.HyperLinkText != null)
             {
-                mainWindow.Close();
+                HyperTextMouseDown(sender, e);
+                CloseWindow();
             }
 
         }
