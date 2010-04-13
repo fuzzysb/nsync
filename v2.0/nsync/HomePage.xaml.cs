@@ -1008,6 +1008,8 @@ namespace nsync
                     if(!rightDirectoryAccessible)
                         rightsString += "\n" + ShortenPath(actualRightPath,50);
                     helper.Show(rightsString, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                    LabelProgress.Visibility = Visibility.Visible;
                 }
             }
             else if (excludeWindowStatus == 0)
@@ -1037,6 +1039,11 @@ namespace nsync
             }
         }
 
+        /// <summary>
+        /// checks if a directory is locked/protected (doesn't have access rights), just the directory itself
+        /// </summary>
+        /// <param name="directoryPath">the path of the directory to check</param>
+        /// <returns>true if directory is accessible</returns>
         private bool IsDirectoryAccessible(string directoryPath)
         {
             try
