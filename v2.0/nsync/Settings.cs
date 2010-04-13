@@ -995,11 +995,11 @@ namespace nsync
             textWriter.WriteEndElement();
 
             textWriter.WriteStartElement("ExcludeWindowStatus");
-            textWriter.WriteString("false");
+            textWriter.WriteString("False");
             textWriter.WriteEndElement();
 
             textWriter.WriteStartElement("TrackBackStatus");
-            textWriter.WriteString("false");
+            textWriter.WriteString("False");
             textWriter.WriteEndElement();
 
             textWriter.WriteStartElement("PreviewFilterType");
@@ -1124,7 +1124,9 @@ namespace nsync
         {
             try
             {
-                Directory.GetFiles(logDirectory, "", SearchOption.TopDirectoryOnly);
+                FileStream fs = File.Create(logDirectory + "checkerFile.txt");
+                fs.Close();
+                File.Delete(logDirectory + "checkerFile.txt");
             }
             catch (UnauthorizedAccessException)
             {
