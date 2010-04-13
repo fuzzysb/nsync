@@ -1057,14 +1057,28 @@ namespace nsync
             directoriesToSearch = GetSubFolder(path); // gets all accessible sub folders
             foreach (string directories in directoriesToSearch)
             {
-                filePaths = Directory.GetFiles(directories, "filesync.metadata", SearchOption.TopDirectoryOnly);
+                try
+                {
+                    filePaths = Directory.GetFiles(directories, "filesync.metadata", SearchOption.TopDirectoryOnly);
+                }
+                catch
+                {
+                    // do nothing and let the operation to continue
+                }
 
                 foreach (string foundPath in filePaths)
                 {
                     if (File.Exists(foundPath))
                     {
-                        File.SetAttributes(foundPath, FileAttributes.Normal);
-                        File.Delete(foundPath);
+                        try
+                        {
+                            File.SetAttributes(foundPath, FileAttributes.Normal);
+                            File.Delete(foundPath);
+                        }
+                        catch
+                        {
+                            // do nothing and let the operation to continue
+                        }
                     }
                 }
             } // find filesync.metadata in the accessible folders
@@ -1087,8 +1101,12 @@ namespace nsync
             }
             catch (UnauthorizedAccessException)
             {
-                return directories;
-            } // return nothing as a locked folder cannot be accessed.
+                return directories; // return nothing as a locked folder cannot be accessed.
+            } 
+            catch
+            {
+                return directories; // catch any other exception and allow the operation to complete
+            }
 
             foreach (string subDirectory in subDirectories)
             {
