@@ -141,6 +141,8 @@ namespace nsync
 
             //Add event handler to check when main window is moved, move helper window too
             mainWindow.LocationChanged += new EventHandler(mainWindow_LocationChanged);
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "HomePage.Page_Loaded()", "Homepage loaded in");
         }     
 
         /// <summary>
@@ -170,6 +172,8 @@ namespace nsync
         /// <param name="e"></param>
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "HomePage.Page_Unloaded()", "Homepage unloaded out");
+
             SaveFolderPaths();
             helper.CloseWindow();
         }
@@ -234,6 +238,8 @@ namespace nsync
                 RememberLastRemoveableDiskSync("left");
                 ShowSync();
             }
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "HomePage.BoxLeft_Drop", "Folder dropped in");
         }
 
         /// <summary>
@@ -252,6 +258,8 @@ namespace nsync
                 RememberLastRemoveableDiskSync("right");
                 ShowSync();
             }
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "HomePage.BoxRight_Drop", "Folder dropped in");
         }
 
         /// <summary>
@@ -400,6 +408,8 @@ namespace nsync
             synchronizer.RightPath = actualRightPath;
 
             ShowSync();
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "LeftIcon_MouseDown()", "Folder selected via folder dialog");
         }
 
         /// <summary>
@@ -435,6 +445,8 @@ namespace nsync
             synchronizer.RightPath = actualRightPath;
 
             ShowSync();
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "RightIcon_MouseDown()", "Folder selected via folder dialog");
         }
 
         /// <summary>
@@ -941,6 +953,8 @@ namespace nsync
             RightListBox.Visibility = Visibility.Hidden;
 
             ShowSync();
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "ListBoxLeft_MouseUp()", "User clicks on left listboxitem");
         }
 
         /// <summary>
@@ -973,6 +987,8 @@ namespace nsync
             RightListBox.Visibility = Visibility.Hidden;
 
             ShowSync();
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "ListBoxRight_MouseUp()", "User clicks on right listboxitem");
         }
 
         /// <summary>
@@ -1046,6 +1062,8 @@ namespace nsync
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgress.Visibility = Visibility.Visible;
             }
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "ButtonSync_Click()", "Sync button clicked");
         }
 
         /// <summary>
@@ -1132,6 +1150,8 @@ namespace nsync
                 synchronizer.ExcludeData = excludeData;
                 synchronizer.PreSync();
             }
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "excludeWindow_Closing()", "User closes exclude window");
         }
 
         /// <summary>
@@ -1147,6 +1167,8 @@ namespace nsync
             synchronizer.RightPath = actualRightPath;
             
             ShowSync();
+
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "RevertBackToOldFolderPair()", "Folder pairs reverted");
         }
 
         /// <summary>
