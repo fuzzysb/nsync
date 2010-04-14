@@ -20,7 +20,7 @@ namespace nsync
         /// <param name="e"></param>
         protected override void OnStartup(StartupEventArgs e)
         {
-            SingleInstance.Make("nsync", this);
+            //SingleInstance.Make("nsync", this);
 
             base.OnStartup(e);
         }
