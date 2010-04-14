@@ -29,6 +29,7 @@ namespace nsync
         private HelperManager helper;
         private Window mainWindow = Application.Current.MainWindow;
         private Settings settingsManager;
+        private DebugLogger debugLogger;
         private GridViewColumnHeader _lastHeaderClicked = null;
         private ListSortDirection _lastDirection = ListSortDirection.Ascending;
         private string[] folderList;
@@ -55,6 +56,9 @@ namespace nsync
             InitializeComponent();
 
             settingsManager = Settings.Instance;
+
+            // Get the debugLogger class instance
+            debugLogger = DebugLogger.Instance;
 
             helper = new HelperManager(mainWindow);
 
@@ -429,17 +433,20 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonRestore_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", "Trying to restore folders");
             try
             {
                 if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath && !trackback.hasEnoughDiskSpaceInLeftFolder())
                 {
                     DisplayErrorInterface();
                     helper.Show(nsync.Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", nsync.Properties.Resources.leftFolderInsufficientDiskSpace);
                 }
                 else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath && !trackback.hasEnoughDiskSpaceInRightFolder())
                 {
                     DisplayErrorInterface();
                     helper.Show(nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", nsync.Properties.Resources.rightFolderInsufficientDiskSpace);
                 }
                 else
                 {
@@ -448,15 +455,22 @@ namespace nsync
                     LabelProgress.Content = MESSAGE_RESTORING_FOLDERS;
 
                     if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+                    {
                         trackback.StartRestore(actualLeftFolderPath, GetSelectedListViewItem(ListViewForLeftFolder));
+                        debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", "Restoring left folder in progress");
+                    }
                     else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
+                    {
                         trackback.StartRestore(actualRightFolderPath, GetSelectedListViewItem(ListViewForRightFolder));
+                        debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", "Restoring right folder in progress");
+                    }
                 }
             }
             catch (UnauthorizedAccessException)
             {
                 DisplayErrorInterface();
                 helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", nsync.Properties.Resources.accessRightsInsufficient);
                 return;
             }
         }
@@ -569,6 +583,8 @@ namespace nsync
                 LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_RESTORE_COMPLETED;
                 helper.Show(nsync.Properties.Resources.restoreComplete, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+
+                debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - backgroundWorkerForTrackBackRestore_RunWorkerCompleted()", nsync.Properties.Resources.restoreComplete);
             }
             else
             {
@@ -592,6 +608,7 @@ namespace nsync
                         helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;                    
                 }
+                debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - backgroundWorkerForTrackBackRestore_RunWorkerCompleted()", "Error #" + e.Result.ToString());
             }
         }
 
