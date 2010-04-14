@@ -1011,6 +1011,8 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonSync_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(actualLeftPath, actualRightPath, "ButtonSync_Click()", "Sync button clicked");
+
             // do a check one more time
             // handle the situation when after a sync job is setup,
             // user deletes the 2 folders n click sync again
@@ -1026,6 +1028,7 @@ namespace nsync
                 int excludeWindowStatus = settingsManager.GetExcludeWindowStatus(); // 0 for disabled, 1 for enabled, -1 for error
                 if (excludeWindowStatus == 1)
                 {
+                    debugLogger.LogMessage(actualLeftPath, actualRightPath, "ButtonSync_Click()", "Opening Exclude Window");
 
                     EnableInterface(false);
                     excludeWindow = new ExcludeWindow();
@@ -1075,8 +1078,6 @@ namespace nsync
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 LabelProgress.Visibility = Visibility.Visible;
             }
-
-            debugLogger.LogMessage(actualLeftPath, actualRightPath, "ButtonSync_Click()", "Sync button clicked");
         }
 
         /// <summary>
@@ -1522,6 +1523,7 @@ namespace nsync
             {
                 if (!(bool)e.Result)
                 {
+                    debugLogger.LogMessage(actualLeftPath, actualRightPath, "backgroundWorkerForSync_RunWorkerCompleted()", nsync.Properties.Resources.insufficientDiskSpace);
                     helper.Show(nsync.Properties.Resources.insufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                     LabelProgressPercent.Visibility = Visibility.Hidden;
@@ -1543,6 +1545,7 @@ namespace nsync
                     LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
                     LabelProgressPercent.Content = "100 %";
                     helper.Show(nsync.Properties.Resources.synchronizedFolders, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    debugLogger.LogMessage(actualLeftPath, actualRightPath, "backgroundWorkerForSync_RunWorkerCompleted()", nsync.Properties.Resources.synchronizedFolders);
                     return;
                 }
 
@@ -1560,6 +1563,8 @@ namespace nsync
                     excludeData = new ExcludeData();
                     previewSync.ExcludeData = excludeData;
                 }
+
+                debugLogger.LogMessage(actualLeftPath, actualRightPath, "backgroundWorkerForSync_RunWorkerCompleted()", "Sync done!");
 
                 previewSync.backgroundWorkerForSummary.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerForSummary_RunWorkerCompleted);
                 previewSync.SummarySync(); 
