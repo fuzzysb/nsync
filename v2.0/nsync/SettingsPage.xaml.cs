@@ -69,7 +69,7 @@ namespace nsync
                     settingsManager.SetHelperWindowStatus((int)HelperWindowSlider.Value);
                 }
 
-                debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - HelperWindowSliderValue_SelectionChanged()", "Helper window combobox changed to " + HelperWindowSlider.Value.ToString());
+                debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - HelperWindowSliderValue_SelectionChanged()", "Helper window combobox changed to " + HelperWindowSlider.Value.ToString());
             }
         }
 
@@ -87,7 +87,7 @@ namespace nsync
                     settingsManager.SetHelperWindowStatus((int)HelperWindowSlider.Value);
                 }
 
-                debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - HelperWindowSlider_ValueChanged()", "Helper window slider changed to " + HelperWindowSlider.Value.ToString());
+                debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - HelperWindowSlider_ValueChanged()", "Helper window slider changed to " + HelperWindowSlider.Value.ToString());
             }
         }
 
@@ -99,7 +99,7 @@ namespace nsync
             ResetUI();
             settingsManager.SetExcludeWindowStatus(false);
 
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_Checked()", "Exclude Window disabled");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_Checked()", "Exclude Window disabled");
         }
 
         private void CheckboxToggleExcludeWindow_UnChecked(object sender, RoutedEventArgs e)
@@ -107,7 +107,7 @@ namespace nsync
             ResetUI();
             settingsManager.SetExcludeWindowStatus(true);
 
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_UnChecked()", "Exclude Window enabled");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_UnChecked()", "Exclude Window enabled");
         }
 
         private void CheckboxToggleTrackBack_Checked(object sender, RoutedEventArgs e)
@@ -115,7 +115,7 @@ namespace nsync
             ResetUI();
             settingsManager.SetTrackBackStatus(false);
 
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleTrackBack_Checked()", "TrackBack disabled");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - CheckboxToggleTrackBack_Checked()", "TrackBack disabled");
         }
 
         private void CheckboxToggleTrackBack_UnChecked(object sender, RoutedEventArgs e)
@@ -123,7 +123,7 @@ namespace nsync
             ResetUI();
             settingsManager.SetTrackBackStatus(true);
 
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleTrackBack_UnChecked()", "TrackBack enabled");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - CheckboxToggleTrackBack_UnChecked()", "TrackBack enabled");
         }
 
         private void ButtonClearLogFolder_Click(object sender, RoutedEventArgs e)
@@ -135,12 +135,12 @@ namespace nsync
             LabelProgress.Content = settingsManager.ClearLogFolder();
             LabelProgress.Visibility = Visibility.Visible;
 
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonClearLogFolder_Click()", "Log folder cleared");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - ButtonClearLogFolder_Click()", "Log folder cleared");
         }
 
         private void ButtonOpenLogFolder_Click(object sender, RoutedEventArgs e)
         {
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonOpenLogFolder_Click()", "Trying to open log folder");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - ButtonOpenLogFolder_Click()", "Trying to open log folder");
 
             ResetUI();
             string message = settingsManager.OpenLogFolder();
@@ -149,7 +149,7 @@ namespace nsync
             {
                 LabelProgress.Content = message;
                 LabelProgress.Visibility = Visibility.Visible;
-                debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonOpenLogFolder_Click()", "Opening of log folder failed");
+                debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - ButtonOpenLogFolder_Click()", "Opening of log folder failed");
             }
         }
 
@@ -162,7 +162,7 @@ namespace nsync
             LabelProgress.Content = settingsManager.ClearMetaData();
             LabelProgress.Visibility = Visibility.Visible;
 
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonClearMetaData_Click()", "Clearing metadata: " + LabelProgress.Content.ToString());
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - ButtonClearMetaData_Click()", "Clearing metadata: " + LabelProgress.Content.ToString());
         }
 
         private void ButtonClearSettings_Click(object sender, RoutedEventArgs e)
@@ -177,7 +177,7 @@ namespace nsync
             LabelProgress.Content = "Settings Resetted.";
             LabelProgress.Visibility = Visibility.Visible;
 
-            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonClearSettings_Click()", "Cleared settings.xml");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "SettingsPage.xaml.cs - ButtonClearSettings_Click()", "Cleared settings.xml");
         }
 
         private void ResetUI()
