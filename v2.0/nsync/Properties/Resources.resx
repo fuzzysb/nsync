@@ -342,4 +342,19 @@
   <data name="trackbackXMLFilename" xml:space="preserve">
     <value>_trackback.xml</value>
   </data>
+  <data name="debugFolderPath" xml:space="preserve">
+    <value>\nsync\debug\</value>
+  </data>
+  <data name="debugLoggerClosingMessage" xml:space="preserve">
+    <value>END OF DEBUG LOG</value>
+  </data>
+  <data name="getSystemInfoErrorMessage" xml:space="preserve">
+    <value>Invalid table or properties</value>
+  </data>
+  <data name="nsyncFolderPath" xml:space="preserve">
+    <value>\nsync\</value>
+  </data>
+  <data name="timeStampFormat" xml:space="preserve">
+    <value>yyyy MMM dd hh.mm.ss tt</value>
+  </data>
 </root>

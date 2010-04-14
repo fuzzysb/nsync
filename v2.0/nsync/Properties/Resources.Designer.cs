@@ -97,6 +97,24 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \nsync\debug\.
+        /// </summary>
+        public static string debugFolderPath {
+            get {
+                return ResourceManager.GetString("debugFolderPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to END OF DEBUG LOG.
+        /// </summary>
+        public static string debugLoggerClosingMessage {
+            get {
+                return ResourceManager.GetString("debugLoggerClosingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please try again..
         /// </summary>
         public static string defaultErrorMessage {
@@ -282,6 +300,15 @@ namespace nsync.Properties {
         public static string folderRestrictedAccess {
             get {
                 return ResourceManager.GetString("folderRestrictedAccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid table or properties.
+        /// </summary>
+        public static string getSystemInfoErrorMessage {
+            get {
+                return ResourceManager.GetString("getSystemInfoErrorMessage", resourceCulture);
             }
         }
         
@@ -480,6 +507,15 @@ namespace nsync.Properties {
         public static string nextToolTip {
             get {
                 return ResourceManager.GetString("nextToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to \nsync\.
+        /// </summary>
+        public static string nsyncFolderPath {
+            get {
+                return ResourceManager.GetString("nsyncFolderPath", resourceCulture);
             }
         }
         
@@ -696,6 +732,15 @@ namespace nsync.Properties {
         public static string thumbdriveIconPath {
             get {
                 return ResourceManager.GetString("thumbdriveIconPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yyyy MMM dd hh.mm.ss tt.
+        /// </summary>
+        public static string timeStampFormat {
+            get {
+                return ResourceManager.GetString("timeStampFormat", resourceCulture);
             }
         }
         
