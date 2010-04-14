@@ -15,7 +15,7 @@ using System.Windows;
 namespace nsync
 {
     //CLASS FOR PREVIEW
-    class Preview
+    public class Preview
     {
         #region Class Variables
         public System.ComponentModel.BackgroundWorker backgroundWorkerForPreview;

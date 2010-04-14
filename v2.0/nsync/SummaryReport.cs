@@ -9,7 +9,7 @@ using System.IO;
 namespace nsync
 {
     //CLASS FOR SUMMARY REPORT
-    class SummaryReport
+    public class SummaryReport
     {
         #region Class Variables
         private List<string> errorMessage = new List<string>();
