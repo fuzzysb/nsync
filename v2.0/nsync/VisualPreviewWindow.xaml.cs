@@ -32,6 +32,7 @@ namespace nsync
         private GridViewColumnHeader _lastHeaderClicked = null;
         private ListSortDirection _lastDirection = ListSortDirection.Ascending;
         private Settings settingsManager;
+        private DebugLogger debugLogger;
 
         #endregion
 
@@ -45,6 +46,9 @@ namespace nsync
 
             settingsManager = Settings.Instance;
             settingsManager.SetOwnerWindow(this);
+
+            // Get the debugLogger class instance
+            debugLogger = DebugLogger.Instance;
         }
         #endregion
 
@@ -130,6 +134,8 @@ namespace nsync
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(leftPath, rightPath, "VisualPreviewWindow.xaml.cs - ButtonClose_Click()", "Closing preview window");
+
             this.Close();
         }
 
@@ -256,6 +262,8 @@ namespace nsync
             }
 
             CheckEmptyList();
+
+            debugLogger.LogMessage(leftPath, rightPath, "VisualPreviewWindow.xaml.cs - ComboBoxFilter_SelectionChanged()", "Preview filter changed. Value = " + ComboBoxFilter.SelectedIndex.ToString());
         }
 
         /// <summary>
