@@ -552,6 +552,10 @@ namespace nsync
         /// <returns>bool whether it is a child path</returns>
         private bool IsAChildPath(string childPath, string parentPath)
         {
+            if (childPath == parentPath)
+            {
+                return false;
+            }
             string[] childPathArray = childPath.Split(new char[] { '\\' });
             string[] parentPathArray = parentPath.Split(new char[] { '\\' });
 
@@ -618,7 +622,14 @@ namespace nsync
             }
             for (int i = 0; i < excludeInvalid.Count; i++)
             {
-                AddListBoxItem(Properties.Resources.excludeInvalidDescription, new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
+                if (excludeInvalid[i] == leftPath || excludeInvalid[i] == rightPath)
+                {
+                    AddListBoxItem(Properties.Resources.excludeRootFolder, new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
+                }
+                else
+                {
+                    AddListBoxItem(Properties.Resources.excludeInvalidDescription, new SolidColorBrush(Colors.LightPink), excludeInvalid[i]);
+                }
             }
             for (int i = 0; i < excludeSubFolders.Count; i++)
             {
