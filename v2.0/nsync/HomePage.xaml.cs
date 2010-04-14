@@ -1625,7 +1625,10 @@ namespace nsync
                         helper.Show(nsync.Properties.Resources.accessRightsInsufficient + extraMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 4:
-                        helper.Show(nsync.Properties.Resources.fileNotAccessible, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(Properties.Resources.folderPathTooLong, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 5:
+                        helper.Show(Properties.Resources.fileNotAccessible, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     default:
                         helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
@@ -1954,7 +1957,18 @@ namespace nsync
             {
                 LabelProgress.Content = MESSAGE_ERROR_DETECTED;
                 EnableInterface(true);
-                helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                switch ((int)e.Result)
+                {
+                    case 1:
+                        helper.Show(Properties.Resources.folderPathTooLong, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    case 2:
+                        helper.Show(Properties.Resources.folderNotExists, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                    default:
+                        helper.Show(Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        break;
+                }
             }
             else if (e.Error != null)
             {
