@@ -8,7 +8,9 @@ using System.IO;
 
 namespace nsync
 {
-    //CLASS FOR SUMMARY REPORT
+    /// <summary>
+    /// SummaryReport Class
+    /// </summary>
     public class SummaryReport
     {
         #region Class Variables

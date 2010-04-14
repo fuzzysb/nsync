@@ -14,11 +14,19 @@ using System.Windows;
 
 namespace nsync
 {
-    //CLASS FOR PREVIEW
+    /// <summary>
+    /// Preview Class
+    /// </summary>
     public class Preview
     {
         #region Class Variables
+        /// <summary>
+        /// BackgroundWorkerForPreview Component
+        /// </summary>
         public System.ComponentModel.BackgroundWorker backgroundWorkerForPreview;
+        /// <summary>
+        /// BackgroundWorkerForSummary Component
+        /// </summary>
         public System.ComponentModel.BackgroundWorker backgroundWorkerForSummary;
         private List<FileData> fileData;
         private ExcludeData excludeData;
