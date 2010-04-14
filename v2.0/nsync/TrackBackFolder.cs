@@ -98,7 +98,8 @@ namespace nsync
 
             for (int i = 0; i < nodeList.Count; i++)
             {
-                folderList[i] = nodeList[i].FirstChild.InnerText.Substring(nodeList[i].FirstChild.InnerText.LastIndexOf("\\")+1);
+                folderList[i] = (nodeList[i].FirstChild.InnerText.Length > 3) ? nodeList[i].FirstChild.InnerText.Substring(nodeList[i].FirstChild.InnerText.LastIndexOf("\\") + 1) :
+                    folderList[i] = nodeList[i].FirstChild.InnerText;
             }
 
             return folderList;
@@ -151,7 +152,10 @@ namespace nsync
         /// </summary>
         public void BackupFolder()
         {
-            CopyFolder(sourceFolder, storageFolder);
+            if (sourceFolder.FullName.Length > 3)
+                CopyFolder(sourceFolder.FullName, Path.Combine(storageFolder.FullName, sourceFolder.Name));
+            else
+                CopyFolder(sourceFolder.FullName, Path.Combine(storageFolder.FullName, sourceFolder.FullName.Substring(0, 1)));
             SaveTrackBackSession(sourceFolderPath, destinationFolderPath, dateTime);
         }
 
@@ -163,14 +167,10 @@ namespace nsync
             string folderVersionPath = Path.Combine(trackbackPath, timeStamp);
             DirectoryInfo folderVersion = new DirectoryInfo(folderVersionPath);
 
-            // Takes care of the scenario where no folder was backed up (probably due to previous errors)
-            if (folderVersion.GetDirectories().Length == 0)
-                return;
-
             DeleteSubfolders(sourceFolder);
             DeleteFiles(sourceFolder);
 
-            CopyFolder(folderVersion.GetDirectories()[0], sourceFolder.Parent);
+            CopyFolder(folderVersion.GetDirectories()[0].FullName, sourceFolder.FullName);
         }
 
         /// <summary>
@@ -233,6 +233,7 @@ namespace nsync
         // PRIVATE METHODS
         ////////////////////
 
+        /*
         /// <summary>
         /// Copies a folder to the destination directory
         /// </summary>
@@ -297,6 +298,38 @@ namespace nsync
                 }  
              }
         }
+        */
+
+        private void CopyFolder(string sourceFolder, string destinationFolder)
+        {
+            if (IsDirectoryAccessible(sourceFolder))
+            {
+                if (!Directory.Exists(destinationFolder))
+                    Directory.CreateDirectory(destinationFolder);
+
+                string[] files = Directory.GetFiles(sourceFolder);
+
+                foreach (string file in files)
+                {
+                    string name = Path.GetFileName(file);
+                    if (name != METADATA_FILE_NAME)
+                    {
+                        string destination = Path.Combine(destinationFolder, name);
+                        if (IsFileAccessible(file)) File.Copy(file, destination);
+                    }
+                }
+                string[] folders = Directory.GetDirectories(sourceFolder);
+                foreach (string folder in folders)
+                {
+                    string name = Path.GetFileName(folder);
+                    if (name != TRACKBACK_FOLDER_NAME)
+                    {
+                        string destination = Path.Combine(destinationFolder, name);
+                        CopyFolder(folder, destination);
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Creates a folder and sets its attributes as hidden
@@ -338,18 +371,10 @@ namespace nsync
 
             foreach (FileInfo file in files)
             {
-                try
+                if (IsFileAccessible(file.FullName))
                 {
                     File.SetAttributes(file.FullName, FileAttributes.Normal);
                     File.Delete(file.FullName);
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    // Skip file
-                }
-                catch (Exception e)
-                {
-                    throw e;
                 }
             }
         }
@@ -371,20 +396,13 @@ namespace nsync
                 // If the file is denied access due to file security permissions, skip it
                 foreach (string file in files)
                 {
-                    try
+                    if (IsFileAccessible(file))
                     {
                         File.SetAttributes(file, FileAttributes.Normal);
                         File.Delete(file);
                     }
-                    catch (UnauthorizedAccessException)
-                    {
-                        // Skip file
+                    else
                         skippedFiles++;
-                    }
-                    catch (Exception e)
-                    {
-                        throw e;
-                    }
                 }
 
                 foreach (string folder in folders)
@@ -392,7 +410,7 @@ namespace nsync
                     DeleteDirectory(folder);
                 }
 
-                if (skippedFiles == 0) Directory.Delete(directory, false); 
+                if (skippedFiles == 0) Directory.Delete(directory, false);
             }
         }
 
@@ -420,7 +438,7 @@ namespace nsync
             ulong size = 0;
 
             // If the directory is denied access due to folder security permissions, skip it
-            if (IsDirectoryAccessible(directory))
+            if (IsDirectoryAccessible(directory.FullName))
             {
                 FileInfo[] files = directory.GetFiles();
                 foreach (FileInfo file in files)
@@ -571,6 +589,7 @@ namespace nsync
             return false;
         }
 
+        /*
         /// <summary>
         /// Checks if the folder has restricted file permissions
         /// </summary>
@@ -593,6 +612,7 @@ namespace nsync
 
             return true;
         }
+         */
 
         /// <summary>
         /// Checks if the folder has restricted file permissions
@@ -614,6 +634,27 @@ namespace nsync
                 throw e;
             }
 
+            return true;
+        }
+
+        private bool IsFileAccessible(string filePath)
+        {
+            FileInfo file = new FileInfo(filePath);
+
+            FileStream stream = null;
+            try
+            {
+                stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
             return true;
         }
 

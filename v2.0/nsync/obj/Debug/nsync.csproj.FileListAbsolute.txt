@@ -1337,7 +1337,6 @@ C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\MainWindow.baml
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\VisualPreviewWindow.baml
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.g.resources
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.Properties.Resources.resources
-C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.application
