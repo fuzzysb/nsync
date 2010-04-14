@@ -1770,30 +1770,34 @@ namespace nsync
             LabelProgressPercent.Content = "100 %";
             ImageTeam14Over.OpacityMask = blankOpacityMask;
 
-            // Creation of summary report
-            if (fileData.Count == 0)
+            // Check whether log folder is locked
+            if (!settingsManager.IsFoldersLocked())
             {
-                summaryReport = new SummaryReport(true, synchronizer.ErrorMessageForSummaryReport);
-                summaryReport.LeftPath = actualLeftPath;
-                summaryReport.RightPath = actualRightPath;
-                summaryReport.CreateLog();
-            }
-            else
-            {
-                summaryReport = new SummaryReport(fileData, synchronizer.ErrorMessageForSummaryReport);
-                summaryReport.LeftPath = actualLeftPath;
-                summaryReport.RightPath = actualRightPath;
-                summaryReport.CreateLog();
-            }
+                // Creation of summary report
+                if (fileData.Count == 0)
+                {
+                    summaryReport = new SummaryReport(true, synchronizer.ErrorMessageForSummaryReport);
+                    summaryReport.LeftPath = actualLeftPath;
+                    summaryReport.RightPath = actualRightPath;
+                    summaryReport.CreateLog();
+                }
+                else
+                {
+                    summaryReport = new SummaryReport(fileData, synchronizer.ErrorMessageForSummaryReport);
+                    summaryReport.LeftPath = actualLeftPath;
+                    summaryReport.RightPath = actualRightPath;
+                    summaryReport.CreateLog();
+                }
 
-            // Display a notification to the user
-            helper.ErrorCount = fileData.Count;
-            helper.ConflictCount = synchronizer.ErrorMessageForSummaryReport.Count;
-            helper.LogPath = summaryReport.LogPath;
-            helper.Show(nsync.Properties.Resources.syncComplete, HELPER_WINDOW_SYNC_COMPLETE_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                // Display a notification to the user
+                helper.ErrorCount = fileData.Count;
+                helper.ConflictCount = synchronizer.ErrorMessageForSummaryReport.Count;
+                helper.LogPath = summaryReport.LogPath;
+                helper.Show(nsync.Properties.Resources.syncComplete, HELPER_WINDOW_SYNC_COMPLETE_PRIORITY, HelperWindow.windowStartPosition.windowTop);
 
-            // Save folder pair if the sync involves a removeable disk
-            SaveFolderPathsForRemoveableDisk();
+                // Save folder pair if the sync involves a removeable disk
+                SaveFolderPathsForRemoveableDisk();
+            }
         }
 
         /// <summary>
