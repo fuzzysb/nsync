@@ -75,8 +75,7 @@ namespace nsync
 
                 helperWindowStatusNode.InnerText = "" + timer;
 
-                doc.Save(settingsFile);
-                ProtectFile(settingsFile);
+                SaveFile(doc, settingsFile);
             }
         }
 
@@ -143,8 +142,7 @@ namespace nsync
 
                 previewFilterStatusNode.InnerText = filterType;
 
-                doc.Save(settingsFile);
-                ProtectFile(settingsFile);
+                SaveFile(doc, settingsFile);
             }
         }
 
@@ -192,8 +190,7 @@ namespace nsync
                 else if (status == false)
                     excludeWindowStatusNode.InnerText = "0";
 
-                doc.Save(settingsFile);
-                ProtectFile(settingsFile);
+                SaveFile(doc, settingsFile);
             }
         }
 
@@ -264,8 +261,7 @@ namespace nsync
                 else if (status == false)
                     trackBackStatusNode.InnerText = "0";
 
-                doc.Save(settingsFile);
-                ProtectFile(settingsFile);
+                SaveFile(doc, settingsFile);
             }
         }
 
@@ -381,14 +377,17 @@ namespace nsync
                 for (int i = 0; i < NUMBER_OF_MOST_RECENT; i++)
                     tempExcludeData[i] = new ExcludeData();
 
+                // Backup of all settings.xml saved MRU
+                #region Backup settings.xml MRU
                 for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
                 {
+                    // Backup stored left and right paths from xml file
                     tempStorage[counter++] = mruNode["left" + i.ToString()].InnerText;
                     tempStorage[counter++] = mruNode["right" + i.ToString()].InnerText;
 
                     filterNode = mruNode.SelectSingleNode("filter" + i.ToString());
 
-                    // Backup File Type from xml file
+                    // Backup Exclude File Type from settings.xml file
                     excludeFileTypeNode = filterNode.SelectSingleNode("excludeFileTypes");
 
                     fileTypeListSize[i - 1] = int.Parse(excludeFileTypeNode["size"].InnerText);
@@ -400,7 +399,7 @@ namespace nsync
                         }
                     }
 
-                    // Backup File Name from xml file
+                    // Backup Exclude File Name from settings.xml file
                     excludeFileNameNode = filterNode.SelectSingleNode("excludeFileNames");
 
                     fileNameListSize[i - 1] = int.Parse(excludeFileNameNode["size"].InnerText);
@@ -412,7 +411,7 @@ namespace nsync
                         }
                     }
 
-                    // Backup Folder from xml file
+                    // Backup Exclude Folder from settings.xml file
                     excludeFolderNode = filterNode.SelectSingleNode("excludeFolders");
 
                     folderListSize[i - 1] = int.Parse(excludeFolderNode["size"].InnerText);
@@ -424,7 +423,11 @@ namespace nsync
                         }
                     }
                 }
+                #endregion
 
+                // Storing of current settings
+                #region Store current settings
+                // Store left and right path
                 mruNode["left1"].InnerText = leftPath;
                 mruNode["right1"].InnerText = rightPath;
 
@@ -485,7 +488,10 @@ namespace nsync
                         excludeFolderNode.AppendChild(newFolderNode);
                     }
                 }
+                #endregion
 
+                // Check if current settings exist in stored settings
+                // Replaces the old stored, since the new settings is in the first node
                 for (int i = 0; i < 10; i += 2)
                 {
                     if (tempStorage[i] == leftPath && tempStorage[i + 1] == rightPath)
@@ -495,6 +501,8 @@ namespace nsync
                     }
                 }
 
+                // Stores the backup to the right nodes in settings.xml
+                #region Store backup to settings.xml
                 counter = 0;
                 for (int i = 2; i <= NUMBER_OF_MOST_RECENT; i++)
                 {
@@ -563,11 +571,20 @@ namespace nsync
 
                     counter += 2;
                 }
+                #endregion
 
-                UnProtectFile(settingsFile);
-                doc.Save(settingsFile);
-                ProtectFile(settingsFile);
+                SaveFile(doc, settingsFile);
             }
+        }
+
+        /// <summary>
+        /// Save XmlDocument
+        /// </summary>
+        private void SaveFile(XmlDocument doc, string path)
+        {
+            UnProtectFile(path);
+            doc.Save(path);
+            ProtectFile(path);
         }
 
         /// <summary>
@@ -621,8 +638,7 @@ namespace nsync
                     doc.DocumentElement["REMOVEABLEDISK"].AppendChild(newSerialNumberNode);
                 }
 
-                doc.Save(settingsFile);
-                ProtectFile(settingsFile);
+                SaveFile(doc, settingsFile);
             }
         }
 
@@ -778,8 +794,7 @@ namespace nsync
 
                         foreach (string fileName in Directory.GetFiles(logPath))
                         {
-                            File.SetAttributes(fileName, FileAttributes.Normal);
-                            File.Delete(fileName);
+                            DeleteFile(fileName);
                         }
 
                         return "Logs Cleared.";
@@ -859,8 +874,7 @@ namespace nsync
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
-                UnProtectFile(settingsFile);
-                File.Delete(settingsFile);
+                DeleteFile(settingsFile);
                 CreateNewSettingsXML();
             }
         }
@@ -947,7 +961,7 @@ namespace nsync
             }
             catch
             {
-                File.Delete(settingsFile); 
+                DeleteFile(settingsFile);
                 CreateNewSettingsXML();
                 doc.Load(settingsFile);
             }
@@ -956,7 +970,7 @@ namespace nsync
             
             if (!CheckSettingsXML(doc))
             {
-                File.Delete(settingsFile);
+                DeleteFile(settingsFile);
                 CreateNewSettingsXML();
                 doc.Load(settingsFile);
                 root = doc.DocumentElement;
@@ -1137,8 +1151,7 @@ namespace nsync
                     {
                         try
                         {
-                            File.SetAttributes(foundPath, FileAttributes.Normal);
-                            File.Delete(foundPath);
+                            DeleteFile(foundPath);
                         }
                         catch
                         {
@@ -1378,6 +1391,15 @@ namespace nsync
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Method to delete file
+        /// </summary>
+        private void DeleteFile(string path)
+        {
+            UnProtectFile(path);
+            File.Delete(path);
         }
         #endregion
 
