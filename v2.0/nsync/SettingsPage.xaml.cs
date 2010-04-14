@@ -25,7 +25,6 @@ namespace nsync
 
             // Get the debugLogger class instance
             debugLogger = DebugLogger.Instance;
-            //debugLogger.SetOwnerWindow(this);
 
             CheckSettings();
         }
