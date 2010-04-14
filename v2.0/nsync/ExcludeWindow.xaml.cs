@@ -655,7 +655,7 @@ namespace nsync
         {
             if (ListBoxExclude.Items.Count > 0)
             {
-                LabelStatus.Content = Properties.Resources.excludeDragDropMessage;
+                LabelStatus.Content = Properties.Resources.excludeRemoveMessage;
                 ButtonClear.IsEnabled = true;
                 ListBoxExclude.Visibility = Visibility.Visible;
             }
@@ -663,7 +663,7 @@ namespace nsync
             {
                 ListBoxExclude.Visibility = Visibility.Hidden;
                 ButtonClear.IsEnabled = false;
-                LabelStatus.Content = Properties.Resources.excludeRemoveMessage;
+                LabelStatus.Content = Properties.Resources.excludeDragDropMessage;
             }
         }
 
