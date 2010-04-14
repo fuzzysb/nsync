@@ -412,6 +412,18 @@ namespace nsync
         }
 
         /// <summary>
+        /// method to enable or disable both the drag boxes
+        /// </summary>
+        /// <param name="enableOrDisable">true to enable, false to disable</param>
+        private void EnableBox(bool enableOrDisable)
+        {
+            if (enableOrDisable)
+                BoxLeft.IsEnabled = BoxRight.IsEnabled = true;
+            else
+                BoxLeft.IsEnabled = BoxRight.IsEnabled = false;
+        }
+
+        /// <summary>
         /// This method is called when user clicks on the right box
         /// </summary>
         /// <param name="sender"></param>
@@ -462,7 +474,9 @@ namespace nsync
             {
                 FolderDialog.SelectedPath = originalPath;
             }
+            EnableBox(false);
             FolderDialog.ShowDialog();
+            EnableBox(true);
             return FolderDialog.SelectedPath;
         }
 
