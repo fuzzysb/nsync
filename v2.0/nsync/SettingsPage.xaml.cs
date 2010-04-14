@@ -69,6 +69,8 @@ namespace nsync
                     HelperWindowSlider.Value = HelperWindowSliderValue.SelectedIndex;
                     settingsManager.SetHelperWindowStatus((int)HelperWindowSlider.Value);
                 }
+
+                debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - HelperWindowSliderValue_SelectionChanged()", "Helper window combobox changed to " + HelperWindowSlider.Value.ToString());
             }
         }
 
@@ -85,6 +87,8 @@ namespace nsync
                     HelperWindowSliderValue.SelectedIndex = (int)HelperWindowSlider.Value;
                     settingsManager.SetHelperWindowStatus((int)HelperWindowSlider.Value);
                 }
+
+                debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - HelperWindowSlider_ValueChanged()", "Helper window slider changed to " + HelperWindowSlider.Value.ToString());
             }
         }
 
@@ -173,6 +177,8 @@ namespace nsync
 
             LabelProgress.Content = "Settings Resetted.";
             LabelProgress.Visibility = Visibility.Visible;
+
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonClearSettings_Click()", "Cleared settings.xml");
         }
 
         private void ResetUI()
