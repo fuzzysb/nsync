@@ -48,6 +48,7 @@ namespace nsync
         private bool reallyLeft = true;
         private bool cancel = false;
 
+        private DebugLogger debugLogger;
         private Settings settingsManager;
         private Window mainWindow = Application.Current.MainWindow;
         #endregion
@@ -72,6 +73,9 @@ namespace nsync
             excludeInvalid = new List<string>();
 
             filePaths = new List<string>();
+
+            // Get the debugLogger class instance
+            debugLogger = DebugLogger.Instance;
         }
         #endregion
 
@@ -201,6 +205,8 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(leftPath, rightPath, "ExcludeWindow.xaml.cs - ButtonClose_Click()", "Closing Exclude Window");
+
             cancel = true;
             this.Close();
         }
@@ -212,6 +218,9 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(leftPath, rightPath, "ExcludeWindow.xaml.cs - ButtonNext_Click()", "The filters added by user", excludeFileNames, excludeFileTypes, excludeFolders);
+            debugLogger.LogMessage(leftPath, rightPath, "ExcludeWindow.xaml.cs - ButtonNext_Click()", "Proceeding on to sync");
+
             cancel = false;
             this.Close();
         }
@@ -850,6 +859,8 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonClear_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage(leftPath, rightPath, "ExcludeWindow.xaml.cs - ButtonClear_Click()", "Cleared items in Exclude Window");
+
             ClearLists();
             ClearListBox();
             RefreshInterface();
