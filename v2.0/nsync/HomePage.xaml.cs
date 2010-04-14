@@ -192,7 +192,104 @@ namespace nsync
         {
             IWshRuntimeLibrary.IWshShell shell = new IWshRuntimeLibrary.WshShell();
             IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(path);
-            return shortcut.TargetPath;
+
+            if (ParseShortcut(path) == null)
+                return shortcut.TargetPath;
+            else
+                return ParseShortcut(path);
+        }
+
+        [DllImport("msi.dll", CharSet = CharSet.Auto)]
+        static extern int MsiGetShortcutTarget(string targetFile, StringBuilder productCode, StringBuilder featureID, StringBuilder componentCode);
+        
+        /// <summary>
+        /// InstallState
+        /// </summary>
+        public enum InstallState
+        {
+            /// <summary>
+            /// NotUsed
+            /// </summary>
+            NotUsed = -7,
+            /// <summary>
+            /// BadConfig
+            /// </summary>
+            BadConfig = -6,
+            /// <summary>
+            /// Incomplete
+            /// </summary>
+            Incomplete = -5,
+            /// <summary>
+            /// SourceAbsent
+            /// </summary>
+            SourceAbsent = -4,
+            /// <summary>
+            /// MoreData
+            /// </summary>
+            MoreData = -3,
+            /// <summary>
+            /// InvalidArg
+            /// </summary>
+            InvalidArg = -2,
+            /// <summary>
+            /// Unknown
+            /// </summary>
+            Unknown = -1,
+            /// <summary>
+            /// Broken
+            /// </summary>
+            Broken = 0,
+            /// <summary>
+            /// Advertised
+            /// </summary>
+            Advertised = 1,
+            /// <summary>
+            /// Removed
+            /// </summary>
+            Removed = 1,
+            /// <summary>
+            /// Absent
+            /// </summary>
+            Absent = 2,
+            /// <summary>
+            /// Local
+            /// </summary>
+            Local = 3,
+            /// <summary>
+            /// Source
+            /// </summary>
+            Source = 4,
+            /// <summary>
+            /// Default
+            /// </summary>
+            Default = 5
+        }
+
+        private readonly int MaxFeatureLength = 38;
+        private readonly int MaxGuidLength = 38;
+        private readonly int MaxPathLength = 1024;
+        [DllImport("msi.dll", CharSet = CharSet.Auto)]
+        static extern InstallState MsiGetComponentPath(string productCode, string componentCode, StringBuilder componentPath, ref int componentPathBufferSize);
+        private string ParseShortcut(string file)
+        {
+            StringBuilder product = new StringBuilder(MaxGuidLength + 1);
+            StringBuilder feature = new StringBuilder(MaxFeatureLength + 1);
+            StringBuilder component = new StringBuilder(MaxGuidLength + 1);
+
+            MsiGetShortcutTarget(file, product, feature, component);
+
+            int pathLength = MaxPathLength;
+            StringBuilder path = new StringBuilder(pathLength);
+
+            InstallState installState = MsiGetComponentPath(product.ToString(), component.ToString(), path, ref pathLength);
+            if (installState == InstallState.Local)
+            {
+                return path.ToString();
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
