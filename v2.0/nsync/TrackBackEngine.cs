@@ -215,8 +215,15 @@ namespace nsync
         {
             timeStamp = DateTime.Now.ToString(DATE_FORMAT) + " " + DateTime.Now.ToString(TIME_FORMAT);
 
-            leftFolder = new TrackBackFolder(leftFolderPath, rightFolderPath, timeStamp);
-            rightFolder = new TrackBackFolder(rightFolderPath, leftFolderPath, timeStamp);
+            try
+            {
+                leftFolder = new TrackBackFolder(leftFolderPath, rightFolderPath, timeStamp);
+                rightFolder = new TrackBackFolder(rightFolderPath, leftFolderPath, timeStamp);
+            }
+            catch
+            {
+                // Do nothing as the exception caught here is captured in e.results
+            }
 
             e.Result = BackupFolders();
         }

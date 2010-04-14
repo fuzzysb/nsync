@@ -56,25 +56,32 @@ namespace nsync
         /// <param name="timeStamp">The time and date of the synchronization process</param>
         public TrackBackFolder(string sourcePath, string destinationPath, string timeStamp)
         {
-            dateTime = timeStamp;
+            try
+            {
+                dateTime = timeStamp;
 
-            sourceFolderPath = sourcePath;
-            sourceFolder = new DirectoryInfo(sourceFolderPath);
+                sourceFolderPath = sourcePath;
+                sourceFolder = new DirectoryInfo(sourceFolderPath);
 
-            destinationFolderPath = destinationPath;
-            destinationFolder = new DirectoryInfo(destinationFolderPath);
+                destinationFolderPath = destinationPath;
+                destinationFolder = new DirectoryInfo(destinationFolderPath);
 
-            trackbackPath = Path.Combine(sourcePath, TRACKBACK_FOLDER_NAME);
-            if (!Directory.Exists(trackbackPath))
-                trackbackFolder = CreateFolder(trackbackPath, true);
-            else 
-                trackbackFolder = new DirectoryInfo(trackbackPath);
+                trackbackPath = Path.Combine(sourcePath, TRACKBACK_FOLDER_NAME);
+                if (!Directory.Exists(trackbackPath))
+                    trackbackFolder = CreateFolder(trackbackPath, true);
+                else
+                    trackbackFolder = new DirectoryInfo(trackbackPath);
 
-            storageFolderPath = Path.Combine(trackbackPath, timeStamp);
-            storageFolder = CreateFolder(storageFolderPath, true);
+                storageFolderPath = Path.Combine(trackbackPath, timeStamp);
+                storageFolder = CreateFolder(storageFolderPath, true);
 
-            xmlPath = Path.Combine(trackbackPath, TRACKBACK_XML_FILE_NAME);
-            if (!File.Exists(xmlPath)) CreateTrackBackXml();
+                xmlPath = Path.Combine(trackbackPath, TRACKBACK_XML_FILE_NAME);
+                if (!File.Exists(xmlPath)) CreateTrackBackXml();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
         #endregion
 
@@ -294,12 +301,19 @@ namespace nsync
         /// <returns>The resultant folder</returns>
         private DirectoryInfo CreateFolder(string path, bool isHidden)
         {
-            DirectoryInfo folder = new DirectoryInfo(path);
-            folder.Create();
+            try
+            {
+                DirectoryInfo folder = new DirectoryInfo(path);
+                folder.Create();
 
-            folder.Attributes = isHidden? FileAttributes.Directory | FileAttributes.Hidden : FileAttributes.Directory;
+                folder.Attributes = isHidden ? FileAttributes.Directory | FileAttributes.Hidden : FileAttributes.Directory;
 
-            return folder;
+                return folder;
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         /// <summary>
