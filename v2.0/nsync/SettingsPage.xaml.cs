@@ -22,11 +22,12 @@ namespace nsync
         public SettingsPage()
         {
             InitializeComponent();
-            CheckSettings();
 
             // Get the debugLogger class instance
             debugLogger = DebugLogger.Instance;
-            debugLogger.SetOwnerWindow(this);
+            //debugLogger.SetOwnerWindow(this);
+
+            CheckSettings();
         }
 
         /// <summary>
@@ -95,25 +96,31 @@ namespace nsync
             ResetUI();
             settingsManager.SetExcludeWindowStatus(false);
 
-            //debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_Checked()", "Exclude Window option checked");
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_Checked()", "Exclude Window disabled");
         }
 
         private void CheckboxToggleExcludeWindow_UnChecked(object sender, RoutedEventArgs e)
         {
             ResetUI();
             settingsManager.SetExcludeWindowStatus(true);
+
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleExcludeWindow_UnChecked()", "Exclude Window enabled");
         }
 
         private void CheckboxToggleTrackBack_Checked(object sender, RoutedEventArgs e)
         {
             ResetUI();
             settingsManager.SetTrackBackStatus(false);
+
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleTrackBack_Checked()", "TrackBack disabled");
         }
 
         private void CheckboxToggleTrackBack_UnChecked(object sender, RoutedEventArgs e)
         {
             ResetUI();
             settingsManager.SetTrackBackStatus(true);
+
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - CheckboxToggleTrackBack_UnChecked()", "TrackBack enabled");
         }
 
         private void ButtonClearLogFolder_Click(object sender, RoutedEventArgs e)
@@ -124,10 +131,14 @@ namespace nsync
 
             LabelProgress.Content = settingsManager.ClearLogFolder();
             LabelProgress.Visibility = Visibility.Visible;
+
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonClearLogFolder_Click()", "Log folder cleared");
         }
 
         private void ButtonOpenLogFolder_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonOpenLogFolder_Click()", "Trying to open log folder");
+
             ResetUI();
             string message = settingsManager.OpenLogFolder();
 
@@ -135,6 +146,7 @@ namespace nsync
             {
                 LabelProgress.Content = message;
                 LabelProgress.Visibility = Visibility.Visible;
+                debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonOpenLogFolder_Click()", "Opening of log folder failed");
             }
         }
 
@@ -146,6 +158,8 @@ namespace nsync
 
             LabelProgress.Content = settingsManager.ClearMetaData();
             LabelProgress.Visibility = Visibility.Visible;
+
+            debugLogger.LogMessage("n/a", "n/a", "SettingsPage.xaml.cs - ButtonClearMetaData_Click()", "Clearing metadata: " + LabelProgress.Content.ToString());
         }
 
         private void ButtonClearSettings_Click(object sender, RoutedEventArgs e)
