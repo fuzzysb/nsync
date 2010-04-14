@@ -26,12 +26,13 @@ namespace nsync
         private string rightPath;
         private static int countDoneChanges = 0;
         private static int countChanges = 0;
+
         private Intelligence intelligentManager;
         private List<string> errorMessageForSummaryReport = new List<string>();
         private ExcludeData excludeData;
         private SyncOrchestrator agent;
 
-        private string METADATA_FILE_NAME = nsync.Properties.Resources.metadataFileName;
+        private readonly string METADATA_FILE_NAME = nsync.Properties.Resources.metadataFileName;
         private readonly string TRACKBACK_FOLDER_NAME = nsync.Properties.Resources.trackBackFolderName;
         #endregion
 
@@ -265,16 +266,23 @@ namespace nsync
             return intelligentManager.IsFoldersSimilar(leftPath, rightPath);
         }
 
+        /// <summary>
+        /// Checks if there is sufficient disk space in left folder
+        /// </summary>
+        /// <returns>Returns a boolean indicating if there is sufficient disk space</returns>
         public bool hasEnoughSpaceInLeftFolder()
         {
             return diskSpaceNeededForRight < freeDiskSpaceForLeft;
         }
 
+        /// <summary>
+        /// Checks if there is sufficient disk space in right folder
+        /// </summary>
+        /// <returns>Returns a boolean indicating if there is sufficient disk space</returns>
         public bool hasEnoughSpaceInRightFolder()
         {
             return diskSpaceNeededForLeft < freeDiskSpaceForRight;
         }
-
         #endregion
 
         #region Private Methods
@@ -506,7 +514,7 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForPreSync_DoWork(object sender, DoWorkEventArgs e)
         {
-                e.Result = InternalPreSync();
+            e.Result = InternalPreSync();
         }
 
         /// <summary>
