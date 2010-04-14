@@ -389,24 +389,32 @@ namespace nsync
         /// <param name="e"></param>
         private void ComboBoxSourceFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+            if (actualLeftFolderPath == actualRightFolderPath)
             {
+                ComboBoxSourceFolder.IsEnabled = false;
+            }
+            else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath)
+            {
+                ComboBoxSourceFolder.IsEnabled = true;
                 ComboBoxSourceFolder.ToolTip = actualLeftFolderPath;
                 LoadTrackBackEntriesForLeftFolder();
                 if (ListViewForLeftFolder.Items.Count == 0)
                 {
-                    HideListViewForBothFolders(true);
+                    ListViewForLeftFolder.Visibility = ListViewForRightFolder.Visibility = Visibility.Collapsed;
+                    LabelNoChanges.Visibility = Visibility.Visible;
                 }
                 else
                     LabelNoChanges.Visibility = Visibility.Hidden;
             }
             else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath)
             {
+                ComboBoxSourceFolder.IsEnabled = true;
                 ComboBoxSourceFolder.ToolTip = actualRightFolderPath;
                 LoadTrackBackEntriesForRightFolder();
                 if (ListViewForRightFolder.Items.Count == 0)
                 {
-                    HideListViewForBothFolders(true);
+                    ListViewForLeftFolder.Visibility = ListViewForRightFolder.Visibility = Visibility.Collapsed;
+                    LabelNoChanges.Visibility = Visibility.Visible;
                 }
                 else
                     LabelNoChanges.Visibility = Visibility.Hidden;
