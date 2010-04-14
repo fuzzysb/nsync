@@ -61,7 +61,7 @@ namespace nsync
                 if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)
                 {
                     windowHelper.Visibility = Visibility.Visible;
-                    windowHelper.FormFade.Begin();
+                    windowHelper.FormFade.Begin(windowHelper);
                 }
             }
 
@@ -103,7 +103,7 @@ namespace nsync
                     if (windowHelper.Visibility != Visibility.Visible && windowHelper.IsLoaded)
                     {
                         windowHelper.Visibility = Visibility.Visible;
-                        windowHelper.FormFade.Begin();
+                        windowHelper.FormFade.Begin(windowHelper);
                     }
                 }
             }

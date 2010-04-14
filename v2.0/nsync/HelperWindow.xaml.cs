@@ -179,7 +179,7 @@ namespace nsync
             if (windowActive == true)
             {
                 windowActive = false;
-                FormFadeOut.Begin();
+                FormFadeOut.Begin(this);
             }
         }
 
