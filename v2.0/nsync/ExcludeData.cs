@@ -58,7 +58,9 @@ namespace nsync
             get { return excludeFolderList; }
             set { excludeFolderList = value; }
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Add method to add fileType to exclude List
         /// </summary>
