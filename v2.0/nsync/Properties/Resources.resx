@@ -355,7 +355,7 @@
     <value>\nsync\</value>
   </data>
   <data name="timeStampFormat" xml:space="preserve">
-    <value>yyyy MMM dd hh.mm.ss tt</value>
+    <value>yyyy-MMM-dd hh.mm.ss tt</value>
   </data>
   <data name="excludeRootFolder" xml:space="preserve">
     <value>Cannot Exclude Root Folder: </value>
@@ -364,12 +364,39 @@
     <value>Log Folder is Locked.\n Path : </value>
   </data>
   <data name="messageNsyncFolderLocked" xml:space="preserve">
-    <value>Nsync Folder is Locked.\n Path : </value>
+    <value>nsync Folder is Locked.\n Path : </value>
   </data>
   <data name="messageSettingsXmlLocked" xml:space="preserve">
     <value>Settings File is Locked.\n Path : </value>
   </data>
   <data name="notApplicable" xml:space="preserve">
     <value>n/a</value>
+  </data>
+  <data name="dateFormat" xml:space="preserve">
+    <value>yyyy-MMM-dd</value>
+  </data>
+  <data name="leftFolderMRUPath" xml:space="preserve">
+    <value>/nsync/MRU/left1</value>
+  </data>
+  <data name="messageNoListView" xml:space="preserve">
+    <value>Error: No listview visible!</value>
+  </data>
+  <data name="messageRestoreCompleted" xml:space="preserve">
+    <value>Restore completed</value>
+  </data>
+  <data name="messageRestoringFolders" xml:space="preserve">
+    <value>Restoring folders...</value>
+  </data>
+  <data name="rightFolderMRUPath" xml:space="preserve">
+    <value>/nsync/MRU/right1</value>
+  </data>
+  <data name="timeFormat" xml:space="preserve">
+    <value>hh.mm.ss tt</value>
+  </data>
+  <data name="trackBackPath" xml:space="preserve">
+    <value>/nsync/TrackBack</value>
+  </data>
+  <data name="trackBackSessionPath" xml:space="preserve">
+    <value>/nsync/TrackBack/session</value>
   </data>
 </root>

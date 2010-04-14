@@ -97,6 +97,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to yyyy-MMM-dd.
+        /// </summary>
+        public static string dateFormat {
+            get {
+                return ResourceManager.GetString("dateFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to \nsync\debug\.
         /// </summary>
         public static string debugFolderPath {
@@ -358,6 +367,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /nsync/MRU/left1.
+        /// </summary>
+        public static string leftFolderMRUPath {
+            get {
+                return ResourceManager.GetString("leftFolderMRUPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The left folder does not exist..
         /// </summary>
         public static string leftFolderNotExist {
@@ -439,7 +457,16 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nsync Folder is Locked.\n Path : .
+        ///   Looks up a localized string similar to Error: No listview visible!.
+        /// </summary>
+        public static string messageNoListView {
+            get {
+                return ResourceManager.GetString("messageNoListView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nsync Folder is Locked.\n Path : .
         /// </summary>
         public static string messageNsyncFolderLocked {
             get {
@@ -453,6 +480,24 @@ namespace nsync.Properties {
         public static string messagePreparingFolders {
             get {
                 return ResourceManager.GetString("messagePreparingFolders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore completed.
+        /// </summary>
+        public static string messageRestoreCompleted {
+            get {
+                return ResourceManager.GetString("messageRestoreCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restoring folders....
+        /// </summary>
+        public static string messageRestoringFolders {
+            get {
+                return ResourceManager.GetString("messageRestoringFolders", resourceCulture);
             }
         }
         
@@ -646,6 +691,15 @@ namespace nsync.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to /nsync/MRU/right1.
+        /// </summary>
+        public static string rightFolderMRUPath {
+            get {
+                return ResourceManager.GetString("rightFolderMRUPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The right folder does not exist..
         /// </summary>
         public static string rightFolderNotExist {
@@ -781,7 +835,16 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to yyyy MMM dd hh.mm.ss tt.
+        ///   Looks up a localized string similar to hh.mm.ss tt.
+        /// </summary>
+        public static string timeFormat {
+            get {
+                return ResourceManager.GetString("timeFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yyyy-MMM-dd hh.mm.ss tt.
         /// </summary>
         public static string timeStampFormat {
             get {
@@ -804,6 +867,24 @@ namespace nsync.Properties {
         public static string trackBackMetaDataFileName {
             get {
                 return ResourceManager.GetString("trackBackMetaDataFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /nsync/TrackBack.
+        /// </summary>
+        public static string trackBackPath {
+            get {
+                return ResourceManager.GetString("trackBackPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to /nsync/TrackBack/session.
+        /// </summary>
+        public static string trackBackSessionPath {
+            get {
+                return ResourceManager.GetString("trackBackSessionPath", resourceCulture);
             }
         }
         

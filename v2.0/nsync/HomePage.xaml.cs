@@ -1587,6 +1587,7 @@ namespace nsync
             ReloadFolderPaths();
 
             // Update the UI
+            LabelProgress.Visibility = Visibility.Visible;
             LabelProgress.Content = MESSAGE_SYNC_COMPLETED;
             LabelProgressPercent.Content = "100 %";
             ImageTeam14Over.OpacityMask = blankOpacityMask;
