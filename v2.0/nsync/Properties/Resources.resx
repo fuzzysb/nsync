@@ -369,4 +369,7 @@
   <data name="messageSettingsXmlLocked" xml:space="preserve">
     <value>Settings File is Locked.\n Path : </value>
   </data>
+  <data name="notApplicable" xml:space="preserve">
+    <value>n/a</value>
+  </data>
 </root>
