@@ -167,6 +167,10 @@ namespace nsync
             {
                 throw e;
             }
+            catch (FileNotFoundException e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
@@ -181,6 +185,10 @@ namespace nsync
 
             }
             catch (UnauthorizedAccessException e)
+            {
+                throw e;
+            }
+            catch (FileNotFoundException e)
             {
                 throw e;
             }

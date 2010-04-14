@@ -1684,6 +1684,15 @@ namespace nsync
                     helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     return;
                 }
+                catch (FileNotFoundException fileNotFoundException)
+                {
+                    EnableInterface(true);
+                    LabelProgress.Visibility = Visibility.Visible;
+                    LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                    LabelProgressPercent.Visibility = Visibility.Hidden;
+                    helper.Show(fileNotFoundException.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    return;
+                }
             }
             else
             {

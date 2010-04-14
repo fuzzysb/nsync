@@ -473,6 +473,13 @@ namespace nsync
                 debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", nsync.Properties.Resources.accessRightsInsufficient);
                 return;
             }
+            catch (FileNotFoundException fileNotFoundException)
+            {
+                DisplayErrorInterface();
+                helper.Show(fileNotFoundException.Message, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", fileNotFoundException.Message);
+                return;
+            }
         }
 
         /// <summary>

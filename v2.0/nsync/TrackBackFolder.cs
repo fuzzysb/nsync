@@ -198,6 +198,10 @@ namespace nsync
             {
                 throw e;
             }
+            catch (FileNotFoundException e)
+            {
+                throw e;
+            }
         }
 
         /// <summary>
@@ -413,16 +417,23 @@ namespace nsync
             // If the directory is denied access due to folder security permissions, skip it
             if (IsDirectoryAccessible(directory.FullName))
             {
-                FileInfo[] files = directory.GetFiles();
-                foreach (FileInfo file in files)
+                try
                 {
-                    size += (ulong)file.Length;
-                }
+                    FileInfo[] files = directory.GetFiles();
+                    foreach (FileInfo file in files)
+                    {
+                        size += (ulong)file.Length;
+                    }
 
-                DirectoryInfo[] folders = directory.GetDirectories();
-                foreach (DirectoryInfo folder in folders)
+                    DirectoryInfo[] folders = directory.GetDirectories();
+                    foreach (DirectoryInfo folder in folders)
+                    {
+                        size += GetDirectorySpaceInBytes(folder);
+                    }
+                }
+                catch (FileNotFoundException e)
                 {
-                    size += GetDirectorySpaceInBytes(folder);
+                    throw e;
                 }
             }
             return (size);
