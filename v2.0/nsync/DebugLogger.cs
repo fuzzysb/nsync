@@ -66,7 +66,7 @@ namespace nsync
         /// <param name="message"></param>
         public void ClosingMessage(string message)
         {
-            WriteLogMessage("n/a", "n/a", "DebugLogger.ClosingMessage()", nsync.Properties.Resources.debugLoggerClosingMessage);
+            WriteLogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "DebugLogger.ClosingMessage()", nsync.Properties.Resources.debugLoggerClosingMessage);
             try
             {
                 log.Close();
@@ -89,6 +89,22 @@ namespace nsync
             WriteLogMessage(leftPath, rightPath, callingMethodName, message);
         }
 
+        /// <summary>
+        /// Write the log message to the log file
+        /// <para>Overloaded method to print the exclude filters</para>
+        /// </summary>
+        /// <param name="leftPath"></param>
+        /// <param name="rightPath"></param>
+        /// <param name="callingMethodName"></param>
+        /// <param name="message"></param>
+        /// <param name="excludeFileNames"></param>
+        /// <param name="excludeFileTypes"></param>
+        /// <param name="excludeFolders"></param>
+        public void LogMessage(string leftPath, string rightPath, string callingMethodName, string message, 
+            List<string> excludeFileNames, List<string> excludeFileTypes, List<string> excludeFolders)
+        {
+            WriteLogMessage(leftPath, rightPath, callingMethodName, message, excludeFileNames, excludeFileTypes, excludeFolders);
+        }
         #endregion
 
         #region Private Methods
@@ -215,6 +231,71 @@ namespace nsync
             {
                 //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error creating/writing debugFile");
             }
+        }
+
+        /// <summary>
+        /// Append log message to the existing log file
+        /// <para>Overloaded function for printing exclude filters</para>
+        /// </summary>
+        /// <param name="leftPath"></param>
+        /// <param name="rightPath"></param>
+        /// <param name="callingMethodName"></param>
+        /// <param name="message"></param>
+        /// <param name="excludeFileNames"></param>
+        /// <param name="excludeFileTypes"></param>
+        /// <param name="excludeFolders"></param>
+        private void WriteLogMessage(string leftPath, string rightPath, string callingMethodName, string message, List<string> excludeFileNames, List<string> excludeFileTypes, List<string> excludeFolders)
+        {
+            string listOfFileNames = BuildFilterString(excludeFileNames);
+            string listOfFileTypes = BuildFilterString(excludeFileTypes);
+            string listOfFolderNames = BuildFilterString(excludeFolders);
+
+            try
+            {
+                log.WriteLine("");
+                log.WriteLine("--------------------------------------");
+                log.WriteLine("[" + System.DateTime.Now.ToString(nsync.Properties.Resources.timeStampFormat) + "]");
+                log.WriteLine("Left Path: " + leftPath);
+                log.WriteLine("Right Path: " + rightPath);
+                log.WriteLine("Calling Method: " + callingMethodName);
+                log.WriteLine("Message: " + message);
+                log.WriteLine("Exclude Filenames: ");
+                log.WriteLine(listOfFileNames);
+                log.WriteLine("Exclude File Types: ");
+                log.WriteLine(listOfFileTypes);
+                log.WriteLine("Exclude Folders: ");
+                log.WriteLine(listOfFolderNames);
+                log.WriteLine("--------------------------------------");
+                log.WriteLine("");
+                log.Flush();
+            }
+            catch
+            {
+                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error creating/writing debugFile");
+            }
+        }
+
+        /// <summary>
+        /// Builds a list of string into a single string
+        /// </summary>
+        /// <param name="filter">This parameter contains the list of string to be concat</param>
+        /// <returns></returns>
+        private string BuildFilterString(List<string> filter)
+        {
+            if (filter.Count == 0)
+                return "Empty";
+
+            StringBuilder sb = new StringBuilder();
+            try
+            {
+                foreach (string message in filter)
+                    sb.AppendLine(message + " ");
+            }
+            catch
+            {
+                sb.AppendLine("Error printing filters");
+            }
+            return sb.ToString();
         }
 
         /// <summary>
