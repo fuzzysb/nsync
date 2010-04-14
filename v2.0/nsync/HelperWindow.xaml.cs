@@ -273,11 +273,21 @@ namespace nsync
 
         }
 
+        /// <summary>
+        /// event handler for mouseenter the window, pause timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
             dispatcherTimer.Stop();
         }
 
+        /// <summary>
+        /// event handler for mouseleave the window, start timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
             dispatcherTimer.Start();
