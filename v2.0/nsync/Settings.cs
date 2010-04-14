@@ -86,6 +86,8 @@ namespace nsync
         /// <returns>Returns an int which indicates how long the HelperWindow should appear</returns>
         public int GetHelperWindowStatus()
         {
+            int result;
+
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
@@ -97,7 +99,28 @@ namespace nsync
                 XmlNode helperWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/HelperWindowTimer");
 
                 ProtectFile(settingsFile);
-                return int.Parse(helperWindowStatusNode.InnerText);
+
+                // Checks if result is valid
+                try
+                {
+                    result = int.Parse(helperWindowStatusNode.InnerText);
+                }
+                catch (FormatException)
+                {
+                    ClearSettings();
+                    return GetHelperWindowStatus();
+                }
+
+                // Checks if result value is valid
+                if ((result >= -1) && (result <= 10))
+                {
+                    return result;
+                }
+                else
+                {
+                    ClearSettings();
+                    return GetHelperWindowStatus();
+                }
             }
 
             return 5; // return a default to nsync if it lock. This return is to prevent error.
@@ -180,6 +203,8 @@ namespace nsync
         /// <returns>Returns a boolean which indicates whether the exclude window is enabled or disabled</returns>
         public int GetExcludeWindowStatus()
         {
+            int result;
+
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
@@ -191,7 +216,28 @@ namespace nsync
                 XmlNode excludeWindowStatusNode = SelectNode(doc, PATH_SETTINGS + "/ExcludeWindowStatus");
 
                 ProtectFile(settingsFile);
-                return int.Parse(excludeWindowStatusNode.InnerText);
+
+                // Checks if result is valid
+                try
+                {
+                    result = int.Parse(excludeWindowStatusNode.InnerText);
+                }
+                catch (FormatException)
+                {
+                    ClearSettings();
+                    return GetExcludeWindowStatus();
+                }
+
+                // Checks if result value is valid
+                if ((result == 0) || (result == 1))
+                {
+                    return result;
+                }
+                else
+                {
+                    ClearSettings();
+                    return GetExcludeWindowStatus();
+                }
             }
 
             return -1; // return a default to nsync if it lock. This return is to tell the caller to stop doing anything else.
@@ -229,6 +275,8 @@ namespace nsync
         /// <returns>Returns an int which indicates whether the trackback is enabled or disabled. 0 means disabled. 1 means enabled. -1 means theres error</returns>
         public int GetTrackBackStatus()
         {
+            int result;
+
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
             {
                 if (!File.Exists(settingsFile))
@@ -240,7 +288,28 @@ namespace nsync
                 XmlNode trackBackStatusNode = SelectNode(doc, PATH_SETTINGS + "/TrackBackStatus");
 
                 ProtectFile(settingsFile);
-                return int.Parse(trackBackStatusNode.InnerText);
+
+                // Checks if result is valid
+                try
+                {
+                    result = int.Parse(trackBackStatusNode.InnerText);
+                }
+                catch (FormatException)
+                {
+                    ClearSettings();
+                    return GetTrackBackStatus();
+                }
+
+                // Checks if result value is valid
+                if ((result == 0) || (result == 1))
+                {
+                    return result;
+                }
+                else
+                {
+                    ClearSettings();
+                    return GetTrackBackStatus();
+                }
             }
 
             return -1; // return a default to nsync if it lock. This return is to prevent error.
@@ -845,13 +914,7 @@ namespace nsync
 
             if (outcome != 0)
             {
-                homePage.IsErrorClosing();
-                HelperManager emergencyHelper = new HelperManager(mainWindow);
-                mainWindow.Visibility = Visibility.Hidden;
-                if (visualPreviewWindow != null)
-                    visualPreviewWindow.Visibility = Visibility.Hidden;
-                if (excludeWindow != null)
-                    excludeWindow.Visibility = Visibility.Hidden;
+                HelperManager emergencyHelper = nsyncEmergencyClose();
 
                 if (outcome == 1)
                     emergencyHelper.Show("Nsync Folder is Locked.\n Path : " + nsyncFolder, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
@@ -1128,6 +1191,23 @@ namespace nsync
             {
                 Directory.CreateDirectory(settingsFolder);
             }
+        }
+
+        /// <summary>
+        /// Does the steps to an emergency closing of nsync
+        /// </summary>
+        /// <returns>HelperManager window for emergency closing message</returns>
+        private HelperManager nsyncEmergencyClose()
+        {
+            homePage.IsErrorClosing();
+            HelperManager emergencyHelper = new HelperManager(mainWindow);
+            mainWindow.Visibility = Visibility.Hidden;
+            if (visualPreviewWindow != null)
+                visualPreviewWindow.Visibility = Visibility.Hidden;
+            if (excludeWindow != null)
+                excludeWindow.Visibility = Visibility.Hidden;
+
+            return emergencyHelper;
         }
 
         /// <summary>
