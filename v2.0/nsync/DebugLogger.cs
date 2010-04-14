@@ -15,15 +15,10 @@ namespace nsync
     public sealed class DebugLogger
     {
         #region Class Variables
-        private string nsyncFolderPath = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\";
-        private string debugFolderPath = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\debug\\";
+        private string nsyncFolderPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.nsyncFolderPath;
+        private string debugFolderPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.debugFolderPath;
         private string debugFilePath;
-        private string currentTime = System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'");
-        private Window mainWindow = Application.Current.MainWindow;
-        private ExcludeWindow excludeWindow;
-        private VisualPreviewWindow visualPreviewWindow;
-        private HomePage homePage;
-        private SettingsPage settingsPage;
+        private string currentTime = System.DateTime.Now.ToString(nsync.Properties.Resources.timeStampFormat);
         private StreamWriter log;
         #endregion
 
@@ -41,7 +36,7 @@ namespace nsync
             string debugFileCreationTime = currentTime;
             if (SetupDebugFolders())
             {
-                debugFilePath = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\debug\\" + debugFileCreationTime + ".txt";
+                debugFilePath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.debugFolderPath + debugFileCreationTime + ".txt";
                 try
                 {
                     log = new StreamWriter(debugFilePath, true);
@@ -49,7 +44,7 @@ namespace nsync
                 }
                 catch
                 {
-                    MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Constructor: Error creating/writing debugFile");
+                    //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Constructor: Error creating/writing debugFile");
                 }
             }
 
@@ -66,43 +61,6 @@ namespace nsync
 
         #region Public Methods
         /// <summary>
-        /// References Homepage (Overloaded Method) 
-        /// </summary>
-        /// <param name="homePage"></param>
-        public void SetOwnerWindow(HomePage homePage)
-        {
-            this.homePage = homePage;
-        }
-
-        /// <summary>
-        /// References ExcludeWindow (Overloaded Method) 
-        /// </summary>
-        /// <param name="excludeWindow"></param>
-        public void SetOwnerWindow(ExcludeWindow excludeWindow)
-        {
-            this.excludeWindow = excludeWindow;
-        }
-
-        /// <summary>
-        /// References VisualPreviewWindow (Overloaded Method)
-        /// </summary>
-        /// <param name="visualPreviewWindow"></param>
-        public void SetOwnerWindow(VisualPreviewWindow visualPreviewWindow)
-        {
-            this.visualPreviewWindow = visualPreviewWindow;
-        }
-
-
-        /// <summary>
-        /// References SettingsPage (Overloaded Method)
-        /// </summary>
-        /// <param name="settingsPage"></param>
-        public void SetOwnerWindow(SettingsPage settingsPage)
-        {
-            this.settingsPage = settingsPage;
-        }
-
-        /// <summary>
         /// Write the last log message to log file and close the file
         /// </summary>
         /// <param name="leftPath"></param>
@@ -110,7 +68,7 @@ namespace nsync
         /// <param name="message"></param>
         public void ClosingMessage(string leftPath, string rightPath, string message)
         {
-            WriteLogMessage(leftPath, rightPath, "DebugLogger.ClosingMessage()", "NSYNC CLOSING");
+            WriteLogMessage(leftPath, rightPath, "DebugLogger.ClosingMessage()", nsync.Properties.Resources.debugLoggerClosingMessage);
             try
             {
                 log.Close();
@@ -152,9 +110,9 @@ namespace nsync
                     // if the debug folder is locked, do nothing
                     return false;
                 }
-                catch (Exception e)
+                catch
                 {
-                    MessageBox.Show("=DEBUG LOGGER=" + "\n" + e.Message);
+                    //MessageBox.Show("=DEBUG LOGGER=" + "\n" + e.Message);
                     return false;
                 }
                 return true;
@@ -178,9 +136,9 @@ namespace nsync
                     // if the debug folder is locked, do nothing
                     return false;
                 }
-                catch (Exception e)
+                catch
                 {
-                    MessageBox.Show("=DEBUG LOGGER=" + "\n" + e.Message);
+                    //MessageBox.Show("=DEBUG LOGGER=" + "\n" + e.Message);
                     return false;
                 }
                 return true;
@@ -246,7 +204,7 @@ namespace nsync
             {
                 log.WriteLine("");
                 log.WriteLine("--------------------------------------");
-                log.WriteLine("[" + System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'") + "]");
+                log.WriteLine("[" + System.DateTime.Now.ToString(nsync.Properties.Resources.timeStampFormat) + "]");
                 log.WriteLine("Left Path: " + leftPath);
                 log.WriteLine("Right Path: " + rightPath);
                 log.WriteLine("Calling Method: " + callingMethodName);
@@ -280,7 +238,7 @@ namespace nsync
                         strInfo += pd.Value + ",";
                 return strInfo.Substring(0, strInfo.Length - 1);
             }
-            catch { return "Invalid table or properties"; }
+            catch { return nsync.Properties.Resources.getSystemInfoErrorMessage; }
         }
         #endregion
     }
