@@ -360,4 +360,13 @@
   <data name="excludeRootFolder" xml:space="preserve">
     <value>Cannot Exclude Root Folder: </value>
   </data>
+  <data name="messageLogFolderLocked" xml:space="preserve">
+    <value>Log Folder is Locked.\n Path : </value>
+  </data>
+  <data name="messageNsyncFolderLocked" xml:space="preserve">
+    <value>Nsync Folder is Locked.\n Path : </value>
+  </data>
+  <data name="messageSettingsXmlLocked" xml:space="preserve">
+    <value>Settings File is Locked.\n Path : </value>
+  </data>
 </root>

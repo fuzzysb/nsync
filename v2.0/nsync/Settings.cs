@@ -917,13 +917,13 @@ namespace nsync
                 HelperManager emergencyHelper = nsyncEmergencyClose();
 
                 if (outcome == 1)
-                    emergencyHelper.Show("Nsync Folder is Locked.\n Path : " + nsyncFolder, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
+                    emergencyHelper.Show(Properties.Resources.messageNsyncFolderLocked + nsyncFolder, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
 
                 if (outcome == 2)
-                    emergencyHelper.Show("Log Folder is Locked.\n Path : " + logFolder, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
+                    emergencyHelper.Show(Properties.Resources.messageLogFolderLocked + logFolder, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
 
                 if (outcome == 3)
-                    emergencyHelper.Show("Settings File is Locked.\n Path : " + settingsFile, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
+                    emergencyHelper.Show(Properties.Resources.messageSettingsXmlLocked + settingsFile, HELPER_WINDOW_FATAL_PRIORITY, HelperWindow.windowStartPosition.center);
 
                 return true;
             } //some folders has been locked
