@@ -188,21 +188,17 @@ namespace nsync
                 SyncFileSystemReplicasOneWay(rightPath, leftPath, null, options);
                 return 0;
             }
-            catch (UnauthorizedAccessException)
+            catch (SyncException)
             {
                 return 1;
             }
-            catch (MetadataStorageEngineException)
+            catch (DirectoryNotFoundException)
             {
                 return 2;
             }
-            catch (MetadataStoreException)
-            {
-                return 3;
-            }
             catch (Exception)
             {
-                return 4;
+                return 3;
             }
         }
 

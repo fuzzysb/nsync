@@ -578,16 +578,20 @@ namespace nsync
 
                 return 0;
             }
-            catch (System.UnauthorizedAccessException)
+            catch (UnauthorizedAccessException)
             {
                 return 3;
             }
-            catch (System.Exception e) // catch other remaining unknown errors
+            catch (SyncException)
+            {
+                return 4;
+            }
+            catch (Exception e) // catch other remaining unknown errors
             {
                 if (e.Message.Contains(nsync.Properties.Resources.filesOpenedExceptionMessage))
-                    return 4;
-                else
                     return 5;
+                else
+                    return 6;
             }
         }
 
