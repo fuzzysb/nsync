@@ -96,7 +96,7 @@ namespace nsync
         /// <summary>
         /// References SettingsPage (Overloaded Method)
         /// </summary>
-        /// <param name="visualPreviewWindow"></param>
+        /// <param name="settingsPage"></param>
         public void SetOwnerWindow(SettingsPage settingsPage)
         {
             this.settingsPage = settingsPage;

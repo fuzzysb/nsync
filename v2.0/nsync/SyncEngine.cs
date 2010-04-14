@@ -475,10 +475,13 @@ namespace nsync
         {
             countChanges++;
 
-            if (!isCheckForLeftDone)
-                diskSpaceNeededForLeft += (ulong) args.NewFileData.Size;
-            else
-                diskSpaceNeededForRight += (ulong)args.NewFileData.Size;
+            if (args.ChangeType != ChangeType.Delete)
+            {
+                if (!isCheckForLeftDone)
+                    diskSpaceNeededForLeft += (ulong)args.NewFileData.Size;
+                else
+                    diskSpaceNeededForRight += (ulong)args.NewFileData.Size;
+            }
         }
 
         /// <summary>

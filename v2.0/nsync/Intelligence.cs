@@ -112,14 +112,21 @@ namespace nsync
         /// <para>Returns null if the directory is not a removeable disk</para></returns>
         public string FindRemoveableDiskSerialNumber(string path)
         {
-            ManagementObjectSearcher mosDisks = new ManagementObjectSearcher(@"SELECT * FROM Win32_LogicalDisk WHERE DriveType=2"); //Finds all removable drives
-
-            foreach (ManagementObject moDisk in mosDisks.Get())
+            try
             {
-                if (moDisk["DeviceID"].ToString() == Directory.GetDirectoryRoot(path).Remove(2))
-                    return moDisk["VolumeSerialNumber"].ToString();
+                ManagementObjectSearcher mosDisks = new ManagementObjectSearcher(@"SELECT * FROM Win32_LogicalDisk WHERE DriveType=2"); //Finds all removable drives
+
+                foreach (ManagementObject moDisk in mosDisks.Get())
+                {
+                    if (moDisk["DeviceID"].ToString() == Directory.GetDirectoryRoot(path).Remove(2))
+                        return moDisk["VolumeSerialNumber"].ToString();
+                }
+                return null;
             }
-            return null;
+            catch
+            {
+                return null;
+            }
         }
         #endregion
 

@@ -1889,7 +1889,6 @@ C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\Trac
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\VisualPreviewWindow.baml
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.g.resources
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.Properties.Resources.resources
-C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.exe.manifest
 C:\Documents and Settings\Paralleluni\Desktop\nsync updated\nsync\bin\Debug\nsync.application
