@@ -59,6 +59,15 @@ namespace nsync
         {
             set { rightPath = value; }
         }
+
+        /// <summary>
+        /// Setter and Getter method for getting log path
+        /// </summary>
+        public string LogPath
+        {
+            get { return logPath; }
+            set { logPath = value; }
+        }
         #endregion
 
         #region Private Methods
@@ -106,7 +115,7 @@ namespace nsync
             log.WriteLine(" nsync SUMMARY REPORT");
             log.WriteLine("======================");
             log.WriteLine("");
-            log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString("dd-MMM-yyyy h:mm:ss tt"));
+            log.WriteLine("Sync Done at : " + System.DateTime.Now.ToString(nsync.Properties.Resources.timeStampFormat));
             log.WriteLine("Folders Involved In Synchronization : ");
             log.WriteLine(leftPath.ToString());
             log.WriteLine(rightPath.ToString());
@@ -177,7 +186,7 @@ namespace nsync
                     }
                 }
                 //When there are renaming conflicts
-                //Will display which files 'wins'
+                //Will display which files gets renamed.
                 if (errorMessage.Count != 0)
                 {
                     log.WriteLine("--------------------------------------");
@@ -209,15 +218,6 @@ namespace nsync
             }
 
             log.Close();
-        }
-
-        /// <summary>
-        /// Setter and Getter method for getting log path
-        /// </summary>
-        public string LogPath
-        {
-            get { return logPath; }
-            set { logPath = value; }
         }
         #endregion
 
