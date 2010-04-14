@@ -85,8 +85,7 @@ namespace nsync
             settingsManager.SetHomePage(this);
             
             // Get the debugLogger class instance
-            debugLogger = DebugLogger.Instance;
-            debugLogger.SetOwnerWindow(this);
+            debugLogger = DebugLogger.Instance;            
 
             mainWindow.Closing += new CancelEventHandler(mainWindow_Closing);
 
