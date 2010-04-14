@@ -80,7 +80,7 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
-            debugLogger.LogMessage("n/a", "n/a", "MainWindow.xaml.cs - ButtonClose_Click()", "nsync closing");
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "MainWindow.xaml.cs - ButtonClose_Click()", "nsync closing from #" + viewList.SelectedIndex.ToString());
 
             this.Close();
         }
@@ -194,9 +194,11 @@ namespace nsync
             {
                 ButtonPageTrackBack.IsEnabled = false;
             }
-
+            
             //Change slider tooltips
             UpdateToolTips();
+
+            debugLogger.LogMessage(nsync.Properties.Resources.notApplicable, nsync.Properties.Resources.notApplicable, "MainWindow.xaml.cs - viewList_SelectionChanged()", "nsync is now in page #" + viewList.SelectedIndex.ToString());
         }
 
         /// <summary>
