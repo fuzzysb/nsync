@@ -12,21 +12,13 @@ namespace nsync
     class SummaryReport
     {
         #region Class Variables
-        //Unused Variables Kept For Future Use If Required
-        //Possible For Displaying Statistics
-        private int totalChanges;
-        private int createChanges;
-        private int updateChanges;
-        private int deleteChanges;
-        private int renameChanges;
-
-        //Actual Variables being used
         private List<string> errorMessage = new List<string>();
         private bool noChanges = false;
         private string leftPath;
         private string rightPath;
         private string directoryPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath;
-        private string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath + System.DateTime.Now.ToString("dd-MMM-yyyy HH'h'mm'm'ss's'") + ".txt";
+        private string logPath = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.logFolderPath + 
+            System.DateTime.Now.ToString(nsync.Properties.Resources.timeStampFormat) + ".txt";
         private List<FileData> fileData;
         #endregion
 
@@ -48,24 +40,6 @@ namespace nsync
             fileData = new List<FileData>();
             fileData = information;
             this.errorMessage = errorMessage;
-        }
-
-        /// <summary>
-        /// Constructor for SummaryReport when there are some changes
-        /// Unused for now, future development might want to display all the types of changes
-        /// For now, only erroneous is displayed
-        /// Possible For Displaying Statistics
-        /// </summary>
-        public SummaryReport(int allChanges, int newFiles, int overwrittenFiles, int deletedFiles,
-            int renamedFiles, List<FileData> information)
-        {
-            totalChanges = allChanges;
-            createChanges = newFiles;
-            updateChanges = overwrittenFiles;
-            deleteChanges = deletedFiles;
-            renameChanges = renamedFiles;
-            fileData = new List<FileData>();
-            fileData = information;
         }
         #endregion
 
