@@ -97,7 +97,7 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to yyyy-MMM-dd.
+        ///   Looks up a localized string similar to yyyy-MM-dd.
         /// </summary>
         public static string dateFormat {
             get {
@@ -844,7 +844,7 @@ namespace nsync.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to yyyy-MMM-dd hh.mm.ss tt.
+        ///   Looks up a localized string similar to yyyy-MM-dd hh.mm.ss tt.
         /// </summary>
         public static string timeStampFormat {
             get {

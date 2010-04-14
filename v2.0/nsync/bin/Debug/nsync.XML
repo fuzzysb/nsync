@@ -206,7 +206,7 @@
         </member>
         <member name="P:nsync.Properties.Resources.dateFormat">
             <summary>
-              Looks up a localized string similar to yyyy-MMM-dd.
+              Looks up a localized string similar to yyyy-MM-dd.
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.debugFolderPath">
@@ -621,7 +621,7 @@
         </member>
         <member name="P:nsync.Properties.Resources.timeStampFormat">
             <summary>
-              Looks up a localized string similar to yyyy-MMM-dd hh.mm.ss tt.
+              Looks up a localized string similar to yyyy-MM-dd hh.mm.ss tt.
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.trackBackFolderName">
@@ -2177,21 +2177,16 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.mainWindow_LocationChanged(System.Object,System.EventArgs)">
+        <member name="M:nsync.HomePage.Page_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            This method will be called when the position of mainWindow is changed
+            This method is called when HomePage is unloaded
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.RefreshToolTips">
+        <member name="M:nsync.HomePage.mainWindow_LocationChanged(System.Object,System.EventArgs)">
             <summary>
-            Update tooltips
-            </summary>
-        </member>
-        <member name="M:nsync.HomePage.Page_Unloaded(System.Object,System.Windows.RoutedEventArgs)">
-            <summary>
-            This method is called when HomePage is unloaded
+            This method will be called when the position of mainWindow is changed
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -2266,18 +2261,18 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.EnableBox(System.Boolean)">
-            <summary>
-            method to enable or disable both the drag boxes
-            </summary>
-            <param name="enableOrDisable">true to enable, false to disable</param>
-        </member>
         <member name="M:nsync.HomePage.RightIcon_MouseDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
             <summary>
             This method is called when user clicks on the right box
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.EnableBox(System.Boolean)">
+            <summary>
+            This method enables or disables the leftBox and rightBox
+            </summary>
+            <param name="enableOrDisable">True to enable, False to disable</param>
         </member>
         <member name="M:nsync.HomePage.FolderSelect(System.String)">
             <summary>
@@ -2300,20 +2295,6 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.BarMRULeft_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            This method is called when the mouse pointer enters left MRU bar
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.HomePage.BarMRULeft_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
-            <summary>
-            This method is called when the mouse pointer leaves left MRU bar
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="M:nsync.HomePage.BoxRight_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
             This method is called when the mouse pointer enters rightbox
@@ -2324,6 +2305,20 @@
         <member name="M:nsync.HomePage.BoxRight_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
             <summary>
             This method is called when the mouse pointer leaves rightbox
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.BarMRULeft_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            This method is called when the mouse pointer enters left MRU bar
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.BarMRULeft_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            This method is called when the mouse pointer leaves left MRU bar
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -2386,6 +2381,11 @@
             Checks if the sync button should appear
             </summary>
             <returns>Return a boolean to determine if sync button should appear</returns>
+        </member>
+        <member name="M:nsync.HomePage.RefreshToolTips">
+            <summary>
+            Update tooltips
+            </summary>
         </member>
         <member name="M:nsync.HomePage.SaveFolderPaths">
             <summary>
@@ -2541,16 +2541,9 @@
             </summary>
             <param name="enableOrDisable">This boolean determines whether to disable or enable the interface</param>
         </member>
-        <member name="M:nsync.HomePage.backgroundWorkerForSync_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+        <member name="M:nsync.HomePage.backgroundWorkerForPreSync_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
             <summary>
-            This method is called when when synchronization is completed
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:nsync.HomePage.backgroundWorkerForSummary_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
-            <summary>
-            This method is called when when summary sychronization is completed
+            This method is called when presync calculations are completed
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -2562,9 +2555,16 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:nsync.HomePage.backgroundWorkerForPreSync_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+        <member name="M:nsync.HomePage.backgroundWorkerForSync_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
             <summary>
-            This method is called when presync calculations are completed
+            This method is called when when synchronization is completed
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.HomePage.backgroundWorkerForSummary_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
+            <summary>
+            This method is called when when summary sychronization is completed
             </summary>
             <param name="sender"></param>
             <param name="e"></param>

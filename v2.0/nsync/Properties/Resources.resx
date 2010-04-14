@@ -355,7 +355,7 @@
     <value>\nsync\</value>
   </data>
   <data name="timeStampFormat" xml:space="preserve">
-    <value>yyyy-MMM-dd hh.mm.ss tt</value>
+    <value>yyyy-MM-dd hh.mm.ss tt</value>
   </data>
   <data name="excludeRootFolder" xml:space="preserve">
     <value>Cannot Exclude Root Folder: </value>
@@ -373,7 +373,7 @@
     <value>n/a</value>
   </data>
   <data name="dateFormat" xml:space="preserve">
-    <value>yyyy-MMM-dd</value>
+    <value>yyyy-MM-dd</value>
   </data>
   <data name="leftFolderMRUPath" xml:space="preserve">
     <value>/nsync/MRU/left1</value>
