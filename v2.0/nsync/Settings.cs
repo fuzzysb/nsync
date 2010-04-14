@@ -20,11 +20,11 @@ namespace nsync
         private string logFolder = Environment.GetEnvironmentVariable("APPDATA") + "\\nsync\\log\\";
         private string NULL_STRING = nsync.Properties.Resources.nullString;
 
-        private const int NUMBER_OF_MOST_RECENT = 5;
-        private const string PATH_SETTINGS = "/nsync/SETTINGS";
-        private const string PATH_MRU = "/nsync/MRU";
-        private const string PATH_REMOVEABLEDISK = "/nsync/REMOVEABLEDISK";
-        private const int HELPER_WINDOW_FATAL_PRIORITY = -2;
+        private readonly int NUMBER_OF_MOST_RECENT = 5;
+        private readonly string PATH_SETTINGS = "/nsync/SETTINGS";
+        private readonly string PATH_MRU = "/nsync/MRU";
+        private readonly string PATH_REMOVEABLEDISK = "/nsync/REMOVEABLEDISK";
+        private readonly int HELPER_WINDOW_FATAL_PRIORITY = -2;
 
         private ExcludeData excludeData;
         private Window mainWindow = Application.Current.MainWindow;
@@ -128,6 +128,7 @@ namespace nsync
         /// <summary>
         /// Changes preview filter status
         /// </summary>
+        /// <param name="filterType">The type of preview filter: both, left or right</param>
         public void SetPreviewFilterStatus(string filterType)
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
@@ -149,7 +150,7 @@ namespace nsync
         /// <summary>
         /// Gets preview filter status
         /// </summary>
-        /// <returns>Status of Preview Filters</returns>
+        /// <returns>Preview Filters: both, left or right</returns>
         public string GetPreviewFilterStatus()
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
@@ -580,6 +581,8 @@ namespace nsync
         /// <summary>
         /// Save XmlDocument
         /// </summary>
+        /// <param name="doc">Document reference to XmlDocument</param>
+        /// <param name="path">Path of the XmlDocument</param>
         private void SaveFile(XmlDocument doc, string path)
         {
             UnProtectFile(path);
@@ -645,8 +648,8 @@ namespace nsync
         /// <summary>
         /// Gets last removeable thumbdrive
         /// </summary>
-        /// <param name="serialNumber"></param>
-        /// <returns></returns>
+        /// <param name="serialNumber">Serial number of the thumbdrive plugged in</param>
+        /// <returns>A string array containing the 2 folder paths</returns>
         public string[] GetLastRemoveableDiskSync(string serialNumber)
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
@@ -685,10 +688,11 @@ namespace nsync
         }
 
         /// <summary>
-        /// Load ExcludeData
+        /// Load ExcludeData from settings.xml
         /// </summary>
-        /// <param></param>
-        /// <returns>saved exclude data</returns>
+        /// <param name="leftPath">Left path from the current sync job</param>
+        /// <param name="rightPath">Right path from the current sync job</param>
+        /// <returns>Saved exclude data</returns>
         public ExcludeData LoadExcludeData(string leftPath, string rightPath)
         {
             ExcludeData loadedExcludeData = new ExcludeData();
@@ -744,8 +748,7 @@ namespace nsync
         /// <summary>
         /// Open log folder
         /// </summary>
-        /// <param></param>
-        /// <returns></returns>
+        /// <returns>Message stating if the operation was a success or otherwise</returns>
         public string OpenLogFolder()
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
@@ -777,8 +780,7 @@ namespace nsync
         /// <summary>
         /// Clears logs in log folder
         /// </summary>
-        /// <param></param>
-        /// <returns></returns>
+        /// <returns>Message stating if the operation was a success or otherwise</returns>
         public string ClearLogFolder()
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
@@ -814,8 +816,7 @@ namespace nsync
         /// <summary>
         /// Clears Meta Data in current selected left and right folder
         /// </summary>
-        /// <param></param>
-        /// <returns>string</returns>
+        /// <returns>Message stating if the operation was a success or otherwise</returns>
         public string ClearMetaData()
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
@@ -868,8 +869,6 @@ namespace nsync
         /// <summary>
         /// Clears saved settngs
         /// </summary>
-        /// <param>settingsPage</param>
-        /// <returns></returns>
         public void ClearSettings()
         {
             if (!IsFoldersLocked()) // checks if folders that nsync use are locked.
@@ -991,15 +990,35 @@ namespace nsync
         {
             if (null == doc.SelectSingleNode(PATH_SETTINGS + "/HelperWindowTimer"))
                 return false;
+            if (null == doc.SelectSingleNode(PATH_SETTINGS + "/ExcludeWindowStatus"))
+                return false;
+            if (null == doc.SelectSingleNode(PATH_SETTINGS + "/TrackBackStatus"))
+                return false;
+            if (null == doc.SelectSingleNode(PATH_SETTINGS + "/PreviewFilterType"))
+                return false;
 
             if (null == doc.SelectSingleNode(PATH_REMOVEABLEDISK))
                 return false;
 
             for (int i = 1; i <= NUMBER_OF_MOST_RECENT; i++)
             {
-                if (null == doc.SelectSingleNode(PATH_MRU+"/left" + i.ToString()))
+                if (null == doc.SelectSingleNode(PATH_MRU + "/left" + i.ToString()))
                     return false;
-                if (null == doc.SelectSingleNode(PATH_MRU+"/right" + i.ToString()))
+                if (null == doc.SelectSingleNode(PATH_MRU + "/right" + i.ToString()))
+                    return false;
+                if (null == doc.SelectSingleNode(PATH_MRU + "/filter" + i.ToString()))
+                    return false;
+                if (null == doc.SelectSingleNode(PATH_MRU + "/filter" + i.ToString() + "/excludeFileTypes"))
+                    return false;
+                if (null == doc.SelectSingleNode(PATH_MRU + "/filter" + i.ToString() + "/excludeFileTypes/size"))
+                    return false;
+                if (null == doc.SelectSingleNode(PATH_MRU + "/filter" + i.ToString() + "/excludeFileNames"))
+                    return false;
+                if (null == doc.SelectSingleNode(PATH_MRU + "/filter" + i.ToString() + "/excludeFileNames/size"))
+                    return false;
+                if (null == doc.SelectSingleNode(PATH_MRU + "/filter" + i.ToString() + "/excludeFolders"))
+                    return false;
+                if (null == doc.SelectSingleNode(PATH_MRU + "/filter" + i.ToString() + "/excludeFolders/size"))
                     return false;
             }
             
@@ -1095,6 +1114,7 @@ namespace nsync
         /// <summary>
         /// Makes the file normal for editing
         /// </summary>
+        /// <param name="file">File path to be unprotected</param>
         private void UnProtectFile(string file)
         {
             File.SetAttributes(file, FileAttributes.Normal);
@@ -1103,6 +1123,7 @@ namespace nsync
         /// <summary>
         /// Makes the file hidden and readOnly
         /// </summary>
+        /// <param name="file">File path to be protected</param>
         private void ProtectFile(string file)
         {
             //File.SetAttributes(file, FileAttributes.Normal | FileAttributes.ReadOnly);
@@ -1112,6 +1133,7 @@ namespace nsync
         /// <summary>
         /// Obtains the first 2 paths from settings.xml
         /// </summary>
+        /// <returns>Left and right folder</returns>
         private string[] GetLeftAndRightFolderPath()
         {
             XmlDocument doc = new XmlDocument();
@@ -1128,6 +1150,7 @@ namespace nsync
         /// <summary>
         /// Recursive method to delete metaData
         /// </summary>
+        /// <param name="path">path to delete metadata</param>
         private void DeleteAllMetaData(string path)
         {
             string[] filePaths = new string[0];
@@ -1166,6 +1189,8 @@ namespace nsync
         /// <summary>
         /// Recursive method to get all accessible Sub Folder
         /// </summary>
+        /// <param name="path">path to check for sub folder</param>
+        /// <returns>list of paths of accessible folders</returns>
         private List<string> GetSubFolder(string path)
         {
             List<string> directories = new List<string>();
@@ -1226,6 +1251,7 @@ namespace nsync
         /// <summary>
         /// Checks if nsync folder is locked.
         /// </summary>
+        /// <returns>Whether nsync folder is locked</returns>
         private bool IsNsyncFolderLocked()
         {
             try
@@ -1271,6 +1297,7 @@ namespace nsync
         /// <summary>
         /// Checks if log folder is locked.
         /// </summary>
+        /// <returns>Whether log folder is locked</returns>
         private bool IsLogFolderLocked()
         {
             try
@@ -1316,6 +1343,7 @@ namespace nsync
         /// <summary>
         /// Checks if settings file is locked.
         /// </summary>
+        /// <returns>Whether settings.xml is folder</returns>
         private bool IsSettingsFileLocked()
         {
             try
@@ -1357,6 +1385,7 @@ namespace nsync
         /// <summary>
         /// Check if nsync folder exists, if not, create a new copy
         /// </summary>
+        /// <returns>Whether nsync folder exists</returns>
         private bool IsNsyncFolderExists()
         {
             if (!File.Exists(nsyncFolder))
@@ -1370,6 +1399,7 @@ namespace nsync
         /// <summary>
         /// Check if log folder exists, if not, create a new copy
         /// </summary>
+        /// <returns>Whether log folder exists</returns>
         private bool IsLogFolderExists()
         {
             if (!File.Exists(logFolder))
@@ -1383,6 +1413,7 @@ namespace nsync
         /// <summary>
         /// Check if settings.xml exists, if not, create a new copy
         /// </summary>
+        /// <returns>Whether settings.xml exists</returns>
         private bool IsSettingsFileExists()
         {
             if (!File.Exists(settingsFile))
@@ -1396,6 +1427,7 @@ namespace nsync
         /// <summary>
         /// Method to delete file
         /// </summary>
+        /// <param name="path">file path to delete</param>
         private void DeleteFile(string path)
         {
             UnProtectFile(path);
