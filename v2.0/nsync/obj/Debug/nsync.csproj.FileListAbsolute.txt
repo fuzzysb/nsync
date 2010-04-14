@@ -1304,7 +1304,6 @@ C:\Documents and Settings\Paralleluni\Desktop\nsync v2.0\nsync\bin\Debug\Interop
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\bin\Debug\Interop.IWshRuntimeLibrary.dll
-C:\Users\Administrator\Desktop\latest\nsync\bin\Debug\nsync.XML
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
 C:\Users\Administrator\Desktop\latest\nsync\obj\Debug\nsync.exe
@@ -2050,3 +2049,4 @@ C:\Users\Eugene\Desktop\nsync2.0fix\nsync\obj\Debug\nsync.Properties.Resources.r
 C:\Users\Eugene\Desktop\nsync2.0fix\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\Eugene\Desktop\nsync2.0fix\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Eugene\Desktop\nsync2.0fix\nsync\obj\Debug\nsync.application
+C:\Users\Administrator\Desktop\latest\nsync\bin\Debug\nsync.XML

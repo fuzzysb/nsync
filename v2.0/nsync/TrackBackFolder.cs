@@ -17,15 +17,15 @@ namespace nsync
         private string trackbackPath, dateTime, xmlPath;
         private DirectoryInfo trackbackFolder, storageFolder, sourceFolder, destinationFolder;
 
-        private readonly string PATH_TRACKBACK = "/nsync/TrackBack";
-        private readonly string PATH_SESSION = "/nsync/TrackBack/session";
-        private readonly string TIMESTAMP_REGEX = "yyyy-MM-dd hh.mm.ss tt";
-        private readonly string DATE_REGEX = "yyyy-MM-dd";
-        private readonly string TIME_REGEX = "hh.mm.ss tt";
+        private readonly string PATH_TRACKBACK = Properties.Resources.trackBackPath;
+        private readonly string PATH_SESSION = Properties.Resources.trackBackSessionPath;
+        private readonly string TIMESTAMP_REGEX = Properties.Resources.timeStampFormat;
+        private readonly string DATE_REGEX = Properties.Resources.dateFormat;
+        private readonly string TIME_REGEX = Properties.Resources.timeFormat;
 
-        private readonly string TRACKBACK_FOLDER_NAME = nsync.Properties.Resources.trackBackFolderName;
-        private readonly string METADATA_FILE_NAME = nsync.Properties.Resources.metadataFileName;
-        private readonly string TRACKBACK_XML_FILE_NAME = nsync.Properties.Resources.trackBackMetaDataFileName;
+        private readonly string TRACKBACK_FOLDER_NAME = Properties.Resources.trackBackFolderName;
+        private readonly string METADATA_FILE_NAME = Properties.Resources.metadataFileName;
+        private readonly string TRACKBACK_XML_FILE_NAME = Properties.Resources.trackBackMetaDataFileName;
         #endregion
 
         #region Constructor
@@ -98,6 +98,7 @@ namespace nsync
 
             for (int i = 0; i < nodeList.Count; i++)
             {
+                // This condition handles the situation where the folder is the root drive
                 folderList[i] = (nodeList[i].FirstChild.InnerText.Length > 3) ? nodeList[i].FirstChild.InnerText.Substring(nodeList[i].FirstChild.InnerText.LastIndexOf("\\") + 1) :
                     folderList[i] = nodeList[i].FirstChild.InnerText;
             }
@@ -152,6 +153,7 @@ namespace nsync
         /// </summary>
         public void BackupFolder()
         {
+            // The following condition handles the situation where the folder is the root drive
             if (sourceFolder.FullName.Length > 3)
                 CopyFolder(sourceFolder.FullName, Path.Combine(storageFolder.FullName, sourceFolder.Name));
             else
@@ -167,9 +169,11 @@ namespace nsync
             string folderVersionPath = Path.Combine(trackbackPath, timeStamp);
             DirectoryInfo folderVersion = new DirectoryInfo(folderVersionPath);
 
+            // Deletes any existing files/folders
             DeleteSubfolders(sourceFolder);
             DeleteFiles(sourceFolder);
 
+            // Restores the previous folder contents
             CopyFolder(folderVersion.GetDirectories()[0].FullName, sourceFolder.FullName);
         }
 
@@ -201,7 +205,9 @@ namespace nsync
         }
 
         /// <summary>
-        /// Checks to ensure that the XML document is valid.
+        /// Checks to ensure that the XML document is valid. The document is valid if
+        /// <para>the number of folders inside "_nsync_trackback" is the same as</para>
+        /// <para>the number of folders found inside XML document.</para>
         /// </summary>
         /// <returns>If valid, return true. Return false otherwise.</returns>
         public bool isTrackBackXMLValid()
@@ -211,16 +217,21 @@ namespace nsync
             XmlDocument document = new XmlDocument();
             document.Load(xmlPath);
 
+            // If there are no TrackBack nodes, XML document is not valid
             if (document.SelectSingleNode(PATH_TRACKBACK) == null) return false;
 
             DirectoryInfo[] folderList = new DirectoryInfo(xmlPath.Substring(0, xmlPath.LastIndexOf("\\"))).GetDirectories();
             XmlNodeList nodeList = document.SelectNodes(PATH_SESSION);
 
+            // If the number of folders found in _nsync_trackback folder does not tally with the 
+            // folders found inside the XML document, XML document is not valid
             if (folderList.Length != nodeList.Count) return false;
 
+            // Checks if the folder exists inside the XML document
             for (int i = 0; i < folderList.Length; i++)
             {
                 string folderName = nodeList.Item(i).Attributes.Item(0).Value + " " + nodeList.Item(i).Attributes.Item(1).Value;
+
                 if (!ContainsFolder(folderList, folderName))
                     return false;
             }
@@ -233,73 +244,11 @@ namespace nsync
         // PRIVATE METHODS
         ////////////////////
 
-        /*
         /// <summary>
-        /// Copies a folder to the destination directory
+        /// Copies the folder contents from source to destination
         /// </summary>
-        /// <param name="sourceDirectory">The folder to be copied</param>
-        /// <param name="destinationDirectory">The directory to be copied into</param>
-        private void CopyFolder(DirectoryInfo sourceDirectory, DirectoryInfo destinationDirectory)
-        {
-            // queue to store subfolders
-            Queue<DirectoryInfo> directoryQueue = new Queue<DirectoryInfo>(20);
-            directoryQueue.Enqueue(sourceDirectory);
-
-            bool isParentRootDrive = (sourceDirectory.Parent.Name == sourceDirectory.Root.Name) ? true : false;
-
-            while (directoryQueue.Count > 0)
-            {
-                DirectoryInfo currentDirectory = directoryQueue.Dequeue();
-
-                DirectoryInfo[] folders = null;
-
-                // If the folder is denied access due to folder security permissions, skip it
-                if (IsDirectoryAccessible(currentDirectory))
-                {
-                    // stores all subfolders in the current directory
-                    folders = currentDirectory.GetDirectories();
-
-                    string folderPath = isParentRootDrive ?
-                        Path.Combine(destinationDirectory.FullName, currentDirectory.FullName.Remove(0, sourceDirectory.Parent.FullName.Length)) :
-                         Path.Combine(destinationDirectory.FullName, currentDirectory.FullName.Remove(0, sourceDirectory.Parent.FullName.Length + 1));
-
-                    if (!Directory.Exists(folderPath)) CreateFolder(folderPath, false);
-
-                    foreach (DirectoryInfo folder in folders)
-                    {
-                        if (folder.Name != TRACKBACK_FOLDER_NAME)
-                            directoryQueue.Enqueue(folder);
-                    }
-
-                    FileInfo[] files = currentDirectory.GetFiles();
-
-                    // copies the files found in the current directory to the destination folders
-                    foreach (FileInfo file in files)
-                    {
-                        string path = isParentRootDrive ?
-                            Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length)) :
-                            Path.Combine(destinationDirectory.FullName, file.FullName.Substring(sourceDirectory.Parent.FullName.Length + 1));
-
-                        // If the file is denied access due to file security permissions, skip it
-                        try
-                        {
-                            if (file.Name != METADATA_FILE_NAME)
-                                file.CopyTo(path);
-                        }
-                        catch (UnauthorizedAccessException)
-                        {
-                            // Skip the file
-                        }
-                        catch (Exception e)
-                        {
-                            throw e;
-                        }
-                    } 
-                }  
-             }
-        }
-        */
-
+        /// <param name="sourceFolder">The folder to be copied</param>
+        /// <param name="destinationFolder">The new folder that will contain the new contents</param>
         private void CopyFolder(string sourceFolder, string destinationFolder)
         {
             if (IsDirectoryAccessible(sourceFolder))
@@ -309,19 +258,25 @@ namespace nsync
 
                 string[] files = Directory.GetFiles(sourceFolder);
 
+                // Copies files found in the folder
                 foreach (string file in files)
                 {
                     string name = Path.GetFileName(file);
-                    if (name != METADATA_FILE_NAME)
+                    
+                    if (name != METADATA_FILE_NAME && IsFileAccessible(file))
                     {
                         string destination = Path.Combine(destinationFolder, name);
-                        if (IsFileAccessible(file)) File.Copy(file, destination);
+                        File.Copy(file, destination);
                     }
                 }
+
                 string[] folders = Directory.GetDirectories(sourceFolder);
+
+                // Copies subfolders found in the folder
                 foreach (string folder in folders)
                 {
                     string name = Path.GetFileName(folder);
+
                     if (name != TRACKBACK_FOLDER_NAME)
                     {
                         string destination = Path.Combine(destinationFolder, name);
@@ -332,7 +287,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// Creates a folder and sets its attributes as hidden
+        /// Creates a folder and sets its attributes according to the boolean variable
         /// </summary>
         /// <param name="path">The path of the folder to be created</param>
         /// <param name="isHidden">If true, set the folder as hidden. Else, do nothing.</param>
@@ -341,13 +296,15 @@ namespace nsync
         {
             DirectoryInfo folder = new DirectoryInfo(path);
             folder.Create();
+
             folder.Attributes = isHidden? FileAttributes.Directory | FileAttributes.Hidden : FileAttributes.Directory;
 
             return folder;
         }
 
         /// <summary>
-        /// Deletes all subfolders in a given folder
+        /// Deletes all subfolders in a given folder (Note: "_nsync_trackback" is not
+        /// <para>deleted in this method)</para>
         /// </summary>
         /// <param name="folder">The folder that contains the subfolders to be deleted</param>
         private void DeleteSubfolders(DirectoryInfo folder)
@@ -362,7 +319,8 @@ namespace nsync
         }
 
         /// <summary>
-        /// Deletes all files in a given folder
+        /// Deletes all files in a given folder, ignores files that are denied access
+        /// <para>due to insufficient access rights.</para>
         /// </summary>
         /// <param name="folder">The folder that contains the files to be deleted</param>
         private void DeleteFiles(DirectoryInfo folder)
@@ -380,8 +338,8 @@ namespace nsync
         }
 
         /// <summary>
-        /// Deletes the directory recursively. This method differs from Directory Delete method in that it
-        /// is able to remove read-only files as well.
+        /// Deletes the directory recursively. This method differs from Directory Delete method in that
+        /// <para>it is able to remove read-only files as well.</para>
         /// </summary>
         /// <param name="directory">The directory path that is to be deleted</param>
         private void DeleteDirectory(string directory)
@@ -410,6 +368,7 @@ namespace nsync
                     DeleteDirectory(folder);
                 }
 
+                // Do not delete the folder if there are skipped files in it
                 if (skippedFiles == 0) Directory.Delete(directory, false);
             }
         }
@@ -469,6 +428,7 @@ namespace nsync
 
             textWriter.WriteEndDocument();
             textWriter.Close();
+
             File.SetAttributes(xmlPath, FileAttributes.Hidden);
         }
 
@@ -487,21 +447,25 @@ namespace nsync
             document.Load(xmlPath);
 
             XmlNode node = document.CreateNode(XmlNodeType.Element, "session", "");
+
+            // Creates the date attribute in session element
             XmlNode dateNode = document.CreateNode(XmlNodeType.Attribute, "date", "");
             dateNode.Value = timeStamp.Substring(0, timeStamp.IndexOf(' '));
             node.Attributes.SetNamedItem(dateNode);
 
+            // Creates the time attribute in session element
             XmlNode timeNode = document.CreateNode(XmlNodeType.Attribute, "time", "");
             timeNode.Value = timeStamp.Substring(timeStamp.IndexOf(' ') + 1);
             node.Attributes.SetNamedItem(timeNode);
 
-            // limits the number of TrackBack sessions to 5
+            // Limits the number of TrackBack sessions to 5
             if (document.GetElementsByTagName("session").Count < 5)
             {
                 document.GetElementsByTagName("TrackBack")[0].InsertAfter(node, document.GetElementsByTagName("TrackBack")[0].LastChild);
             }
             else
             {
+                // Retrieves the earliest session node and replace it with the latest one
                 DateTime result = GetEarliestSession(GetDateTimeList(document));
                 DeleteDirectory(Path.Combine(trackbackPath, result.ToString(TIMESTAMP_REGEX)));
 
@@ -512,15 +476,18 @@ namespace nsync
                 XmlNode trackback = document.SelectSingleNode(PATH_TRACKBACK);
                 trackback.ReplaceChild(node, oldNode);
             }
+            // Adds the source node 
             XmlNode source = document.CreateNode(XmlNodeType.Element, "source", "");
             source.InnerText = sourcePath;
             node.AppendChild(source);
 
+            // Adds the destination node
             XmlNode destination = document.CreateNode(XmlNodeType.Element, "destination", "");
             destination.InnerText = destinationPath;
             node.AppendChild(destination);
 
             document.Save(xmlPath);
+
             File.SetAttributes(xmlPath, FileAttributes.Hidden);
         }
 
@@ -536,11 +503,12 @@ namespace nsync
             for (int i = 0; i < 5; i++)
             {
                 string dateValue = document.SelectNodes(PATH_SESSION)[i].Attributes[0].Value;
-                string[] dateList = dateValue.Split('-');
+                string[] dateList = dateValue.Split(' ');
 
                 string timeValue = document.SelectNodes(PATH_SESSION)[i].Attributes[1].Value;
                 string[] timeList = timeValue.Split('.');
 
+                // Converts the time into 24 hour format
                 if (timeList[2].Contains("PM") && Int32.Parse(timeList[0]) < 12)
                     dateTimeList[i] = new DateTime(Int32.Parse(dateList[0]), Int32.Parse(dateList[1]), 
                         Int32.Parse(dateList[2]), Int32.Parse(timeList[0]) + 12, Int32.Parse(timeList[1]), 
@@ -589,33 +557,8 @@ namespace nsync
             return false;
         }
 
-        /*
         /// <summary>
-        /// Checks if the folder has restricted file permissions
-        /// </summary>
-        /// <param name="directory">The directory to be checked</param>
-        /// <returns>If the folder can be accessed, return true. Return false otherwise.</returns>
-        private bool IsDirectoryAccessible(DirectoryInfo directory)
-        {
-            try
-            {
-                directory.GetFiles();
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return false;
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
-            return true;
-        }
-         */
-
-        /// <summary>
-        /// Checks if the folder has restricted file permissions
+        /// Checks if the folder has restricted access permissions
         /// </summary>
         /// <param name="directory">The path of the directory to be checked</param>
         /// <returns>If the folder can be accessed, return true. Return false otherwise.</returns>
@@ -629,14 +572,14 @@ namespace nsync
             {
                 return false;
             }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
             return true;
         }
 
+        /// <summary>
+        /// Checks if the file has restricted access permissions
+        /// </summary>
+        /// <param name="filePath">The path of the file to be checked</param>
+        /// <returns>If the file can be accessed, return true. Return false otherwise.</returns>
         private bool IsFileAccessible(string filePath)
         {
             FileInfo file = new FileInfo(filePath);

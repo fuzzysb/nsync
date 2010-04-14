@@ -22,8 +22,8 @@ namespace nsync
         private string leftFolderPath, rightFolderPath;
         private string timeStamp;
 
-        private readonly string DATE_FORMAT = "yyyy-MM-dd";
-        private readonly string TIME_FORMAT = "hh.mm.ss tt";
+        private readonly string DATE_FORMAT = Properties.Resources.dateFormat;
+        private readonly string TIME_FORMAT = Properties.Resources.timeFormat;
         #endregion
 
         #region Properties

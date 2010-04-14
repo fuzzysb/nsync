@@ -54,7 +54,7 @@
         </member>
         <member name="M:nsync.TrackBackPage.SortClick(System.Object,System.Windows.RoutedEventArgs)">
             <summary>
-            event called on clicking on the header of a column
+            Event called on clicking on the header of a column
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -63,9 +63,9 @@
             <summary>
             Sorting method to sort a listview
             </summary>
-            <param name="sortBy">data name/parameter to sort by as a string</param>
+            <param name="sortBy">Data name/parameter to sort by as a string</param>
             <param name="direction">Ascending or descending order</param>
-            <param name="listView">Listview to be sorted</param>
+            <param name="listView">List View to be sorted</param>
         </member>
         <member name="M:nsync.TrackBackPage.LoadSourceFolders">
             <summary>
@@ -136,8 +136,26 @@
         </member>
         <member name="M:nsync.TrackBackPage.DisplayErrorInterface">
             <summary>
-            Displays the interface that will appear visible when there is an error
+            Displays the interface components when there is an error
             </summary>
+        </member>
+        <member name="M:nsync.TrackBackPage.DisplayListViewForLeftFolderOnly(System.Boolean)">
+            <summary>
+            Displays the list view for left folder only
+            </summary>
+            <param name="status">If true, enable the interface. Else, disable the interface.</param>
+        </member>
+        <member name="M:nsync.TrackBackPage.DisplayListViewForRightFolderOnly(System.Boolean)">
+            <summary>
+            Displays the list view for right folder only
+            </summary>
+            <param name="status">If true, enable the interface. Else, disable the interface.</param>
+        </member>
+        <member name="M:nsync.TrackBackPage.HideListViewForBothFolders(System.Boolean)">
+            <summary>
+            Hides the list view for both folders
+            </summary>
+            <param name="status">If true, enable the interface. Else, disable the interface.</param>
         </member>
         <member name="M:nsync.TrackBackPage.backgroundWorkerForTrackBackRestore_RunWorkerCompleted(System.Object,System.ComponentModel.RunWorkerCompletedEventArgs)">
             <summary>
@@ -164,6 +182,20 @@
             <param name="maxLength">The maximum length that the path should be shortened</param>
             <returns>A string containing the new folder path is returned</returns>
         </member>
+        <member name="M:nsync.TrackBackPage.ListViewForLeftFolder_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            This method is called when the left folder list view selection is changed
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.TrackBackPage.ListViewForRightFolder_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            This method is called when the right folder list view selection is changed
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:nsync.TrackBackPage.InitializeComponent">
             <summary>
             InitializeComponent
@@ -186,17 +218,17 @@
         </member>
         <member name="P:nsync.TrackBackItemData.nameItem">
             <summary>
-            property for left item column
+            Property for left item column
             </summary>
         </member>
         <member name="P:nsync.TrackBackItemData.dateItem">
             <summary>
-            property for action column
+            Property for action column
             </summary>
         </member>
         <member name="P:nsync.TrackBackItemData.folderItem">
             <summary>
-            property for right item column
+            Property for right item column
             </summary>
         </member>
         <member name="T:nsync.ExtensionMethods">
@@ -695,6 +727,11 @@
               Looks up a localized string similar to Close.
             </summary>
         </member>
+        <member name="P:nsync.Properties.Resources.dateFormat">
+            <summary>
+              Looks up a localized string similar to yyyy-MMM-dd.
+            </summary>
+        </member>
         <member name="P:nsync.Properties.Resources.debugFolderPath">
             <summary>
               Looks up a localized string similar to \nsync\debug\.
@@ -840,6 +877,11 @@
               Looks up a localized string similar to nsync is having problems accessing the left folder. Please close any applications that are using this folder or free up more disk space..
             </summary>
         </member>
+        <member name="P:nsync.Properties.Resources.leftFolderMRUPath">
+            <summary>
+              Looks up a localized string similar to /nsync/MRU/left1.
+            </summary>
+        </member>
         <member name="P:nsync.Properties.Resources.leftFolderNotExist">
             <summary>
               Looks up a localized string similar to The left folder does not exist..
@@ -885,6 +927,11 @@
               Looks up a localized string similar to Log Folder is Locked.\n Path : .
             </summary>
         </member>
+        <member name="P:nsync.Properties.Resources.messageNoListView">
+            <summary>
+              Looks up a localized string similar to Error: No listview visible!.
+            </summary>
+        </member>
         <member name="P:nsync.Properties.Resources.messageNsyncFolderLocked">
             <summary>
               Looks up a localized string similar to Nsync Folder is Locked.\n Path : .
@@ -893,6 +940,16 @@
         <member name="P:nsync.Properties.Resources.messagePreparingFolders">
             <summary>
               Looks up a localized string similar to Preparing folders....
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.messageRestoreCompleted">
+            <summary>
+              Looks up a localized string similar to Restore completed.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.messageRestoringFolders">
+            <summary>
+              Looks up a localized string similar to Restoring folders....
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.messageSettingsXmlLocked">
@@ -995,6 +1052,11 @@
               Looks up a localized string similar to nsync is having problems accessing the right folder. Please close any applications that are using this folder or free up more disk space..
             </summary>
         </member>
+        <member name="P:nsync.Properties.Resources.rightFolderMRUPath">
+            <summary>
+              Looks up a localized string similar to /nsync/MRU/right1.
+            </summary>
+        </member>
         <member name="P:nsync.Properties.Resources.rightFolderNotExist">
             <summary>
               Looks up a localized string similar to The right folder does not exist..
@@ -1070,9 +1132,14 @@
               Looks up a localized string similar to pack://siteoforigin:,,,/Resources/Icons/removabledrive.png.
             </summary>
         </member>
+        <member name="P:nsync.Properties.Resources.timeFormat">
+            <summary>
+              Looks up a localized string similar to hh.mm.ss tt.
+            </summary>
+        </member>
         <member name="P:nsync.Properties.Resources.timeStampFormat">
             <summary>
-              Looks up a localized string similar to yyyy MMM dd hh.mm.ss tt.
+              Looks up a localized string similar to yyyy-MMM-dd hh.mm.ss tt.
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.trackBackFolderName">
@@ -1083,6 +1150,16 @@
         <member name="P:nsync.Properties.Resources.trackBackMetaDataFileName">
             <summary>
               Looks up a localized string similar to _trackback.xml.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.trackBackPath">
+            <summary>
+              Looks up a localized string similar to /nsync/TrackBack.
+            </summary>
+        </member>
+        <member name="P:nsync.Properties.Resources.trackBackSessionPath">
+            <summary>
+              Looks up a localized string similar to /nsync/TrackBack/session.
             </summary>
         </member>
         <member name="P:nsync.Properties.Resources.trackBackToolTip">
@@ -2031,13 +2108,22 @@
         </member>
         <member name="M:nsync.TrackBackFolder.isTrackBackXMLValid">
             <summary>
-            Checks to ensure that the XML document is valid.
+            Checks to ensure that the XML document is valid. The document is valid if
+            <para>the number of folders inside "_nsync_trackback" is the same as</para>
+            <para>the number of folders found inside XML document.</para>
             </summary>
             <returns>If valid, return true. Return false otherwise.</returns>
         </member>
+        <member name="M:nsync.TrackBackFolder.CopyFolder(System.String,System.String)">
+            <summary>
+            Copies the folder contents from source to destination
+            </summary>
+            <param name="sourceFolder">The folder to be copied</param>
+            <param name="destinationFolder">The new folder that will contain the new contents</param>
+        </member>
         <member name="M:nsync.TrackBackFolder.CreateFolder(System.String,System.Boolean)">
             <summary>
-            Creates a folder and sets its attributes as hidden
+            Creates a folder and sets its attributes according to the boolean variable
             </summary>
             <param name="path">The path of the folder to be created</param>
             <param name="isHidden">If true, set the folder as hidden. Else, do nothing.</param>
@@ -2045,20 +2131,22 @@
         </member>
         <member name="M:nsync.TrackBackFolder.DeleteSubfolders(System.IO.DirectoryInfo)">
             <summary>
-            Deletes all subfolders in a given folder
+            Deletes all subfolders in a given folder (Note: "_nsync_trackback" is not
+            <para>deleted in this method)</para>
             </summary>
             <param name="folder">The folder that contains the subfolders to be deleted</param>
         </member>
         <member name="M:nsync.TrackBackFolder.DeleteFiles(System.IO.DirectoryInfo)">
             <summary>
-            Deletes all files in a given folder
+            Deletes all files in a given folder, ignores files that are denied access
+            <para>due to insufficient access rights.</para>
             </summary>
             <param name="folder">The folder that contains the files to be deleted</param>
         </member>
         <member name="M:nsync.TrackBackFolder.DeleteDirectory(System.String)">
             <summary>
-            Deletes the directory recursively. This method differs from Directory Delete method in that it
-            is able to remove read-only files as well.
+            Deletes the directory recursively. This method differs from Directory Delete method in that
+            <para>it is able to remove read-only files as well.</para>
             </summary>
             <param name="directory">The directory path that is to be deleted</param>
         </member>
@@ -2114,10 +2202,17 @@
         </member>
         <member name="M:nsync.TrackBackFolder.IsDirectoryAccessible(System.String)">
             <summary>
-            Checks if the folder has restricted file permissions
+            Checks if the folder has restricted access permissions
             </summary>
             <param name="directory">The path of the directory to be checked</param>
             <returns>If the folder can be accessed, return true. Return false otherwise.</returns>
+        </member>
+        <member name="M:nsync.TrackBackFolder.IsFileAccessible(System.String)">
+            <summary>
+            Checks if the file has restricted access permissions
+            </summary>
+            <param name="filePath">The path of the file to be checked</param>
+            <returns>If the file can be accessed, return true. Return false otherwise.</returns>
         </member>
         <member name="M:nsync.Intelligence.IsThereFilesInRootPath(System.String)">
             <summary>

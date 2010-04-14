@@ -36,13 +36,13 @@ namespace nsync
         private string[] destinationList;
         private string[] timeStampList;
 
-        private readonly string SETTINGS_FILE_NAME = Environment.GetEnvironmentVariable("APPDATA") + nsync.Properties.Resources.settingsFilePath;
-        private readonly string PATH_MRU_LEFT_FOLDER = "/nsync/MRU/left1";
-        private readonly string PATH_MRU_RIGHT_FOLDER = "/nsync/MRU/right1";
-        private readonly string MESSAGE_RESTORING_FOLDERS = "Restoring folders...";
-        private readonly string MESSAGE_RESTORE_COMPLETED = "Restore completed";
-        private readonly string MESSAGE_ERROR_DETECTED = "Error detected";
-        private readonly string MESSAGE_NO_LISTVIEW = "Error: No listview visible!";
+        private readonly string SETTINGS_FILE_NAME = Environment.GetEnvironmentVariable("APPDATA") + Properties.Resources.settingsFilePath;
+        private readonly string PATH_MRU_LEFT_FOLDER = Properties.Resources.leftFolderMRUPath;
+        private readonly string PATH_MRU_RIGHT_FOLDER = Properties.Resources.rightFolderMRUPath;
+        private readonly string MESSAGE_RESTORING_FOLDERS = Properties.Resources.messageRestoringFolders;
+        private readonly string MESSAGE_RESTORE_COMPLETED = Properties.Resources.messageRestoreCompleted;
+        private readonly string MESSAGE_ERROR_DETECTED = Properties.Resources.messageErrorDetected;
+        private readonly string MESSAGE_NO_LISTVIEW = Properties.Resources.messageNoListView;
         private readonly int HELPER_WINDOW_HIGH_PRIORITY = 0;
         private readonly int HELPER_WINDOW_LOW_PRIORITY = 1;
         #endregion
@@ -65,9 +65,7 @@ namespace nsync
             // Disables the TrackBackPage interface if no folder pairs are loaded in HomePage
             if (!File.Exists(SETTINGS_FILE_NAME) || settingsManager.LoadFolderPaths()[0] == "")
             {
-                GridTrackBack.IsEnabled = false;
-                ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
-                LabelNoChanges.Visibility = Visibility.Visible;
+                HideListViewForBothFolders(false);
                 return;
             }
             else
@@ -85,22 +83,17 @@ namespace nsync
                 }
                 else if (trackback.hasTrackBackData(actualLeftFolderPath))
                 {
-                    GridTrackBack.IsEnabled = true;
-                    ListViewForRightFolder.Visibility = Visibility.Collapsed;
-                    LabelNoChanges.Visibility = Visibility.Visible;
+                    DisplayListViewForLeftFolderOnly(true);
                 }
                 else if (trackback.hasTrackBackData(actualRightFolderPath))
                 {
-                    GridTrackBack.IsEnabled = true;
-                    ListViewForLeftFolder.Visibility = Visibility.Collapsed;
-                    LabelNoChanges.Visibility = Visibility.Visible;
+                    DisplayListViewForRightFolderOnly(true);
                 }
-                else if (!trackback.hasTrackBackData(actualLeftFolderPath) && !trackback.hasTrackBackData(actualRightFolderPath))
+                else
                 {
-                    GridTrackBack.IsEnabled = false;
-                    ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
-                    LabelNoChanges.Visibility = Visibility.Visible;
+                    HideListViewForBothFolders(false);
                 }
+
                 // Adds the event handler for Restore
                 trackback.backgroundWorkerForTrackBackRestore.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(backgroundWorkerForTrackBackRestore_RunWorkerCompleted);
             }
@@ -187,9 +180,9 @@ namespace nsync
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             int trackbackStatus = settingsManager.GetTrackBackStatus(); // 0 for disabled, 1 for enabled, -1 is an error
+            
             if (trackbackStatus != -1)
             {
-
                 if (trackbackStatus == 0)
                 {
                     GridTrackBack.IsEnabled = false;
@@ -254,7 +247,7 @@ namespace nsync
         }
 
         /// <summary>
-        /// event called on clicking on the header of a column
+        /// Event called on clicking on the header of a column
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -285,6 +278,7 @@ namespace nsync
                     }
 
                     string header = headerClicked.Tag as string;
+
                     if (ListViewForLeftFolder.Visibility == Visibility.Visible)
                         SortList(header, direction, ListViewForLeftFolder);
                     else if (ListViewForRightFolder.Visibility == Visibility.Visible)
@@ -301,9 +295,9 @@ namespace nsync
         /// <summary>
         /// Sorting method to sort a listview
         /// </summary>
-        /// <param name="sortBy">data name/parameter to sort by as a string</param>
+        /// <param name="sortBy">Data name/parameter to sort by as a string</param>
         /// <param name="direction">Ascending or descending order</param>
-        /// <param name="listView">Listview to be sorted</param>
+        /// <param name="listView">List View to be sorted</param>
         private void SortList(string sortBy, ListSortDirection direction, ListView listView)
         {
             ICollectionView dataView =
@@ -401,8 +395,7 @@ namespace nsync
                 LoadTrackBackEntriesForLeftFolder();
                 if (ListViewForLeftFolder.Items.Count == 0)
                 {
-                    ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
-                    LabelNoChanges.Visibility = Visibility.Visible;
+                    HideListViewForBothFolders(true);
                 }
                 else
                     LabelNoChanges.Visibility = Visibility.Hidden;
@@ -413,8 +406,7 @@ namespace nsync
                 LoadTrackBackEntriesForRightFolder();
                 if (ListViewForRightFolder.Items.Count == 0)
                 {
-                    ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
-                    LabelNoChanges.Visibility = Visibility.Visible;
+                    HideListViewForBothFolders(true);
                 }
                 else
                     LabelNoChanges.Visibility = Visibility.Hidden;
@@ -439,13 +431,13 @@ namespace nsync
                 if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualLeftFolderPath && !trackback.hasEnoughDiskSpaceInLeftFolder())
                 {
                     DisplayErrorInterface();
-                    helper.Show(nsync.Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    helper.Show(Properties.Resources.leftFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", nsync.Properties.Resources.leftFolderInsufficientDiskSpace);
                 }
                 else if (GetOriginalFolderPath(GetSelectedComboBoxItem()) == actualRightFolderPath && !trackback.hasEnoughDiskSpaceInRightFolder())
                 {
                     DisplayErrorInterface();
-                    helper.Show(nsync.Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                    helper.Show(Properties.Resources.rightFolderInsufficientDiskSpace, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                     debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", nsync.Properties.Resources.rightFolderInsufficientDiskSpace);
                 }
                 else
@@ -469,7 +461,7 @@ namespace nsync
             catch (UnauthorizedAccessException)
             {
                 DisplayErrorInterface();
-                helper.Show(nsync.Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(Properties.Resources.accessRightsInsufficient, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                 debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - ButtonRestore_Click()", nsync.Properties.Resources.accessRightsInsufficient);
                 return;
             }
@@ -561,13 +553,48 @@ namespace nsync
         }
 
         /// <summary>
-        /// Displays the interface that will appear visible when there is an error
+        /// Displays the interface components when there is an error
         /// </summary>
         private void DisplayErrorInterface()
         {
             EnableInterface(true);
             LabelProgress.Visibility = Visibility.Visible;
             LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+        }
+
+        /// <summary>
+        /// Displays the list view for left folder only
+        /// </summary>
+        /// <param name="status">If true, enable the interface. Else, disable the interface.</param>
+        private void DisplayListViewForLeftFolderOnly(bool status)
+        {
+            GridTrackBack.IsEnabled = status;
+            ListViewForLeftFolder.Visibility = Visibility.Visible;
+            ListViewForRightFolder.Visibility = Visibility.Collapsed;
+            LabelNoChanges.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Displays the list view for right folder only
+        /// </summary>
+        /// <param name="status">If true, enable the interface. Else, disable the interface.</param>
+        private void DisplayListViewForRightFolderOnly(bool status)
+        {
+            GridTrackBack.IsEnabled = status;
+            ListViewForRightFolder.Visibility = Visibility.Visible;
+            ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+            LabelNoChanges.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Hides the list view for both folders
+        /// </summary>
+        /// <param name="status">If true, enable the interface. Else, disable the interface.</param>
+        private void HideListViewForBothFolders(bool status)
+        {
+            GridTrackBack.IsEnabled = status;
+            ListViewForRightFolder.Visibility = ListViewForLeftFolder.Visibility = Visibility.Collapsed;
+            LabelNoChanges.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -582,7 +609,7 @@ namespace nsync
                 EnableInterface(true);
                 LabelProgress.Visibility = Visibility.Visible;
                 LabelProgress.Content = MESSAGE_RESTORE_COMPLETED;
-                helper.Show(nsync.Properties.Resources.restoreComplete, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                helper.Show(Properties.Resources.restoreComplete, HELPER_WINDOW_LOW_PRIORITY, HelperWindow.windowStartPosition.windowTop);
 
                 debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - backgroundWorkerForTrackBackRestore_RunWorkerCompleted()", nsync.Properties.Resources.restoreComplete);
             }
@@ -593,19 +620,19 @@ namespace nsync
                 switch ((int) e.Result)
                 {
                     case 1:
-                        helper.Show(nsync.Properties.Resources.folderRestrictedAccess, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(Properties.Resources.folderRestrictedAccess, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 2:
-                        helper.Show(nsync.Properties.Resources.folderNotExists, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(Properties.Resources.folderNotExists, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 3:
-                        helper.Show(nsync.Properties.Resources.folderPathTooLong, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(Properties.Resources.folderPathTooLong, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     case 4:
-                        helper.Show(nsync.Properties.Resources.folderIOException, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(Properties.Resources.folderIOException, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;
                     default:
-                        helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+                        helper.Show(Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
                         break;                    
                 }
                 debugLogger.LogMessage(actualLeftFolderPath, actualRightFolderPath, "TrackBackPage.xaml.cs - backgroundWorkerForTrackBackRestore_RunWorkerCompleted()", "Error #" + e.Result.ToString());
@@ -636,12 +663,22 @@ namespace nsync
             return sb.ToString();
         }
 
+        /// <summary>
+        /// This method is called when the left folder list view selection is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListViewForLeftFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LabelProgress.Visibility = Visibility.Hidden;
             ButtonRestore.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// This method is called when the right folder list view selection is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListViewForRightFolder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LabelProgress.Visibility = Visibility.Hidden;
@@ -656,15 +693,15 @@ namespace nsync
     public class TrackBackItemData
     {
         /// <summary>
-        /// property for left item column
+        /// Property for left item column
         /// </summary>
         public string nameItem { get; set; }
         /// <summary>
-        /// property for action column
+        /// Property for action column
         /// </summary>
         public string dateItem { get; set; }
         /// <summary>
-        /// property for right item column
+        /// Property for right item column
         /// </summary>
         public string folderItem { get; set; }
     }
