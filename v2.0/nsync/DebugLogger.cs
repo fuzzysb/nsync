@@ -63,12 +63,10 @@ namespace nsync
         /// <summary>
         /// Write the last log message to log file and close the file
         /// </summary>
-        /// <param name="leftPath"></param>
-        /// <param name="rightPath"></param>
         /// <param name="message"></param>
-        public void ClosingMessage(string leftPath, string rightPath, string message)
+        public void ClosingMessage(string message)
         {
-            WriteLogMessage(leftPath, rightPath, "DebugLogger.ClosingMessage()", nsync.Properties.Resources.debugLoggerClosingMessage);
+            WriteLogMessage("n/a", "n/a", "DebugLogger.ClosingMessage()", nsync.Properties.Resources.debugLoggerClosingMessage);
             try
             {
                 log.Close();
