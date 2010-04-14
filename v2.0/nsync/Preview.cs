@@ -35,10 +35,12 @@ namespace nsync
         /// </summary>
         public Preview()
         {
+            // Attaching event handlers for preview
             backgroundWorkerForPreview = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForPreview.DoWork += new DoWorkEventHandler(backgroundWorkerForPreview_DoWork);
             backgroundWorkerForPreview.WorkerReportsProgress = true;
 
+            // Attaching event handlers for summary
             backgroundWorkerForSummary = new System.ComponentModel.BackgroundWorker();
             backgroundWorkerForSummary.DoWork += new DoWorkEventHandler(backgroundWorkerForSummary_DoWork);
             backgroundWorkerForSummary.WorkerReportsProgress = true;
@@ -178,7 +180,7 @@ namespace nsync
                 SyncFileSystemReplicasOneWay(rightPath, leftPath, null, options);
                 return 0;
             }
-            catch (System.UnauthorizedAccessException)
+            catch (UnauthorizedAccessException)
             {
                 return 1;
             }
@@ -265,6 +267,7 @@ namespace nsync
                 if (destProvider != null) destProvider.Dispose();
             }
         }
+
         /// <summary>
         /// This method is called when changes are going to be done to a file
         /// </summary>
