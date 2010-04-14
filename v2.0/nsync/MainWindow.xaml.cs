@@ -17,6 +17,7 @@ namespace nsync
     {
         #region Class Variables
         private static int oldSelectedIndex = 0;
+        private DebugLogger debugLogger;
         #endregion
 
         #region Public Methods
@@ -26,6 +27,9 @@ namespace nsync
         public MainWindow()
         {
             InitializeComponent();
+
+            // Get the debugLogger class instance
+            debugLogger = DebugLogger.Instance;  
         }
 
         /// <summary>
@@ -76,6 +80,8 @@ namespace nsync
         /// <param name="e"></param>
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
+            debugLogger.LogMessage("n/a", "n/a", "MainWindow.xaml.cs - ButtonClose_Click()", "nsync closing");
+
             this.Close();
         }
 
