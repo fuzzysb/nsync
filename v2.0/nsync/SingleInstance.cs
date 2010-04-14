@@ -16,7 +16,6 @@ namespace nsync
     {
         internal static void Make(String name, Application app)
         {
-            /*
             EventWaitHandle eventWaitHandle = null;
             String eventName = Environment.MachineName + "-" + Environment.CurrentDirectory.Replace('\\', '-') + "-" + name;
 
@@ -50,17 +49,17 @@ namespace nsync
 
                 // For that exit no interceptions
                 Environment.Exit(0);
-            }*/
+            }
         }
 
 
         private static void waitOrTimerCallback(Object state, Boolean timedOut)
-        {/*
+        {
             Application app = (Application)state;
-            app.Dispatcher.BeginInvoke(new activate(delegate()
+            app.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,new activate(delegate()
             {
                 Application.Current.MainWindow.Activate();
-            }), null);*/
+            }));
         }
 
         private delegate void activate();
