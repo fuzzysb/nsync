@@ -184,7 +184,7 @@ namespace nsync
         /// <param name="e"></param>
         private void mainWindow_Closing(object sender, CancelEventArgs e)
         {
-            debugLogger.ClosingMessage(actualLeftPath, actualRightPath, "Exit from nsync");
+            debugLogger.ClosingMessage("Exit from nsync");
 
             if (!isErrorClosing)
                 SaveFolderPaths();
