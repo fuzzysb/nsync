@@ -1186,7 +1186,6 @@ C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\MainWindow.baml
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\VisualPreviewWindow.baml
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\nsync.g.resources
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\nsync.Properties.Resources.resources
-C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\nsync.TestEngine.resources
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\nsync.csproj.GenerateResource.Cache
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\AdminNUS\Desktop\nsync[repository]\nsync\obj\Debug\nsync.application

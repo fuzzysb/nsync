@@ -114,7 +114,7 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForPreview_DoWork(object sender, DoWorkEventArgs e)
         {
-            InternalPreviewSync();
+            e.Result = InternalPreviewSync();
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForSummary_DoWork(object sender, DoWorkEventArgs e)
         {
-            InternalPreviewSync();
+            e.Result = InternalPreviewSync();
         }
         #endregion
 
@@ -132,7 +132,7 @@ namespace nsync
         /// <summary>
         /// Does Sync operation to store change events into a list of FileData objects
         /// </summary>
-        private void InternalPreviewSync()
+        private int InternalPreviewSync()
         {
             try
             {
@@ -176,14 +176,23 @@ namespace nsync
                 // Start the 2-way sync
                 SyncFileSystemReplicasOneWay(leftPath, rightPath, null, options);
                 SyncFileSystemReplicasOneWay(rightPath, leftPath, null, options);
+                return 0;
             }
-            catch (System.UnauthorizedAccessException exceptionError)
+            catch (System.UnauthorizedAccessException)
             {
-                throw exceptionError;
+                return 1;
             }
-            catch (Exception exceptionError)
+            catch (MetadataStorageEngineException)
             {
-                throw exceptionError;
+                return 2;
+            }
+            catch (MetadataStoreException)
+            {
+                return 3;
+            }
+            catch (Exception)
+            {
+                return 4;
             }
         }
 

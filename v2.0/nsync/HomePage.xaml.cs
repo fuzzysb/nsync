@@ -1812,7 +1812,13 @@ namespace nsync
         /// <param name="e"></param>
         private void backgroundWorkerForPreview_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Error != null)
+            if ((int)e.Result > 0)
+            {
+                LabelProgress.Content = MESSAGE_ERROR_DETECTED;
+                EnableInterface(true);
+                helper.Show(nsync.Properties.Resources.defaultErrorMessage, HELPER_WINDOW_HIGH_PRIORITY, HelperWindow.windowStartPosition.windowTop);
+            }
+            else if (e.Error != null)
             {
                 string message = e.Error.Message.Remove(e.Error.Message.IndexOf("("));
 
