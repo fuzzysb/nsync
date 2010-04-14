@@ -517,7 +517,7 @@ namespace nsync
             for (int i = 0; i < 5; i++)
             {
                 string dateValue = document.SelectNodes(PATH_SESSION)[i].Attributes[0].Value;
-                string[] dateList = dateValue.Split(' ');
+                string[] dateList = dateValue.Split('-');
 
                 string timeValue = document.SelectNodes(PATH_SESSION)[i].Attributes[1].Value;
                 string[] timeList = timeValue.Split('.');

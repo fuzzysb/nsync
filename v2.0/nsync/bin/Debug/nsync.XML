@@ -974,6 +974,11 @@
             Getter method for error message for summary report
             </summary>
         </member>
+        <member name="T:nsync.SummaryReport">
+            <summary>
+            SummaryReport Class
+            </summary>
+        </member>
         <member name="M:nsync.SummaryReport.#ctor(System.Boolean,System.Collections.Generic.List{System.String})">
             <summary>
             Constructor for SummaryReport when there are no changes
@@ -3307,6 +3312,21 @@
         <member name="T:nsync.SingleInstance">
             <summary>
             SingleInstance class adds support for a having Single Instance Applications in WPF
+            </summary>
+        </member>
+        <member name="T:nsync.Preview">
+            <summary>
+            Preview Class
+            </summary>
+        </member>
+        <member name="F:nsync.Preview.backgroundWorkerForPreview">
+            <summary>
+            BackgroundWorkerForPreview Component
+            </summary>
+        </member>
+        <member name="F:nsync.Preview.backgroundWorkerForSummary">
+            <summary>
+            BackgroundWorkerForSummary Component
             </summary>
         </member>
         <member name="M:nsync.Preview.#ctor">
