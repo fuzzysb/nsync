@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Shao Qi
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,7 +46,7 @@ namespace nsync
                 }
                 catch
                 {
-                    //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Constructor: Error creating/writing debugFile");
+                    // Do nothing
                 }
             }
 
@@ -73,7 +75,7 @@ namespace nsync
             }
             catch
             {
-                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error closing debugFile");
+                // Do nothing
             }
         }
 
@@ -126,7 +128,7 @@ namespace nsync
                 }
                 catch
                 {
-                    //MessageBox.Show("=DEBUG LOGGER=" + "\n" + e.Message);
+                    // Do nothing
                     return false;
                 }
                 return true;
@@ -152,7 +154,6 @@ namespace nsync
                 }
                 catch
                 {
-                    //MessageBox.Show("=DEBUG LOGGER=" + "\n" + e.Message);
                     return false;
                 }
                 return true;
@@ -201,7 +202,7 @@ namespace nsync
             }
             catch
             {
-                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error creating/writing debugFile");
+                // Do nothing
             }
         }
 
@@ -229,7 +230,7 @@ namespace nsync
             }
             catch
             {
-                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error creating/writing debugFile");
+                // Do nothing
             }
         }
 
@@ -271,7 +272,7 @@ namespace nsync
             }
             catch
             {
-                //MessageBox.Show("=DEBUG LOGGER=" + "\n" + "Error creating/writing debugFile");
+                // Do nothing
             }
         }
 
@@ -301,21 +302,21 @@ namespace nsync
         /// <summary>
         /// Gets the system information as stated by the parameters
         /// </summary>
-        /// <param name="strTable"></param>
+        /// <param name="table"></param>
         /// <param name="properties"></param>
         /// <returns>Returns a string which contains the requested system information</returns>
-        private string GetSystemInfo(string strTable, string properties)
+        private string GetSystemInfo(string table, string properties)
         {
             try
             {
                 ManagementObjectSearcher mos = new ManagementObjectSearcher();
-                mos.Query.QueryString = "SELECT " + properties + " FROM " + strTable;
+                mos.Query.QueryString = "SELECT " + properties + " FROM " + table;
                 ManagementObjectCollection moc = mos.Get();
-                string strInfo = string.Empty;
+                string info = string.Empty;
                 foreach (ManagementObject mo in moc)
                     foreach (PropertyData pd in mo.Properties)
-                        strInfo += pd.Value + ",";
-                return strInfo.Substring(0, strInfo.Length - 1);
+                        info += pd.Value + ",";
+                return info.Substring(0, info.Length - 1);
             }
             catch { return nsync.Properties.Resources.getSystemInfoErrorMessage; }
         }
