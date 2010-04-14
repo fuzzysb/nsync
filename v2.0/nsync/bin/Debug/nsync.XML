@@ -2762,6 +2762,40 @@
             <param name="sender"></param>
             <param name="e"></param>
         </member>
+        <member name="M:nsync.MainWindow.ButtonPageSettings_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            event when mouse enters settings circle, show the tooltip
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ShowPageToolTip(System.String)">
+            <summary>
+            method to display a tooltip for the navigation circles
+            </summary>
+            <param name="toolTip"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPage_MouseLeave(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            event when mouse leaves any of the circles
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageHome_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            event when mouse enters home circle, show the tooltip
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:nsync.MainWindow.ButtonPageTrackBack_MouseEnter(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            event when mouse enters trackback circle, show the tooltip
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
         <member name="M:nsync.MainWindow.InitializeComponent">
             <summary>
             InitializeComponent

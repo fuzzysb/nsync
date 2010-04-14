@@ -267,7 +267,59 @@ namespace nsync
                 ButtonSideTabRight.Visibility = Visibility.Hidden;
             }
         }
+
+        /// <summary>
+        /// event when mouse enters settings circle, show the tooltip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonPageSettings_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ShowPageToolTip(Properties.Resources.settingsToolTip);
+        }
+
+        /// <summary>
+        /// method to display a tooltip for the navigation circles
+        /// </summary>
+        /// <param name="toolTip"></param>
+        private void ShowPageToolTip(string toolTip)
+        {
+            PageToolTip.Visibility = Visibility.Visible;
+            PageToolTipText.Text = toolTip;
+        }
+
+        /// <summary>
+        /// event when mouse leaves any of the circles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonPage_MouseLeave(object sender, MouseEventArgs e)
+        {
+            PageToolTip.Visibility = Visibility.Hidden;
+        }
+
+        /// <summary>
+        /// event when mouse enters home circle, show the tooltip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonPageHome_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ShowPageToolTip(Properties.Resources.homeToolTip);
+        }
+
+        /// <summary>
+        /// event when mouse enters trackback circle, show the tooltip
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonPageTrackBack_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ShowPageToolTip(Properties.Resources.trackBackToolTip);
+        }
         #endregion
+
+      
 
 
     }

@@ -3,18 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Name="windowHelper" Title="Help" Height="100" Width="350" Focusable="False" AllowsTransparency="True" WindowStyle="None" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="False" Background="Transparent">
 
-    <Window.Resources>
-        <LinearGradientBrush x:Key="DarkBorderBrush" StartPoint="0,0" EndPoint="0,1">
-            <LinearGradientBrush.GradientStops>
-                <GradientStopCollection>
-                    <GradientStop Color="#363636" Offset="0.0"/>
-                    <GradientStop Color="#000000" Offset="1.0"/>
-                </GradientStopCollection>
-            </LinearGradientBrush.GradientStops>
-        </LinearGradientBrush>
-        
-    </Window.Resources>
-
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
             <BeginStoryboard>

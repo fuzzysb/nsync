@@ -22,7 +22,16 @@
         </LinearGradientBrush.GradientStops>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="LightBorderBrush" Color="#1d75d1" />
-    
+
+    <LinearGradientBrush x:Key="DarkBorderBrush" StartPoint="0,0" EndPoint="0,1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#363636" Offset="0.0"/>
+                <GradientStop Color="#000000" Offset="1.0"/>
+            </GradientStopCollection>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
     <!-- Dark ComboBox Brushes -->
     
     <SolidColorBrush x:Key="ComboBoxItemHighlightBrush" Color="Black" Opacity="0.8" />

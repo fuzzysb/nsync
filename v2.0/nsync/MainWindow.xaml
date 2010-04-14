@@ -31,9 +31,9 @@
         <TextBlock MouseLeftButtonDown="titleBar_MouseLeftButtonDown" x:Name="TitleBar" Height="38" VerticalAlignment="Top"/>
         <Button Name="ButtonClose" ToolTip="{x:Static const:Resources.closeToolTip}" Template="{StaticResource ButtonCloseTemplate}" Width="25" Height="23" Click="ButtonClose_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5,15"></Button>
         
-        <Button Name="ButtonPageSettings" ToolTip="{x:Static const:Resources.settingsToolTip}" Template="{StaticResource ButtonPageTemplate}" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="240,35,0,0" Click="ButtonPageSettings_Click"></Button>
-        <Button Name="ButtonPageHome" ToolTip="{x:Static const:Resources.homeToolTip}" Template="{StaticResource ButtonPageTemplate}" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,35,0,0" IsEnabled="False" Click="ButtonPageHome_Click"></Button>
-        <Button Name="ButtonPageTrackBack" ToolTip="{x:Static const:Resources.trackBackToolTip}" Template="{StaticResource ButtonPageTemplate}" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="260,35,0,0" Click="ButtonPageTrackBack_Click"></Button>
+        <Button Name="ButtonPageSettings" Template="{StaticResource ButtonPageTemplate}" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="240,35,0,0" Click="ButtonPageSettings_Click" MouseEnter="ButtonPageSettings_MouseEnter" MouseLeave="ButtonPage_MouseLeave"></Button>
+        <Button Name="ButtonPageHome" Template="{StaticResource ButtonPageTemplate}" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="250,35,0,0" IsEnabled="False" Click="ButtonPageHome_Click" MouseEnter="ButtonPageHome_MouseEnter" MouseLeave="ButtonPage_MouseLeave"></Button>
+        <Button Name="ButtonPageTrackBack" Template="{StaticResource ButtonPageTemplate}" Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="260,35,0,0" Click="ButtonPageTrackBack_Click" MouseEnter="ButtonPageTrackBack_MouseEnter" MouseLeave="ButtonPage_MouseLeave"></Button>
         <Button Name="ButtonMinimise" ToolTip="{x:Static const:Resources.minimiseToolTip}" Template="{StaticResource ButtonMinimiseTemplate}" Width="22" Height="10" Click="ButtonMinimise_Click"  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,26,25,0"></Button>
         
 
@@ -76,6 +76,11 @@
 
         <Button Name="ButtonSideTabLeft" Template="{StaticResource ButtonSideTabLeftTemplate}" Width="16" Height="56" Click="ButtonSideTabLeft_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,140" Visibility="Hidden"></Button>
         <Button Name="ButtonSideTabRight" Template="{StaticResource ButtonSideTabRightTemplate}" Width="16" Height="56" Click="ButtonSideTabRight_Click" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,140" Visibility="Hidden"></Button>
+        <Border Name="PageToolTip" Width="100" Height="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0, 57" Background="Black" Opacity="0.8" Visibility="Hidden" CornerRadius="5" BorderBrush="{StaticResource DarkBorderBrush}" BorderThickness="1">
+            <Grid>
+                <TextBlock Name="PageToolTipText" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="10"></TextBlock>
+            </Grid>
+        </Border>
     </Grid>
     
 </Window>
