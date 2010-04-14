@@ -199,6 +199,8 @@ namespace nsync
                 return ParseShortcut(path);
         }
 
+        // Code Snippet credited to
+        // http://www.geektieguy.com/2007/11/19/how-to-parse-special-lnk-files-aka-msi-shortcuts-aka-windows-installer-advertised-shortcuts-using-c/
         [DllImport("msi.dll", CharSet = CharSet.Auto)]
         static extern int MsiGetShortcutTarget(string targetFile, StringBuilder productCode, StringBuilder featureID, StringBuilder componentCode);
         
