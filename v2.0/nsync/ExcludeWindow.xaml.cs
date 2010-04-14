@@ -878,6 +878,11 @@ namespace nsync
             excludeSubFolders.Clear();
         }
 
+        /// <summary>
+        /// event handler when the dropdown menu of comboxbox is opened
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ComboBoxFileType_DropDownOpened(object sender, EventArgs e)
         {
             ComboBoxFileType.SelectedIndex = -1;
