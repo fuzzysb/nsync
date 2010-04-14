@@ -357,4 +357,7 @@
   <data name="timeStampFormat" xml:space="preserve">
     <value>yyyy MMM dd hh.mm.ss tt</value>
   </data>
+  <data name="excludeRootFolder" xml:space="preserve">
+    <value>Cannot Exclude Root Folder: </value>
+  </data>
 </root>
