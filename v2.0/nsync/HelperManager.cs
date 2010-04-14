@@ -77,11 +77,11 @@ namespace nsync
                         {
                             if (errorCount == 1)
                                 helpString += " " + errorCount + " file not synchronized.";
-                            else if (errorCount > 1)
+                            else
                                 helpString += " " + errorCount + " files not synchronized.";
-                            if (conflictCount == 0)
+                            if (conflictCount == 1)
                                 helpString += " " + conflictCount + " file conflicted.";
-                            else if (conflictCount > 1)
+                            else
                                 helpString += " " + conflictCount + " files conflicted.";
                             string extraHelpString = "Click here to view Log.";
                             windowHelper.SetSettings(helpString, determineTimer(priority), windowPosition, logPath, extraHelpString);
