@@ -402,7 +402,10 @@ namespace nsync
         {
             foreach (string fileExtension in availableFileTypes)
             {
-                AddComboBoxItem(fileExtension);
+                if (fileExtension != NULL_STRING)
+                {
+                    AddComboBoxItem(fileExtension);
+                }
             }
         }
 
