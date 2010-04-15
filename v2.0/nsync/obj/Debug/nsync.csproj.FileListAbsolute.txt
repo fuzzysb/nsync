@@ -1822,7 +1822,6 @@ C:\Users\Administrator\Desktop\New folder\nsync\bin\Debug\nsync.pdb
 C:\Users\Administrator\Desktop\New folder\nsync\bin\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Users\Administrator\Desktop\New folder\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Administrator\Desktop\New folder\nsync\obj\Debug\nsync.application
-C:\Users\Eugene\Desktop\nsync2.0\nsync\bin\Debug\nsync.XML
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\bin\Debug\nsync.XML
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\Interop.IWshRuntimeLibrary.dll
 C:\Users\Seah Shao Qi\Desktop\NEW\nsync\obj\Debug\nsync.csproj.ResolveComReference.cache
@@ -2085,3 +2084,4 @@ C:\Users\Administrator\Desktop\newest\nsync\obj\Debug\nsync.exe.manifest
 C:\Users\Administrator\Desktop\newest\nsync\obj\Debug\nsync.application
 C:\Users\Administrator\Desktop\newest\nsync\obj\Debug\nsync.exe
 C:\Users\Administrator\Desktop\newest\nsync\obj\Debug\nsync.pdb
+C:\Users\Eugene\Desktop\nsync2.0\nsync\bin\Debug\nsync.XML

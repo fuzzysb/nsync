@@ -237,6 +237,8 @@ namespace nsync
             LabelRightPath.Content = PathShortener(rightPath, MAX_STRING_LENGTH);
             LabelRightPath.ToolTip = rightPath;
 
+            AddComboBoxItem("Loading...");
+
             try
             {
                 PopulateFileTypes();
@@ -379,6 +381,7 @@ namespace nsync
             }
             else
             {
+                ComboBoxFileType.Items.Clear();
                 foreach (string paths in filePaths)
                 {
                     string testPath = System.IO.Path.GetFileName(paths).ToLower();
@@ -737,20 +740,23 @@ namespace nsync
         {
             if (ComboBoxFileType.SelectedIndex >= 0)
             {
-                if (HintText.Visibility == Visibility.Visible)
-                {
-                    HintText.Visibility = Visibility.Collapsed;
-                    HintIcon.Visibility = Visibility.Collapsed;
-                    ListBoxExclude.Visibility = Visibility.Visible;
-                }
-
                 ComboBoxItem selectedComboBoxItem = new ComboBoxItem();
                 selectedComboBoxItem = (ComboBoxItem)ComboBoxFileType.SelectedItem;
                 string fileExtension = selectedComboBoxItem.Content.ToString();
-                if (IsNotInList(excludeFileTypes, fileExtension))
-                    excludeFileTypes.Add(fileExtension);
-                ClearListBox();
-                UpdateListBox();
+                if (fileExtension != "Loading...")
+                {
+                    if (HintText.Visibility == Visibility.Visible)
+                    {
+                        HintText.Visibility = Visibility.Collapsed;
+                        HintIcon.Visibility = Visibility.Collapsed;
+                        ListBoxExclude.Visibility = Visibility.Visible;
+                    }
+
+                    if (IsNotInList(excludeFileTypes, fileExtension))
+                        excludeFileTypes.Add(fileExtension);
+                    ClearListBox();
+                    UpdateListBox();
+                }
             }
         }
 
