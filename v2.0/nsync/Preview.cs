@@ -15,7 +15,7 @@ using System.Windows;
 namespace nsync
 {
     /// <summary>
-    /// Preview Class
+    /// Preview is responsible for generating a report on what changes will take place after nsync performs the synchronization.
     /// </summary>
     public class Preview
     {

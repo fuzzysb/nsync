@@ -12,7 +12,7 @@ using System.Management;
 namespace nsync
 {
     /// <summary>
-    /// DebugLogger Class
+    /// Provides a debug report on user activities in the event of any program crashes.
     /// </summary>
     public sealed class DebugLogger
     {

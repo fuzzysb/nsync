@@ -3,12 +3,12 @@
 namespace nsync
 {
     /// <summary>
-    /// extension methods class
+    /// Provides additional methods to check for backend operations.
     /// </summary>
     public static class ExtensionMethods
     {
         /// <summary>
-        /// extension method to check if an item is in a string array
+        /// Extension method to check if an item is in a string array
         /// </summary>
         /// <param name="stringList">the list which will have the contains method</param>
         /// <param name="item">the string to check for in the list</param>

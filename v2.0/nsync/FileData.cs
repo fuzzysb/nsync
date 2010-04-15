@@ -9,7 +9,7 @@ using System.IO;
 namespace nsync
 {
     /// <summary>
-    /// FileData Class
+    /// Stores the information about each file (to be used for Preview and SummaryReport).
     /// </summary>
     public class FileData
     {

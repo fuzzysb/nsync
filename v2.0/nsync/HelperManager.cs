@@ -10,7 +10,7 @@ using System.Windows.Input;
 namespace nsync
 {
     /// <summary>
-    /// Helper Window Manager Class
+    /// HelperManager provides method calls to display the helper window in nsync
     /// </summary>
     public class HelperManager
     {

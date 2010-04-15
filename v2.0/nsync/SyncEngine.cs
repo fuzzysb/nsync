@@ -12,6 +12,9 @@ using Microsoft.Synchronization.MetadataStorage;
 
 namespace nsync
 {
+    /// <summary>
+    /// SyncEngine is responsible for performing pre-synchronization and the actual aynchronization process.
+    /// </summary>
     class SyncEngine
     {
         #region Class Variables

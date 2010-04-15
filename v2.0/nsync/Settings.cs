@@ -9,7 +9,7 @@ using System.Windows;
 namespace nsync
 {
     /// <summary>
-    /// Settings Class
+    /// Settings provides the method calls for other features to customize their options, such as enabling/disabling of features.
     /// </summary>
     public sealed class Settings
     {

@@ -9,7 +9,7 @@ using System.IO;
 namespace nsync
 {
     /// <summary>
-    /// SummaryReport Class
+    /// SummaryReport generates a report if there are any files/folders that are not successfully synchronized by nsync.
     /// </summary>
     public class SummaryReport
     {

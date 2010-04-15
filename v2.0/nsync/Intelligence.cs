@@ -5,6 +5,9 @@ using System.Management;
 
 namespace nsync
 {
+    /// <summary>
+    /// Intelligence performs various checks necessary for the other classes to perform.
+    /// </summary>
     class Intelligence
     {
         #region Public Methods

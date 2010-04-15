@@ -10,6 +10,9 @@ using System.Xml;
 
 namespace nsync
 {
+    /// <summary>
+    /// TrackBackFolder performs the actual processes called by TrackBackEngine, such as backing up, restoring, creating metadata, etc.
+    /// </summary>
     class TrackBackFolder
     {
         #region Class Variables

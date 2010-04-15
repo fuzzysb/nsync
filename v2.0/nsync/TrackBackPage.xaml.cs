@@ -702,6 +702,7 @@ namespace nsync
         #endregion
     }
 
+    #region Data Binding Class
     /// <summary>
     /// Class of trackback item data, for binding
     /// </summary>
@@ -720,4 +721,5 @@ namespace nsync
         /// </summary>
         public string folderItem { get; set; }
     }
+    #endregion
 }

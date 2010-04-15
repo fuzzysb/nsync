@@ -10,7 +10,7 @@ namespace nsync
     // IliyaTretyakov
     // http://wpfsingleinstance.codeplex.com/
     /// <summary>
-    /// SingleInstance class adds support for a having Single Instance Applications in WPF
+    /// SingleInstance adds support for having a Single Instance Application in WPF
     /// </summary>
     public static class SingleInstance
     {

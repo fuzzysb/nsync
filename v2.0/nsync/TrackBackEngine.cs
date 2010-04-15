@@ -9,6 +9,9 @@ using System.ComponentModel;
 
 namespace nsync
 {
+    /// <summary>
+    /// TrackBackEngine runs all the major operations such as backing up of folders and restoring folders.
+    /// </summary>
     class TrackBackEngine
     {
         #region Class Variables
@@ -343,21 +346,32 @@ namespace nsync
         #endregion
     }
 
+    #region Data Class
+    /// <summary>
+    /// TrackBackData provides the folder information for TrackBackEngine
+    /// </summary>
     class TrackBackData
     {
         private string folderPath;
         private string dateTime;
 
+        /// <summary>
+        /// Property for folder path
+        /// </summary>
         public string FolderPath
         {
             get { return folderPath; }
             set { folderPath = value; }
         }
 
+        /// <summary>
+        /// Property for time stamp
+        /// </summary>
         public string DateTime
         {
             get { return dateTime; }
             set { dateTime = value; }
         }
     }
+    #endregion
 }

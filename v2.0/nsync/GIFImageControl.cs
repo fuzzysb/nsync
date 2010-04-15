@@ -17,7 +17,7 @@ namespace nsync
     // Class Credited to 
     // http://www.solidrockstable.com/blogs/PragmaticTSQL/Lists/Posts/Post.aspx?ID=37
     /// <summary>
-    /// GIF display image control
+    /// GIFImageControl handles the GUI components for GIF images in the other pages.
     /// </summary>
     public class GIFImageControl : Image
     {

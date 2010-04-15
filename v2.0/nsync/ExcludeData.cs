@@ -9,7 +9,7 @@ using System.IO;
 namespace nsync
 {
     /// <summary>
-    /// ExcludeData Class
+    /// ExcludeData provides the functionalities for the different types of filters.
     /// </summary>
     public class ExcludeData
     {
