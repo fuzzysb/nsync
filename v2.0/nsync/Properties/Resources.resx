@@ -268,7 +268,7 @@
     <value>The left folder has file(s)/folder(s) with path names exceeding the limit.</value>
   </data>
   <data name="leftFolderRestrictedAccess" xml:space="preserve">
-    <value>The left folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder.</value>
+    <value>The left folder has file(s)/folder(s) with restricted file security permissions.</value>
   </data>
   <data name="rightFolderIOException" xml:space="preserve">
     <value>nsync is having problems accessing the right folder. Please close any applications that are using this folder or free up more disk space.</value>
@@ -280,7 +280,7 @@
     <value>The right folder has file(s)/folder(s) with path names exceeding the limit.</value>
   </data>
   <data name="rightFolderRestrictedAccess" xml:space="preserve">
-    <value>The right folder has file(s)/folder(s) with restricted file security permissions. Please close any applications that are using this folder.</value>
+    <value>The right folder has file(s)/folder(s) with restricted file security permissions.</value>
   </data>
   <data name="excludingFileTypesException" xml:space="preserve">
     <value>Specified argument was out of the range of valid values.</value>

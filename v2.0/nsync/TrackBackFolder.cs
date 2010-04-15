@@ -387,7 +387,7 @@ namespace nsync
                 }
 
                 // Do not delete the folder if there are skipped files in it
-                if (skippedFiles == 0) Directory.Delete(directory, false);
+                if (skippedFiles == 0) Directory.Delete(directory, true);
             }
         }
 
