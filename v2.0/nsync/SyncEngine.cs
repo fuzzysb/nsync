@@ -127,15 +127,33 @@ namespace nsync
             else
                 return null;
 
+            if (intelligentManager.IsPathRoot(oldNonTargetPath))
+            {
+                oldNonTargetPath = oldNonTargetPath.Substring(0, oldNonTargetPath.Length - 1);
+            }
+
             // List of error checks to be done before returning the new paths
             if (targetPath == oldTargetPath)
+            {
                 return null;
+            }
             if (!(intelligentManager.IsFolderSubFolder(targetPath, oldTargetPath)))
+            {
                 return null;
+            }
             if (targetPath.Length < oldTargetPath.Length)
+            {
                 return null;
+            }
+            if (intelligentManager.IsPathRoot(oldTargetPath))
+            {
+                oldTargetPath = oldTargetPath.Substring(0, oldTargetPath.Length - 1);
+            }
             if (!(intelligentManager.IsFolderExists(oldNonTargetPath + targetPath.Substring(oldTargetPath.Length))))
+            {
                 return null;
+            }
+            
 
             // Setting up the folder path array which will be returned to its caller
             string[] finalFolderPaths = new string[2];
