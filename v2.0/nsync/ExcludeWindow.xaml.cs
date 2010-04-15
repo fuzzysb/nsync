@@ -447,7 +447,7 @@ namespace nsync
                     string[] fileNames = e.Data.GetData(DataFormats.FileDrop, true) as string[];
                     foreach (string i in fileNames)
                     {
-                        if (IsAChildPath(i, leftPath) || IsAChildPath(i, rightPath))
+                        if (IsSubFolderCheck(i, leftPath) || IsSubFolderCheck(i, rightPath))
                         {
                             DirectoryInfo dirTemp = new DirectoryInfo(i);
                             if (dirTemp.Exists)
@@ -550,48 +550,6 @@ namespace nsync
                     return false;
             }
 
-            return true;
-        }
-
-        /// <summary>
-        /// method to check if one path is the root of another
-        /// </summary>
-        /// <param name="childPath">the longer child path</param>
-        /// <param name="parentPath">the shorter parent path</param>
-        /// <returns>bool whether it is a child path</returns>
-        private bool IsAChildPath(string childPath, string parentPath)
-        {
-            if (childPath == parentPath)
-            {
-                return false;
-            }
-            string[] childPathArray = childPath.Split(new char[] { '\\' });
-            string[] parentPathArray = parentPath.Split(new char[] { '\\' });
-
-            return IsSubPath(childPathArray, parentPathArray);
-        }
-
-        /// <summary>
-        /// Compares the folder paths of the input arrays and determine if they
-        /// have the same path from the root directory.
-        /// </summary>
-        /// <param name="sourceArray">Array of a folder path to be checked</param>
-        /// <param name="destinationArray">Array of a folder path to be checked</param>
-        /// <returns></returns>
-        private bool IsSubPath(string[] sourceArray, string[] destinationArray)
-        {
-            if (sourceArray.Length > destinationArray.Length)
-            {
-                string[] tmp = sourceArray;
-                sourceArray = destinationArray;
-                destinationArray = tmp;
-            }
-
-            for (int i = 0; i < sourceArray.Length; i++)
-            {
-                if (sourceArray[i] != destinationArray[i])
-                    return false;
-            }
             return true;
         }
 

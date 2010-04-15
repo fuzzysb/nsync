@@ -85,14 +85,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nsync.exe" size="1626624">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="nsync.exe" size="1626112">
       <assemblyIdentity name="nsync" version="2.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>2/Qsme3ZgNgkIMd+N2QbG3PAkco=</dsig:DigestValue>
+        <dsig:DigestValue>5K5Fouv4aF6PG20KMMsVcto9nQk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
