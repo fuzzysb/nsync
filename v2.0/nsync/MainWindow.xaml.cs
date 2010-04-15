@@ -1,4 +1,9 @@
-﻿// Eugene
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     MainWindow.xaml.cs
+//   Author:    Siow Boon Lin Eugene
+//
+///////////////////////////////////////////////////////
 
 using System.Windows;
 using System.Windows.Controls;
@@ -326,9 +331,5 @@ namespace nsync
             ShowPageToolTip(Properties.Resources.trackBackToolTip);
         }
         #endregion
-
-      
-
-
     }
 }

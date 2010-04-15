@@ -1,4 +1,9 @@
-﻿// Eugene
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     VisualPreviewWindow.xaml.cs
+//   Author:    Woon Tian Wei Norman
+//
+///////////////////////////////////////////////////////
 
 using System;
 using System.Collections.Generic;

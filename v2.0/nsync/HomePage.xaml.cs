@@ -1,5 +1,13 @@
-﻿// Shao Qi
-
+﻿///////////////////////////////////////////////////////
+//                                        
+//   CS3215 Software Engineering Project
+//          AY 2009/10 Semester II
+//
+//   Title:              HomePage.xaml.cs
+//   Author:             Seah Shao Qi
+//   Last modified:      15 April 2010
+//
+///////////////////////////////////////////////////////
 using System;
 using System.Text;
 using System.Collections.Generic;

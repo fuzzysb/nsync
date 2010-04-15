@@ -1,4 +1,9 @@
-﻿// Jayden
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     SettingsPage.xaml.cs
+//   Author:    Ma Zhencai Jayden
+//
+///////////////////////////////////////////////////////
 
 using System.Windows;
 using System.Windows.Controls;
@@ -11,11 +16,14 @@ namespace nsync
     /// </summary>
     public partial class SettingsPage : Page
     {
+        #region Class Variables
         private Settings settingsManager;
         private bool pageIsLoaded = false;
         private Window mainWindow = Application.Current.MainWindow;
         private DebugLogger debugLogger;
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Constructor for SettingsPage
         /// </summary>
@@ -28,7 +36,9 @@ namespace nsync
 
             CheckSettings();
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Update the checkbox on SettingsPage
         /// </summary>
@@ -184,5 +194,6 @@ namespace nsync
         {
             LabelProgress.Visibility = Visibility.Hidden;
         }
+        #endregion
     }
 }

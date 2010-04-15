@@ -1,4 +1,9 @@
-﻿// Eugene
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     App.xaml.cs
+//   Author:    Siow Boon Lin Eugene
+//
+///////////////////////////////////////////////////////
 
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,9 @@
-﻿// Norman
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     Preview.cs
+//   Author:    Woon Tian Wei Norman
+//
+///////////////////////////////////////////////////////
 
 using System;
 using System.Collections.Generic;

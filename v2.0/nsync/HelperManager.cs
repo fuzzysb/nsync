@@ -1,4 +1,9 @@
-﻿// Eugene
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     HelperManager.cs
+//   Author:    Siow Boon Lin Eugene
+//
+///////////////////////////////////////////////////////
 
 using System;
 using System.Windows;

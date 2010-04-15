@@ -1,4 +1,9 @@
-﻿// Shao Qi
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     Intelligence.cs
+//   Author:    Seah Shao Qi
+//
+///////////////////////////////////////////////////////
 
 using System.IO;
 using System.Management;

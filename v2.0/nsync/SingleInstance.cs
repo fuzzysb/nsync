@@ -1,4 +1,9 @@
-﻿// Eugene
+﻿///////////////////////////////////////////////////////
+//                                        
+//   Title:     SingleInstance.cs
+//   Author:    Siow Boon Lin Eugene
+//
+///////////////////////////////////////////////////////
 
 using System;
 using System.Threading;
